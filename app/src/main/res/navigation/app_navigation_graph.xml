@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/app_navigation_graph"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/app_navigation_graph"
     app:startDestination="@id/tmpFragment">
     <fragment
         android:id="@+id/sigInFragment"
@@ -18,5 +19,13 @@
         <action
             android:id="@+id/action_tmpFragment_to_sigInFragment"
             app:destination="@id/sigInFragment" />
+        <action
+                android:id="@+id/action_tmpFragment_to_higherLowerFragment"
+                app:destination="@id/higherLowerFragment" />
     </fragment>
+    <fragment
+            android:id="@+id/higherLowerFragment"
+            android:name="com.example.finema.ui.higherlower.HigherLowerFragment"
+            android:label="higher_lower_fragment"
+            tools:layout="@layout/higher_lower_fragment" />
 </navigation>

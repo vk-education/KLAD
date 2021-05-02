@@ -24,6 +24,8 @@ com/example/finema/databinding/FragmentBaseBinding.java
  com.example.finema.databinding.FragmentBaseBinding
 com/example/finema/databinding/SignInFragmentBinding.java
  com.example.finema.databinding.SignInFragmentBinding
+com/example/finema/databinding/MovieItemBinding.java
+ com.example.finema.databinding.MovieItemBinding
 com/example/finema/databinding/WelcomeFragmentBinding.java
  com.example.finema.databinding.WelcomeFragmentBinding
 androidx/databinding/DataBindingComponent.java

@@ -24,6 +24,10 @@
         "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/drawable/ic_launcher_background.xml"
     },
     {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/layout_movie_item.xml.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/movie_item.xml"
+    },
+    {
         "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher_round.png.flat",
         "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png"
     },

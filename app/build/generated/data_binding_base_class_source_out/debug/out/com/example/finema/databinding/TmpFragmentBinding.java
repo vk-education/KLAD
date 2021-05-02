@@ -19,16 +19,16 @@ public final class TmpFragmentBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final Button textView2;
+  public final Button category;
 
   @NonNull
-  public final Button textView3;
+  public final Button genre;
 
-  private TmpFragmentBinding(@NonNull ConstraintLayout rootView, @NonNull Button textView2,
-      @NonNull Button textView3) {
+  private TmpFragmentBinding(@NonNull ConstraintLayout rootView, @NonNull Button category,
+      @NonNull Button genre) {
     this.rootView = rootView;
-    this.textView2 = textView2;
-    this.textView3 = textView3;
+    this.category = category;
+    this.genre = genre;
   }
 
   @Override
@@ -58,19 +58,19 @@ public final class TmpFragmentBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.textView2;
-      Button textView2 = rootView.findViewById(id);
-      if (textView2 == null) {
+      id = R.id.category;
+      Button category = rootView.findViewById(id);
+      if (category == null) {
         break missingId;
       }
 
-      id = R.id.textView3;
-      Button textView3 = rootView.findViewById(id);
-      if (textView3 == null) {
+      id = R.id.genre;
+      Button genre = rootView.findViewById(id);
+      if (genre == null) {
         break missingId;
       }
 
-      return new TmpFragmentBinding((ConstraintLayout) rootView, textView2, textView3);
+      return new TmpFragmentBinding((ConstraintLayout) rootView, category, genre);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

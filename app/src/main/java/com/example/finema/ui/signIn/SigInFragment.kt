@@ -104,8 +104,4 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
             }
     }
 
-    companion object{
-        private const val RC_SIGN_IN = 120
-    }
-
 }

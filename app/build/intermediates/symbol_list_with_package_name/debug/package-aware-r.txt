@@ -1039,6 +1039,7 @@ color common_google_signin_btn_text_light_disabled
 color common_google_signin_btn_text_light_focused
 color common_google_signin_btn_text_light_pressed
 color common_google_signin_btn_tint
+color dark_grey
 color design_bottom_navigation_shadow_color
 color design_box_stroke_color
 color design_dark_default_color_background
@@ -1174,6 +1175,7 @@ color mtrl_textinput_focused_box_stroke_color
 color mtrl_textinput_hovered_box_stroke_color
 color notification_action_color_filter
 color notification_icon_bg_color
+color pale_black
 color primary_dark_material_dark
 color primary_dark_material_light
 color primary_material_dark
@@ -1830,6 +1832,7 @@ id action_mode_bar_stub
 id action_mode_close_button
 id action_sigInFragment_to_tmpFragment
 id action_text
+id action_tmpFragment_to_higherLowerFragment
 id action_tmpFragment_to_sigInFragment
 id actions
 id activity_chooser_view_content
@@ -1863,12 +1866,12 @@ id browser_actions_menu_items
 id browser_actions_menu_view
 id buttonPanel
 id cancel_button
+id category
 id center
 id center_horizontal
 id center_vertical
 id chain
 id chains
-id character_name
 id checkbox
 id checked
 id chip
@@ -1945,8 +1948,10 @@ id floating
 id forever
 id fragment
 id fragment_container_view_tag
+id genre
 id ghost_view
 id ghost_view_holder
+id glide_custom_view_target_tag
 id gone
 id graph
 id graph_wrap
@@ -1955,6 +1960,7 @@ id groups
 id guideline
 id header_title
 id hideable
+id higherLowerFragment
 id home
 id homeAsUp
 id honorRequest
@@ -2014,6 +2020,9 @@ id month_navigation_next
 id month_navigation_previous
 id month_title
 id motion_base
+id movie_poster
+id movie_release_date
+id movie_title
 id mtrl_anchor_parent
 id mtrl_calendar_day_selector_frame
 id mtrl_calendar_days_of_week
@@ -2080,6 +2089,7 @@ id right_icon
 id right_side
 id rounded
 id row_index_key
+id rv_movies_list
 id save_non_transition_alpha
 id save_overlay_view
 id sawtooth
@@ -2162,7 +2172,6 @@ id textStart
 id textTop
 id textView
 id textView2
-id textView3
 id textWatcher
 id text_input_end_icon
 id text_input_error_icon
@@ -2304,6 +2313,7 @@ layout material_time_input
 layout material_timepicker
 layout material_timepicker_dialog
 layout material_timepicker_textinput_display
+layout movie_item
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
 layout mtrl_alert_dialog_title

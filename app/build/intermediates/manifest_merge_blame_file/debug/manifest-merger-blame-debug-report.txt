@@ -297,6 +297,17 @@
 163-->[com.google.android.gms:play-services-basement:17.1.1] /home/albert/.gradle/caches/transforms-2/files-2.1/13aff98f1b51cc855f12004a090ffc4b/jetified-play-services-basement-17.1.1/AndroidManifest.xml:24:13-58
 164            android:value="@integer/google_play_services_version" />
 164-->[com.google.android.gms:play-services-basement:17.1.1] /home/albert/.gradle/caches/transforms-2/files-2.1/13aff98f1b51cc855f12004a090ffc4b/jetified-play-services-basement-17.1.1/AndroidManifest.xml:25:13-66
-165    </application>
-166
-167</manifest>
+165
+166        <provider
+166-->[androidx.lifecycle:lifecycle-process:2.0.0] /home/albert/.gradle/caches/transforms-2/files-2.1/eeb078179b01499d70e50ef74af707a9/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:23:9-27:43
+167            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+167-->[androidx.lifecycle:lifecycle-process:2.0.0] /home/albert/.gradle/caches/transforms-2/files-2.1/eeb078179b01499d70e50ef74af707a9/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:24:13-79
+168            android:authorities="com.example.finema.lifecycle-process"
+168-->[androidx.lifecycle:lifecycle-process:2.0.0] /home/albert/.gradle/caches/transforms-2/files-2.1/eeb078179b01499d70e50ef74af707a9/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:25:13-69
+169            android:exported="false"
+169-->[androidx.lifecycle:lifecycle-process:2.0.0] /home/albert/.gradle/caches/transforms-2/files-2.1/eeb078179b01499d70e50ef74af707a9/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:26:13-37
+170            android:multiprocess="true" />
+170-->[androidx.lifecycle:lifecycle-process:2.0.0] /home/albert/.gradle/caches/transforms-2/files-2.1/eeb078179b01499d70e50ef74af707a9/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:27:13-40
+171    </application>
+172
+173</manifest>
