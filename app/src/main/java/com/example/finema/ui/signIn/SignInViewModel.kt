@@ -1,18 +1,12 @@
 package com.example.finema.ui.signIn
 
 import android.content.Intent
-import android.net.Uri
 import android.util.Log
-import androidx.activity.compose.registerForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat.startActivityForResult
-import com.example.finema.R
-import com.example.finema.ui.base.BaseFragment
 import com.example.finema.ui.base.BaseViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -24,7 +18,7 @@ class SignInViewModel: BaseViewModel() {
     companion object{
         private const val RC_SIGN_IN = 120
     }
-
+/*
     fun signIn(googleSignInClient: GoogleSignInClient){
         val signInIntent = googleSignInClient.signInIntent
         val resultContract = registerForActivityResult(ActivityResultContracts
@@ -69,4 +63,5 @@ class SignInViewModel: BaseViewModel() {
                     }
                 }
     }
+    */
 }

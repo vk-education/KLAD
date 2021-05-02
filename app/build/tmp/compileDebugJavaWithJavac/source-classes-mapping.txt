@@ -1,0 +1,30 @@
+com/example/finema/BuildConfig.java
+ com.example.finema.BuildConfig
+com/example/finema/DataBinderMapperImpl.java
+ com.example.finema.DataBinderMapperImpl
+ com.example.finema.DataBinderMapperImpl$InnerBrLookup
+ com.example.finema.DataBinderMapperImpl$InnerLayoutIdLookup
+com/example/finema/databinding/FragmentBaseBindingImpl.java
+ com.example.finema.databinding.FragmentBaseBindingImpl
+androidx/databinding/DataBinderMapperImpl.java
+ androidx.databinding.DataBinderMapperImpl
+androidx/databinding/library/baseAdapters/BR.java
+ androidx.databinding.library.baseAdapters.BR
+com/example/finema/databinding/ActivityMainBinding.java
+ com.example.finema.databinding.ActivityMainBinding
+com/example/finema/databinding/HigherLowerFragmentBinding.java
+ com.example.finema.databinding.HigherLowerFragmentBinding
+com/example/finema/BR.java
+ com.example.finema.BR
+com/example/finema/DataBindingTriggerClass.java
+ com.example.finema.DataBindingTriggerClass
+com/example/finema/databinding/TmpFragmentBinding.java
+ com.example.finema.databinding.TmpFragmentBinding
+com/example/finema/databinding/FragmentBaseBinding.java
+ com.example.finema.databinding.FragmentBaseBinding
+com/example/finema/databinding/SignInFragmentBinding.java
+ com.example.finema.databinding.SignInFragmentBinding
+com/example/finema/databinding/WelcomeFragmentBinding.java
+ com.example.finema.databinding.WelcomeFragmentBinding
+androidx/databinding/DataBindingComponent.java
+ androidx.databinding.DataBindingComponent

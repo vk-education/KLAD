@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">677958878281-pmcs285i4cdvd5tob7c6ovd2j0msknvs.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">677958878281</string>
+    <string name="google_api_key" translatable="false">AIzaSyDO1vX5IwzD0tWU002zPXJuda5gseEPA38</string>
+    <string name="google_app_id" translatable="false">1:677958878281:android:59346e44ac0064a59deb98</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDO1vX5IwzD0tWU002zPXJuda5gseEPA38</string>
+    <string name="google_storage_bucket" translatable="false">finema-b7bde.appspot.com</string>
+    <string name="project_id" translatable="false">finema-b7bde</string>
+</resources>

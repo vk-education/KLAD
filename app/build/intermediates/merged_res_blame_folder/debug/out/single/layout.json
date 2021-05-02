@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/welcome_fragment.xml",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/welcome_fragment.xml"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/higher_lower_fragment.xml",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/higher_lower_fragment.xml"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_base.xml",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/fragment_base.xml"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_main.xml",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/tmp_fragment.xml",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/tmp_fragment.xml"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/sign_in_fragment.xml",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/sign_in_fragment.xml"
+    }
+]
