@@ -7,6 +7,7 @@ import androidx.databinding.DataBinderMapper;
 import androidx.databinding.DataBindingComponent;
 import androidx.databinding.ViewDataBinding;
 import com.example.finema.databinding.FragmentBaseBindingImpl;
+import com.example.finema.databinding.MovieItemBindingImpl;
 import java.lang.IllegalArgumentException;
 import java.lang.Integer;
 import java.lang.Object;
@@ -20,10 +21,13 @@ import java.util.List;
 public class DataBinderMapperImpl extends DataBinderMapper {
   private static final int LAYOUT_FRAGMENTBASE = 1;
 
-  private static final SparseIntArray INTERNAL_LAYOUT_ID_LOOKUP = new SparseIntArray(1);
+  private static final int LAYOUT_MOVIEITEM = 2;
+
+  private static final SparseIntArray INTERNAL_LAYOUT_ID_LOOKUP = new SparseIntArray(2);
 
   static {
     INTERNAL_LAYOUT_ID_LOOKUP.put(com.example.finema.R.layout.fragment_base, LAYOUT_FRAGMENTBASE);
+    INTERNAL_LAYOUT_ID_LOOKUP.put(com.example.finema.R.layout.movie_item, LAYOUT_MOVIEITEM);
   }
 
   @Override
@@ -40,6 +44,12 @@ public class DataBinderMapperImpl extends DataBinderMapper {
             return new FragmentBaseBindingImpl(component, view);
           }
           throw new IllegalArgumentException("The tag for fragment_base is invalid. Received: " + tag);
+        }
+        case  LAYOUT_MOVIEITEM: {
+          if ("layout/movie_item_0".equals(tag)) {
+            return new MovieItemBindingImpl(component, view);
+          }
+          throw new IllegalArgumentException("The tag for movie_item is invalid. Received: " + tag);
         }
       }
     }
@@ -86,18 +96,20 @@ public class DataBinderMapperImpl extends DataBinderMapper {
   }
 
   private static class InnerBrLookup {
-    static final SparseArray<String> sKeys = new SparseArray<String>(1);
+    static final SparseArray<String> sKeys = new SparseArray<String>(2);
 
     static {
       sKeys.put(0, "_all");
+      sKeys.put(1, "movie");
     }
   }
 
   private static class InnerLayoutIdLookup {
-    static final HashMap<String, Integer> sKeys = new HashMap<String, Integer>(1);
+    static final HashMap<String, Integer> sKeys = new HashMap<String, Integer>(2);
 
     static {
       sKeys.put("layout/fragment_base_0", com.example.finema.R.layout.fragment_base);
+      sKeys.put("layout/movie_item_0", com.example.finema.R.layout.movie_item);
     }
   }
 }

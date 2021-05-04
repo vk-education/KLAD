@@ -20,7 +20,7 @@ public final class HigherLowerFragmentBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final RecyclerView rvMoviesList;
+  public final RecyclerView recyclerViewMovies;
 
   @NonNull
   public final TextView textView;
@@ -29,9 +29,10 @@ public final class HigherLowerFragmentBinding implements ViewBinding {
   public final TextView textView2;
 
   private HigherLowerFragmentBinding(@NonNull ConstraintLayout rootView,
-      @NonNull RecyclerView rvMoviesList, @NonNull TextView textView, @NonNull TextView textView2) {
+      @NonNull RecyclerView recyclerViewMovies, @NonNull TextView textView,
+      @NonNull TextView textView2) {
     this.rootView = rootView;
-    this.rvMoviesList = rvMoviesList;
+    this.recyclerViewMovies = recyclerViewMovies;
     this.textView = textView;
     this.textView2 = textView2;
   }
@@ -63,9 +64,9 @@ public final class HigherLowerFragmentBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.rv_movies_list;
-      RecyclerView rvMoviesList = rootView.findViewById(id);
-      if (rvMoviesList == null) {
+      id = R.id.recycler_view_movies;
+      RecyclerView recyclerViewMovies = rootView.findViewById(id);
+      if (recyclerViewMovies == null) {
         break missingId;
       }
 
@@ -81,8 +82,8 @@ public final class HigherLowerFragmentBinding implements ViewBinding {
         break missingId;
       }
 
-      return new HigherLowerFragmentBinding((ConstraintLayout) rootView, rvMoviesList, textView,
-          textView2);
+      return new HigherLowerFragmentBinding((ConstraintLayout) rootView, recyclerViewMovies,
+          textView, textView2);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

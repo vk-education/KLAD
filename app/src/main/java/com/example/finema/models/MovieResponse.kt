@@ -1,8 +1,9 @@
-package com.cronocode.moviecatalog.models
+package com.example.finema.models
 
-import com.example.finema.models.OverviewMode.OverviewModel
+import com.example.finema.models.Movie
+import com.google.gson.annotations.SerializedName
 
 data class MovieResponse(
-    val movies : OverviewModel
-
+    @SerializedName("results")
+    var movies : List<Movie>
 )

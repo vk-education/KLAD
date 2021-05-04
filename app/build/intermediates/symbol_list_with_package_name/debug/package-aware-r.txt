@@ -1865,7 +1865,9 @@ id browser_actions_menu_item_text
 id browser_actions_menu_items
 id browser_actions_menu_view
 id buttonPanel
+id button_book
 id cancel_button
+id cardView
 id category
 id center
 id center_horizontal
@@ -1971,6 +1973,8 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
+id imageView
+id imageViewLike
 id info
 id invisible
 id inward
@@ -1982,6 +1986,7 @@ id labelGroup
 id labeled
 id largeLabel
 id layout
+id layout_like
 id left
 id leftToRight
 id light
@@ -2020,9 +2025,6 @@ id month_navigation_next
 id month_navigation_previous
 id month_title
 id motion_base
-id movie_poster
-id movie_release_date
-id movie_title
 id mtrl_anchor_parent
 id mtrl_calendar_day_selector_frame
 id mtrl_calendar_days_of_week
@@ -2082,6 +2084,7 @@ id progress_horizontal
 id radio
 id ratio
 id rectangles
+id recycler_view_movies
 id reverseSawtooth
 id right
 id rightToLeft
@@ -2089,7 +2092,6 @@ id right_icon
 id right_side
 id rounded
 id row_index_key
-id rv_movies_list
 id save_non_transition_alpha
 id save_overlay_view
 id sawtooth
@@ -2172,6 +2174,13 @@ id textStart
 id textTop
 id textView
 id textView2
+id textViewIsNew
+id textViewLanguage
+id textViewLikePercent
+id textViewRating
+id textViewTitle
+id textViewType
+id textViewVotesCount
 id textWatcher
 id text_input_end_icon
 id text_input_error_icon

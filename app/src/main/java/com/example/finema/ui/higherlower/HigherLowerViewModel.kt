@@ -1,33 +1,33 @@
 package com.example.finema.ui.higherlower
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.finema.api.ApiRepo
-import com.example.finema.models.TMDBMovie
+import com.example.finema.models.MovieResponse
+import com.example.finema.newapi.MoviesRepository
 import com.example.finema.ui.base.BaseViewModel
+import com.example.finema.util.Coroutines
+import kotlinx.coroutines.Job
 
-class HigherLowerViewModel: BaseViewModel() {
+class HigherLowerViewModel(
+    private val repository: MoviesRepository
+) : BaseViewModel() {
 
-    private lateinit var mMovieList : MutableLiveData<List<TMDBMovie?>>
-    private lateinit var movieList: LiveData<List<TMDBMovie?>>
-    private var mRepo : ApiRepo? = null
+    private lateinit var job: Job
 
-    fun init(){
-        if(mRepo!=null){
-            return
+    private val _movies = MutableLiveData<MovieResponse>()
+    val movies: MutableLiveData<MovieResponse>
+    get() = _movies
+
+    fun getMovies() {
+        for(i in 1..5){
+            job = Coroutines.ioThenMain(
+                { repository.getMovies(i) },
+                { _movies.value = it }
+            )
         }
-        mRepo = ApiRepo().getInstance()!!
-        mMovieList = mRepo!!.getApiRepo()
     }
 
-    fun getMovie(): LiveData<List<TMDBMovie?>> {
-        movieList = mMovieList
-        return movieList
-    }
-
-    fun refreshData(){
-        if(mRepo!=null){
-            mMovieList = mRepo!!.getApiRepo()
-        }
+    override fun onCleared() {
+        super.onCleared()
+        if(::job.isInitialized) job.cancel()
     }
 }

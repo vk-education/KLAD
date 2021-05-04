@@ -3,7 +3,7 @@ package com.example.finema.ui.tmp
 import android.app.Activity
 import androidx.navigation.Navigation
 import com.example.finema.R
-import com.example.finema.repo.Singleton
+import com.example.finema.repositories.Singleton
 import com.example.finema.ui.base.BaseViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

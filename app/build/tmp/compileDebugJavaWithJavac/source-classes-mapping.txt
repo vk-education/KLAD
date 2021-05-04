@@ -1,5 +1,7 @@
 com/example/finema/BuildConfig.java
  com.example.finema.BuildConfig
+com/example/finema/databinding/MovieItemBindingImpl.java
+ com.example.finema.databinding.MovieItemBindingImpl
 com/example/finema/DataBinderMapperImpl.java
  com.example.finema.DataBinderMapperImpl
  com.example.finema.DataBinderMapperImpl$InnerBrLookup

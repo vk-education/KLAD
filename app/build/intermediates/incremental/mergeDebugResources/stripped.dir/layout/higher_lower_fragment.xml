@@ -43,7 +43,7 @@
                     android:textColor="@color/white" />
 
             <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_movies_list"
+                    android:id="@+id/recycler_view_movies"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="16dp" />

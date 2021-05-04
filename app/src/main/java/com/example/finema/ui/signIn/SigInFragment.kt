@@ -10,7 +10,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.findNavController
 import com.example.finema.R
 import com.example.finema.databinding.SignInFragmentBinding
-import com.example.finema.repo.Singleton
+import com.example.finema.repositories.Singleton
 import com.example.finema.ui.base.BaseFragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
