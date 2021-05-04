@@ -7,11 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.example.finema.R
 import com.example.finema.databinding.SignInFragmentBinding
 import com.example.finema.repo.Singleton
 import com.example.finema.ui.base.BaseFragment
+import com.example.finema.utlis.APP_ACTIVITY
+import com.example.finema.utlis.AppPreference
+import com.example.finema.utlis.TYPE_ROOM
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -26,12 +31,12 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var mViewModel:SignInViewModel
     private val resultContract = registerForActivityResult(
         ActivityResultContracts
             .StartActivityForResult()){
             activityResult(it.data)
     }
-    private val viewModel = SignInViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,7 +44,14 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         savedInstanceState: Bundle?
     ): View {
         binding = SignInFragmentBinding.inflate(inflater, container, false)
-
+        mViewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
+        // ≈—À» œŒÀ‹«Œ¬¿“≈À‹ ¿¬“Œ–»«Œ¬¿Õ, “Œ ‘–¿√Ã≈Õ“ ¿¬“Œ–»«¿÷»» — »œ¿≈“—ﬂ
+        if (AppPreference.getInitUser()) {
+            mViewModel.initDatabase(TYPE_ROOM) {
+                Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
+                    .navigate(R.id.action_sigInFragment_to_tmpFragment)
+            }
+        }
         return binding.root
     }
 
@@ -56,13 +68,24 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
 
         binding.signInWithGoogle.setOnClickListener{
             signIn()
+//            APP_ACTIVITY.navController.navigate(R.id.action_sigInFragment_to_tmpFragment)
             it.findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
         }
 
         binding.signInAsGuest.setOnClickListener{
             Singleton.signInAsGuest = true
-            it.findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
+            mViewModel.initDatabase(TYPE_ROOM) {
+                AppPreference.setInitUser(true)
+//                APP_ACTIVITY.navController.navigate(R.id.action_sigInFragment_to_tmpFragment)
+                it.findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
+            }
+
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+
     }
 
     private fun signIn(){

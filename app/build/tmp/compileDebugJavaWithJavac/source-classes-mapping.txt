@@ -1,5 +1,7 @@
 com/example/finema/BuildConfig.java
  com.example.finema.BuildConfig
+com/example/finema/databinding/GenreItemBinding.java
+ com.example.finema.databinding.GenreItemBinding
 com/example/finema/DataBinderMapperImpl.java
  com.example.finema.DataBinderMapperImpl
  com.example.finema.DataBinderMapperImpl$InnerBrLookup
@@ -22,9 +24,21 @@ com/example/finema/databinding/TmpFragmentBinding.java
  com.example.finema.databinding.TmpFragmentBinding
 com/example/finema/databinding/FragmentBaseBinding.java
  com.example.finema.databinding.FragmentBaseBinding
+com/example/finema/databinding/FragmentTournamentGenresBinding.java
+ com.example.finema.databinding.FragmentTournamentGenresBinding
 com/example/finema/databinding/SignInFragmentBinding.java
  com.example.finema.databinding.SignInFragmentBinding
+com/example/finema/databinding/FragmentTournamentGenresBindingImpl.java
+ com.example.finema.databinding.FragmentTournamentGenresBindingImpl
 com/example/finema/databinding/WelcomeFragmentBinding.java
  com.example.finema.databinding.WelcomeFragmentBinding
 androidx/databinding/DataBindingComponent.java
  androidx.databinding.DataBindingComponent
+com/example/finema/database/room/RoomDao_Impl.java
+ com.example.finema.database.room.RoomDao_Impl
+ com.example.finema.database.room.RoomDao_Impl$1
+ com.example.finema.database.room.RoomDao_Impl$2
+ com.example.finema.database.room.RoomDao_Impl$3
+com/example/finema/database/room/RoomDataBase_Impl.java
+ com.example.finema.database.room.RoomDataBase_Impl
+ com.example.finema.database.room.RoomDataBase_Impl$1

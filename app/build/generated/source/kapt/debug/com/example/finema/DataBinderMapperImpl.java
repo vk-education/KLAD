@@ -7,6 +7,7 @@ import androidx.databinding.DataBinderMapper;
 import androidx.databinding.DataBindingComponent;
 import androidx.databinding.ViewDataBinding;
 import com.example.finema.databinding.FragmentBaseBindingImpl;
+import com.example.finema.databinding.FragmentTournamentGenresBindingImpl;
 import java.lang.IllegalArgumentException;
 import java.lang.Integer;
 import java.lang.Object;
@@ -20,10 +21,13 @@ import java.util.List;
 public class DataBinderMapperImpl extends DataBinderMapper {
   private static final int LAYOUT_FRAGMENTBASE = 1;
 
-  private static final SparseIntArray INTERNAL_LAYOUT_ID_LOOKUP = new SparseIntArray(1);
+  private static final int LAYOUT_FRAGMENTTOURNAMENTGENRES = 2;
+
+  private static final SparseIntArray INTERNAL_LAYOUT_ID_LOOKUP = new SparseIntArray(2);
 
   static {
     INTERNAL_LAYOUT_ID_LOOKUP.put(com.example.finema.R.layout.fragment_base, LAYOUT_FRAGMENTBASE);
+    INTERNAL_LAYOUT_ID_LOOKUP.put(com.example.finema.R.layout.fragment_tournament_genres, LAYOUT_FRAGMENTTOURNAMENTGENRES);
   }
 
   @Override
@@ -40,6 +44,12 @@ public class DataBinderMapperImpl extends DataBinderMapper {
             return new FragmentBaseBindingImpl(component, view);
           }
           throw new IllegalArgumentException("The tag for fragment_base is invalid. Received: " + tag);
+        }
+        case  LAYOUT_FRAGMENTTOURNAMENTGENRES: {
+          if ("layout/fragment_tournament_genres_0".equals(tag)) {
+            return new FragmentTournamentGenresBindingImpl(component, view);
+          }
+          throw new IllegalArgumentException("The tag for fragment_tournament_genres is invalid. Received: " + tag);
         }
       }
     }
@@ -94,10 +104,11 @@ public class DataBinderMapperImpl extends DataBinderMapper {
   }
 
   private static class InnerLayoutIdLookup {
-    static final HashMap<String, Integer> sKeys = new HashMap<String, Integer>(1);
+    static final HashMap<String, Integer> sKeys = new HashMap<String, Integer>(2);
 
     static {
       sKeys.put("layout/fragment_base_0", com.example.finema.R.layout.fragment_base);
+      sKeys.put("layout/fragment_tournament_genres_0", com.example.finema.R.layout.fragment_tournament_genres);
     }
   }
 }
