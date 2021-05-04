@@ -23,7 +23,9 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/Theme.Finema" >
-        <activity android:name="com.example.finema.MainActivity" >
+        <activity
+            android:name="com.example.finema.MainActivity"
+            android:theme="@style/Theme.Finema.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -4,16 +4,8 @@
         "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/navigation/app_navigation_graph.xml"
     },
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
-    },
-    {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher.png.flat",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/mipmap-mdpi/ic_launcher.png"
-    },
-    {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png"
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/layout_favourite_fragment.xml.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/favourite_fragment.xml"
     },
     {
         "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/layout_sign_in_fragment.xml.flat",
@@ -24,14 +16,6 @@
         "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/drawable/ic_launcher_background.xml"
     },
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/layout_movie_item.xml.flat",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/movie_item.xml"
-    },
-    {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher_round.png.flat",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png"
-    },
-    {
         "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/mipmap-anydpi-v26_ic_launcher.xml.flat",
         "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml"
     },
@@ -40,40 +24,36 @@
         "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
     },
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/layout_tmp_fragment.xml.flat",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/tmp_fragment.xml"
-    },
-    {
         "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/layout_higher_lower_fragment.xml.flat",
         "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/higher_lower_fragment.xml"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/menu_drawer_menu.xml.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/menu/drawer_menu.xml"
     },
     {
         "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher_round.png.flat",
         "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/drawable_default_profile_avatar.png.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/drawable/default_profile_avatar.png"
     },
     {
         "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher.png.flat",
         "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/mipmap-hdpi/ic_launcher.png"
     },
     {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/layout_tournament_fragment.xml.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/tournament_fragment.xml"
+    },
+    {
         "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
         "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/layout_welcome_fragment.xml.flat",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/welcome_fragment.xml"
-    },
-    {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/layout_activity_main.xml.flat",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/activity_main.xml"
-    },
-    {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/drawable_outline_star_24.xml.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/drawable/outline_star_24.xml"
     },
     {
         "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher_round.png.flat",
@@ -86,5 +66,85 @@
     {
         "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
         "source": "/home/albert/AndroidStudioProjects/Finema/app/build/generated/res/pngs/debug/drawable-anydpi-v24/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/layout_thematic_fragment.xml.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/thematic_fragment.xml"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/layout_others_fragment.xml.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/others_fragment.xml"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/layout_own_tournament_fragment.xml.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/own_tournament_fragment.xml"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/layout_movie_item.xml.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/movie_item.xml"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/layout_tmp_fragment.xml.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/tmp_fragment.xml"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/layout_film_fragment.xml.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/film_fragment.xml"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/drawable_outline_menu_24.xml.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/drawable/outline_menu_24.xml"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/layout_nav_header.xml.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/nav_header.xml"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/layout_number_fragment.xml.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/number_fragment.xml"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/layout_welcome_fragment.xml.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/welcome_fragment.xml"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/layout_activity_main.xml.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/layout_genre_fragment.xml.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/genre_fragment.xml"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/layout_settings_fragment.xml.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/settings_fragment.xml"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/layout_profile_fragment.xml.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/profile_fragment.xml"
     }
 ]

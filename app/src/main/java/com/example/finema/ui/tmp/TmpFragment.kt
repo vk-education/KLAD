@@ -30,7 +30,7 @@ class TmpFragment: BaseFragment<TmpViewModel, TmpFragmentBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.genre.setOnClickListener {
-            it.findNavController().navigate(R.id.action_tmpFragment_to_higherLowerFragment)
+            it.findNavController().navigate(R.id.action_fragment_tmp_to_fragment_genre)
         }
     }
 

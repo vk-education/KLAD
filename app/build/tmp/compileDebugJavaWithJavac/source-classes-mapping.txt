@@ -1,34 +1,58 @@
 com/example/finema/BuildConfig.java
  com.example.finema.BuildConfig
-com/example/finema/databinding/MovieItemBindingImpl.java
- com.example.finema.databinding.MovieItemBindingImpl
 com/example/finema/DataBinderMapperImpl.java
  com.example.finema.DataBinderMapperImpl
  com.example.finema.DataBinderMapperImpl$InnerBrLookup
  com.example.finema.DataBinderMapperImpl$InnerLayoutIdLookup
-com/example/finema/databinding/FragmentBaseBindingImpl.java
- com.example.finema.databinding.FragmentBaseBindingImpl
 androidx/databinding/DataBinderMapperImpl.java
  androidx.databinding.DataBinderMapperImpl
 androidx/databinding/library/baseAdapters/BR.java
  androidx.databinding.library.baseAdapters.BR
 com/example/finema/databinding/ActivityMainBinding.java
  com.example.finema.databinding.ActivityMainBinding
-com/example/finema/databinding/HigherLowerFragmentBinding.java
- com.example.finema.databinding.HigherLowerFragmentBinding
 com/example/finema/BR.java
  com.example.finema.BR
-com/example/finema/DataBindingTriggerClass.java
- com.example.finema.DataBindingTriggerClass
+com/example/finema/databinding/FilmFragmentBinding.java
+ com.example.finema.databinding.FilmFragmentBinding
 com/example/finema/databinding/TmpFragmentBinding.java
  com.example.finema.databinding.TmpFragmentBinding
-com/example/finema/databinding/FragmentBaseBinding.java
- com.example.finema.databinding.FragmentBaseBinding
+com/example/finema/databinding/NavHeaderBinding.java
+ com.example.finema.databinding.NavHeaderBinding
+com/example/finema/databinding/OwnTournamentFragmentBinding.java
+ com.example.finema.databinding.OwnTournamentFragmentBinding
 com/example/finema/databinding/SignInFragmentBinding.java
  com.example.finema.databinding.SignInFragmentBinding
-com/example/finema/databinding/MovieItemBinding.java
- com.example.finema.databinding.MovieItemBinding
+com/example/finema/databinding/SettingsFragmentBinding.java
+ com.example.finema.databinding.SettingsFragmentBinding
 com/example/finema/databinding/WelcomeFragmentBinding.java
  com.example.finema.databinding.WelcomeFragmentBinding
+com/example/finema/databinding/ProfileFragmentBinding.java
+ com.example.finema.databinding.ProfileFragmentBinding
+com/example/finema/databinding/NavHeaderBindingImpl.java
+ com.example.finema.databinding.NavHeaderBindingImpl
+com/example/finema/databinding/OthersFragmentBinding.java
+ com.example.finema.databinding.OthersFragmentBinding
+com/example/finema/databinding/GenreFragmentBinding.java
+ com.example.finema.databinding.GenreFragmentBinding
+com/example/finema/databinding/NumberFragmentBinding.java
+ com.example.finema.databinding.NumberFragmentBinding
+com/example/finema/databinding/FavouriteFragmentBinding.java
+ com.example.finema.databinding.FavouriteFragmentBinding
+com/example/finema/databinding/MovieItemBindingImpl.java
+ com.example.finema.databinding.MovieItemBindingImpl
+com/example/finema/databinding/TournamentFragmentBinding.java
+ com.example.finema.databinding.TournamentFragmentBinding
+com/example/finema/databinding/FragmentBaseBindingImpl.java
+ com.example.finema.databinding.FragmentBaseBindingImpl
+com/example/finema/databinding/HigherLowerFragmentBinding.java
+ com.example.finema.databinding.HigherLowerFragmentBinding
+com/example/finema/DataBindingTriggerClass.java
+ com.example.finema.DataBindingTriggerClass
+com/example/finema/databinding/ThematicFragmentBinding.java
+ com.example.finema.databinding.ThematicFragmentBinding
+com/example/finema/databinding/FragmentBaseBinding.java
+ com.example.finema.databinding.FragmentBaseBinding
+com/example/finema/databinding/MovieItemBinding.java
+ com.example.finema.databinding.MovieItemBinding
 androidx/databinding/DataBindingComponent.java
  androidx.databinding.DataBindingComponent

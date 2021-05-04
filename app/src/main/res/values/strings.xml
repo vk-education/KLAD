@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Finema</string>
+    <string name="profile">Профиль</string>
+    <string name="guest">Гость</string>
 </resources>

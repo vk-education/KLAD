@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingComponent;
 import androidx.databinding.ViewDataBinding;
 import com.example.finema.databinding.FragmentBaseBindingImpl;
 import com.example.finema.databinding.MovieItemBindingImpl;
+import com.example.finema.databinding.NavHeaderBindingImpl;
 import java.lang.IllegalArgumentException;
 import java.lang.Integer;
 import java.lang.Object;
@@ -23,11 +24,14 @@ public class DataBinderMapperImpl extends DataBinderMapper {
 
   private static final int LAYOUT_MOVIEITEM = 2;
 
-  private static final SparseIntArray INTERNAL_LAYOUT_ID_LOOKUP = new SparseIntArray(2);
+  private static final int LAYOUT_NAVHEADER = 3;
+
+  private static final SparseIntArray INTERNAL_LAYOUT_ID_LOOKUP = new SparseIntArray(3);
 
   static {
     INTERNAL_LAYOUT_ID_LOOKUP.put(com.example.finema.R.layout.fragment_base, LAYOUT_FRAGMENTBASE);
     INTERNAL_LAYOUT_ID_LOOKUP.put(com.example.finema.R.layout.movie_item, LAYOUT_MOVIEITEM);
+    INTERNAL_LAYOUT_ID_LOOKUP.put(com.example.finema.R.layout.nav_header, LAYOUT_NAVHEADER);
   }
 
   @Override
@@ -50,6 +54,12 @@ public class DataBinderMapperImpl extends DataBinderMapper {
             return new MovieItemBindingImpl(component, view);
           }
           throw new IllegalArgumentException("The tag for movie_item is invalid. Received: " + tag);
+        }
+        case  LAYOUT_NAVHEADER: {
+          if ("layout/nav_header_0".equals(tag)) {
+            return new NavHeaderBindingImpl(component, view);
+          }
+          throw new IllegalArgumentException("The tag for nav_header is invalid. Received: " + tag);
         }
       }
     }
@@ -96,20 +106,22 @@ public class DataBinderMapperImpl extends DataBinderMapper {
   }
 
   private static class InnerBrLookup {
-    static final SparseArray<String> sKeys = new SparseArray<String>(2);
+    static final SparseArray<String> sKeys = new SparseArray<String>(3);
 
     static {
       sKeys.put(0, "_all");
       sKeys.put(1, "movie");
+      sKeys.put(2, "nickname");
     }
   }
 
   private static class InnerLayoutIdLookup {
-    static final HashMap<String, Integer> sKeys = new HashMap<String, Integer>(2);
+    static final HashMap<String, Integer> sKeys = new HashMap<String, Integer>(3);
 
     static {
       sKeys.put("layout/fragment_base_0", com.example.finema.R.layout.fragment_base);
       sKeys.put("layout/movie_item_0", com.example.finema.R.layout.movie_item);
+      sKeys.put("layout/nav_header_0", com.example.finema.R.layout.nav_header);
     }
   }
 }
