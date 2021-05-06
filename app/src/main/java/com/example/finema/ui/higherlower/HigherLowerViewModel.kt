@@ -1,5 +1,6 @@
 package com.example.finema.ui.higherlower
 
+import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.example.finema.models.MovieResponse
 import com.example.finema.newapi.MoviesRepository
@@ -9,7 +10,7 @@ import kotlinx.coroutines.Job
 
 class HigherLowerViewModel(
     private val repository: MoviesRepository
-) : BaseViewModel() {
+) : BaseViewModel(application = Application()) {
 
     private lateinit var job: Job
 

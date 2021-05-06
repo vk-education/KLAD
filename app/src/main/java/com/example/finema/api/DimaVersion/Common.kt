@@ -1,6 +1,5 @@
 package com.example.finema.api.DimaVersion
 
-import com.example.finema.api.RetrofitClient
 import com.example.finema.utlis.BASE_URL
 
 object Common {

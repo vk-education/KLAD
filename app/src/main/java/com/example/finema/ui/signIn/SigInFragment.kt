@@ -17,7 +17,7 @@ import com.example.finema.databinding.SignInFragmentBinding
 import com.example.finema.repositories.Singleton
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.utlis.APP_ACTIVITY
-import com.example.finema.utlis.AppPreference
+import com.example.finema.util.AppPreference
 import com.example.finema.utlis.TYPE_ROOM
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -40,7 +40,7 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
             .StartActivityForResult()){
         activityResult(it.data)
     }
-    private val viewModel = SignInViewModel()
+    private lateinit var mViewModel: SignInViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,

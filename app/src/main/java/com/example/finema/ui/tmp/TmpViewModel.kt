@@ -1,20 +1,18 @@
 package com.example.finema.ui.tmp
 
 import android.app.Activity
+import android.app.Application
 import android.view.View.INVISIBLE
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
-import android.app.Application
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
 import com.example.finema.R
-import com.example.finema.repositories.Singleton
 import com.example.finema.models.databaseModels.GenreModel
-import com.example.finema.repo.Singleton
+import com.example.finema.repositories.Singleton
 import com.example.finema.ui.base.BaseViewModel
-import com.google.android.material.appbar.MaterialToolbar
-import com.example.finema.utlis.APP_ACTIVITY
 import com.example.finema.utlis.REPOSITORY
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers

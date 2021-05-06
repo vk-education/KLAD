@@ -1,13 +1,11 @@
 package com.example.finema
 
 import android.os.Bundle
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import com.example.finema.databinding.ActivityMainBinding
 import com.example.finema.utlis.APP_ACTIVITY
-import com.example.finema.utlis.AppPreference
+import com.example.finema.util.AppPreference
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

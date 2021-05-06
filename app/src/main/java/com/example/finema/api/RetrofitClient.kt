@@ -15,36 +15,36 @@ const val POSTER_BASE_URL = "https://image.tmdb.org/t/p/w342"
 
 object RetrofitClient {
 
-    fun getRequest(): RetrofitInterface {
-
-        val requestInterceptor = Interceptor { chain ->
-
-            val url = chain.request()
-                .url
-                .newBuilder()
-                .addQueryParameter("api_key", API_KEY)
-                .build()
-
-            val request = chain.request()
-                .newBuilder()
-                .url(url)
-                .build()
-
-            return@Interceptor chain.proceed(request)
-        }
-
-        val okHttpClient = OkHttpClient.Builder()
-            .addInterceptor(requestInterceptor)
-                .addInterceptor(MyInterceptor())
-            .connectTimeout(60, TimeUnit.SECONDS)
-            .build()
-
-        return Retrofit.Builder()
-            .client(okHttpClient)
-            .baseUrl(BASE_URL)
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(RetrofitInterface::class.java)
-    }
+//    fun getRequest(): RetrofitInterface {
+//
+//        val requestInterceptor = Interceptor { chain ->
+//
+//            val url = chain.request()
+//                .url
+//                .newBuilder()
+//                .addQueryParameter("api_key", API_KEY)
+//                .build()
+//
+//            val request = chain.request()
+//                .newBuilder()
+//                .url(url)
+//                .build()
+//
+//            return@Interceptor chain.proceed(request)
+//        }
+//
+//        val okHttpClient = OkHttpClient.Builder()
+//            .addInterceptor(requestInterceptor)
+//                .addInterceptor(MyInterceptor())
+//            .connectTimeout(60, TimeUnit.SECONDS)
+//            .build()
+//
+//        return Retrofit.Builder()
+//            .client(okHttpClient)
+//            .baseUrl(BASE_URL)
+//            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .build()
+//            .create(RetrofitInterface::class.java)
+//    }
 }
