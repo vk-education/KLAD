@@ -4,12 +4,12 @@
         "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/thematic_fragment.xml"
     },
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_base.xml",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/fragment_base.xml"
-    },
-    {
         "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/film_fragment.xml",
         "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/film_fragment.xml"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_base.xml",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/fragment_base.xml"
     },
     {
         "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/others_fragment.xml",

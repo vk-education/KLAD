@@ -2225,7 +2225,6 @@ id textViewLanguage
 id textViewLikePercent
 id textViewRating
 id textViewTitle
-id textViewType
 id textViewVotesCount
 id textWatcher
 id text_input_end_icon

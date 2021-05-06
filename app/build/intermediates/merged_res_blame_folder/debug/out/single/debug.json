@@ -8,12 +8,12 @@
         "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/favourite_fragment.xml"
     },
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/layout_sign_in_fragment.xml.flat",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/sign_in_fragment.xml"
-    },
-    {
         "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/drawable_ic_launcher_background.xml.flat",
         "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/layout_sign_in_fragment.xml.flat",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/sign_in_fragment.xml"
     },
     {
         "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/res/merged/debug/mipmap-anydpi-v26_ic_launcher.xml.flat",

@@ -51,9 +51,6 @@ public abstract class MovieItemBinding extends ViewDataBinding {
   public final TextView textViewTitle;
 
   @NonNull
-  public final TextView textViewType;
-
-  @NonNull
   public final TextView textViewVotesCount;
 
   @Bindable
@@ -63,7 +60,7 @@ public abstract class MovieItemBinding extends ViewDataBinding {
       Button buttonBook, CardView cardView, ImageView imageView, ImageView imageViewLike,
       RelativeLayout layoutLike, TextView textViewIsNew, TextView textViewLanguage,
       TextView textViewLikePercent, TextView textViewRating, TextView textViewTitle,
-      TextView textViewType, TextView textViewVotesCount) {
+      TextView textViewVotesCount) {
     super(_bindingComponent, _root, _localFieldCount);
     this.buttonBook = buttonBook;
     this.cardView = cardView;
@@ -75,7 +72,6 @@ public abstract class MovieItemBinding extends ViewDataBinding {
     this.textViewLikePercent = textViewLikePercent;
     this.textViewRating = textViewRating;
     this.textViewTitle = textViewTitle;
-    this.textViewType = textViewType;
     this.textViewVotesCount = textViewVotesCount;
   }
 

@@ -25,7 +25,6 @@ public class MovieItemBindingImpl extends MovieItemBinding  {
         sViewsWithIds.put(R.id.textViewTitle, 9);
         sViewsWithIds.put(R.id.textViewLanguage, 10);
         sViewsWithIds.put(R.id.button_book, 11);
-        sViewsWithIds.put(R.id.textViewType, 12);
     }
     // views
     @NonNull
@@ -36,7 +35,7 @@ public class MovieItemBindingImpl extends MovieItemBinding  {
     // Inverse Binding Event Handlers
 
     public MovieItemBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 13, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 12, sIncludes, sViewsWithIds));
     }
     private MovieItemBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
@@ -50,7 +49,6 @@ public class MovieItemBindingImpl extends MovieItemBinding  {
             , (android.widget.TextView) bindings[7]
             , (android.widget.TextView) bindings[4]
             , (android.widget.TextView) bindings[9]
-            , (android.widget.TextView) bindings[12]
             , (android.widget.TextView) bindings[8]
             );
         this.mboundView0 = (android.widget.LinearLayout) bindings[0];

@@ -20,18 +20,18 @@
 
             <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="370dp"
+                    android:layout_height="330dp"
                     android:background="@color/pale_black"
                     android:orientation="vertical">
 
                 <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="195dp">
+                        android:layout_height="260dp">
 
                     <ImageView
                             android:id="@+id/imageView"
                             android:layout_width="match_parent"
-                            android:layout_height="195dp"
+                            android:layout_height="270dp"
                             android:scaleType="matrix"
 
                             />
@@ -51,6 +51,7 @@
                             android:textSize="12sp" />
 
                     <TextView
+                            android:background="@color/pale_black"
                             android:id="@+id/textViewRating"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
@@ -66,6 +67,7 @@
                             android:textSize="10sp" />
 
                     <RelativeLayout
+                            android:background="@color/pale_black"
                             android:id="@+id/layout_like"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -141,23 +143,6 @@
                             android:text="Book" />
 
                 </RelativeLayout>
-
-                <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginBottom="7dp"
-                        android:background="#414141" />
-
-                <TextView
-                        android:id="@+id/textViewType"
-                        android:layout_width="28dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:gravity="center_horizontal"
-                        android:padding="2dp"
-                        android:textAlignment="center"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

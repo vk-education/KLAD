@@ -1,15 +1,19 @@
 package com.example.finema.ui.higherlower
 
 import androidx.lifecycle.MutableLiveData
+import com.example.finema.api.MoviesApi
 import com.example.finema.models.MovieResponse
 import com.example.finema.newapi.MoviesRepository
+import com.example.finema.repositories.Singleton
 import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.util.Coroutines
 import kotlinx.coroutines.Job
 
 class HigherLowerViewModel(
-    private val repository: MoviesRepository
 ) : BaseViewModel() {
+
+    private val api = MoviesApi()
+    private val repository = MoviesRepository(api)
 
     private lateinit var job: Job
 
