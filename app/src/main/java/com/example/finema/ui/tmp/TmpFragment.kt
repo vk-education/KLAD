@@ -10,6 +10,9 @@ import androidx.navigation.findNavController
 import com.example.finema.R
 import com.example.finema.api.DimaVersion.ApiInterface
 import com.example.finema.api.DimaVersion.Common
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import com.example.finema.R
 import com.example.finema.databinding.TmpFragmentBinding
 import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.models.sub_model.GenreList
@@ -33,6 +36,7 @@ class TmpFragment: BaseFragment<TmpViewModel, TmpFragmentBinding>() {
         binding = TmpFragmentBinding.inflate(inflater, container, false)
         mViewModel = ViewModelProvider(this).get(TmpViewModel::class.java)
         mAuth = FirebaseAuth.getInstance()
+
           //  Äëÿ ïîëó÷åíèÿ API
         mService = Common.retrofitService
 //          ÏÎËÓ×ÈÒÜ ÑÏÈÑÎÊ ÔÈËÜÌÎÂ
@@ -42,6 +46,13 @@ class TmpFragment: BaseFragment<TmpViewModel, TmpFragmentBinding>() {
 
         }
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.genre.setOnClickListener {
+            it.findNavController().navigate(R.id.action_fragment_tmp_to_fragment_genre)
+        }
     }
 
      private fun getAllGenresList() {

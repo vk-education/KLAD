@@ -12,7 +12,4 @@ interface RetrofitInterface {
     @GET("movie/{movie_id}")
     fun getMovieDetails(@Path("movie_id") id : Int) : Single<MovieInfoModel>
 
-
-//    @GET(GENRE_LIST)
-//    fun getGenreList(): Call<GenreList>
 }

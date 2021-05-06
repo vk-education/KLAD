@@ -1,29 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/app_navigation_graph"
-    app:startDestination="@id/sigInFragment">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/app_navigation_graph"
+        app:startDestination="@id/fragmentTmp">
+
     <fragment
-        android:id="@+id/sigInFragment"
-        android:name="com.example.finema.ui.signIn.SigInFragment"
-        android:label="SigInFragment" >
+            android:id="@+id/fragmentFavourite"
+            android:name=""
+            android:label="Favourite fragment"
+            tools:layout="@layout/favourite_fragment">
         <action
-            android:id="@+id/action_sigInFragment_to_tmpFragment"
-            app:destination="@id/tmpFragment" />
+                android:id="@+id/action_fragmentFavourite_to_fragmentFilm"
+                app:destination="@id/fragmentFilm">
+
+            <argument
+                    android:name="filmId"
+                    app:argType="long"
+                    app:nullable="false" />
+        </action>
     </fragment>
+
     <fragment
-        android:id="@+id/tmpFragment"
-        android:name="com.example.finema.ui.tmp.TmpFragment"
-        android:label="tmpFragment" >
+            android:id="@+id/fragmentTmp"
+            android:name="com.example.finema.ui.tmp.TmpFragment"
+            android:label="Tmp Fragment"
+            tools:layout="@layout/tmp_fragment">
         <action
-            android:id="@+id/action_tmpFragment_to_sigInFragment"
-            app:destination="@id/sigInFragment" />
+                android:id="@+id/action_fragment_tmp_to_fragment_others"
+                app:destination="@id/fragmentOthers" />
         <action
-                android:id="@+id/action_tmpFragment_to_tournamentGenresFragment"
-                app:destination="@id/tournamentGenresFragment" />
+                android:id="@+id/action_fragment_tmp_to_fragment_genre"
+                app:destination="@id/fragmentGenre" />
+        <action
+                android:id="@+id/action_fragment_tmp_to_fragment_own_tournament"
+                app:destination="@id/fragmentOwnTournament" />
+        <action
+                android:id="@+id/action_tmpFragment_to_sigInFragment"
+                app:destination="@id/sigInFragment" />
     </fragment>
+
     <fragment
-            android:id="@+id/tournamentGenresFragment"
-            android:name="com.example.finema.ui.tournaments.TournamentGenresFragment"
-            android:label="TournamentGenresFragment" />
+            android:id="@+id/fragmentOthers"
+            android:name=""
+            android:label="Others fragment"
+            tools:layout="@layout/others_fragment">
+        <action
+                android:id="@+id/action_fragment_others_to_fragment_number"
+                app:destination="@id/fragmentNumber" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/fragmentOwnTournament"
+            android:name=""
+            android:label="Own tournament fragment"
+            tools:layout="@layout/own_tournament_fragment">
+        <action
+                android:id="@+id/action_fragment_own_tournament_to_fragment_tournament"
+                app:destination="@id/fragmentTournament">
+
+            <argument
+                    android:name="number"
+                    app:argType="integer"
+                    app:nullable="false" />
+        </action>
+    </fragment>
+
+    <fragment
+            android:id="@+id/fragmentGenre"
+            android:name=""
+            android:label="Genre fragment"
+            tools:layout="@layout/genre_fragment">
+        <action
+                android:id="@+id/action_fragment_genre_to_fragment_number"
+                app:destination="@id/fragmentNumber" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/fragmentNumber"
+            android:name=""
+            android:label="Number fragment"
+            tools:layout="@layout/number_fragment">
+        <action
+                android:id="@+id/action_fragment_number_to_fragment_tournament"
+                app:destination="@id/fragmentTournament">
+            <argument
+                    android:name="number"
+                    app:argType="integer"
+                    app:nullable="false" />
+        </action>
+    </fragment>
+
+    <fragment
+            android:id="@+id/fragmentTournament"
+            android:name=""
+            android:label="Tournament fragment"
+            tools:layout="@layout/tournament_fragment">
+
+        <argument
+                android:name="number"
+                app:argType="integer"
+                app:nullable="false" />
+        <action
+                android:id="@+id/action_fragment_tournament_to_fragment_film"
+                app:destination="@id/fragmentFilm">
+
+            <argument
+                    android:name="filmId"
+                    app:argType="long"
+                    app:nullable="false" />
+        </action>
+
+    </fragment>
+
+    <fragment
+            android:id="@+id/sigInFragment"
+            android:name="com.example.finema.ui.signIn.SigInFragment"
+            android:label="SigInFragment"
+            tools:layout="@layout/sign_in_fragment">
+        <action
+                android:id="@+id/action_sigInFragment_to_tmpFragment"
+                app:destination="@id/fragmentTmp" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/fragmentSettings"
+            android:name="com.example.finema.ui.settings.SettingsFragment"
+            android:label="Settings fragment"
+            tools:layout="@layout/settings_fragment" />
+
+    <fragment
+            android:id="@+id/fragmentProfile"
+            android:name=""
+            android:label="Profile fragment"
+            tools:layout="@layout/profile_fragment">
+        <action
+                android:id="@+id/action_fragment_profile_to_fragment_film"
+                app:destination="@id/fragmentFilm">
+
+            <argument
+                    android:name="filmId"
+                    app:argType="long"
+                    app:nullable="false" />
+        </action>
+    </fragment>
+
+    <fragment
+            android:id="@+id/fragmentFilm"
+            android:name=""
+            android:label="Film fragment"
+            tools:layout="@layout/film_fragment">
+
+        <argument
+                android:name="filmId"
+                app:argType="long"
+                app:nullable="false" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/fragmentHigherLower"
+            android:name="com.example.finema.ui.higherlower.HigherLowerFragment"
+            android:label="More less fragment"
+            tools:layout="@layout/higher_lower_fragment">
+    </fragment>
+
+    <action android:id="@+id/action_global_fragmentSettings" app:destination="@id/fragmentSettings" />
+    <action android:id="@+id/action_global_fragmentProfile" app:destination="@id/fragmentProfile" />
+    <action android:id="@+id/action_global_fragmentTmp" app:destination="@id/fragmentTmp" />
+    <action android:id="@+id/action_global_fragmentFavourite" app:destination="@id/fragmentFavourite"/><action android:id="@+id/action_global_fragmentHigherLower" app:destination="@id/fragmentHigherLower"/>
 </navigation>
