@@ -11,6 +11,7 @@ import android.os.SystemClock
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.navigation.Navigation
+import androidx.preference.PreferenceManager
 import com.example.finema.databinding.ActivityMainBinding
 import com.example.finema.ui.settings.NotificationService
 
@@ -31,8 +32,6 @@ class MainActivity : AppCompatActivity() {
             binding.drawerLayout.open()
         }
 
-
-
         binding.navView.setNavigationItemSelectedListener {
             binding.drawerLayout.close()
 
@@ -52,15 +51,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-//        stopService(service)
-    }
-
     override fun onStop() {
         super.onStop()
-//        ContextCompat.startForegroundService(this, service)
-        scheduleNotification(getNotification(), 10000)
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val notifications = sharedPreferences.getBoolean("notifications", true)
+
+        if (notifications) {
+            scheduleNotification(getNotification(), 5000)
+        }
     }
 
     private fun scheduleNotification(notification: Notification, delay: Long){
@@ -72,6 +70,8 @@ class MainActivity : AppCompatActivity() {
         val futureMillis: Long = SystemClock.elapsedRealtime() + delay
         val alarmManager: AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureMillis, pendingIntent)
+//        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME, futureMillis,
+//            AlarmManager.INTERVAL_HALF_DAY,pendingIntent)
     }
 
     private fun getNotification(): Notification {
