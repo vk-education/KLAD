@@ -2,4 +2,8 @@
     <string name="app_name">Finema</string>
     <string name="profile">Профиль</string>
     <string name="guest">Гость</string>
+    <string name="about_film">О фильме:</string>
+    <string name="genres">Жанры:</string>
+    <string name="rating">Рейтинг:</string>
+    <string name="companies">Компании:</string>
 </resources>
