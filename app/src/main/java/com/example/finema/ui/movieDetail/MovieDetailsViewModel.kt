@@ -3,7 +3,6 @@ package com.example.finema.ui.movieDetail
 import androidx.lifecycle.MutableLiveData
 import com.example.finema.api.MoviesApi
 import com.example.finema.models.MovieDetails
-import com.example.finema.models.MovieResponse
 import com.example.finema.newapi.MoviesRepository
 import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.util.Coroutines
@@ -22,7 +21,7 @@ class MovieDetailsViewModel(
 
 
     fun getMovieDetails(id: Long) {
-        job = Coroutines.ioThenMain1(
+        job = Coroutines.movieDetailsThenMain(
             { repository.getMovieDetails(id) },
             { film.value = it }
         )
