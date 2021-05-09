@@ -15,6 +15,7 @@ import com.example.finema.api.DimaVersion.Common
 import com.example.finema.databinding.FragmentTournamentGenresBinding
 import com.example.finema.models.movieResponse.MovieResponse
 import com.example.finema.models.databaseModels.GenreModel
+import com.example.finema.models.movieResponse.Movie
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.utlis.APP_ACTIVITY
 import retrofit2.Call
@@ -62,32 +63,26 @@ class TournamentGenresFragment :
 
         private fun getFilmList(genreID: String, num:Int) {
             val mService: ApiInterface = Common.retrofitService
-            mService.getFilm(genreID).enqueue(object : retrofit2.Callback<MovieResponse> {
-                override fun onResponse(
-                    call: Call<MovieResponse>,
-                    response: Response<MovieResponse>
-                ) {
-                    val responseBody = response.body()!!
-                    val listFilmResponse = ArrayList(responseBody.movies)
-                    Log.d("WTF", listFilmResponse.toString())
-                    val bundle = Bundle()
-                    bundle.putParcelableArrayList("list", listFilmResponse)
-                    bundle.putSerializable("num", num)
-                    Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
-                        .navigate(R.id.action_fragmentGenre_to_fragmentTournament,bundle)
+                mService.getFilm(genreID).enqueue(object : retrofit2.Callback<MovieResponse> {
+                    override fun onResponse(
+                        call: Call<MovieResponse>,
+                        response: Response<MovieResponse>
+                    ) {
+                        val responseBody = response.body()!!
+                        val listFilmResponse = ArrayList(responseBody.movies)
+                        Log.d("WTF", listFilmResponse.toString())
+                        val bundle = Bundle()
+                        bundle.putParcelableArrayList("list", listFilmResponse)
+                        bundle.putSerializable("num", num)
+                        Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
+                            .navigate(R.id.action_fragmentGenre_to_fragmentTournament,bundle)
+                    }
 
-                }
-
-                override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
-                    Log.d("WTF1", "Fail" + t.message)
-                }
-            })
+                    override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
+                        Log.d("WTF1", "Fail" + t.message)
+                    }
+                })
         }
 
-
-
     }
-
-
-
 }

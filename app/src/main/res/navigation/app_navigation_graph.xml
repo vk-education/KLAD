@@ -132,9 +132,9 @@
 
     <fragment
             android:id="@+id/fragmentFilm"
-            android:name=""
+            android:name="com.example.finema.ui.movieDetail.MovieDetailsFragment"
             android:label="Film fragment"
-            tools:layout="@layout/film_fragment">
+            tools:layout="@layout/movie_details_fragment">
 
         <argument
                 android:name="filmId"
@@ -147,20 +147,12 @@
             android:name="com.example.finema.ui.higherlower.HigherLowerFragment"
             android:label="More less fragment"
             tools:layout="@layout/higher_lower_fragment"/>
-    <action
-            android:id="@+id/action_global_fragmentSettings"
-            app:destination="@id/fragmentSettings" />
-    <action
-            android:id="@+id/action_global_fragmentProfile"
-            app:destination="@id/fragmentProfile" />
-    <action
-            android:id="@+id/action_global_fragmentTmp"
-            app:destination="@id/fragmentTmp" />
 
-    <action
-            android:id="@+id/action_global_fragmentFavourite"
-            app:destination="@id/fragmentFavourite" />
-    <action
-            android:id="@+id/action_global_fragmentHigherLower"
-            app:destination="@id/fragmentHigherLower" />
+
+    <action android:id="@+id/action_global_fragmentSettings" app:destination="@id/fragmentSettings" />
+    <action android:id="@+id/action_global_fragmentProfile" app:destination="@id/fragmentProfile" />
+    <action android:id="@+id/action_global_fragmentTmp" app:destination="@id/fragmentTmp" />
+    <action android:id="@+id/action_global_fragmentFavourite" app:destination="@id/fragmentFavourite"/>
+    <action android:id="@+id/action_global_fragmentHigherLower" app:destination="@id/fragmentHigherLower"/>
+
 </navigation>
