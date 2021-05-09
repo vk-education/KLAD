@@ -1,4 +1,4 @@
-package com.example.finema.models.sub_model
+package com.example.finema.models.GenreRequest
 
 data class Genre(
     val id: Int,

@@ -46,8 +46,8 @@
             android:label="Others fragment"
             tools:layout="@layout/others_fragment">
         <action
-                android:id="@+id/action_fragment_others_to_fragment_number"
-                app:destination="@id/fragmentNumber" />
+                android:id="@+id/action_fragmentOthers_to_fragmentTournament"
+                app:destination="@id/fragmentTournament" />
     </fragment>
 
     <fragment
@@ -72,28 +72,13 @@
             android:label="Genre fragment"
             tools:layout="@layout/fragment_tournament_genres">
         <action
-                android:id="@+id/action_fragment_genre_to_fragment_number"
-                app:destination="@id/fragmentNumber" />
-    </fragment>
-
-    <fragment
-            android:id="@+id/fragmentNumber"
-            android:name=""
-            android:label="Number fragment"
-            tools:layout="@layout/number_fragment">
-        <action
-                android:id="@+id/action_fragment_number_to_fragment_tournament"
-                app:destination="@id/fragmentTournament">
-            <argument
-                    android:name="number"
-                    app:argType="integer"
-                    app:nullable="false" />
-        </action>
+                android:id="@+id/action_fragmentGenre_to_fragmentTournament"
+                app:destination="@id/fragmentTournament" />
     </fragment>
 
     <fragment
             android:id="@+id/fragmentTournament"
-            android:name=""
+            android:name="com.example.finema.ui.tournaments.TournamentDuo"
             android:label="Tournament fragment"
             tools:layout="@layout/tournament_fragment">
 

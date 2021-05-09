@@ -1,6 +1,8 @@
 package com.example.finema.api
 
-import com.example.finema.models.MovieResponse
+import com.example.finema.models.movieResponse.MovieResponse
+import com.example.finema.models.GenreRequest.GenreList
+import com.example.finema.utlis.GENRE_LIST
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -13,6 +15,9 @@ interface MoviesApi {
     suspend fun getMovies(
             @Query("page") page: Int
     ) : Response<MovieResponse>
+
+    @GET(GENRE_LIST)
+    suspend fun getGenreList(): Response<GenreList>
 
     companion object{
         operator fun invoke() : MoviesApi {

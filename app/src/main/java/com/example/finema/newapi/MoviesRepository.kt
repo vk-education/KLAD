@@ -11,4 +11,8 @@ class MoviesRepository(
         api.getMovies(page)
     }
 
+    suspend fun getGenres() = apiRequest {
+        api.getGenreList()
+    }
+
 }

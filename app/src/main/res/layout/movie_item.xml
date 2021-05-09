@@ -5,7 +5,7 @@
         <import type="android.view.View" />
         <variable
                 name="movie"
-                type="com.example.finema.models.Movie" />
+                type="com.example.finema.models.movieResponse.Movie" />
     </data>
     <LinearLayout
             android:layout_width="match_parent"

@@ -6,18 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.example.finema.R
 import com.example.finema.api.DimaVersion.ApiInterface
 import com.example.finema.api.DimaVersion.Common
 import com.example.finema.databinding.TmpFragmentBinding
 import com.example.finema.models.databaseModels.GenreModel
-import com.example.finema.models.sub_model.GenreList
+import com.example.finema.models.GenreRequest.GenreList
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.AppPreference
-import com.example.finema.utlis.APP_ACTIVITY
-import com.example.finema.utlis.TYPE_ROOM
 import com.google.firebase.auth.FirebaseAuth
 import retrofit2.Call
 import retrofit2.Response
@@ -36,10 +33,11 @@ class TmpFragment: BaseFragment<TmpViewModel, TmpFragmentBinding>() {
         binding = TmpFragmentBinding.inflate(inflater, container, false)
         mViewModel = ViewModelProvider(this).get(TmpViewModel::class.java)
         mAuth = FirebaseAuth.getInstance()
-        //  Для получения API
+        //  пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ API
         mService = Common.retrofitService
-//          ПОЛУЧИТЬ СПИСОК Жанров
-        // Если уже получал их, то скип
+//          пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+        // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅ
+
         if (!AppPreference.getGeneratedGenres()) {
             getAllGenresList()
         }
@@ -70,6 +68,8 @@ class TmpFragment: BaseFragment<TmpViewModel, TmpFragmentBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+//        mViewModel.getGenres()
+//        Log.d("CHECk", mViewModel._genreList.toString())
         binding.genre.setOnClickListener {
             it.findNavController().navigate(R.id.action_fragment_tmp_to_fragment_genre)
         }

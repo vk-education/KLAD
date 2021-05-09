@@ -2,7 +2,7 @@ package com.example.finema.ui.higherlower
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import com.example.finema.models.MovieResponse
+import com.example.finema.models.movieResponse.MovieResponse
 import com.example.finema.newapi.MoviesRepository
 import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.util.Coroutines
@@ -18,6 +18,8 @@ class HigherLowerViewModel(
     val movies: MutableLiveData<MovieResponse>
     get() = _movies
 
+
+
     fun getMovies() {
         for(i in 1..5){
             job = Coroutines.ioThenMain(
@@ -26,6 +28,8 @@ class HigherLowerViewModel(
             )
         }
     }
+
+
 
     override fun onCleared() {
         super.onCleared()

@@ -37,4 +37,10 @@ class TournamentAdapter:RecyclerView.Adapter<TournamentAdapter.TournamentHolder>
         notifyDataSetChanged()
     }
 
+    override fun onViewAttachedToWindow(holder: TournamentHolder) {
+        holder.itemView.setOnClickListener {
+            TournamentGenresFragment.click(mListGenres[holder.adapterPosition])
+        }
+    }
+
 }
