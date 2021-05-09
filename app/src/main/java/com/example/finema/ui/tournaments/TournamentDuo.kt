@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.Navigation
+import com.example.finema.R
 import com.example.finema.databinding.FragmentTournamentDuoBinding
 import com.example.finema.models.movieResponse.Movie
 import com.example.finema.ui.base.BaseFragment
@@ -124,6 +126,11 @@ class TournamentDuo : BaseFragment<TournamentDuoVM, FragmentTournamentDuoBinding
         el2 = list.random()
         if (list.size == 1 && el1 == el2){
             Toast.makeText(APP_ACTIVITY, "Победил " + el1.title, Toast.LENGTH_SHORT).show()
+            val bundle = Bundle()
+            val filmIdInfo = el1.id.toLong()
+            bundle.putSerializable("filmId", filmIdInfo)
+            Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
+                .navigate(R.id.action_fragment_tournament_to_fragment_film,bundle)
         }
         else{
             while (el1 == el2) {
