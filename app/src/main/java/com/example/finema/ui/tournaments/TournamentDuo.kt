@@ -40,7 +40,8 @@ class TournamentDuo : BaseFragment<TournamentDuoVM, FragmentTournamentDuoBinding
 
     private fun initialization() {
         mListFilms = arguments?.getParcelableArrayList<Movie>("list") as MutableList<Movie>
-        mListFilms = mListFilms.take(16) as MutableList<Movie>
+        val numFilms = arguments?.getSerializable("num") as Int
+        mListFilms = mListFilms.take(numFilms) as MutableList<Movie>
         fillCard(mListFilms)
         el1 = mListFilms.random()
         el2 = mListFilms.random()

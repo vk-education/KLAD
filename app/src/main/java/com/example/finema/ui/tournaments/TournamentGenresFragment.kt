@@ -1,6 +1,5 @@
 package com.example.finema.ui.tournaments
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -56,12 +55,12 @@ class TournamentGenresFragment :
     }
 
     companion object {
-        fun click(genre: GenreModel) {
+        fun click(genre: GenreModel, num:Int) {
             Log.d("fufu", genre.id.toString())
-            getFilmList(genre.id.toString())
+            getFilmList(genre.id.toString(), num)
         }
 
-        private fun getFilmList(genreID: String) {
+        private fun getFilmList(genreID: String, num:Int) {
             val mService: ApiInterface = Common.retrofitService
             mService.getFilm(genreID).enqueue(object : retrofit2.Callback<MovieResponse> {
                 override fun onResponse(
@@ -71,10 +70,9 @@ class TournamentGenresFragment :
                     val responseBody = response.body()!!
                     val listFilmResponse = ArrayList(responseBody.movies)
                     Log.d("WTF", listFilmResponse.toString())
-
-
                     val bundle = Bundle()
                     bundle.putParcelableArrayList("list", listFilmResponse)
+                    bundle.putSerializable("num", num)
                     Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
                         .navigate(R.id.action_fragmentGenre_to_fragmentTournament,bundle)
 
