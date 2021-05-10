@@ -15,7 +15,7 @@ import androidx.databinding.Bindable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import com.example.finema.R;
-import com.example.finema.models.Movie;
+import com.example.finema.models.movieResponse.Movie;
 import java.lang.Deprecated;
 import java.lang.Object;
 

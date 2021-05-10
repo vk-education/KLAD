@@ -82,7 +82,7 @@ public class MovieItemBindingImpl extends MovieItemBinding  {
     public boolean setVariable(int variableId, @Nullable Object variable)  {
         boolean variableSet = true;
         if (BR.movie == variableId) {
-            setMovie((com.example.finema.models.Movie) variable);
+            setMovie((com.example.finema.models.movieResponse.Movie) variable);
         }
         else {
             variableSet = false;
@@ -90,7 +90,7 @@ public class MovieItemBindingImpl extends MovieItemBinding  {
             return variableSet;
     }
 
-    public void setMovie(@Nullable com.example.finema.models.Movie Movie) {
+    public void setMovie(@Nullable com.example.finema.models.movieResponse.Movie Movie) {
         this.mMovie = Movie;
     }
 

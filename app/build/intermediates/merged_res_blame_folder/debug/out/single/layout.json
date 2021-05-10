@@ -1,74 +1,86 @@
 [
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/thematic_fragment.xml",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/thematic_fragment.xml"
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\movie_item.xml",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\movie_item.xml"
     },
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_base.xml",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/fragment_base.xml"
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\movie_details_fragment.xml",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\movie_details_fragment.xml"
     },
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/film_fragment.xml",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/film_fragment.xml"
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\favourite_fragment.xml",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\favourite_fragment.xml"
     },
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/others_fragment.xml",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/others_fragment.xml"
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\number_fragment.xml",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\number_fragment.xml"
     },
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/number_fragment.xml",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/number_fragment.xml"
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\tournament_fragment.xml",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\tournament_fragment.xml"
     },
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/genre_fragment.xml",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/genre_fragment.xml"
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\nav_header.xml",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\nav_header.xml"
     },
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/sign_in_fragment.xml",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/sign_in_fragment.xml"
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_tournament_duo.xml",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\fragment_tournament_duo.xml"
     },
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/own_tournament_fragment.xml",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/own_tournament_fragment.xml"
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\own_tournament_fragment.xml",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\own_tournament_fragment.xml"
     },
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/settings_fragment.xml",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/settings_fragment.xml"
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\thematic_fragment.xml",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\thematic_fragment.xml"
     },
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/nav_header.xml",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/nav_header.xml"
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\tmp_fragment.xml",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\tmp_fragment.xml"
     },
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/welcome_fragment.xml",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/welcome_fragment.xml"
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\sign_in_fragment.xml",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\sign_in_fragment.xml"
     },
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/higher_lower_fragment.xml",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/higher_lower_fragment.xml"
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\welcome_fragment.xml",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\welcome_fragment.xml"
     },
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/movie_item.xml",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/movie_item.xml"
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\higher_lower_fragment.xml",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\higher_lower_fragment.xml"
     },
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/tournament_fragment.xml",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/tournament_fragment.xml"
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_tournament_genres.xml",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\fragment_tournament_genres.xml"
     },
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_main.xml",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/activity_main.xml"
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\others_fragment.xml",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\others_fragment.xml"
     },
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/tmp_fragment.xml",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/tmp_fragment.xml"
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\profile_fragment.xml",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\profile_fragment.xml"
     },
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/profile_fragment.xml",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/profile_fragment.xml"
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_base.xml",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\fragment_base.xml"
     },
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/favourite_fragment.xml",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/favourite_fragment.xml"
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\genre_item.xml",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\genre_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\settings_fragment.xml",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\settings_fragment.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\genre_fragment.xml",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\genre_fragment.xml"
     }
 ]
