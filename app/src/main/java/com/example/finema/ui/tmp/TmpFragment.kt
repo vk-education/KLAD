@@ -35,9 +35,7 @@ class TmpFragment: BaseFragment<TmpViewModel, TmpFragmentBinding>() {
         mAuth = FirebaseAuth.getInstance()
         //  ��� ��������� API
         mService = Common.retrofitService
-//          �������� ������ ������
-        // ���� ��� ������� ��, �� ����
-
+//       if genre list not exist in database then download it
         if (!AppPreference.getGeneratedGenres()) {
             getAllGenresList()
         }

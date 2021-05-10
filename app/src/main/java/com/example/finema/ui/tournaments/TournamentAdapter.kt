@@ -29,8 +29,6 @@ class TournamentAdapter:RecyclerView.Adapter<TournamentAdapter.TournamentHolder>
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TournamentHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.genre_item,parent,false)
         dialog = Dialog(view.context)
-
-
         return TournamentHolder(view)
     }
 
