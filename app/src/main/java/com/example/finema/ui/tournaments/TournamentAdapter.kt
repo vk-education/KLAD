@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finema.R
 import com.example.finema.models.databaseModels.GenreModel
+import com.example.finema.utlis.APP_ACTIVITY
 
 class TournamentAdapter : RecyclerView.Adapter<TournamentAdapter.TournamentHolder>() {
 
@@ -40,12 +41,14 @@ class TournamentAdapter : RecyclerView.Adapter<TournamentAdapter.TournamentHolde
 
     override fun onViewAttachedToWindow(holder: TournamentHolder) {
         holder.itemView.setOnClickListener {
+            Log.d("523", holder.adapterPosition.toString())
             val genreClickedItem = mListGenres[holder.adapterPosition]
             val btn16: TextView = dialog.findViewById(R.id.btn16)
             val btn8: TextView = dialog.findViewById(R.id.btn8)
             dialog.show()
             btn16.setOnClickListener {
                 TournamentGenresFragment.click(genreClickedItem, 16)
+                Log.d("523", mListGenres[holder.adapterPosition].toString())
                 dialog.hide()
             }
             btn8.setOnClickListener {

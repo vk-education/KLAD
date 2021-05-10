@@ -41,82 +41,75 @@ class TournamentDuo : BaseFragment<TournamentDuoVM, FragmentTournamentDuoBinding
 
 
     private fun initialization() {
+        // get List of Films and number from previous fragment
         mListFilms = arguments?.getParcelableArrayList<Movie>("list") as MutableList<Movie>
         val numFilms = arguments?.getSerializable("num") as Int
+        // cut to num
         mListFilms = mListFilms.take(numFilms) as MutableList<Movie>
+        // first initialization of cards (image and text)
         fillCard(mListFilms)
-        el1 = mListFilms.random()
-        el2 = mListFilms.random()
-        while (el1 == el2) {
-            el2 = mListFilms.random()
-        }
 
-        binding.txtFilm1.text = el1.title
-        binding.txtFilm2.text = el2.title
-
-        binding.img1.downloadAndSetImage(
-            MovieAdapter.POSTER_BASE_URL +
-                    el1.posterPath
-        )
-        binding.img2.downloadAndSetImage(
-            MovieAdapter.POSTER_BASE_URL +
-                    el2.posterPath
-        )
+        val messageForLog = "1 list size:" + mListFilms.size.toString() +
+                " 2 list size:" + mListFilms2.size.toString()
+        Log.d("log152",messageForLog )
 
         binding.cardview1.setOnClickListener {
-            if (flagMain) {
-                mListFilms2.add(el1)
-                mListFilms.remove(el1)
-                mListFilms.remove(el2)
-                if (mListFilms.isNotEmpty()) {
-                    fillCard(mListFilms)
-                } else {
-                    flagMain = false
-                    fillCard(mListFilms2)
-                }
-            } else {
-                mListFilms.add(el1)
-                mListFilms2.remove(el1)
-                mListFilms2.remove(el2)
-                if (mListFilms2.isNotEmpty()) {
-                    fillCard(mListFilms2)
-                } else {
-                    flagMain = true
-                    fillCard(mListFilms)
-                }
-            }
-            Log.d(
-                "check123", "1:" + mListFilms.size.toString() +
-                        " 2:" + mListFilms2.size.toString()
-            )
+            clickFirstButton()
+            Log.d("log152", messageForLog)
         }
 
         binding.cardview2.setOnClickListener {
-            if (flagMain) {
-                mListFilms2.add(el2)
-                mListFilms.remove(el1)
-                mListFilms.remove(el2)
-                if (mListFilms.isNotEmpty()) {
-                    fillCard(mListFilms)
-                } else {
-                    flagMain = false
-                    fillCard(mListFilms2)
-                }
-            } else {
-                mListFilms.add(el2)
-                mListFilms2.remove(el1)
-                mListFilms2.remove(el2)
-                if (mListFilms2.isNotEmpty()) {
-                    fillCard(mListFilms2)
-                } else {
-                    flagMain = true
-                    fillCard(mListFilms)
-                }
-            }
+            clickSecondButton()
             Log.d(
-                "check123", "1:" + mListFilms.size.toString() +
-                        " 2:" + mListFilms2.size.toString()
-            )
+                "log152", messageForLog)
+        }
+    }
+
+    private fun clickSecondButton() {
+        if (flagMain) {
+            mListFilms2.add(el2)
+            mListFilms.remove(el1)
+            mListFilms.remove(el2)
+            if (mListFilms.isNotEmpty()) {
+                fillCard(mListFilms)
+            } else {
+                flagMain = false
+                fillCard(mListFilms2)
+            }
+        } else {
+            mListFilms.add(el2)
+            mListFilms2.remove(el1)
+            mListFilms2.remove(el2)
+            if (mListFilms2.isNotEmpty()) {
+                fillCard(mListFilms2)
+            } else {
+                flagMain = true
+                fillCard(mListFilms)
+            }
+        }
+    }
+
+    private fun clickFirstButton() {
+        if (flagMain) {
+            mListFilms2.add(el1)
+            mListFilms.remove(el1)
+            mListFilms.remove(el2)
+            if (mListFilms.isNotEmpty()) {
+                fillCard(mListFilms)
+            } else {
+                flagMain = false
+                fillCard(mListFilms2)
+            }
+        } else {
+            mListFilms.add(el1)
+            mListFilms2.remove(el1)
+            mListFilms2.remove(el2)
+            if (mListFilms2.isNotEmpty()) {
+                fillCard(mListFilms2)
+            } else {
+                flagMain = true
+                fillCard(mListFilms)
+            }
         }
     }
 
