@@ -23,7 +23,6 @@ class TournamentAdapter:RecyclerView.Adapter<TournamentAdapter.TournamentHolder>
 
     class TournamentHolder(view: View): RecyclerView.ViewHolder(view) {
         val genreName: TextView = view.findViewById(R.id.item_genre_name)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TournamentHolder {
