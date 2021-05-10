@@ -41,14 +41,12 @@ class TournamentAdapter : RecyclerView.Adapter<TournamentAdapter.TournamentHolde
 
     override fun onViewAttachedToWindow(holder: TournamentHolder) {
         holder.itemView.setOnClickListener {
-            Log.d("523", holder.adapterPosition.toString())
             val genreClickedItem = mListGenres[holder.adapterPosition]
             val btn16: TextView = dialog.findViewById(R.id.btn16)
             val btn8: TextView = dialog.findViewById(R.id.btn8)
             dialog.show()
             btn16.setOnClickListener {
                 TournamentGenresFragment.click(genreClickedItem, 16)
-                Log.d("523", mListGenres[holder.adapterPosition].toString())
                 dialog.hide()
             }
             btn8.setOnClickListener {
