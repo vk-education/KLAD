@@ -11,15 +11,15 @@ public final class ConstantsKt {
     public static com.example.finema.database.DatabaseRepository REPOSITORY;
     public static com.example.finema.MainActivity APP_ACTIVITY;
     @org.jetbrains.annotations.NotNull()
-    public static final java.lang.String API_KEY = "4ea6320d4adb7c437bf83d5a51b1d931";
+    public static final java.lang.String API_KEY = "bbf5a3000e95f1dddf266b5e187d4b21";
     @org.jetbrains.annotations.NotNull()
     public static final java.lang.String BASE_URL = "https://api.themoviedb.org";
     @org.jetbrains.annotations.NotNull()
     public static final java.lang.String POSTER_BASE_URL = "https://image.tmdb.org/t/p/w342";
     @org.jetbrains.annotations.NotNull()
-    public static final java.lang.String GENRE_LIST = "/3/genre/movie/list?api_key=4ea6320d4adb7c437bf83d5a51b1d931&language=ru-Ru";
+    public static final java.lang.String GENRE_LIST = "/3/genre/movie/list?api_key=bbf5a3000e95f1dddf266b5e187d4b21&language=ru-Ru";
     @org.jetbrains.annotations.NotNull()
-    public static final java.lang.String GENRE = "3/movie/top_rated?api_key=c18b134e9a9c6e98abf8cb11df9c5afa&page=1&language=ru-Ru";
+    public static final java.lang.String GENRE = "/3/movie/top_rated?api_key=bbf5a3000e95f1dddf266b5e187d4b21&language=ru-Ru";
     
     @org.jetbrains.annotations.NotNull()
     public static final com.example.finema.database.DatabaseRepository getREPOSITORY() {

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finema.R
 import com.example.finema.api.MoviesApi
 import com.example.finema.databinding.HigherLowerFragmentBinding
-import com.example.finema.api.DimaVersion.MoviesRepository
+import com.example.finema.api.MoviesRepository
 import com.example.finema.ui.base.BaseFragment
 
 class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragmentBinding>(),

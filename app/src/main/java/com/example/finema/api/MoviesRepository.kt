@@ -1,6 +1,5 @@
-package com.example.finema.api.DimaVersion
+package com.example.finema.api
 
-import com.example.finema.api.MoviesApi
 import com.example.finema.repositories.SafeApiRequest
 import java.util.*
 
@@ -15,7 +14,9 @@ class MoviesRepository(
     suspend fun getGenres() = apiRequest {
         api.getGenreList()
     }
-
+    suspend fun getMoviesWithGenre(page: Int, with_genres: String) = apiRequest {
+        api.getMoviesWithGenre(page, with_genres)
+    }
     suspend fun getMovieDetails(id: Long) = apiRequest {
         api.getMovieDetails(id, Locale.getDefault().toString().replace('_', '-'))
     }

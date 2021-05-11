@@ -32,26 +32,26 @@ public abstract class FragmentTournamentDuoBinding extends ViewDataBinding {
   public final TextView roundCount;
 
   @NonNull
-  public final TextView txtCategory;
-
-  @NonNull
   public final TextView txtFilm1;
 
   @NonNull
   public final TextView txtFilm2;
 
+  @NonNull
+  public final TextView txtNumCategory;
+
   protected FragmentTournamentDuoBinding(Object _bindingComponent, View _root, int _localFieldCount,
       CardView cardview1, CardView cardview2, ImageView img1, ImageView img2, TextView roundCount,
-      TextView txtCategory, TextView txtFilm1, TextView txtFilm2) {
+      TextView txtFilm1, TextView txtFilm2, TextView txtNumCategory) {
     super(_bindingComponent, _root, _localFieldCount);
     this.cardview1 = cardview1;
     this.cardview2 = cardview2;
     this.img1 = img1;
     this.img2 = img2;
     this.roundCount = roundCount;
-    this.txtCategory = txtCategory;
     this.txtFilm1 = txtFilm1;
     this.txtFilm2 = txtFilm2;
+    this.txtNumCategory = txtNumCategory;
   }
 
   @NonNull

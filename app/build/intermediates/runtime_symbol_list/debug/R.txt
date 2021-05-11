@@ -2349,9 +2349,9 @@ int id transition_position 0x7f0801f8
 int id transition_scene_layoutid_cache 0x7f0801f9
 int id transition_transform 0x7f0801fa
 int id triangle 0x7f0801fb
-int id txt_category 0x7f0801fc
-int id txt_film1 0x7f0801fd
-int id txt_film2 0x7f0801fe
+int id txt_film1 0x7f0801fc
+int id txt_film2 0x7f0801fd
+int id txt_num_category 0x7f0801fe
 int id unchecked 0x7f0801ff
 int id uniform 0x7f080200
 int id unlabeled 0x7f080201

@@ -53,6 +53,12 @@ class TournamentGenresFragment :
         }
         mViewModel = ViewModelProvider(this).get(TournamentGenresVM::class.java)
         mViewModel.allGenres.observe(APP_ACTIVITY, mObserverList)
+//        mViewModel.getMovies()
+//        mViewModel.filmListVM.observe(APP_ACTIVITY,{
+//            val list1 = it
+//            Log.d("testLoglist1",list1.toString())
+//            Log.d("testLoglist1",list1.size.toString())
+//        })
     }
 
     companion object {

@@ -6,11 +6,11 @@ import java.lang.System;
 public abstract interface ApiInterface {
     
     @org.jetbrains.annotations.NotNull()
-    @retrofit2.http.GET(value = "/3/genre/movie/list?api_key=4ea6320d4adb7c437bf83d5a51b1d931&language=ru-Ru")
+    @retrofit2.http.GET(value = "/3/genre/movie/list?api_key=bbf5a3000e95f1dddf266b5e187d4b21&language=ru-Ru")
     public abstract retrofit2.Call<com.example.finema.models.GenreRequest.GenreList> getGenreList();
     
     @org.jetbrains.annotations.NotNull()
-    @retrofit2.http.GET(value = "3/movie/top_rated?api_key=c18b134e9a9c6e98abf8cb11df9c5afa&page=1&language=ru-Ru")
+    @retrofit2.http.GET(value = "/3/movie/top_rated?api_key=bbf5a3000e95f1dddf266b5e187d4b21&language=ru-Ru")
     public abstract retrofit2.Call<com.example.finema.models.movieResponse.MovieResponse> getFilm(@org.jetbrains.annotations.NotNull()
     @retrofit2.http.Query(value = "with_genres")
     java.lang.String with_genres);

@@ -14,7 +14,7 @@ public class FragmentTournamentDuoBindingImpl extends FragmentTournamentDuoBindi
     static {
         sIncludes = null;
         sViewsWithIds = new android.util.SparseIntArray();
-        sViewsWithIds.put(R.id.txt_category, 1);
+        sViewsWithIds.put(R.id.txt_num_category, 1);
         sViewsWithIds.put(R.id.round_count, 2);
         sViewsWithIds.put(R.id.cardview1, 3);
         sViewsWithIds.put(R.id.txt_film1, 4);
@@ -41,9 +41,9 @@ public class FragmentTournamentDuoBindingImpl extends FragmentTournamentDuoBindi
             , (android.widget.ImageView) bindings[5]
             , (android.widget.ImageView) bindings[8]
             , (android.widget.TextView) bindings[2]
-            , (android.widget.TextView) bindings[1]
             , (android.widget.TextView) bindings[4]
             , (android.widget.TextView) bindings[7]
+            , (android.widget.TextView) bindings[1]
             );
         this.mboundView0 = (android.widget.LinearLayout) bindings[0];
         this.mboundView0.setTag(null);
