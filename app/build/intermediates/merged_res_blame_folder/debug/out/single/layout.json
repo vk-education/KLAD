@@ -1,11 +1,11 @@
 [
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/thematic_fragment.xml",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/thematic_fragment.xml"
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_tournament_genres.xml",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/fragment_tournament_genres.xml"
     },
     {
-        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/film_fragment.xml",
-        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/film_fragment.xml"
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/thematic_fragment.xml",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/thematic_fragment.xml"
     },
     {
         "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_base.xml",
@@ -14,6 +14,10 @@
     {
         "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/others_fragment.xml",
         "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/others_fragment.xml"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_tournament_duo.xml",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/fragment_tournament_duo.xml"
     },
     {
         "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/number_fragment.xml",
@@ -28,6 +32,10 @@
         "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/sign_in_fragment.xml"
     },
     {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/movie_details_fragment.xml",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/movie_details_fragment.xml"
+    },
+    {
         "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/own_tournament_fragment.xml",
         "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/own_tournament_fragment.xml"
     },
@@ -38,6 +46,10 @@
     {
         "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/nav_header.xml",
         "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/nav_header.xml"
+    },
+    {
+        "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/genre_item.xml",
+        "source": "/home/albert/AndroidStudioProjects/Finema/app/src/main/res/layout/genre_item.xml"
     },
     {
         "merged": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/welcome_fragment.xml",

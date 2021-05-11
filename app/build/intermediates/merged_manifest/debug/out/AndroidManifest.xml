@@ -170,6 +170,11 @@
             android:authorities="com.example.finema.lifecycle-process"
             android:exported="false"
             android:multiprocess="true" />
+
+        <service
+            android:name="androidx.room.MultiInstanceInvalidationService"
+            android:directBootAware="true"
+            android:exported="false" />
     </application>
 
 </manifest>

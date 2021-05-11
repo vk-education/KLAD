@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.finema.models.MovieResponse
+import com.example.finema.models.movieResponse.MovieResponse
 import com.example.finema.R
 import com.example.finema.databinding.MovieItemBinding
 
@@ -51,11 +51,6 @@ class MovieViewHolder(
             Glide.with(itemView).
             load(POSTER_BASE_URL + movies.movies[position].posterPath).
             into(recyclerviewMovieBinding.imageView)
-
-            recyclerviewMovieBinding.
-            textViewVotesCount.text = movies.movies[position].popularity.toString()
-            recyclerviewMovieBinding.
-            textViewLikePercent.text = movies.movies[position].voteAverage.toString()
 
             recyclerviewMovieBinding.cardView.setOnClickListener {
                 listener.onMovieClicked(adapterPosition)

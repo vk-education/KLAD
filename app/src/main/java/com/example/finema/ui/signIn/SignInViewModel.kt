@@ -1,9 +1,14 @@
 package com.example.finema.ui.signIn
 
+import android.app.Application
 import android.content.Intent
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.finema.database.room.RoomDataBase
+import com.example.finema.database.room.RoomRepository
 import com.example.finema.ui.base.BaseViewModel
+import com.example.finema.utlis.REPOSITORY
+import com.example.finema.utlis.TYPE_ROOM
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -12,12 +17,24 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 
-class SignInViewModel: BaseViewModel() {
+class SignInViewModel(application: Application): BaseViewModel(application) {
     private lateinit var mAuth: FirebaseAuth
+    private val mContext = application
 
     companion object{
         private const val RC_SIGN_IN = 120
     }
+
+    fun initDatabase(type:String, onSuccess:() -> Unit){
+        when (type){
+            TYPE_ROOM -> {
+                val dao = RoomDataBase.getInstance(mContext).getRoomDao()
+                REPOSITORY = RoomRepository(dao)
+                onSuccess()
+            }
+        }
+    }
+
 /*
     fun signIn(googleSignInClient: GoogleSignInClient){
         val signInIntent = googleSignInClient.signInIntent

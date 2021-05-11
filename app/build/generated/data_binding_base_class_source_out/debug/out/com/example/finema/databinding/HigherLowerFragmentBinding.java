@@ -20,21 +20,20 @@ public final class HigherLowerFragmentBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final TextView points;
+
+  @NonNull
   public final RecyclerView recyclerViewMovies;
 
   @NonNull
   public final TextView textView;
 
-  @NonNull
-  public final TextView textView2;
-
-  private HigherLowerFragmentBinding(@NonNull ConstraintLayout rootView,
-      @NonNull RecyclerView recyclerViewMovies, @NonNull TextView textView,
-      @NonNull TextView textView2) {
+  private HigherLowerFragmentBinding(@NonNull ConstraintLayout rootView, @NonNull TextView points,
+      @NonNull RecyclerView recyclerViewMovies, @NonNull TextView textView) {
     this.rootView = rootView;
+    this.points = points;
     this.recyclerViewMovies = recyclerViewMovies;
     this.textView = textView;
-    this.textView2 = textView2;
   }
 
   @Override
@@ -64,6 +63,12 @@ public final class HigherLowerFragmentBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.points;
+      TextView points = rootView.findViewById(id);
+      if (points == null) {
+        break missingId;
+      }
+
       id = R.id.recycler_view_movies;
       RecyclerView recyclerViewMovies = rootView.findViewById(id);
       if (recyclerViewMovies == null) {
@@ -76,14 +81,8 @@ public final class HigherLowerFragmentBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.textView2;
-      TextView textView2 = rootView.findViewById(id);
-      if (textView2 == null) {
-        break missingId;
-      }
-
-      return new HigherLowerFragmentBinding((ConstraintLayout) rootView, recyclerViewMovies,
-          textView, textView2);
+      return new HigherLowerFragmentBinding((ConstraintLayout) rootView, points, recyclerViewMovies,
+          textView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

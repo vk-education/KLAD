@@ -4,9 +4,7 @@ package com.example.finema.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,14 +13,11 @@ import androidx.databinding.Bindable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import com.example.finema.R;
-import com.example.finema.models.Movie;
+import com.example.finema.models.movieResponse.Movie;
 import java.lang.Deprecated;
 import java.lang.Object;
 
 public abstract class MovieItemBinding extends ViewDataBinding {
-  @NonNull
-  public final Button buttonBook;
-
   @NonNull
   public final CardView cardView;
 
@@ -30,49 +25,17 @@ public abstract class MovieItemBinding extends ViewDataBinding {
   public final ImageView imageView;
 
   @NonNull
-  public final ImageView imageViewLike;
-
-  @NonNull
-  public final RelativeLayout layoutLike;
-
-  @NonNull
-  public final TextView textViewIsNew;
-
-  @NonNull
-  public final TextView textViewLanguage;
-
-  @NonNull
-  public final TextView textViewLikePercent;
-
-  @NonNull
-  public final TextView textViewRating;
-
-  @NonNull
   public final TextView textViewTitle;
-
-  @NonNull
-  public final TextView textViewVotesCount;
 
   @Bindable
   protected Movie mMovie;
 
   protected MovieItemBinding(Object _bindingComponent, View _root, int _localFieldCount,
-      Button buttonBook, CardView cardView, ImageView imageView, ImageView imageViewLike,
-      RelativeLayout layoutLike, TextView textViewIsNew, TextView textViewLanguage,
-      TextView textViewLikePercent, TextView textViewRating, TextView textViewTitle,
-      TextView textViewVotesCount) {
+      CardView cardView, ImageView imageView, TextView textViewTitle) {
     super(_bindingComponent, _root, _localFieldCount);
-    this.buttonBook = buttonBook;
     this.cardView = cardView;
     this.imageView = imageView;
-    this.imageViewLike = imageViewLike;
-    this.layoutLike = layoutLike;
-    this.textViewIsNew = textViewIsNew;
-    this.textViewLanguage = textViewLanguage;
-    this.textViewLikePercent = textViewLikePercent;
-    this.textViewRating = textViewRating;
     this.textViewTitle = textViewTitle;
-    this.textViewVotesCount = textViewVotesCount;
   }
 
   public abstract void setMovie(@Nullable Movie movie);

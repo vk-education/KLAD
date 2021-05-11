@@ -15,16 +15,8 @@ public class MovieItemBindingImpl extends MovieItemBinding  {
         sIncludes = null;
         sViewsWithIds = new android.util.SparseIntArray();
         sViewsWithIds.put(R.id.cardView, 1);
-        sViewsWithIds.put(R.id.imageView, 2);
-        sViewsWithIds.put(R.id.textViewIsNew, 3);
-        sViewsWithIds.put(R.id.textViewRating, 4);
-        sViewsWithIds.put(R.id.layout_like, 5);
-        sViewsWithIds.put(R.id.imageViewLike, 6);
-        sViewsWithIds.put(R.id.textViewLikePercent, 7);
-        sViewsWithIds.put(R.id.textViewVotesCount, 8);
-        sViewsWithIds.put(R.id.textViewTitle, 9);
-        sViewsWithIds.put(R.id.textViewLanguage, 10);
-        sViewsWithIds.put(R.id.button_book, 11);
+        sViewsWithIds.put(R.id.textViewTitle, 2);
+        sViewsWithIds.put(R.id.imageView, 3);
     }
     // views
     @NonNull
@@ -35,21 +27,13 @@ public class MovieItemBindingImpl extends MovieItemBinding  {
     // Inverse Binding Event Handlers
 
     public MovieItemBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 12, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 4, sIncludes, sViewsWithIds));
     }
     private MovieItemBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
-            , (android.widget.Button) bindings[11]
             , (androidx.cardview.widget.CardView) bindings[1]
-            , (android.widget.ImageView) bindings[2]
-            , (android.widget.ImageView) bindings[6]
-            , (android.widget.RelativeLayout) bindings[5]
-            , (android.widget.TextView) bindings[3]
-            , (android.widget.TextView) bindings[10]
-            , (android.widget.TextView) bindings[7]
-            , (android.widget.TextView) bindings[4]
-            , (android.widget.TextView) bindings[9]
-            , (android.widget.TextView) bindings[8]
+            , (android.widget.ImageView) bindings[3]
+            , (android.widget.TextView) bindings[2]
             );
         this.mboundView0 = (android.widget.LinearLayout) bindings[0];
         this.mboundView0.setTag(null);
@@ -80,7 +64,7 @@ public class MovieItemBindingImpl extends MovieItemBinding  {
     public boolean setVariable(int variableId, @Nullable Object variable)  {
         boolean variableSet = true;
         if (BR.movie == variableId) {
-            setMovie((com.example.finema.models.Movie) variable);
+            setMovie((com.example.finema.models.movieResponse.Movie) variable);
         }
         else {
             variableSet = false;
@@ -88,7 +72,7 @@ public class MovieItemBindingImpl extends MovieItemBinding  {
             return variableSet;
     }
 
-    public void setMovie(@Nullable com.example.finema.models.Movie Movie) {
+    public void setMovie(@Nullable com.example.finema.models.movieResponse.Movie Movie) {
         this.mMovie = Movie;
     }
 

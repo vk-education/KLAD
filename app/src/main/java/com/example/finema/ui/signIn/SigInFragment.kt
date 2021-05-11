@@ -8,12 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import com.example.finema.R
 import com.example.finema.databinding.SignInFragmentBinding
 import com.example.finema.repositories.Singleton
 import com.example.finema.ui.base.BaseFragment
+import com.example.finema.utlis.APP_ACTIVITY
+import com.example.finema.util.AppPreference
+import com.example.finema.utlis.TYPE_ROOM
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -35,7 +40,7 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
             .StartActivityForResult()){
         activityResult(it.data)
     }
-    private val viewModel = SignInViewModel()
+    private lateinit var mViewModel: SignInViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,7 +48,14 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         savedInstanceState: Bundle?
     ): View {
         binding = SignInFragmentBinding.inflate(inflater, container, false)
-
+        mViewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
+        // ≈—À» œŒÀ‹«Œ¬¿“≈À‹ ¿¬“Œ–»«Œ¬¿Õ, “Œ ‘–¿√Ã≈Õ“ ¿¬“Œ–»«¿÷»» — »œ¿≈“—ﬂ
+        if (AppPreference.getInitUser()) {
+            mViewModel.initDatabase(TYPE_ROOM) {
+                Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
+                    .navigate(R.id.action_sigInFragment_to_tmpFragment)
+            }
+        }
         return binding.root
     }
 
@@ -69,9 +81,13 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
 
         binding.signInAsGuest.setOnClickListener{
             Singleton.signInAsGuest = true
-            header.text = resources.getText(R.string.guest)
-            navigationOpen()
-            it.findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
+            mViewModel.initDatabase(TYPE_ROOM) {
+                AppPreference.setInitUser(true)
+                header.text = resources.getText(R.string.guest)
+                navigationOpen()
+                it.findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
+            }
+
         }
     }
 

@@ -4,7 +4,7 @@
             "outputFile": "/home/albert/AndroidStudioProjects/Finema/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v23/values-v23.xml",
             "map": [
                 {
-                    "source": "/home/albert/.gradle/caches/transforms-2/files-2.1/5d58e78cb714deb26575b00422d7cb1d/cardview-1.0.0/res/values-v23/values-v23.xml",
+                    "source": "/home/albert/.gradle/caches/transforms-2/files-2.1/186701e9ccd4c2db5ba05fb201b05419/cardview-1.0.0/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "/home/albert/.gradle/caches/transforms-2/files-2.1/6237f2dad7be663d18bc9b69b8d4e6f2/material-1.3.0/res/values-v23/values-v23.xml",
+                    "source": "/home/albert/.gradle/caches/transforms-2/files-2.1/20afcbec070f3a2361f116db3ead4ad3/material-1.3.0/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,6",
                         "startColumns": "4,4",
@@ -42,7 +42,7 @@
                     }
                 },
                 {
-                    "source": "/home/albert/.gradle/caches/transforms-2/files-2.1/984cbdd5431dca53f877c1974e006677/appcompat-1.2.0/res/values-v23/values-v23.xml",
+                    "source": "/home/albert/.gradle/caches/transforms-2/files-2.1/6064a4a21af0e2187811cf56d1568003/appcompat-1.2.0/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",

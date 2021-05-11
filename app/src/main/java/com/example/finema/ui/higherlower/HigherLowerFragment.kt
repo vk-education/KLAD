@@ -1,29 +1,16 @@
 package com.example.finema.ui.higherlower
 
+import android.app.Application
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.finema.R
-import com.example.finema.api.MoviesApi
 import com.example.finema.databinding.HigherLowerFragmentBinding
-import com.example.finema.databinding.SignInFragmentBinding
-import com.example.finema.databinding.TmpFragmentBinding
-import com.example.finema.models.Movie
-import com.example.finema.newapi.MoviesRepository
 import com.example.finema.ui.base.BaseFragment
-import com.example.finema.ui.signIn.SignInViewModel
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import okhttp3.internal.wait
 
 class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragmentBinding>(),
      MovieAdapter.MovieViewHolder.Listener{
@@ -31,7 +18,8 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
     var add = 0
     private lateinit var factory: MoviesViewModelFactory
     private lateinit var layout : CustomGridLayoutManager
-    private val viewModel = HigherLowerViewModel()
+    private val application = Application()
+    private val viewModel = HigherLowerViewModel(application = application)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +33,7 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         layout = CustomGridLayoutManager(requireContext())
-        factory = MoviesViewModelFactory()
+        factory = MoviesViewModelFactory(application)
         viewModel.getMovies()
 
         viewModel.movies.observe(viewLifecycleOwner, Observer { movies ->
@@ -64,20 +52,14 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
                     >= viewModel.movies.value?.movies?.get(position + 1)?.popularity!!
                 ) {
                     add += 1
-                    val text = "Nice! {$add} points!"
-                    val duration = Toast.LENGTH_SHORT
-                    val toast = Toast.makeText(context, text, duration)
-                    toast.show()
+                    binding.points.text = "Очки: $add"
                     layout.isScrollEnabled = true
                     binding.recyclerViewMovies.scrollToPosition(add + 1)
                     layout.isScrollEnabled = false
 
                 } else {
-                    val text = "WRONG"
-                    val duration = Toast.LENGTH_SHORT
-                    val toast = Toast.makeText(context, text, duration)
-                    toast.show()
                     add = 0
+                    binding.points.text = "Очки: $add"
                     layout.isScrollEnabled = true
                     binding.recyclerViewMovies.scrollToPosition(0)
                     layout.isScrollEnabled = false
@@ -86,21 +68,15 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
                 if (viewModel.movies.value?.movies?.get(position)?.popularity!!
                     >= viewModel.movies.value?.movies?.get(position - 1)?.popularity!!
                 ) {
-                    val text = "Nice! {$add} points!"
-                    val duration = Toast.LENGTH_SHORT
-                    val toast = Toast.makeText(context, text, duration)
-                    toast.show()
                     add += 1
+                    binding.points.text = "Очки: $add"
                     layout.isScrollEnabled = true
                     binding.recyclerViewMovies.scrollToPosition(add + 1)
                     layout.isScrollEnabled = false
 
                 } else {
-                    val text = "WRONG"
-                    val duration = Toast.LENGTH_SHORT
-                    val toast = Toast.makeText(context, text, duration)
-                    toast.show()
                     add = 0
+                    binding.points.text = "Очки: $add"
                     layout.isScrollEnabled = true
                     binding.recyclerViewMovies.scrollToPosition(0)
                     layout.isScrollEnabled = false

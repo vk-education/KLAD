@@ -3,7 +3,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/pale_black"
+        android:background="@color/white"
         xmlns:tools="http://schemas.android.com/tools"
         tools:context=".ui.higherlower.HigherLowerFragment">
 
@@ -16,28 +16,27 @@
                     android:id="@+id/textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
+                    android:gravity="center"
                     android:layout_marginTop="16dp"
-                    android:text="Movie Catalog"
-                    android:textColor="@color/white"
-                    android:textSize="30sp"
+                    android:text="У какого фильма больше бюджет?"
+                    android:textColor="@android:color/holo_purple"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
             <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/points"
+                    android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:text="Popular Movies"
-                    android:textColor="@color/white" />
+                    android:text="Очки: 0"
+                    android:textSize="20sp"
+                    android:textColor="@android:color/holo_purple"
+                    />
 
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_view_movies"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="16dp" />
+                    android:layout_height="match_parent" />
 
         </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
