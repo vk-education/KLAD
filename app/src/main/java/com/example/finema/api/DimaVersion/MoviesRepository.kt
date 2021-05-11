@@ -1,6 +1,5 @@
-package com.example.finema.newapi
+package com.example.finema.api.DimaVersion
 
-import android.util.Log
 import com.example.finema.api.MoviesApi
 import com.example.finema.repositories.SafeApiRequest
 import java.util.*

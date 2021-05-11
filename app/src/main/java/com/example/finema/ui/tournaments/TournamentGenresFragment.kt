@@ -57,7 +57,7 @@ class TournamentGenresFragment :
 
     companion object {
         fun click(genre: GenreModel, num:Int) {
-            Log.d("fufu", genre.id.toString())
+            Log.d("testLog",genre.id.toString())
             getFilmList(genre.id.toString(), num)
         }
 
@@ -70,7 +70,6 @@ class TournamentGenresFragment :
                     ) {
                         val responseBody = response.body()!!
                         val listFilmResponse = ArrayList(responseBody.movies)
-                        Log.d("WTF", listFilmResponse.toString())
                         val bundle = Bundle()
                         bundle.putParcelableArrayList("list", listFilmResponse)
                         bundle.putSerializable("num", num)
@@ -79,7 +78,7 @@ class TournamentGenresFragment :
                     }
 
                     override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
-                        Log.d("WTF1", "Fail" + t.message)
+                        Log.d("testLog","Failure")
                     }
                 })
         }

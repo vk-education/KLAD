@@ -49,19 +49,13 @@ class TournamentDuo : BaseFragment<TournamentDuoVM, FragmentTournamentDuoBinding
         // first initialization of cards (image and text)
         fillCard(mListFilms)
 
-        val messageForLog = "1 list size:" + mListFilms.size.toString() +
-                " 2 list size:" + mListFilms2.size.toString()
-        Log.d("log152",messageForLog )
-
         binding.cardview1.setOnClickListener {
             clickFirstButton()
-            Log.d("log152", messageForLog)
         }
 
         binding.cardview2.setOnClickListener {
             clickSecondButton()
-            Log.d(
-                "log152", messageForLog)
+
         }
     }
 

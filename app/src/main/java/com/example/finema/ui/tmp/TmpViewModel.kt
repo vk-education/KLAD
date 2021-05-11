@@ -9,9 +9,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
 import com.example.finema.R
-import com.example.finema.models.databaseModels.GenreModel
+import com.example.finema.api.DimaVersion.MoviesRepository
+import com.example.finema.api.MoviesApi
 import com.example.finema.models.GenreRequest.GenreList
-import com.example.finema.newapi.MoviesRepository
+import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.repositories.Singleton
 import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.util.Coroutines
@@ -26,14 +27,15 @@ import kotlinx.coroutines.launch
 class TmpViewModel(application: Application): BaseViewModel(application) {
 
     private val mAuth = Firebase.auth
-    private val mContext = application
-    val allGenres = REPOSITORY.allGenres
+    //    private val mContext = application
+//    val allGenres = REPOSITORY.allGenres
     private lateinit var job: Job
-    private lateinit var repository: MoviesRepository
-
-    private val _genreList = MutableLiveData<GenreList>()
-    val genreList: MutableLiveData<GenreList>
-        get() = _genreList
+    private val apiTmp = MoviesApi()
+    private val repository= MoviesRepository(apiTmp)
+    var genreListVM = MutableLiveData<GenreList>()
+//    private val _genreList = MutableLiveData<GenreList>()
+//    val genreList: MutableLiveData<GenreList>
+//        get() = _genreList
 
     fun logIn(activity: Activity){
         val user = mAuth.currentUser
@@ -53,7 +55,7 @@ class TmpViewModel(application: Application): BaseViewModel(application) {
     fun getGenres(){
         job = Coroutines.ioThenMan(
             { repository.getGenres() },
-            { _genreList.value = it }
+            { genreListVM.value = it }
         )
     }
     override fun onCleared() {
