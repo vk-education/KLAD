@@ -2,7 +2,6 @@ package com.example.finema.ui.tournaments
 
 import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,16 +12,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finema.R
-import com.example.finema.api.DimaVersion.ApiInterface
-import com.example.finema.api.DimaVersion.Common
 import com.example.finema.databinding.FragmentTournamentGenresBinding
 import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.models.movieResponse.Movie
-import com.example.finema.models.movieResponse.MovieResponse
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.utlis.APP_ACTIVITY
-import retrofit2.Call
-import retrofit2.Response
 
 class TournamentGenresFragment :
     BaseFragment<TournamentGenresVM, FragmentTournamentGenresBinding>(),

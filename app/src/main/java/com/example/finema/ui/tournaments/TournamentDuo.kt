@@ -1,8 +1,6 @@
 package com.example.finema.ui.tournaments
 
-import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,7 +45,7 @@ class TournamentDuo : BaseFragment<TournamentDuoVM, FragmentTournamentDuoBinding
         val numFilms = arguments?.getSerializable("num") as Int
         // cut to num
         binding.txtNumCategory.text = numFilms.toString() + " Лучших фильмов"
-        binding.roundCount.text ="Раунд " + roundCount
+        binding.roundCount.text = "Раунд " + roundCount
         mListFilms = mListFilms.take(numFilms) as MutableList<Movie>
         // first initialization of cards (image and text)
         fillCard(mListFilms)
@@ -70,8 +68,8 @@ class TournamentDuo : BaseFragment<TournamentDuoVM, FragmentTournamentDuoBinding
             if (mListFilms.isNotEmpty()) {
                 fillCard(mListFilms)
             } else {
-                roundCount+=1
-                binding.roundCount.text ="Раунд " + roundCount
+                roundCount += 1
+                binding.roundCount.text = "Раунд " + roundCount
                 flagMain = false
                 fillCard(mListFilms2)
             }
@@ -82,8 +80,8 @@ class TournamentDuo : BaseFragment<TournamentDuoVM, FragmentTournamentDuoBinding
             if (mListFilms2.isNotEmpty()) {
                 fillCard(mListFilms2)
             } else {
-                roundCount+=1
-                binding.roundCount.text ="Раунд " + roundCount
+                roundCount += 1
+                binding.roundCount.text = "Раунд " + roundCount
                 flagMain = true
                 fillCard(mListFilms)
             }
@@ -98,8 +96,8 @@ class TournamentDuo : BaseFragment<TournamentDuoVM, FragmentTournamentDuoBinding
             if (mListFilms.isNotEmpty()) {
                 fillCard(mListFilms)
             } else {
-                roundCount+=1
-                binding.roundCount.text ="Раунд " + roundCount
+                roundCount += 1
+                binding.roundCount.text = "Раунд " + roundCount
                 flagMain = false
                 fillCard(mListFilms2)
             }
@@ -110,8 +108,8 @@ class TournamentDuo : BaseFragment<TournamentDuoVM, FragmentTournamentDuoBinding
             if (mListFilms2.isNotEmpty()) {
                 fillCard(mListFilms2)
             } else {
-                roundCount+=1
-                binding.roundCount.text ="Раунд " + roundCount
+                roundCount += 1
+                binding.roundCount.text = "Раунд " + roundCount
                 flagMain = true
                 fillCard(mListFilms)
             }
@@ -122,15 +120,15 @@ class TournamentDuo : BaseFragment<TournamentDuoVM, FragmentTournamentDuoBinding
     private fun fillCard(list: MutableList<Movie>) {
         el1 = list.random()
         el2 = list.random()
-        if (list.size == 1 && el1 == el2){
+        if (list.size == 1 && el1 == el2) {
             Toast.makeText(APP_ACTIVITY, "Победил " + el1.title, Toast.LENGTH_SHORT).show()
             val bundle = Bundle()
             val filmIdInfo = el1.id.toLong()
             bundle.putSerializable("filmId", filmIdInfo)
             Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
-                .navigate(R.id.action_fragment_tournament_to_fragment_film,bundle)
-        }
-        else{
+                .navigate(R.id.action_fragment_tournament_to_fragment_film, bundle)
+            roundCount = 1
+        } else {
             while (el1 == el2) {
                 el2 = list.random()
             }
