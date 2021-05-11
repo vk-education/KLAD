@@ -21,10 +21,10 @@ class TournamentGenresVM(application: Application):BaseViewModel(application) {
 
 
 
-    fun getMovies(){
-        for(i in 1..5){
+    fun getMovies(genre:String){
+        for(i in 1..7){
         job = Coroutines.ioThenMan(
-            { repository.getMoviesWithGenre(i,"12") },
+            { repository.getMoviesWithGenre(i,genre) },
             { filmListVM.value = it?.movies }
         )}
     }

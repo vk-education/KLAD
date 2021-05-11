@@ -114,3 +114,4 @@ class CustomGridLayoutManager(context: Context?) : LinearLayoutManager(context) 
         return isScrollEnabled && super.canScrollVertically()
     }
 }
+

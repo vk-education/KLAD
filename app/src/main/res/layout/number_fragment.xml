@@ -68,6 +68,7 @@
                     android:layout_row="1"
                     android:layout_column="2"
                     android:layout_margin="@dimen/app_margin"
+                    android:textColor="@android:color/darker_gray"
                     android:text="256"/>
         </GridLayout>
 
