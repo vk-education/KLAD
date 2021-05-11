@@ -24,6 +24,7 @@ class TournamentDuo : BaseFragment<TournamentDuoVM, FragmentTournamentDuoBinding
     private lateinit var el1: Movie
     private lateinit var el2: Movie
 
+    private var roundCount = 1
     private var flagMain = true
 
     override fun onCreateView(
@@ -45,6 +46,8 @@ class TournamentDuo : BaseFragment<TournamentDuoVM, FragmentTournamentDuoBinding
         mListFilms = arguments?.getParcelableArrayList<Movie>("list") as MutableList<Movie>
         val numFilms = arguments?.getSerializable("num") as Int
         // cut to num
+        binding.txtNumCategory.text = numFilms.toString() + " Лучших фильмов"
+        binding.roundCount.text ="Раунд " + roundCount
         mListFilms = mListFilms.take(numFilms) as MutableList<Movie>
         // first initialization of cards (image and text)
         fillCard(mListFilms)
@@ -67,6 +70,8 @@ class TournamentDuo : BaseFragment<TournamentDuoVM, FragmentTournamentDuoBinding
             if (mListFilms.isNotEmpty()) {
                 fillCard(mListFilms)
             } else {
+                roundCount+=1
+                binding.roundCount.text ="Раунд " + roundCount
                 flagMain = false
                 fillCard(mListFilms2)
             }
@@ -77,6 +82,8 @@ class TournamentDuo : BaseFragment<TournamentDuoVM, FragmentTournamentDuoBinding
             if (mListFilms2.isNotEmpty()) {
                 fillCard(mListFilms2)
             } else {
+                roundCount+=1
+                binding.roundCount.text ="Раунд " + roundCount
                 flagMain = true
                 fillCard(mListFilms)
             }
@@ -91,6 +98,8 @@ class TournamentDuo : BaseFragment<TournamentDuoVM, FragmentTournamentDuoBinding
             if (mListFilms.isNotEmpty()) {
                 fillCard(mListFilms)
             } else {
+                roundCount+=1
+                binding.roundCount.text ="Раунд " + roundCount
                 flagMain = false
                 fillCard(mListFilms2)
             }
@@ -101,6 +110,8 @@ class TournamentDuo : BaseFragment<TournamentDuoVM, FragmentTournamentDuoBinding
             if (mListFilms2.isNotEmpty()) {
                 fillCard(mListFilms2)
             } else {
+                roundCount+=1
+                binding.roundCount.text ="Раунд " + roundCount
                 flagMain = true
                 fillCard(mListFilms)
             }
