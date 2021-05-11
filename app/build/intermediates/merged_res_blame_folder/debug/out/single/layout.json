@@ -1,11 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\movie_item.xml",
-        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\movie_item.xml"
-    },
-    {
         "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\movie_details_fragment.xml",
         "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\movie_details_fragment.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\movie_item.xml",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\movie_item.xml"
     },
     {
         "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\favourite_fragment.xml",

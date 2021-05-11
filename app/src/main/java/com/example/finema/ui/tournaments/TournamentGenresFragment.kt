@@ -77,6 +77,7 @@ class TournamentGenresFragment :
         bundle.putSerializable("num", num)
         Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
             .navigate(R.id.action_fragmentGenre_to_fragmentTournament, bundle)
+        allFilms.clear()
     }
 
     private fun getFilms(genreID: String) {

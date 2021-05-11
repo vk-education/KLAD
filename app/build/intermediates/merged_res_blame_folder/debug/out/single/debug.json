@@ -1,11 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
-    },
-    {
         "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\res\\merged\\debug\\navigation_app_navigation_graph.xml.flat",
         "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\navigation\\app_navigation_graph.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
     },
     {
         "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\res\\merged\\debug\\layout_tmp_fragment.xml.flat",
@@ -20,12 +20,12 @@
         "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\others_fragment.xml"
     },
     {
-        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\activity_main.xml"
-    },
-    {
         "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_base.xml.flat",
         "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\fragment_base.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
         "merged": "C:\\Users\\User\\AndroidStudioProjects\\KLAD\\app\\build\\intermediates\\res\\merged\\debug\\xml_settings.xml.flat",
