@@ -17,18 +17,15 @@ class TournamentGenresVM(application: Application):BaseViewModel(application) {
     private lateinit var job: Job
     private val apiTG = MoviesApi()
     private val repository= MoviesRepository(apiTG)
+    var filmListVM = MutableLiveData<List<Movie>>()
 
-    private val _movies = MutableLiveData<MovieResponse>()
-    val movies: MutableLiveData<MovieResponse>
-        get() = _movies
 
 
     fun getMovies(genre:String){
-        for(i in 1..7){
         job = Coroutines.ioThenMan(
-            { repository.getMoviesWithGenre(i,genre) },
-            { _movies.value = it }
-        )}
+            { repository.getMoviesWithGenre(1,genre) },
+            { filmListVM.value = it?.movies }
+        )
     }
 
     override fun onCleared() {

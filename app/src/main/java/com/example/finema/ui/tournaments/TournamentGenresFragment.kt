@@ -1,8 +1,9 @@
 package com.example.finema.ui.tournaments
 
-import android.app.Application
 import android.app.Dialog
 import android.os.Bundle
+import android.os.Parcelable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +17,6 @@ import com.example.finema.R
 import com.example.finema.databinding.FragmentTournamentGenresBinding
 import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.models.movieResponse.Movie
-import com.example.finema.repositories.Singleton
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.utlis.APP_ACTIVITY
 
@@ -24,19 +24,17 @@ class TournamentGenresFragment :
     BaseFragment<TournamentGenresVM, FragmentTournamentGenresBinding>(),
     TournamentAdapter.TournamentHolder.Listener {
 
+    private lateinit var mViewModel: TournamentGenresVM
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var mAdapter: TournamentAdapter
     private lateinit var mObserverList: Observer<List<GenreModel>>
     private var allFilms = ArrayList<Movie>()
-    private val application = Application()
-    private val viewModel = TournamentGenresVM(application = application)
-
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = FragmentTournamentGenresBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -53,28 +51,26 @@ class TournamentGenresFragment :
         mObserverList = Observer {
             mAdapter.setList(it)
         }
-        viewModel.allGenres.observe(APP_ACTIVITY, mObserverList)
+        mViewModel = ViewModelProvider(this).get(TournamentGenresVM::class.java)
+        mViewModel.allGenres.observe(APP_ACTIVITY, mObserverList)
+
+
+        mViewModel.filmListVM.observe(APP_ACTIVITY, {
+            val list1 = it
+            dialogBinding(list1)
+        })
     }
 
     override fun onMovieClicked(view: View, genreModel: GenreModel) {
         getFilms(genreModel.id.toString())
-        dialogBinding()
     }
 
-    private fun goNext(num: Int) {
-        val bundle = Bundle()
-        Singleton.allFilms.addAll(viewModel.movies.value?.movies!!)
-        bundle.putSerializable("num", num)
-        bundle.putParcelable("lit", BaseParcelable(allFilms))
-        Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
-            .navigate(R.id.action_fragmentGenre_to_fragmentTournament, bundle)
-    }
 
     private fun getFilms(genreID: String) {
-        viewModel.getMovies(genreID)
+        mViewModel.getMovies(genreID)
     }
 
-    private fun dialogBinding() {
+    private fun dialogBinding(list1: List<Movie>) {
         val dialog = Dialog(APP_ACTIVITY)
         dialog.setContentView(R.layout.number_fragment)
         val btn8: TextView = dialog.findViewById(R.id.btn8)
@@ -83,25 +79,33 @@ class TournamentGenresFragment :
         val btn64: Button = dialog.findViewById(R.id.btn64)
         val btn128: Button = dialog.findViewById(R.id.btn128)
         btn8.setOnClickListener {
-            goNext(8)
+            goNext(8, list1)
             dialog.hide()
         }
         btn16.setOnClickListener {
-            goNext(16)
+            goNext(16, list1)
             dialog.hide()
         }
-        btn32.setOnClickListener {
-            goNext(32)
-            dialog.hide()
-        }
-        btn64.setOnClickListener {
-            goNext(64)
-            dialog.hide()
-        }
-        btn128.setOnClickListener {
-            goNext( 128)
-            dialog.hide()
-        }
+//        btn32.setOnClickListener {
+//            goNext(32)
+//            dialog.hide()
+//        }
+//        btn64.setOnClickListener {
+//            goNext(64)
+//            dialog.hide()
+//        }
+//        btn128.setOnClickListener {
+//            goNext( 128)
+//            dialog.hide()
+//        }
         dialog.show()
+    }
+
+    private fun goNext(num: Int, list1: List<Movie>) {
+        val bundle = Bundle()
+        bundle.putParcelableArrayList("list", list1 as java.util.ArrayList<out Parcelable>)
+        bundle.putSerializable("num", num)
+        Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
+            .navigate(R.id.action_fragmentGenre_to_fragmentTournament, bundle)
     }
 }
