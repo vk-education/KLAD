@@ -49,7 +49,7 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
     ): View {
         binding = SignInFragmentBinding.inflate(inflater, container, false)
         mViewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
-        // еякх онкэгнбюрекэ юбрнпхгнбюм, рн тпюцлемр юбрнпхгюжхх яйхоюеряъ
+        // О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫, О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
         if (AppPreference.getInitUser()) {
             mViewModel.initDatabase(TYPE_ROOM) {
                 Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
@@ -76,6 +76,7 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         binding.signInWithGoogle.setOnClickListener{
             signIn()
             navigationOpen()
+            AppPreference.setInitUser(true)
             it.findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
         }
 

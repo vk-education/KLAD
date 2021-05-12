@@ -1,5 +1,6 @@
 package com.example.finema.ui.tournaments
 
+import android.app.Application
 import android.app.Dialog
 import android.os.Bundle
 import android.os.Parcelable
@@ -24,12 +25,10 @@ class TournamentGenresFragment :
     BaseFragment<TournamentGenresVM, FragmentTournamentGenresBinding>(),
     TournamentAdapter.TournamentHolder.Listener {
 
-    private lateinit var mViewModel: TournamentGenresVM
+    private val mViewModel = TournamentGenresVM(Application())
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var mAdapter: TournamentAdapter
     private lateinit var mObserverList: Observer<List<GenreModel>>
-    private var allFilms = ArrayList<Movie>()
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,11 +50,9 @@ class TournamentGenresFragment :
         mObserverList = Observer {
             mAdapter.setList(it)
         }
-        mViewModel = ViewModelProvider(this).get(TournamentGenresVM::class.java)
-        mViewModel.allGenres.observe(APP_ACTIVITY, mObserverList)
+        mViewModel.allGenres.observe(viewLifecycleOwner, mObserverList)
 
-
-        mViewModel.filmListVM.observe(APP_ACTIVITY, {
+        mViewModel.filmListVM.observe(viewLifecycleOwner, {
             dialogBinding(it)
         })
     }
