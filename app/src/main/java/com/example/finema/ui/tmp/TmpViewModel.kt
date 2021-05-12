@@ -9,7 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
 import com.example.finema.R
-import com.example.finema.api.DimaVersion.MoviesRepository
+import com.example.finema.api.MoviesRepository
 import com.example.finema.api.MoviesApi
 import com.example.finema.models.GenreRequest.GenreList
 import com.example.finema.models.databaseModels.GenreModel

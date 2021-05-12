@@ -27,6 +27,12 @@ interface MoviesApi {
         @Query("language") language: String
     ) : Response<MovieDetails>
 
+    @GET("movie/popular?api_key=bbf5a3000e95f1dddf266b5e187d4b21")
+    suspend fun getMoviesWithGenre(
+        @Query("page") page: Int,
+        @Query("with_genres") with_genres: String
+    ) : Response<MovieResponse>
+
 
     companion object{
         operator fun invoke() : MoviesApi {

@@ -9,7 +9,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.finema.R
+import com.example.finema.api.MoviesApi
 import com.example.finema.databinding.HigherLowerFragmentBinding
+import com.example.finema.api.MoviesRepository
 import com.example.finema.ui.base.BaseFragment
 
 class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragmentBinding>(),
@@ -30,8 +33,8 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         layout = CustomGridLayoutManager(requireContext())
         factory = MoviesViewModelFactory(application)
         viewModel.getMovies()
@@ -43,6 +46,7 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
                 it.adapter = MovieAdapter(movies, this)
             }
         })
+
     }
 
     override fun onMovieClicked(position: Int) {

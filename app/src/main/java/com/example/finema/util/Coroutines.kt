@@ -11,7 +11,9 @@ import kotlinx.coroutines.launch
 object Coroutines {
 
     private val dataSet = ArrayList<Movie>()
+    private val dataSet2 = ArrayList<Movie>()
     private lateinit var resp: MovieResponse
+    private lateinit var resp2: MovieResponse
     private lateinit var movie: MovieDetails
 
     fun ioThenMain(work: suspend (() -> MovieResponse?), callback: ((MovieResponse?)->Unit)) =
@@ -33,7 +35,10 @@ object Coroutines {
             val data = CoroutineScope(Dispatchers.IO).async  rt@{
                 return@rt work()
             }.await()
-            callback(data)
+            data as MovieResponse
+            dataSet2.addAll(data.movies)
+            resp2 = MovieResponse(dataSet2)
+            callback(resp2 as T)
         }
 
     fun movieDetailsThenMain(work: suspend (() -> MovieDetails?), callback: ((MovieDetails?)->Unit)) =

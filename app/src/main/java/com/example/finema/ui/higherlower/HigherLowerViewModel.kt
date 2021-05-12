@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.example.finema.api.MoviesApi
 import com.example.finema.models.movieResponse.MovieResponse
-import com.example.finema.api.DimaVersion.MoviesRepository
+import com.example.finema.api.MoviesRepository
 import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.util.Coroutines
 import kotlinx.coroutines.Job
