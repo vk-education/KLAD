@@ -4,6 +4,7 @@ import com.example.finema.models.GenreRequest.GenreList
 import com.example.finema.models.movieResponse.MovieDetails
 import com.example.finema.models.movieResponse.MovieResponse
 import com.example.finema.utlis.GENRE_LIST
+import com.example.finema.utlis.TOP_RATED_LIST
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -13,7 +14,7 @@ import retrofit2.http.Query
 
 interface MoviesApi {
 
-    @GET("movie/popular?api_key=bbf5a3000e95f1dddf266b5e187d4b21")
+    @GET("movie/popular?api_key=bbf5a3000e95f1dddf266b5e187d4b21&language=ru-Ru")
     suspend fun getMovies(
             @Query("page") page: Int
     ) : Response<MovieResponse>
@@ -27,7 +28,7 @@ interface MoviesApi {
         @Query("language") language: String
     ) : Response<MovieDetails>
 
-    @GET("movie/popular?api_key=bbf5a3000e95f1dddf266b5e187d4b21")
+    @GET(TOP_RATED_LIST)
     suspend fun getMoviesWithGenre(
         @Query("page") page: Int,
         @Query("with_genres") with_genres: String

@@ -8,7 +8,7 @@
     <data>
         <variable
                 name="filmId"
-                type="com.example.finema.models.movieResponse.Movie"/>
+                type="com.example.finema.models.movieResponse.MovieDetails"/>
     </data>
 
 
