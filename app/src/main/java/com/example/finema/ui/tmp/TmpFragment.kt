@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.example.finema.R
@@ -14,6 +15,7 @@ import com.example.finema.models.GenreRequest.GenreList
 import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.AppPreference
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.firebase.auth.FirebaseAuth
 
 class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
@@ -38,6 +40,9 @@ class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().findViewById<DrawerLayout>(R.id.drawer_layout).setDrawerLockMode(
+            DrawerLayout.LOCK_MODE_UNLOCKED)
+        requireActivity().findViewById<MaterialToolbar>(R.id.topAppBar).visibility = View.VISIBLE
 //        if genre list not exist in database then download it
         if (!AppPreference.getGeneratedGenres()) {
             loadGenresList()

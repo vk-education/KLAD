@@ -19,6 +19,9 @@ public final class SignInFragmentBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final View opacityFilter;
+
+  @NonNull
   public final Button signInAsGuest;
 
   @NonNull
@@ -27,9 +30,11 @@ public final class SignInFragmentBinding implements ViewBinding {
   @NonNull
   public final Button signInWithGoogle;
 
-  private SignInFragmentBinding(@NonNull ConstraintLayout rootView, @NonNull Button signInAsGuest,
-      @NonNull ConstraintLayout signInFrag, @NonNull Button signInWithGoogle) {
+  private SignInFragmentBinding(@NonNull ConstraintLayout rootView, @NonNull View opacityFilter,
+      @NonNull Button signInAsGuest, @NonNull ConstraintLayout signInFrag,
+      @NonNull Button signInWithGoogle) {
     this.rootView = rootView;
+    this.opacityFilter = opacityFilter;
     this.signInAsGuest = signInAsGuest;
     this.signInFrag = signInFrag;
     this.signInWithGoogle = signInWithGoogle;
@@ -62,6 +67,12 @@ public final class SignInFragmentBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.opacityFilter;
+      View opacityFilter = rootView.findViewById(id);
+      if (opacityFilter == null) {
+        break missingId;
+      }
+
       id = R.id.sign_in_as_guest;
       Button signInAsGuest = rootView.findViewById(id);
       if (signInAsGuest == null) {
@@ -76,8 +87,8 @@ public final class SignInFragmentBinding implements ViewBinding {
         break missingId;
       }
 
-      return new SignInFragmentBinding((ConstraintLayout) rootView, signInAsGuest, signInFrag,
-          signInWithGoogle);
+      return new SignInFragmentBinding((ConstraintLayout) rootView, opacityFilter, signInAsGuest,
+          signInFrag, signInWithGoogle);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

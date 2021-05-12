@@ -14,8 +14,8 @@ public class MovieDetailsFragmentBindingImpl extends MovieDetailsFragmentBinding
     static {
         sIncludes = null;
         sViewsWithIds = new android.util.SparseIntArray();
-        sViewsWithIds.put(R.id.layout, 3);
-        sViewsWithIds.put(R.id.imageView, 4);
+        sViewsWithIds.put(R.id.imageView, 3);
+        sViewsWithIds.put(R.id.layoutText, 4);
         sViewsWithIds.put(R.id.textView3, 5);
         sViewsWithIds.put(R.id.textView6, 6);
         sViewsWithIds.put(R.id.genres, 7);
@@ -25,8 +25,6 @@ public class MovieDetailsFragmentBindingImpl extends MovieDetailsFragmentBinding
         sViewsWithIds.put(R.id.companies, 11);
     }
     // views
-    @NonNull
-    private final android.widget.ScrollView mboundView0;
     // variables
     // values
     // listeners
@@ -40,8 +38,9 @@ public class MovieDetailsFragmentBindingImpl extends MovieDetailsFragmentBinding
             , (android.widget.TextView) bindings[11]
             , (android.widget.TextView) bindings[1]
             , (android.widget.TextView) bindings[7]
-            , (android.widget.ImageView) bindings[4]
-            , (android.widget.LinearLayout) bindings[3]
+            , (android.widget.ImageView) bindings[3]
+            , (android.widget.LinearLayout) bindings[0]
+            , (android.widget.LinearLayout) bindings[4]
             , (android.widget.TextView) bindings[2]
             , (android.widget.TextView) bindings[9]
             , (android.widget.TextView) bindings[5]
@@ -50,8 +49,7 @@ public class MovieDetailsFragmentBindingImpl extends MovieDetailsFragmentBinding
             , (android.widget.TextView) bindings[8]
             );
         this.filmTitle.setTag(null);
-        this.mboundView0 = (android.widget.ScrollView) bindings[0];
-        this.mboundView0.setTag(null);
+        this.layout.setTag(null);
         this.overview.setTag(null);
         setRootTag(root);
         // listeners
@@ -80,7 +78,7 @@ public class MovieDetailsFragmentBindingImpl extends MovieDetailsFragmentBinding
     public boolean setVariable(int variableId, @Nullable Object variable)  {
         boolean variableSet = true;
         if (BR.filmId == variableId) {
-            setFilmId((com.example.finema.models.movieResponse.Movie) variable);
+            setFilmId((com.example.finema.models.movieResponse.MovieDetails) variable);
         }
         else {
             variableSet = false;
@@ -88,7 +86,7 @@ public class MovieDetailsFragmentBindingImpl extends MovieDetailsFragmentBinding
             return variableSet;
     }
 
-    public void setFilmId(@Nullable com.example.finema.models.movieResponse.Movie FilmId) {
+    public void setFilmId(@Nullable com.example.finema.models.movieResponse.MovieDetails FilmId) {
         this.mFilmId = FilmId;
         synchronized(this) {
             mDirtyFlags |= 0x1L;
@@ -113,7 +111,7 @@ public class MovieDetailsFragmentBindingImpl extends MovieDetailsFragmentBinding
         }
         java.lang.String filmIdTitle = null;
         java.lang.String filmIdOverview = null;
-        com.example.finema.models.movieResponse.Movie filmId = mFilmId;
+        com.example.finema.models.movieResponse.MovieDetails filmId = mFilmId;
 
         if ((dirtyFlags & 0x3L) != 0) {
 

@@ -1,28 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
                 name="filmId"
-                type="com.example.finema.models.movieResponse.MovieDetails"/>
+                type="com.example.finema.models.movieResponse.MovieDetails" />
     </data>
 
 
-    <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-<!--            <ProgressBar-->
-<!--                android:id="@+id/filmLoader"-->
-<!--                android:layout_width="60dp"-->
-<!--                android:layout_height="60dp"-->
-<!--                android:indeterminateTint="@color/purple_200"-->
-<!--                android:progressTint="@color/purple_200"-->
-<!--                android:layout_gravity="center" />-->
+    <!--            <ProgressBar-->
+    <!--                android:id="@+id/filmLoader"-->
+    <!--                android:layout_width="60dp"-->
+    <!--                android:layout_height="60dp"-->
+    <!--                android:indeterminateTint="@color/purple_200"-->
+    <!--                android:progressTint="@color/purple_200"-->
+    <!--                android:layout_gravity="center" />-->
 
 
     <LinearLayout
@@ -31,42 +27,57 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:visibility="invisible">
-
-            <ImageView
-                android:id="@+id/imageView"
+        <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/movies_24" />
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/app_margin"
+                app:cardCornerRadius="@dimen/card_corner_radius"
+                app:cardElevation="@dimen/card_corner_elevation">
+            <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/movies_24" />
+        </androidx.cardview.widget.CardView>
 
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+        <LinearLayout
+                android:id="@+id/layoutText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
             <TextView
                 android:text="@{filmId.title}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/filmTitle"
-                android:textColor="@color/black"
+                android:textColor="@color/design_default_color_primary"
                 android:textSize="25sp"
                 android:layout_gravity="center"
-                android:gravity="center"/>
+                android:gravity="center" />
 
-            <TextView
+        <TextView
                 android:text="@string/about_film"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView3"
                 android:textSize="18sp"
                 android:paddingStart="10dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
-            <TextView
+        <TextView
                 android:text="@{filmId.overview}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/overview"
                 android:textSize="18sp"
-                android:padding="10dp"/>
+                android:padding="10dp" />
 
-            <TextView
+        <TextView
                 android:text="@string/genres"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -74,18 +85,18 @@
                 android:textSize="18sp"
                 android:paddingStart="10dp"
                 android:paddingTop="10dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
-            <TextView
+        <TextView
                 tools:text="Жанр"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/genres"
                 android:textSize="18sp"
                 android:paddingStart="10dp"
-                android:paddingTop="10dp"/>
+                android:paddingTop="10dp" />
 
-            <TextView
+        <TextView
                 android:text="@string/rating"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -93,17 +104,17 @@
                 android:textSize="18sp"
                 android:paddingStart="10dp"
                 android:paddingTop="10dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
-            <TextView
+        <TextView
                 tools:text="10.0"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/rating"
                 android:textSize="18sp"
-                android:padding="10dp"/>
+                android:padding="10dp" />
 
-            <TextView
+        <TextView
                 android:text="@string/companies"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -111,21 +122,19 @@
                 android:textSize="18sp"
                 android:paddingStart="10dp"
                 android:paddingTop="10dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
-            <TextView
+        <TextView
                 tools:text="KLAD"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/companies"
                 android:textSize="18sp"
-                android:padding="10dp"/>
+                android:padding="10dp" />
 
 
+    </LinearLayout>
+        </ScrollView>
 
-        </LinearLayout>
-
-
-    </ScrollView>
-
-</layout>
+    </LinearLayout>
+        </layout>

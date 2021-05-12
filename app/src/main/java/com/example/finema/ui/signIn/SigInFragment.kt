@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.INVISIBLE
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
 import androidx.navigation.findNavController
 import com.example.finema.R
 import com.example.finema.databinding.SignInFragmentBinding
@@ -61,6 +63,8 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().findViewById<DrawerLayout>(R.id.drawer_layout).setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
+        requireActivity().findViewById<MaterialToolbar>(R.id.topAppBar).visibility = INVISIBLE
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
@@ -76,6 +80,7 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         binding.signInWithGoogle.setOnClickListener{
             signIn()
             navigationOpen()
+            AppPreference.setInitUser(true)
             it.findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
         }
 
