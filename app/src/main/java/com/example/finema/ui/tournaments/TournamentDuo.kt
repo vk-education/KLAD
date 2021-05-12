@@ -40,12 +40,12 @@ class TournamentDuo : BaseFragment<TournamentGenresVM, FragmentTournamentDuoBind
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // get List of Films and number from previous fragment
+        val allFilms = arguments?.getParcelableArrayList<Movie>("list") as ArrayList<Movie>
         val numFilms = arguments?.getSerializable("num") as Int
         // cut to num
         binding.txtNumCategory.text = "$numFilms Лучших фильмов"
         binding.roundCount.text = "Раунд $roundCount"
-        mListFilms = Singleton.allFilms.take(numFilms) as ArrayList<Movie>
-        Singleton.allFilms.clear()
+        mListFilms = allFilms.take(numFilms) as ArrayList<Movie>
         // first initialization of cards (image and text)
         fillCard(mListFilms)
 

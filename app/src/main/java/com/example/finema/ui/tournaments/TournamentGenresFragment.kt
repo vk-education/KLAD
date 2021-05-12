@@ -34,7 +34,7 @@ class TournamentGenresFragment :
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentTournamentGenresBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -56,8 +56,7 @@ class TournamentGenresFragment :
 
 
         mViewModel.filmListVM.observe(APP_ACTIVITY, {
-            val list1 = it
-            dialogBinding(list1)
+            dialogBinding(it)
         })
     }
 
