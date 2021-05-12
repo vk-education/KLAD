@@ -2106,6 +2106,7 @@ id labelGroup
 id labeled
 id largeLabel
 id layout
+id layoutText
 id left
 id leftToRight
 id light
@@ -2186,6 +2187,7 @@ id off
 id on
 id onAttachStateChangeListener
 id onDateChanged
+id opacityFilter
 id outline
 id outward
 id overview

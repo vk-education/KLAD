@@ -1,10 +1,8 @@
 package com.example.finema.ui.tournaments
 
-import android.app.Application
 import android.app.Dialog
 import android.os.Bundle
 import android.os.Parcelable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,16 +17,18 @@ import com.example.finema.databinding.FragmentTournamentGenresBinding
 import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.models.movieResponse.Movie
 import com.example.finema.ui.base.BaseFragment
-import com.example.finema.utlis.APP_ACTIVITY
+import com.example.finema.util.APP_ACTIVITY
 
 class TournamentGenresFragment :
     BaseFragment<TournamentGenresVM, FragmentTournamentGenresBinding>(),
     TournamentAdapter.TournamentHolder.Listener {
 
-    private val mViewModel = TournamentGenresVM(Application())
+    private lateinit var mViewModel: TournamentGenresVM
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var mAdapter: TournamentAdapter
     private lateinit var mObserverList: Observer<List<GenreModel>>
+    private var allFilms = ArrayList<Movie>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,9 +50,11 @@ class TournamentGenresFragment :
         mObserverList = Observer {
             mAdapter.setList(it)
         }
-        mViewModel.allGenres.observe(viewLifecycleOwner, mObserverList)
+        mViewModel = ViewModelProvider(this).get(TournamentGenresVM::class.java)
+        mViewModel.allGenres.observe(APP_ACTIVITY, mObserverList)
 
-        mViewModel.filmListVM.observe(viewLifecycleOwner, {
+
+        mViewModel.filmListVM.observe(APP_ACTIVITY, {
             dialogBinding(it)
         })
     }

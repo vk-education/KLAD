@@ -4,12 +4,10 @@ import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.example.finema.api.MoviesApi
 import com.example.finema.api.MoviesRepository
-import com.example.finema.models.GenreRequest.GenreList
 import com.example.finema.models.movieResponse.Movie
-import com.example.finema.models.movieResponse.MovieResponse
 import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.util.Coroutines
-import com.example.finema.utlis.REPOSITORY
+import com.example.finema.util.REPOSITORY
 import kotlinx.coroutines.Job
 
 class TournamentGenresVM(application: Application):BaseViewModel(application) {

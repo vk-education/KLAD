@@ -44,7 +44,7 @@ class MovieDetailsFragment: BaseFragment<MovieDetailsViewModel, MovieDetailsFrag
 //            binding.filmLoader.visibility = INVISIBLE
 
             it.posterPath = "https://image.tmdb.org/t/p/w342" + it.posterPath
-//            binding.filmId = it.title
+            binding.filmId = it
 
             var genres = ""
             for (item in it.genres){

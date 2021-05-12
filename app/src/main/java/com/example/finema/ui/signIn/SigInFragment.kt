@@ -5,20 +5,22 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.INVISIBLE
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
 import androidx.navigation.findNavController
 import com.example.finema.R
 import com.example.finema.databinding.SignInFragmentBinding
 import com.example.finema.repositories.Singleton
 import com.example.finema.ui.base.BaseFragment
-import com.example.finema.utlis.APP_ACTIVITY
+import com.example.finema.util.APP_ACTIVITY
 import com.example.finema.util.AppPreference
-import com.example.finema.utlis.TYPE_ROOM
+import com.example.finema.util.TYPE_ROOM
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -29,6 +31,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import okhttp3.internal.wait
 
 
 class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
@@ -61,6 +64,8 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().findViewById<DrawerLayout>(R.id.drawer_layout).setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
+        requireActivity().findViewById<MaterialToolbar>(R.id.topAppBar).visibility = INVISIBLE
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
@@ -75,9 +80,11 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
 
         binding.signInWithGoogle.setOnClickListener{
             signIn()
-            navigationOpen()
-            AppPreference.setInitUser(true)
-            it.findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
+            mViewModel.initDatabase(TYPE_ROOM) {
+                navigationOpen()
+                AppPreference.setInitUser(true)
+                it.findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
+            }
         }
 
         binding.signInAsGuest.setOnClickListener{
@@ -136,10 +143,6 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
     private fun navigationOpen(){
         requireActivity().findViewById<DrawerLayout>(R.id.drawer_layout).setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED)
         requireActivity().findViewById<MaterialToolbar>(R.id.topAppBar).visibility = View.VISIBLE
-    }
-
-    companion object{
-        private const val RC_SIGN_IN = 120
     }
 
 }

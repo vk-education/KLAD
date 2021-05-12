@@ -14,7 +14,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="150dp"
-    android:background="#ffaa26cc"
+    android:background="@android:color/holo_purple"
     android:fitsSystemWindows="true">
 
     <ImageView

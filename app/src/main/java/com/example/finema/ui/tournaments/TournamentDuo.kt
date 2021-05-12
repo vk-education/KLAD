@@ -1,21 +1,18 @@
 package com.example.finema.ui.tournaments
 
-import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.finema.R
 import com.example.finema.databinding.FragmentTournamentDuoBinding
 import com.example.finema.models.movieResponse.Movie
-import com.example.finema.repositories.Singleton
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.ui.higherlower.MovieAdapter
 import com.example.finema.util.downloadAndSetImage
-import com.example.finema.utlis.APP_ACTIVITY
+import com.example.finema.util.APP_ACTIVITY
 
 
 class TournamentDuo : BaseFragment<TournamentGenresVM, FragmentTournamentDuoBinding>() {

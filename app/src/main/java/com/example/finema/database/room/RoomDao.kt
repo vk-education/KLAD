@@ -16,5 +16,4 @@ interface RoomDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(note: GenreModel)
-
 }

@@ -8,7 +8,7 @@ public abstract interface MoviesApi {
     public static final com.example.finema.api.MoviesApi.Companion Companion = null;
     
     @org.jetbrains.annotations.Nullable()
-    @retrofit2.http.GET(value = "movie/popular?api_key=bbf5a3000e95f1dddf266b5e187d4b21")
+    @retrofit2.http.GET(value = "movie/popular?api_key=bbf5a3000e95f1dddf266b5e187d4b21&language=ru-Ru")
     public abstract java.lang.Object getMovies(@retrofit2.http.Query(value = "page")
     int page, @org.jetbrains.annotations.NotNull()
     kotlin.coroutines.Continuation<? super retrofit2.Response<com.example.finema.models.movieResponse.MovieResponse>> p1);
@@ -27,7 +27,7 @@ public abstract interface MoviesApi {
     kotlin.coroutines.Continuation<? super retrofit2.Response<com.example.finema.models.movieResponse.MovieDetails>> p2);
     
     @org.jetbrains.annotations.Nullable()
-    @retrofit2.http.GET(value = "movie/popular?api_key=bbf5a3000e95f1dddf266b5e187d4b21")
+    @retrofit2.http.GET(value = "movie/top_rated?api_key=bbf5a3000e95f1dddf266b5e187d4b21&language=ru-Ru")
     public abstract java.lang.Object getMoviesWithGenre(@retrofit2.http.Query(value = "page")
     int page, @org.jetbrains.annotations.NotNull()
     @retrofit2.http.Query(value = "with_genres")

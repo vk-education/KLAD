@@ -15,7 +15,7 @@ import androidx.navigation.Navigation
 import com.example.finema.databinding.ActivityMainBinding
 import com.example.finema.ui.settings.NotificationService
 import com.example.finema.util.AppPreference
-import com.example.finema.utlis.APP_ACTIVITY
+import com.example.finema.util.APP_ACTIVITY
 
 class MainActivity : AppCompatActivity() {
     val NOTIFICATION_CHANNEL_ID = "10001"

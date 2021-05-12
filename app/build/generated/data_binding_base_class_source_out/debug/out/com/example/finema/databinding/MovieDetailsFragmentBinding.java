@@ -13,7 +13,7 @@ import androidx.databinding.Bindable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import com.example.finema.R;
-import com.example.finema.models.movieResponse.Movie;
+import com.example.finema.models.movieResponse.MovieDetails;
 import java.lang.Deprecated;
 import java.lang.Object;
 
@@ -34,6 +34,9 @@ public abstract class MovieDetailsFragmentBinding extends ViewDataBinding {
   public final LinearLayout layout;
 
   @NonNull
+  public final LinearLayout layoutText;
+
+  @NonNull
   public final TextView overview;
 
   @NonNull
@@ -52,18 +55,19 @@ public abstract class MovieDetailsFragmentBinding extends ViewDataBinding {
   public final TextView textView8;
 
   @Bindable
-  protected Movie mFilmId;
+  protected MovieDetails mFilmId;
 
   protected MovieDetailsFragmentBinding(Object _bindingComponent, View _root, int _localFieldCount,
       TextView companies, TextView filmTitle, TextView genres, ImageView imageView,
-      LinearLayout layout, TextView overview, TextView rating, TextView textView3,
-      TextView textView6, TextView textView7, TextView textView8) {
+      LinearLayout layout, LinearLayout layoutText, TextView overview, TextView rating,
+      TextView textView3, TextView textView6, TextView textView7, TextView textView8) {
     super(_bindingComponent, _root, _localFieldCount);
     this.companies = companies;
     this.filmTitle = filmTitle;
     this.genres = genres;
     this.imageView = imageView;
     this.layout = layout;
+    this.layoutText = layoutText;
     this.overview = overview;
     this.rating = rating;
     this.textView3 = textView3;
@@ -72,10 +76,10 @@ public abstract class MovieDetailsFragmentBinding extends ViewDataBinding {
     this.textView8 = textView8;
   }
 
-  public abstract void setFilmId(@Nullable Movie filmId);
+  public abstract void setFilmId(@Nullable MovieDetails filmId);
 
   @Nullable
-  public Movie getFilmId() {
+  public MovieDetails getFilmId() {
     return mFilmId;
   }
 
