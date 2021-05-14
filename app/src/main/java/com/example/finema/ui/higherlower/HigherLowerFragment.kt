@@ -15,6 +15,8 @@ import com.example.finema.databinding.HigherLowerFragmentBinding
 import com.example.finema.api.MoviesRepository
 import com.example.finema.ui.base.BaseFragment
 
+
+//TODO Убрать ресайклер
 class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragmentBinding>(),
      MovieAdapter.MovieViewHolder.Listener{
 
@@ -49,6 +51,8 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
 
     }
 
+
+    //TODO убрать во VM
     override fun onMovieClicked(position: Int) {
         when(position){
             add ->

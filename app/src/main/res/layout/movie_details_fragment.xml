@@ -45,96 +45,98 @@
         <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-        <LinearLayout
-                android:id="@+id/layoutText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-            <TextView
-                android:text="@{filmId.title}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/filmTitle"
-                android:textColor="@color/design_default_color_primary"
-                android:textSize="25sp"
-                android:layout_gravity="center"
-                android:gravity="center" />
+            <LinearLayout
+                    android:id="@+id/layoutText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                <TextView
+                        android:text="@{filmId.title}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/filmTitle"
+                        android:textColor="@color/design_default_color_primary"
+                        android:textSize="25sp"
+                        android:layout_gravity="center"
+                        android:gravity="center" />
 
-        <TextView
-                android:text="@string/about_film"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView3"
-                android:textSize="18sp"
-                android:paddingStart="10dp"
-                android:textStyle="bold" />
+                <TextView
+                        android:id="@+id/textView3"
 
-        <TextView
-                android:text="@{filmId.overview}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/overview"
-                android:textSize="18sp"
-                android:padding="10dp" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
 
-        <TextView
-                android:text="@string/genres"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView6"
-                android:textSize="18sp"
-                android:paddingStart="10dp"
-                android:paddingTop="10dp"
-                android:textStyle="bold" />
+                        android:textSize="18sp"
+                        android:paddingStart="10dp"
+                        android:textStyle="bold"
+                        android:text="@string/about_film"/>
 
-        <TextView
-                tools:text="Жанр"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/genres"
-                android:textSize="18sp"
-                android:paddingStart="10dp"
-                android:paddingTop="10dp" />
+                <TextView
+                        android:text="@{filmId.overview}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/overview"
+                        android:textSize="18sp"
+                        android:padding="10dp" />
 
-        <TextView
-                android:text="@string/rating"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView8"
-                android:textSize="18sp"
-                android:paddingStart="10dp"
-                android:paddingTop="10dp"
-                android:textStyle="bold" />
+                <TextView
+                        android:text="@string/genres"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView6"
+                        android:textSize="18sp"
+                        android:paddingStart="10dp"
+                        android:paddingTop="10dp"
+                        android:textStyle="bold" />
 
-        <TextView
-                tools:text="10.0"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/rating"
-                android:textSize="18sp"
-                android:padding="10dp" />
+                <TextView
+                        tools:text="Жанр"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/genres"
+                        android:textSize="18sp"
+                        android:paddingStart="10dp"
+                        android:paddingTop="10dp" />
 
-        <TextView
-                android:text="@string/companies"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView7"
-                android:textSize="18sp"
-                android:paddingStart="10dp"
-                android:paddingTop="10dp"
-                android:textStyle="bold" />
+                <TextView
+                        android:text="@string/rating"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView8"
+                        android:textSize="18sp"
+                        android:paddingStart="10dp"
+                        android:paddingTop="10dp"
+                        android:textStyle="bold" />
 
-        <TextView
-                tools:text="KLAD"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/companies"
-                android:textSize="18sp"
-                android:padding="10dp" />
+                <TextView
+                        tools:text="10.0"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/rating"
+                        android:textSize="18sp"
+                        android:padding="10dp" />
+
+                <TextView
+                        android:text="@string/companies"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView7"
+                        android:textSize="18sp"
+                        android:paddingStart="10dp"
+                        android:paddingTop="10dp"
+                        android:textStyle="bold" />
+
+                <TextView
+                        tools:text="KLAD"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/companies"
+                        android:textSize="18sp"
+                        android:padding="10dp" />
 
 
-    </LinearLayout>
+            </LinearLayout>
         </ScrollView>
 
     </LinearLayout>
-        </layout>
+</layout>

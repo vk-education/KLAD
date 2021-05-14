@@ -9,6 +9,7 @@ import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.util.Coroutines
 import kotlinx.coroutines.Job
 
+//TODO изменить по аналогии с правками остальных VM
 class MovieDetailsViewModel(
 ) : BaseViewModel(application = Application())  {
 

@@ -30,7 +30,8 @@ class TournamentAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TournamentHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.genre_item, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.genre_item, parent, false)
         return TournamentHolder(view, listener)
     }
 
@@ -46,6 +47,7 @@ class TournamentAdapter(
         notifyDataSetChanged()
     }
 
+    //TODO перенести в холдер
     override fun onViewAttachedToWindow(holder: TournamentHolder) {
         holder.itemView.setOnClickListener {
             listener.onMovieClicked(holder.itemView,mListGenres[holder.adapterPosition])

@@ -10,6 +10,7 @@ import androidx.viewbinding.ViewBinding
 import java.lang.reflect.ParameterizedType
 abstract class BaseFragment<VModel : BaseViewModel, Binding: ViewBinding>: Fragment() {
 
+    //TODO Почему private????
     private var viewModel: Lazy<VModel> = lazy {
         ViewModelProvider(requireActivity()).get(getViewModelClass())
     }

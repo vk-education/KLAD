@@ -11,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 class SignInViewModel(application: Application): BaseViewModel(application) {
     private val mContext = application
 
+    //TODO я ничего не понял, Дима объясни
     fun initDatabase(type:String, onSuccess:() -> Unit){
         when (type){
             TYPE_ROOM -> {

@@ -14,8 +14,10 @@ import com.example.finema.ui.higherlower.MovieAdapter
 import com.example.finema.util.downloadAndSetImage
 import com.example.finema.util.APP_ACTIVITY
 
-
+//TODO Переименовать, положить в отдельную папку
+//TODO Вынести всю логику во VM
 class TournamentDuo : BaseFragment<TournamentGenresVM, FragmentTournamentDuoBinding>() {
+
     private var mListFilms: ArrayList<Movie> = ArrayList()
     private var mListFilms2: ArrayList<Movie> = ArrayList()
 
@@ -40,6 +42,7 @@ class TournamentDuo : BaseFragment<TournamentGenresVM, FragmentTournamentDuoBind
         val allFilms = arguments?.getParcelableArrayList<Movie>("list") as ArrayList<Movie>
         val numFilms = arguments?.getSerializable("num") as Int
         // cut to num
+        //TODO Убрать строки в ресурсы
         binding.txtNumCategory.text = "$numFilms Лучших фильмов"
         binding.roundCount.text = "Раунд $roundCount"
         mListFilms = allFilms.take(numFilms) as ArrayList<Movie>

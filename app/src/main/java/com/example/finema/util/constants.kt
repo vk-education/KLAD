@@ -3,6 +3,8 @@ package com.example.finema.util
 import com.example.finema.MainActivity
 import com.example.finema.database.DatabaseRepository
 
+
+//TODO убрать в классы где нужны
 const val TYPE_ROOM = "type_room"
 const val TYPE_FIREBASE = "type_firebase"
 lateinit var REPOSITORY: DatabaseRepository

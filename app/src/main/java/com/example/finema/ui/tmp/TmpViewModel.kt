@@ -26,7 +26,10 @@ import kotlinx.coroutines.launch
 
 class TmpViewModel(application: Application): BaseViewModel(application) {
 
+    //TODO убрать в Base
     private lateinit var job: Job
+
+    //TODO Аналогичнго с TournamentGenresVM
     private val apiTmp = MoviesApi()
     private val repository= MoviesRepository(apiTmp)
     var genreListVM = MutableLiveData<GenreList>()
@@ -37,6 +40,8 @@ class TmpViewModel(application: Application): BaseViewModel(application) {
             { genreListVM.value = it }
         )
     }
+
+    //TODO убрать в Base
     override fun onCleared() {
         super.onCleared()
         if(::job.isInitialized) job.cancel()

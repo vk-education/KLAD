@@ -3,6 +3,7 @@ package com.example.finema.util
 import android.content.Context
 import android.content.SharedPreferences
 
+//TODO Сделать репозиторием с интерфейсом
 object AppPreference {
 
     private const val INIT_USER = "initUser"
@@ -12,6 +13,7 @@ object AppPreference {
 
     private lateinit var mPreferences: SharedPreferences
 
+    //TODO такого не должно быть, преференсы должны исполььзоваться только здесь
     fun getPreference(context: Context):SharedPreferences{
         mPreferences = context.getSharedPreferences(NAME_PREF,Context.MODE_PRIVATE)
         return mPreferences

@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth
 class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
 
     private lateinit var mAuth: FirebaseAuth
+
     private val mViewModel = TmpViewModel(application = Application())
     private lateinit var mObserverList: Observer<GenreList>
 
@@ -31,24 +32,32 @@ class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
         savedInstanceState: Bundle?
     ): View {
         binding = TmpFragmentBinding.inflate(inflater, container, false)
+
+        //TODO убрать
         mAuth = FirebaseAuth.getInstance()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().findViewById<DrawerLayout>(R.id.drawer_layout).setDrawerLockMode(
-            DrawerLayout.LOCK_MODE_UNLOCKED)
+        requireActivity()
+            .findViewById<DrawerLayout>(R.id.drawer_layout)
+            .setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+
+        //TODO убрать
         requireActivity().findViewById<MaterialToolbar>(R.id.topAppBar).visibility = View.VISIBLE
 //        if genre list not exist in database then download it
+        //TODO перенести в VM
         if (!AppPreference.getGeneratedGenres()) {
             loadGenresList()
         }
         binding.genre.setOnClickListener {
+            //TODO убрать it
             it.findNavController().navigate(R.id.action_fragment_tmp_to_fragment_genre)
         }
     }
 
+    //TODO переделать, убрать логику в VM
     private fun loadGenresList() {
         mObserverList = Observer {
             val list = it.genres
@@ -63,6 +72,7 @@ class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
         }
         mViewModel.getGenres()
         mViewModel.genreListVM.observe(viewLifecycleOwner, mObserverList)
+        //TODO Убрать во VM
         AppPreference.setGeneratedGenres(true)
 
     }

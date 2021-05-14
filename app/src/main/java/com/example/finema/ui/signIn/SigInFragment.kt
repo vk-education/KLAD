@@ -35,14 +35,19 @@ import okhttp3.internal.wait
 
 
 class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
+
+    //TODO убрать, есть биндинг
     private lateinit var header: TextView
     private lateinit var mAuth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
+
     private val resultContract = registerForActivityResult(
         ActivityResultContracts
             .StartActivityForResult()){
         activityResult(it.data)
     }
+
+    //TODO изменить
     private lateinit var mViewModel: SignInViewModel
 
     override fun onCreateView(
@@ -53,6 +58,7 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         binding = SignInFragmentBinding.inflate(inflater, container, false)
         mViewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
         // ���� ������������ �����������, �� �������� ����������� ���������
+        //TODO изменить на перевод сюда из активити
         if (AppPreference.getInitUser()) {
             mViewModel.initDatabase(TYPE_ROOM) {
                 Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
@@ -66,11 +72,13 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         super.onViewCreated(view, savedInstanceState)
         requireActivity().findViewById<DrawerLayout>(R.id.drawer_layout).setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
         requireActivity().findViewById<MaterialToolbar>(R.id.topAppBar).visibility = INVISIBLE
+
+        //TODO вынести во Repository, но только после того как будет DI (dagger/koin)
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
-
+        //TODO requireActivity заменить на context
         googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
 
         mAuth = FirebaseAuth.getInstance()
@@ -99,6 +107,8 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         }
     }
 
+    //TODO репозиторий по нажатию на кнопку возвращает интент, через VM, который и надо здесь
+    // запускать
     private fun signIn(){
         val signInIntent = googleSignInClient.signInIntent
         resultContract.launch(signInIntent)
@@ -123,6 +133,7 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         }
     }
 
+    //TODO в репозиторий
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         mAuth.signInWithCredential(credential)

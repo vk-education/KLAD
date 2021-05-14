@@ -12,8 +12,11 @@ import com.example.finema.ui.higherlower.CustomGridLayoutManager
 
 class MovieDetailsFragment: BaseFragment<MovieDetailsViewModel, MovieDetailsFragmentBinding>() {
 
+    //TODO убрать после фикса viewModel
     private lateinit var factory: MovieDetailsViewModelFactory
+    //TODO убрать
     private lateinit var layout : CustomGridLayoutManager
+    //TODO Аналогично строке 16
     private val viewModel = MovieDetailsViewModel()
     private var arg: Long = 0
 
@@ -31,6 +34,7 @@ class MovieDetailsFragment: BaseFragment<MovieDetailsViewModel, MovieDetailsFrag
         return binding.root
     }
 
+    //TODO убрать подготовку данных в VM
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         layout = CustomGridLayoutManager(requireContext())
         factory = MovieDetailsViewModelFactory()
@@ -58,6 +62,7 @@ class MovieDetailsFragment: BaseFragment<MovieDetailsViewModel, MovieDetailsFrag
             }
             binding.companies.text = companies
 
+            //TODO изменить на вызов extension
             Glide.with(view)
                 .load(it.posterPath)
                 .into(binding.imageView)

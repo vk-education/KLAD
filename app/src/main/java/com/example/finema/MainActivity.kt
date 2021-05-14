@@ -17,6 +17,14 @@ import com.example.finema.ui.settings.NotificationService
 import com.example.finema.util.AppPreference
 import com.example.finema.util.APP_ACTIVITY
 
+//TODO добавить по аналогии
+// findNavController(R.id.fragment_container)
+//                    .addOnDestinationChangedListener { _, destination, _ ->
+//                        if(SCREENS_WITHOUT_BOTTOM_BAR.contains(destination.id))
+//                            binding.bottomBar.visibility = GONE
+//                        else
+//                            binding.bottomBar.visibility = VISIBLE
+//                    }
 class MainActivity : AppCompatActivity() {
     val NOTIFICATION_CHANNEL_ID = "10001"
     private val default_notification_channel_id = "default"

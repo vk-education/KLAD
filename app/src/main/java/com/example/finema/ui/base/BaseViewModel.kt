@@ -6,6 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
+
+//TODO Разобраться с application
 open class BaseViewModel(application: Application): AndroidViewModel(application) {
 
     val publicErrorMessage: LiveData<String>

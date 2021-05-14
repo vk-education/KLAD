@@ -10,11 +10,19 @@ import com.example.finema.util.Coroutines
 import com.example.finema.util.REPOSITORY
 import kotlinx.coroutines.Job
 
-class TournamentGenresVM(application: Application):BaseViewModel(application) {
+class TournamentGenresVM (
+    application: Application
+) : BaseViewModel(application) {
+
+    //TODO Инстант класса
     val allGenres = REPOSITORY.allGenres
     private lateinit var job: Job
+
+    // TODO Убрать, данные получаются от репозитория
     private val apiTG = MoviesApi()
-    private val repository= MoviesRepository(apiTG)
+
+    private val repository = MoviesRepository()
+
     var filmListVM = MutableLiveData<List<Movie>>()
 
 

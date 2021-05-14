@@ -13,6 +13,11 @@ class HigherLowerViewModel(
     application: Application
 ) : BaseViewModel(application = application) {
 
+    //TODO getMovies
+    init {
+
+    }
+
     private val api = MoviesApi()
     private val repository = MoviesRepository(api)
 

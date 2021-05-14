@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finema.R
 import com.example.finema.databinding.FragmentTournamentGenresBinding
@@ -50,15 +51,19 @@ class TournamentGenresFragment :
         mObserverList = Observer {
             mAdapter.setList(it)
         }
+
+        //TODO Убрать получение и обращаться к VM базового класса
         mViewModel = ViewModelProvider(this).get(TournamentGenresVM::class.java)
         mViewModel.allGenres.observe(APP_ACTIVITY, mObserverList)
 
-
+        //TODO Изменить на фрагмент
         mViewModel.filmListVM.observe(APP_ACTIVITY, {
             dialogBinding(it)
         })
     }
 
+    //TODO genreModel -> {} : GenreModel -> Unit
+    // Заменить на лямбду, хз так ли написал выше
     override fun onMovieClicked(view: View, genreModel: GenreModel) {
         getFilms(genreModel.id.toString())
     }
@@ -69,13 +74,25 @@ class TournamentGenresFragment :
     }
 
     private fun dialogBinding(list1: List<Movie>) {
+        //TODO Заменить на нормальный контекст
         val dialog = Dialog(APP_ACTIVITY)
+
+        //TODO Dialog(APP_ACTIVITY).let {
+        //            it.setContentView(R.layout.number_fragment)
+        //            it.findViewById<View>(R.id.btn8).setOnClickListener { _ ->
+        //                goNext(8, list1)
+        //                it.hide()
+        //            }
+        //        }
+
         dialog.setContentView(R.layout.number_fragment)
+
         val btn8: TextView = dialog.findViewById(R.id.btn8)
         val btn16: Button = dialog.findViewById(R.id.btn16)
         val btn32: Button = dialog.findViewById(R.id.btn32)
         val btn64: Button = dialog.findViewById(R.id.btn64)
         val btn128: Button = dialog.findViewById(R.id.btn128)
+
         btn8.setOnClickListener {
             goNext(8, list1)
             dialog.hide()
@@ -103,6 +120,8 @@ class TournamentGenresFragment :
         val bundle = Bundle()
         bundle.putParcelableArrayList("list", list1 as java.util.ArrayList<out Parcelable>)
         bundle.putSerializable("num", num)
+//        TODO FragmentGenreDestinations.action(_, _, _)
+//        TODO findNavController() ?
         Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
             .navigate(R.id.action_fragmentGenre_to_fragmentTournament, bundle)
     }
