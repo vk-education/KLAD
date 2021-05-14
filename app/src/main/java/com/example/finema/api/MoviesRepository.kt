@@ -4,20 +4,25 @@ import com.example.finema.repositories.SafeApiRequest
 import java.util.*
 
 class MoviesRepository(
-    private val api: MoviesApi
-) : SafeApiRequest() {
+    private val api: MoviesApi = MoviesApi()
+) : IMoviesRepository, SafeApiRequest() {
 
-    suspend fun getMovies(page: Int) = apiRequest {
+    override suspend fun getMovies(page: Int) = apiRequest {
         api.getMovies(page)
     }
 
-    suspend fun getGenres() = apiRequest {
+    override suspend fun getGenres() = apiRequest {
         api.getGenreList()
     }
-    suspend fun getMoviesWithGenre(page: Int, with_genres: String) = apiRequest {
+
+    //TODO запрос (20) -> liveData.value = response , local list add(response)
+    //TODO запрос (20) -> local list add(response), liveData.value = list
+    //TODO reducer почитать
+    override suspend fun getMoviesWithGenre(page: Int, with_genres: String) = apiRequest {
         api.getMoviesWithGenre(page, with_genres)
     }
-    suspend fun getMovieDetails(id: Long) = apiRequest {
+
+    override suspend fun getMovieDetails(id: Long) = apiRequest {
         api.getMovieDetails(id, Locale.getDefault().toString().replace('_', '-'))
     }
 

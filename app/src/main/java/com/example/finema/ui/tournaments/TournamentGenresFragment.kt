@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finema.R
 import com.example.finema.databinding.FragmentTournamentGenresBinding
@@ -18,12 +19,12 @@ import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.models.movieResponse.Movie
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.APP_ACTIVITY
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class TournamentGenresFragment :
     BaseFragment<TournamentGenresVM, FragmentTournamentGenresBinding>(),
     TournamentAdapter.TournamentHolder.Listener {
 
-    private lateinit var mViewModel: TournamentGenresVM
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var mAdapter: TournamentAdapter
     private lateinit var mObserverList: Observer<List<GenreModel>>
@@ -39,6 +40,8 @@ class TournamentGenresFragment :
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel = getViewModel()
+
         super.onViewCreated(view, savedInstanceState)
         initialization()
     }
@@ -50,32 +53,47 @@ class TournamentGenresFragment :
         mObserverList = Observer {
             mAdapter.setList(it)
         }
-        mViewModel = ViewModelProvider(this).get(TournamentGenresVM::class.java)
-        mViewModel.allGenres.observe(APP_ACTIVITY, mObserverList)
 
+        //TODO Убрать получение и обращаться к VM базового класса
+        viewModel.allGenres.observe(APP_ACTIVITY, mObserverList)
 
-        mViewModel.filmListVM.observe(APP_ACTIVITY, {
+        //TODO Изменить на фрагмент
+        viewModel.filmListVM.observe(APP_ACTIVITY, {
             dialogBinding(it)
         })
     }
 
+    //TODO genreModel -> {} : GenreModel -> Unit
+    // Заменить на лямбду, хз так ли написал выше
     override fun onMovieClicked(view: View, genreModel: GenreModel) {
         getFilms(genreModel.id.toString())
     }
 
 
     private fun getFilms(genreID: String) {
-        mViewModel.getMovies(genreID)
+        viewModel.getMovies(genreID)
     }
 
     private fun dialogBinding(list1: List<Movie>) {
+        //TODO Заменить на нормальный контекст
         val dialog = Dialog(APP_ACTIVITY)
+
+        //TODO Dialog(APP_ACTIVITY).let {
+        //            it.setContentView(R.layout.number_fragment)
+        //            it.findViewById<View>(R.id.btn8).setOnClickListener { _ ->
+        //                goNext(8, list1)
+        //                it.hide()
+        //            }
+        //        }
+
         dialog.setContentView(R.layout.number_fragment)
+
         val btn8: TextView = dialog.findViewById(R.id.btn8)
         val btn16: Button = dialog.findViewById(R.id.btn16)
         val btn32: Button = dialog.findViewById(R.id.btn32)
         val btn64: Button = dialog.findViewById(R.id.btn64)
         val btn128: Button = dialog.findViewById(R.id.btn128)
+
         btn8.setOnClickListener {
             goNext(8, list1)
             dialog.hide()
@@ -103,6 +121,8 @@ class TournamentGenresFragment :
         val bundle = Bundle()
         bundle.putParcelableArrayList("list", list1 as java.util.ArrayList<out Parcelable>)
         bundle.putSerializable("num", num)
+//        TODO FragmentGenreDestinations.action(_, _, _)
+//        TODO findNavController() ?
         Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
             .navigate(R.id.action_fragmentGenre_to_fragmentTournament, bundle)
     }

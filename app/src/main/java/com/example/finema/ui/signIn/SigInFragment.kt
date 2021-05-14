@@ -9,11 +9,12 @@ import android.view.View.INVISIBLE
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.finema.R
 import com.example.finema.databinding.SignInFragmentBinding
 import com.example.finema.repositories.Singleton
@@ -35,18 +36,24 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import okhttp3.internal.wait
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 
 class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
+
+    //TODO убрать, есть биндинг
     private lateinit var header: TextView
     private lateinit var mAuth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
+
     private val resultContract = registerForActivityResult(
         ActivityResultContracts
             .StartActivityForResult()){
         activityResult(it.data)
     }
-    private lateinit var mViewModel: SignInViewModel
+
+    //TODO изменить
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,27 +61,31 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         savedInstanceState: Bundle?
     ): View {
         binding = SignInFragmentBinding.inflate(inflater, container, false)
-        mViewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
         // ���� ������������ �����������, �� �������� ����������� ���������
-        if (AppPreference.getInitUser()) {
-            mViewModel.initDatabase(TYPE_ROOM) {
-                Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
-                    .navigate(R.id.action_sigInFragment_to_tmpFragment)
-            }
-        }
+        //TODO изменить на перевод сюда из активити
+//        if (AppPreference.getInitUser()) {
+//            mViewModel.initDatabase(TYPE_ROOM) {
+//                Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
+//                    .navigate(R.id.action_sigInFragment_to_tmpFragment)
+//            }
+//        }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel = getViewModel()
+
         super.onViewCreated(view, savedInstanceState)
         requireActivity().findViewById<DrawerLayout>(R.id.drawer_layout).setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
         requireActivity().findViewById<MaterialToolbar>(R.id.topAppBar).visibility = INVISIBLE
+
+        //TODO вынести во Repository, но только после того как будет DI (dagger/koin)
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
-
-        googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
+        //TODO requireActivity заменить на context
+        googleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
 
         mAuth = FirebaseAuth.getInstance()
 
@@ -82,30 +93,38 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
             .getHeaderView(0).findViewById(R.id.nickProfile)
 
         binding.signInWithGoogle.setOnClickListener{
+            viewModel.initDatabase(requireContext(), TYPE_ROOM) {
+
             CoroutineScope(Dispatchers.Main).launch {
                 val signInIntent = googleSignInClient.signInIntent
 
                 withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
                     resultContract.launch(signInIntent)
                 }
+                navigationOpen()
+                AppPreference.setInitUser(true)
+                findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
 
-                mViewModel.initDatabase(TYPE_ROOM) {
-                    navigationOpen()
-                    AppPreference.setInitUser(true)
-                    it.findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
                 }
             }
         }
 
         binding.signInAsGuest.setOnClickListener{
-            Singleton.signInAsGuest = true
-            mViewModel.initDatabase(TYPE_ROOM) {
-                AppPreference.setInitUser(true)
-                header.text = resources.getText(R.string.guest)
-                navigationOpen()
-                it.findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
+            viewModel.initDatabase(requireContext(), TYPE_ROOM) {
+            AppPreference.setInitUser(true)
+            header.text = resources.getText(R.string.guest)
+            navigationOpen()
+            findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
             }
+
         }
+    }
+
+    //TODO репозиторий по нажатию на кнопку возвращает интент, через VM, который и надо здесь
+    // запускать
+    private fun signIn(){
+        val signInIntent = googleSignInClient.signInIntent
+        resultContract.launch(signInIntent)
     }
 
     private fun activityResult(data: Intent?){
@@ -127,6 +146,7 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         }
     }
 
+    //TODO в репозиторий
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         mAuth.signInWithCredential(credential)
@@ -148,4 +168,5 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         requireActivity().findViewById<DrawerLayout>(R.id.drawer_layout).setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED)
         requireActivity().findViewById<MaterialToolbar>(R.id.topAppBar).visibility = View.VISIBLE
     }
+
 }

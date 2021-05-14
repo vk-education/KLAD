@@ -10,14 +10,15 @@ import com.example.finema.util.Coroutines
 import com.example.finema.util.REPOSITORY
 import kotlinx.coroutines.Job
 
-class TournamentGenresVM(application: Application):BaseViewModel(application) {
+class TournamentGenresVM (
+    private val repository: MoviesRepository
+) : BaseViewModel() {
+
+    //TODO Инстант класса
     val allGenres = REPOSITORY.allGenres
-    private lateinit var job: Job
-    private val apiTG = MoviesApi()
-    private val repository= MoviesRepository(apiTG)
+    // TODO Убрать, данные получаются от репозитория
+
     var filmListVM = MutableLiveData<List<Movie>>()
-
-
 
     fun getMovies(genre:String){
         job = Coroutines.ioThenMan(
@@ -26,12 +27,7 @@ class TournamentGenresVM(application: Application):BaseViewModel(application) {
         )
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        if(::job.isInitialized) job.cancel()
-    }
-
-    fun signOut(){
+    fun signOut() {
         REPOSITORY.signOut()
     }
 }

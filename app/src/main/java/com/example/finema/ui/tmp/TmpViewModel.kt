@@ -24,9 +24,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class TmpViewModel(application: Application): BaseViewModel(application) {
+class TmpViewModel(
+): BaseViewModel() {
 
-    private lateinit var job: Job
+    //TODO Аналогичнго с TournamentGenresVM
     private val apiTmp = MoviesApi()
     private val repository= MoviesRepository(apiTmp)
     var genreListVM = MutableLiveData<GenreList>()
@@ -37,10 +38,7 @@ class TmpViewModel(application: Application): BaseViewModel(application) {
             { genreListVM.value = it }
         )
     }
-    override fun onCleared() {
-        super.onCleared()
-        if(::job.isInitialized) job.cancel()
-    }
+
 
     fun insert(genreModel: GenreModel, onSuccess: () -> Unit) =
         viewModelScope.launch(Dispatchers.Main) {

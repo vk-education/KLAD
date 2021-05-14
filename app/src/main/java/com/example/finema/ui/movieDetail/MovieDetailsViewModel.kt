@@ -9,14 +9,10 @@ import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.util.Coroutines
 import kotlinx.coroutines.Job
 
+//TODO изменить по аналогии с правками остальных VM
 class MovieDetailsViewModel(
-) : BaseViewModel(application = Application())  {
-
-    private val api = MoviesApi()
-    private val repository = MoviesRepository(api)
-
-
-    private lateinit var job: Job
+    private val repository : MoviesRepository
+) : BaseViewModel() {
 
     var film = MutableLiveData<MovieDetails>()
 
@@ -28,8 +24,4 @@ class MovieDetailsViewModel(
         )
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        if(::job.isInitialized) job.cancel()
-    }
 }

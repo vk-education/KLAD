@@ -1,28 +1,28 @@
 package com.example.finema.ui.higherlower
 
-import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.finema.R
-import com.example.finema.api.MoviesApi
+import com.bumptech.glide.Glide
 import com.example.finema.databinding.HigherLowerFragmentBinding
-import com.example.finema.api.MoviesRepository
 import com.example.finema.ui.base.BaseFragment
+import org.koin.android.ext.android.get
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragmentBinding>(),
-     MovieAdapter.MovieViewHolder.Listener{
+
+//TODO Убрать ресайклер
+class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragmentBinding>() {
 
     var add = 0
-    private lateinit var factory: MoviesViewModelFactory
-    private lateinit var layout : CustomGridLayoutManager
-    private val application = Application()
-    private val viewModel = HigherLowerViewModel(application = application)
+
+    companion object{
+        const val POSTER_BASE_URL = "https://image.tmdb.org/t/p/w342"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,22 +34,37 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        layout = CustomGridLayoutManager(requireContext())
-        factory = MoviesViewModelFactory(application)
-        viewModel.getMovies()
+        viewModel = getViewModel()
 
-        viewModel.movies.observe(viewLifecycleOwner, Observer { movies ->
-            binding.recyclerViewMovies.also {
-                it.layoutManager = layout
-                it.setHasFixedSize(true)
-                it.adapter = MovieAdapter(movies, this)
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.movies.observe(viewLifecycleOwner, { movies ->
+            binding.txtFilm1.text = movies.movies[add].title
+            binding.txtFilm2.text = movies.movies[add+1].title
+
+            Glide
+                .with(binding.root)
+                .load(POSTER_BASE_URL + movies.movies[add].posterPath)
+                .into(binding.img1)
+            Glide
+                .with(binding.root)
+                .load(POSTER_BASE_URL + movies.movies[add+1].posterPath)
+                .into(binding.img2)
+
+            binding.img1.setOnClickListener {
+                onMovieClicked(add)
             }
+            binding.img2.setOnClickListener {
+                onMovieClicked(add+1)
+            }
+
         })
 
     }
 
-    override fun onMovieClicked(position: Int) {
+
+    //TODO убрать во VM
+    private fun onMovieClicked(position: Int) {
         when(position){
             add ->
                 if (viewModel.movies.value?.movies?.get(position)?.popularity!!
@@ -57,16 +72,11 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
                 ) {
                     add += 1
                     binding.points.text = "Очки: $add"
-                    layout.isScrollEnabled = true
-                    binding.recyclerViewMovies.scrollToPosition(add + 1)
-                    layout.isScrollEnabled = false
-
+                    viewModel.clickedRight()
                 } else {
                     add = 0
                     binding.points.text = "Очки: $add"
-                    layout.isScrollEnabled = true
-                    binding.recyclerViewMovies.scrollToPosition(0)
-                    layout.isScrollEnabled = false
+                    viewModel.clickedWrong()
                 }
         add+1 ->
                 if (viewModel.movies.value?.movies?.get(position)?.popularity!!
@@ -74,16 +84,11 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
                 ) {
                     add += 1
                     binding.points.text = "Очки: $add"
-                    layout.isScrollEnabled = true
-                    binding.recyclerViewMovies.scrollToPosition(add + 1)
-                    layout.isScrollEnabled = false
-
+                    viewModel.clickedRight()
                 } else {
                     add = 0
                     binding.points.text = "Очки: $add"
-                    layout.isScrollEnabled = true
-                    binding.recyclerViewMovies.scrollToPosition(0)
-                    layout.isScrollEnabled = false
+                    viewModel.clickedWrong()
                 }
         }
     }
@@ -96,4 +101,5 @@ class CustomGridLayoutManager(context: Context?) : LinearLayoutManager(context) 
         //Similarly you can customize "canScrollHorizontally()" for managing horizontal scroll
         return isScrollEnabled && super.canScrollVertically()
     }
+
 }

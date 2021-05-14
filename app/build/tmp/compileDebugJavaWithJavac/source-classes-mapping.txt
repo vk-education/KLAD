@@ -18,6 +18,8 @@ com/example/finema/databinding/NavHeaderBinding.java
  com.example.finema.databinding.NavHeaderBinding
 com/example/finema/AppNavigationGraphDirections.java
  com.example.finema.AppNavigationGraphDirections
+com/example/finema/DataBindingInfo.java
+ com.example.finema.DataBindingInfo
 com/example/finema/databinding/SettingsFragmentBinding.java
  com.example.finema.databinding.SettingsFragmentBinding
 com/example/finema/databinding/FragmentTournamentDuoBindingImpl.java
@@ -30,8 +32,6 @@ com/example/finema/ui/movieDetail/MovieDetailsFragmentDirections.java
  com.example.finema.ui.movieDetail.MovieDetailsFragmentDirections
 com/example/finema/databinding/FragmentBaseBindingImpl.java
  com.example.finema.databinding.FragmentBaseBindingImpl
-com/example/finema/DataBindingTriggerClass.java
- com.example.finema.DataBindingTriggerClass
 com/example/finema/databinding/ThematicFragmentBinding.java
  com.example.finema.databinding.ThematicFragmentBinding
 com/example/finema/ui/signIn/SigInFragmentDirections.java

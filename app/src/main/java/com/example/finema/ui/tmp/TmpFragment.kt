@@ -17,11 +17,12 @@ import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.AppPreference
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.firebase.auth.FirebaseAuth
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
 
     private lateinit var mAuth: FirebaseAuth
-    private val mViewModel = TmpViewModel(application = Application())
+
     private lateinit var mObserverList: Observer<GenreList>
 
 
@@ -31,38 +32,49 @@ class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
         savedInstanceState: Bundle?
     ): View {
         binding = TmpFragmentBinding.inflate(inflater, container, false)
+
+        //TODO убрать
         mAuth = FirebaseAuth.getInstance()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel = getViewModel()
+
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().findViewById<DrawerLayout>(R.id.drawer_layout).setDrawerLockMode(
-            DrawerLayout.LOCK_MODE_UNLOCKED)
+        requireActivity()
+            .findViewById<DrawerLayout>(R.id.drawer_layout)
+            .setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+
+        //TODO убрать
         requireActivity().findViewById<MaterialToolbar>(R.id.topAppBar).visibility = View.VISIBLE
 //        if genre list not exist in database then download it
+        //TODO перенести в VM
         if (!AppPreference.getGeneratedGenres()) {
             loadGenresList()
         }
         binding.genre.setOnClickListener {
+            //TODO убрать it
             it.findNavController().navigate(R.id.action_fragment_tmp_to_fragment_genre)
         }
     }
 
+    //TODO переделать, убрать логику в VM
     private fun loadGenresList() {
         mObserverList = Observer {
             val list = it.genres
             for (item in list) {
-                mViewModel.insert(GenreModel(name = item.name, id = item.id)) {
+                viewModel.insert(GenreModel(name = item.name, id = item.id)) {
                     Log.d("testLog","Row inserted")
                 }
             }
         }
         if (!AppPreference.getGeneratedGenres()) {
-            mViewModel.getGenres()
+            viewModel.getGenres()
         }
-        mViewModel.getGenres()
-        mViewModel.genreListVM.observe(viewLifecycleOwner, mObserverList)
+        viewModel.getGenres()
+        viewModel.genreListVM.observe(viewLifecycleOwner, mObserverList)
+        //TODO Убрать во VM
         AppPreference.setGeneratedGenres(true)
 
     }

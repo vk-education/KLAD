@@ -13,10 +13,21 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.navigation.Navigation
 import com.example.finema.databinding.ActivityMainBinding
+import com.example.finema.ui.higherlower.appModule
 import com.example.finema.ui.settings.NotificationService
 import com.example.finema.util.AppPreference
 import com.example.finema.util.APP_ACTIVITY
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 
+//TODO добавить по аналогии
+// findNavController(R.id.fragment_container)
+//                    .addOnDestinationChangedListener { _, destination, _ ->
+//                        if(SCREENS_WITHOUT_BOTTOM_BAR.contains(destination.id))
+//                            binding.bottomBar.visibility = GONE
+//                        else
+//                            binding.bottomBar.visibility = VISIBLE
+//                    }
 class MainActivity : AppCompatActivity() {
     val NOTIFICATION_CHANNEL_ID = "10001"
     private val default_notification_channel_id = "default"
@@ -35,6 +46,14 @@ class MainActivity : AppCompatActivity() {
         binding.topAppBar.setNavigationOnClickListener {
             binding.drawerLayout.open()
         }
+
+        startKoin {
+            androidContext(this@MainActivity)
+            modules(
+                appModule
+            )
+        }
+
 
         binding.navView.setNavigationItemSelectedListener {
             binding.drawerLayout.close()

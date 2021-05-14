@@ -48,9 +48,10 @@ class MovieViewHolder(
         fun bindMovie(movies: MovieResponse){
             recyclerviewMovieBinding.textViewTitle.text = movies.movies[position].title
 
-            Glide.with(itemView).
-            load(POSTER_BASE_URL + movies.movies[position].posterPath).
-            into(recyclerviewMovieBinding.imageView)
+            Glide
+                .with(itemView)
+                .load(POSTER_BASE_URL + movies.movies[position].posterPath)
+                .into(recyclerviewMovieBinding.imageView)
 
             recyclerviewMovieBinding.cardView.setOnClickListener {
                 listener.onMovieClicked(adapterPosition)

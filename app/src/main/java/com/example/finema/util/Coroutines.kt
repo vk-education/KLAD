@@ -14,8 +14,14 @@ object Coroutines {
     private lateinit var resp: MovieResponse
     private lateinit var movie: MovieDetails
 
-    fun ioThenMain(work: suspend (() -> MovieResponse?), callback: ((MovieResponse?)->Unit)) =
+    fun ioThenMain(work: suspend (() -> MovieResponse?),
+                   callback: ((MovieResponse?)->Unit),
+                    call: ((MovieResponse?)->Unit),
+                    flag: Boolean) =
         CoroutineScope(Dispatchers.Main).launch {
+            if(flag){
+                dataSet.clear()
+            }
             val data = CoroutineScope(Dispatchers.IO).async  rt@{
                 return@rt work()
             }.await()
@@ -25,6 +31,7 @@ object Coroutines {
             dataSet.addAll(data!!.movies)
             resp = MovieResponse(dataSet)
             callback(resp)
+            call(resp)
         }
 
 
