@@ -9,10 +9,10 @@ import android.view.View.INVISIBLE
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.example.finema.R
 import com.example.finema.databinding.SignInFragmentBinding
@@ -31,7 +31,10 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import okhttp3.internal.wait
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
@@ -79,11 +82,18 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
             .getHeaderView(0).findViewById(R.id.nickProfile)
 
         binding.signInWithGoogle.setOnClickListener{
-            signIn()
-            mViewModel.initDatabase(TYPE_ROOM) {
-                navigationOpen()
-                AppPreference.setInitUser(true)
-                it.findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
+            CoroutineScope(Dispatchers.Main).launch {
+                val signInIntent = googleSignInClient.signInIntent
+
+                withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
+                    resultContract.launch(signInIntent)
+                }
+
+                mViewModel.initDatabase(TYPE_ROOM) {
+                    navigationOpen()
+                    AppPreference.setInitUser(true)
+                    it.findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
+                }
             }
         }
 
@@ -95,13 +105,7 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
                 navigationOpen()
                 it.findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
             }
-
         }
-    }
-
-    private fun signIn(){
-        val signInIntent = googleSignInClient.signInIntent
-        resultContract.launch(signInIntent)
     }
 
     private fun activityResult(data: Intent?){
@@ -144,5 +148,4 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         requireActivity().findViewById<DrawerLayout>(R.id.drawer_layout).setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED)
         requireActivity().findViewById<MaterialToolbar>(R.id.topAppBar).visibility = View.VISIBLE
     }
-
 }

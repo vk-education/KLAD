@@ -1797,6 +1797,7 @@ drawable googleg_standard_color_18
 drawable ic_arrow_down_24dp
 drawable ic_clock_black_24dp
 drawable ic_keyboard_black_24dp
+drawable ic_launcher1_background
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_mtrl_checked_circle
@@ -2561,6 +2562,9 @@ layout tournament_fragment
 layout welcome_fragment
 menu drawer_menu
 mipmap ic_launcher
+mipmap ic_launcher1
+mipmap ic_launcher1_foreground
+mipmap ic_launcher1_round
 mipmap ic_launcher_round
 navigation app_navigation_graph
 plurals mtrl_badge_content_description

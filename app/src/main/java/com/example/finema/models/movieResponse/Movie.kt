@@ -33,7 +33,7 @@ data class Movie(
     @SerializedName("vote_average")
     val voteAverage: Double,
     @SerializedName("vote_count")
-    val voteCount: Int
+    val voteCount: Int,
 ) : Parcelable
 
 

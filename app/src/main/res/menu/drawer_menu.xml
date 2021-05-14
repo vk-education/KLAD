@@ -22,7 +22,7 @@
         <menu>
             <item
                 android:id="@+id/budget"
-                android:title="Бюджет" />
+                android:title="Популярность" />
             <item
                 android:id="@+id/rating"
                 android:title="Рейтинг"/>
