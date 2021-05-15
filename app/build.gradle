@@ -157,4 +157,8 @@ dependencies {
     // Koin Extended & experimental features (JVM)
     implementation "io.insert-koin:koin-core-ext:$koin_version"
 
+
+    def pagingVersion = "3.0.0"
+    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
+
 }

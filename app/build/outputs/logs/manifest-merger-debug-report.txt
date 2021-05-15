@@ -19,6 +19,8 @@ MERGED from [androidx.fragment:fragment-ktx:1.3.3] /home/albert/.gradle/caches/t
 MERGED from [androidx.navigation:navigation-ui-ktx:2.3.5] /home/albert/.gradle/caches/transforms-2/files-2.1/178268f1d341e5dc8a5828e15962e6bc/navigation-ui-ktx-2.3.5/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.navigation:navigation-runtime-ktx:2.3.5] /home/albert/.gradle/caches/transforms-2/files-2.1/f569972b3986afec2657b08348b9f2a1/navigation-runtime-ktx-2.3.5/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.activity:activity-ktx:1.3.0-alpha07] /home/albert/.gradle/caches/transforms-2/files-2.1/15311aae235fd6bdef69fcb6dad4701c/jetified-activity-ktx-1.3.0-alpha07/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.paging:paging-runtime-ktx:3.0.0] /home/albert/.gradle/caches/transforms-2/files-2.1/2a03ee64ee787a7b65e9a1d8c7bfbcdb/jetified-paging-runtime-ktx-3.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.paging:paging-runtime:3.0.0] /home/albert/.gradle/caches/transforms-2/files-2.1/8f9ecfd3a0b1d32786192cc82e6eef41/paging-runtime-3.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.navigation:navigation-common-ktx:2.3.5] /home/albert/.gradle/caches/transforms-2/files-2.1/856ac6b1b81c96a943d99e3d5b2a07f0/navigation-common-ktx-2.3.5/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.core:core-ktx:1.3.2] /home/albert/.gradle/caches/transforms-2/files-2.1/2033bbfa5a104cadb5c5c41bbd7f3b63/jetified-core-ktx-1.3.2/AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha02] /home/albert/.gradle/caches/transforms-2/files-2.1/5f04795378c1e5e3f5da1ff32a525eb8/jetified-lifecycle-viewmodel-compose-1.0.0-alpha02/AndroidManifest.xml:17:1-24:12
@@ -28,6 +30,8 @@ MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.3.1] /home/albert/.gradl
 MERGED from [androidx.room:room-ktx:2.3.0] /home/albert/.gradle/caches/transforms-2/files-2.1/81debdd1011ec5f7679f76780cb0e68a/jetified-room-ktx-2.3.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:firebase-firestore-ktx:22.1.2] /home/albert/.gradle/caches/transforms-2/files-2.1/7735a7d014f63a711c7128f5e7891796/jetified-firebase-firestore-ktx-22.1.2/AndroidManifest.xml:2:1-21:12
 MERGED from [com.google.firebase:firebase-firestore:22.1.2] /home/albert/.gradle/caches/transforms-2/files-2.1/bb201b10517136828102554dc794d917/jetified-firebase-firestore-22.1.2/AndroidManifest.xml:2:1-26:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.1] /home/albert/.gradle/caches/transforms-2/files-2.1/f120082465ae25c82f8c6606ae5ca348/jetified-lifecycle-livedata-core-ktx-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate-ktx:1.1.0] /home/albert/.gradle/caches/transforms-2/files-2.1/94ccca94effec6db3856d96067dd1d04/jetified-savedstate-ktx-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.work:work-runtime-ktx:2.5.0] /home/albert/.gradle/caches/transforms-2/files-2.1/392e3e0550f748157a15b08ba0d136c6/work-runtime-ktx-2.5.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.compose.ui:ui:1.0.0-beta01] /home/albert/.gradle/caches/transforms-2/files-2.1/509f4c5a33e22c75e87d9be88bcd35d6/jetified-ui-1.0.0-beta01/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.compose.animation:animation-core:1.0.0-beta01] /home/albert/.gradle/caches/transforms-2/files-2.1/413d9793af9d63838155cf2a97757e15/jetified-animation-core-1.0.0-beta01/AndroidManifest.xml:17:1-24:12
@@ -38,8 +42,6 @@ MERGED from [androidx.compose.ui:ui-unit:1.0.0-beta01] /home/albert/.gradle/cach
 MERGED from [androidx.compose.ui:ui-geometry:1.0.0-beta01] /home/albert/.gradle/caches/transforms-2/files-2.1/1b5151103cba9ba07e8b2c5bb4591b9b/jetified-ui-geometry-1.0.0-beta01/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.compose.ui:ui-util:1.0.0-beta01] /home/albert/.gradle/caches/transforms-2/files-2.1/45c7bbb580690c56dcaa4b2221b82b5c/jetified-ui-util-1.0.0-beta01/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.compose.runtime:runtime:1.0.0-beta01] /home/albert/.gradle/caches/transforms-2/files-2.1/c83db1b1f685e654dbf499952d31c9be/jetified-runtime-1.0.0-beta01/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.1] /home/albert/.gradle/caches/transforms-2/files-2.1/f120082465ae25c82f8c6606ae5ca348/jetified-lifecycle-livedata-core-ktx-2.3.1/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.savedstate:savedstate-ktx:1.1.0] /home/albert/.gradle/caches/transforms-2/files-2.1/94ccca94effec6db3856d96067dd1d04/jetified-savedstate-ktx-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:firebase-analytics-ktx:18.0.3] /home/albert/.gradle/caches/transforms-2/files-2.1/ef5bd0ec73dc09fa9ef5ffcbad592fc5/jetified-firebase-analytics-ktx-18.0.3/AndroidManifest.xml:2:1-17:12
 MERGED from [com.google.firebase:firebase-auth-ktx:20.0.4] /home/albert/.gradle/caches/transforms-2/files-2.1/6a93ddc6db42b47cac3250309bf20d10/jetified-firebase-auth-ktx-20.0.4/AndroidManifest.xml:2:1-17:12
 MERGED from [com.google.firebase:firebase-common-ktx:19.5.0] /home/albert/.gradle/caches/transforms-2/files-2.1/a7621defe03730974ac883be3fa53aa3/jetified-firebase-common-ktx-19.5.0/AndroidManifest.xml:2:1-21:12
@@ -101,12 +103,12 @@ MERGED from [androidx.transition:transition:1.3.0] /home/albert/.gradle/caches/t
 MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] /home/albert/.gradle/caches/transforms-2/files-2.1/00b51c1b292388cc4d8954a752ec9d3c/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:17:1-32:12
 MERGED from [androidx.work:work-runtime:2.5.0] /home/albert/.gradle/caches/transforms-2/files-2.1/581617a91393bd0aa1948f4d801d5e19/work-runtime-2.5.0/AndroidManifest.xml:17:1-143:12
 MERGED from [androidx.lifecycle:lifecycle-service:2.2.0] /home/albert/.gradle/caches/transforms-2/files-2.1/b161e812df01890a959cc15527496fac/jetified-lifecycle-service-2.2.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/albert/.gradle/caches/transforms-2/files-2.1/4955496ce630cfdeab13b733e91b9966/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] /home/albert/.gradle/caches/transforms-2/files-2.1/316966ade7392e6f58ae2166490e9d31/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/albert/.gradle/caches/transforms-2/files-2.1/caa87e085a43d7180c21aa1cecf1b3dd/slidingpanelayout-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/albert/.gradle/caches/transforms-2/files-2.1/b5f50f4f654ed1ebd2447b6c6fa6bfaf/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/albert/.gradle/caches/transforms-2/files-2.1/ac5fafecdd5e468ce84f8bfff4772280/asynclayoutinflater-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /home/albert/.gradle/caches/transforms-2/files-2.1/b821e6c6568caf09faa848a7310dcdb2/drawerlayout-1.1.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.recyclerview:recyclerview:1.2.0] /home/albert/.gradle/caches/transforms-2/files-2.1/32974f1df26648e163fbf78a180f2a39/recyclerview-1.2.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.customview:customview:1.1.0] /home/albert/.gradle/caches/transforms-2/files-2.1/2b09b8a8a97f070de65164fb9ecd1190/customview-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.autofill:autofill:1.0.0] /home/albert/.gradle/caches/transforms-2/files-2.1/cb413c36454acb0f5cc200dac338e410/jetified-autofill-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.navigation:navigation-common:2.3.5] /home/albert/.gradle/caches/transforms-2/files-2.1/e1ecef087a27488b7cc7e344efc1eb25/navigation-common-2.3.5/AndroidManifest.xml:17:1-24:12
@@ -337,6 +339,10 @@ MERGED from [androidx.navigation:navigation-runtime-ktx:2.3.5] /home/albert/.gra
 MERGED from [androidx.navigation:navigation-runtime-ktx:2.3.5] /home/albert/.gradle/caches/transforms-2/files-2.1/f569972b3986afec2657b08348b9f2a1/navigation-runtime-ktx-2.3.5/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.activity:activity-ktx:1.3.0-alpha07] /home/albert/.gradle/caches/transforms-2/files-2.1/15311aae235fd6bdef69fcb6dad4701c/jetified-activity-ktx-1.3.0-alpha07/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.activity:activity-ktx:1.3.0-alpha07] /home/albert/.gradle/caches/transforms-2/files-2.1/15311aae235fd6bdef69fcb6dad4701c/jetified-activity-ktx-1.3.0-alpha07/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.paging:paging-runtime-ktx:3.0.0] /home/albert/.gradle/caches/transforms-2/files-2.1/2a03ee64ee787a7b65e9a1d8c7bfbcdb/jetified-paging-runtime-ktx-3.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.paging:paging-runtime-ktx:3.0.0] /home/albert/.gradle/caches/transforms-2/files-2.1/2a03ee64ee787a7b65e9a1d8c7bfbcdb/jetified-paging-runtime-ktx-3.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.paging:paging-runtime:3.0.0] /home/albert/.gradle/caches/transforms-2/files-2.1/8f9ecfd3a0b1d32786192cc82e6eef41/paging-runtime-3.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.paging:paging-runtime:3.0.0] /home/albert/.gradle/caches/transforms-2/files-2.1/8f9ecfd3a0b1d32786192cc82e6eef41/paging-runtime-3.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.navigation:navigation-common-ktx:2.3.5] /home/albert/.gradle/caches/transforms-2/files-2.1/856ac6b1b81c96a943d99e3d5b2a07f0/navigation-common-ktx-2.3.5/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.navigation:navigation-common-ktx:2.3.5] /home/albert/.gradle/caches/transforms-2/files-2.1/856ac6b1b81c96a943d99e3d5b2a07f0/navigation-common-ktx-2.3.5/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.core:core-ktx:1.3.2] /home/albert/.gradle/caches/transforms-2/files-2.1/2033bbfa5a104cadb5c5c41bbd7f3b63/jetified-core-ktx-1.3.2/AndroidManifest.xml:5:5-7:41
@@ -355,6 +361,10 @@ MERGED from [com.google.firebase:firebase-firestore-ktx:22.1.2] /home/albert/.gr
 MERGED from [com.google.firebase:firebase-firestore-ktx:22.1.2] /home/albert/.gradle/caches/transforms-2/files-2.1/7735a7d014f63a711c7128f5e7891796/jetified-firebase-firestore-ktx-22.1.2/AndroidManifest.xml:6:5-8:41
 MERGED from [com.google.firebase:firebase-firestore:22.1.2] /home/albert/.gradle/caches/transforms-2/files-2.1/bb201b10517136828102554dc794d917/jetified-firebase-firestore-22.1.2/AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-firestore:22.1.2] /home/albert/.gradle/caches/transforms-2/files-2.1/bb201b10517136828102554dc794d917/jetified-firebase-firestore-22.1.2/AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.1] /home/albert/.gradle/caches/transforms-2/files-2.1/f120082465ae25c82f8c6606ae5ca348/jetified-lifecycle-livedata-core-ktx-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.1] /home/albert/.gradle/caches/transforms-2/files-2.1/f120082465ae25c82f8c6606ae5ca348/jetified-lifecycle-livedata-core-ktx-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate-ktx:1.1.0] /home/albert/.gradle/caches/transforms-2/files-2.1/94ccca94effec6db3856d96067dd1d04/jetified-savedstate-ktx-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate-ktx:1.1.0] /home/albert/.gradle/caches/transforms-2/files-2.1/94ccca94effec6db3856d96067dd1d04/jetified-savedstate-ktx-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.work:work-runtime-ktx:2.5.0] /home/albert/.gradle/caches/transforms-2/files-2.1/392e3e0550f748157a15b08ba0d136c6/work-runtime-ktx-2.5.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.work:work-runtime-ktx:2.5.0] /home/albert/.gradle/caches/transforms-2/files-2.1/392e3e0550f748157a15b08ba0d136c6/work-runtime-ktx-2.5.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.compose.ui:ui:1.0.0-beta01] /home/albert/.gradle/caches/transforms-2/files-2.1/509f4c5a33e22c75e87d9be88bcd35d6/jetified-ui-1.0.0-beta01/AndroidManifest.xml:20:5-22:41
@@ -375,10 +385,6 @@ MERGED from [androidx.compose.ui:ui-util:1.0.0-beta01] /home/albert/.gradle/cach
 MERGED from [androidx.compose.ui:ui-util:1.0.0-beta01] /home/albert/.gradle/caches/transforms-2/files-2.1/45c7bbb580690c56dcaa4b2221b82b5c/jetified-ui-util-1.0.0-beta01/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.compose.runtime:runtime:1.0.0-beta01] /home/albert/.gradle/caches/transforms-2/files-2.1/c83db1b1f685e654dbf499952d31c9be/jetified-runtime-1.0.0-beta01/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.compose.runtime:runtime:1.0.0-beta01] /home/albert/.gradle/caches/transforms-2/files-2.1/c83db1b1f685e654dbf499952d31c9be/jetified-runtime-1.0.0-beta01/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.1] /home/albert/.gradle/caches/transforms-2/files-2.1/f120082465ae25c82f8c6606ae5ca348/jetified-lifecycle-livedata-core-ktx-2.3.1/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.1] /home/albert/.gradle/caches/transforms-2/files-2.1/f120082465ae25c82f8c6606ae5ca348/jetified-lifecycle-livedata-core-ktx-2.3.1/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate-ktx:1.1.0] /home/albert/.gradle/caches/transforms-2/files-2.1/94ccca94effec6db3856d96067dd1d04/jetified-savedstate-ktx-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate-ktx:1.1.0] /home/albert/.gradle/caches/transforms-2/files-2.1/94ccca94effec6db3856d96067dd1d04/jetified-savedstate-ktx-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-analytics-ktx:18.0.3] /home/albert/.gradle/caches/transforms-2/files-2.1/ef5bd0ec73dc09fa9ef5ffcbad592fc5/jetified-firebase-analytics-ktx-18.0.3/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-analytics-ktx:18.0.3] /home/albert/.gradle/caches/transforms-2/files-2.1/ef5bd0ec73dc09fa9ef5ffcbad592fc5/jetified-firebase-analytics-ktx-18.0.3/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-auth-ktx:20.0.4] /home/albert/.gradle/caches/transforms-2/files-2.1/6a93ddc6db42b47cac3250309bf20d10/jetified-firebase-auth-ktx-20.0.4/AndroidManifest.xml:5:5-44
@@ -501,8 +507,6 @@ MERGED from [androidx.work:work-runtime:2.5.0] /home/albert/.gradle/caches/trans
 MERGED from [androidx.work:work-runtime:2.5.0] /home/albert/.gradle/caches/transforms-2/files-2.1/581617a91393bd0aa1948f4d801d5e19/work-runtime-2.5.0/AndroidManifest.xml:21:5-23:41
 MERGED from [androidx.lifecycle:lifecycle-service:2.2.0] /home/albert/.gradle/caches/transforms-2/files-2.1/b161e812df01890a959cc15527496fac/jetified-lifecycle-service-2.2.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-service:2.2.0] /home/albert/.gradle/caches/transforms-2/files-2.1/b161e812df01890a959cc15527496fac/jetified-lifecycle-service-2.2.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/albert/.gradle/caches/transforms-2/files-2.1/4955496ce630cfdeab13b733e91b9966/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/albert/.gradle/caches/transforms-2/files-2.1/4955496ce630cfdeab13b733e91b9966/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager:viewpager:1.0.0] /home/albert/.gradle/caches/transforms-2/files-2.1/316966ade7392e6f58ae2166490e9d31/viewpager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] /home/albert/.gradle/caches/transforms-2/files-2.1/316966ade7392e6f58ae2166490e9d31/viewpager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/albert/.gradle/caches/transforms-2/files-2.1/caa87e085a43d7180c21aa1cecf1b3dd/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
@@ -513,6 +517,8 @@ MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/alber
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/albert/.gradle/caches/transforms-2/files-2.1/ac5fafecdd5e468ce84f8bfff4772280/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /home/albert/.gradle/caches/transforms-2/files-2.1/b821e6c6568caf09faa848a7310dcdb2/drawerlayout-1.1.1/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /home/albert/.gradle/caches/transforms-2/files-2.1/b821e6c6568caf09faa848a7310dcdb2/drawerlayout-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.2.0] /home/albert/.gradle/caches/transforms-2/files-2.1/32974f1df26648e163fbf78a180f2a39/recyclerview-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.2.0] /home/albert/.gradle/caches/transforms-2/files-2.1/32974f1df26648e163fbf78a180f2a39/recyclerview-1.2.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.customview:customview:1.1.0] /home/albert/.gradle/caches/transforms-2/files-2.1/2b09b8a8a97f070de65164fb9ecd1190/customview-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.customview:customview:1.1.0] /home/albert/.gradle/caches/transforms-2/files-2.1/2b09b8a8a97f070de65164fb9ecd1190/customview-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.autofill:autofill:1.0.0] /home/albert/.gradle/caches/transforms-2/files-2.1/cb413c36454acb0f5cc200dac338e410/jetified-autofill-1.0.0/AndroidManifest.xml:20:5-22:41

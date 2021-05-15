@@ -35,7 +35,7 @@ interface MoviesApi {
     ) : Response<MovieResponse>
 
 
-    companion object{
+    companion object {
         operator fun invoke() : MoviesApi {
             return Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create())

@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.navigation.Navigation
 import com.example.finema.databinding.ActivityMainBinding
-import com.example.finema.ui.higherlower.appModule
+import com.example.finema.util.appModule
 import com.example.finema.ui.settings.NotificationService
 import com.example.finema.util.AppPreference
 import com.example.finema.util.APP_ACTIVITY

@@ -12,4 +12,5 @@ interface IMoviesRepository{
     suspend fun getMoviesWithGenre(page: Int, with_genres: String): MovieResponse
 
     suspend fun getMovieDetails(id: Long): MovieDetails
+
 }

@@ -25,5 +25,4 @@ class MoviesRepository(
     override suspend fun getMovieDetails(id: Long) = apiRequest {
         api.getMovieDetails(id, Locale.getDefault().toString().replace('_', '-'))
     }
-
 }

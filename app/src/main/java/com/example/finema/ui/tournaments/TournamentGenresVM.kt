@@ -22,7 +22,7 @@ class TournamentGenresVM (
 
     fun getMovies(genre:String){
         job = Coroutines.ioThenMan(
-            { repository.getMoviesWithGenre(1,genre) },
+            { repository.getMoviesWithGenre(1, genre) },
             { filmListVM.value = it?.movies }
         )
     }

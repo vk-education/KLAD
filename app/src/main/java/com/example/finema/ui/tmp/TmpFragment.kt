@@ -17,11 +17,10 @@ import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.AppPreference
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.firebase.auth.FirebaseAuth
+import org.koin.androidx.compose.get
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
-
-    private lateinit var mAuth: FirebaseAuth
 
     private lateinit var mObserverList: Observer<GenreList>
 
@@ -32,9 +31,6 @@ class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
         savedInstanceState: Bundle?
     ): View {
         binding = TmpFragmentBinding.inflate(inflater, container, false)
-
-        //TODO убрать
-        mAuth = FirebaseAuth.getInstance()
         return binding.root
     }
 

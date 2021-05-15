@@ -15,12 +15,9 @@ import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 
-//TODO Убрать ресайклер
 class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragmentBinding>() {
 
-    var add = 0
-
-    companion object{
+    companion object {
         const val POSTER_BASE_URL = "https://image.tmdb.org/t/p/w342"
     }
 
@@ -39,59 +36,32 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.movies.observe(viewLifecycleOwner, { movies ->
-            binding.txtFilm1.text = movies.movies[add].title
-            binding.txtFilm2.text = movies.movies[add+1].title
+            binding.txtFilm1.text = movies.movies[viewModel.add].title
+            binding.txtFilm2.text = movies.movies[viewModel.add + 1].title
 
             Glide
                 .with(binding.root)
-                .load(POSTER_BASE_URL + movies.movies[add].posterPath)
+                .load(POSTER_BASE_URL + movies.movies[viewModel.add].posterPath)
                 .into(binding.img1)
             Glide
                 .with(binding.root)
-                .load(POSTER_BASE_URL + movies.movies[add+1].posterPath)
+                .load(POSTER_BASE_URL + movies.movies[viewModel.add + 1].posterPath)
                 .into(binding.img2)
 
             binding.img1.setOnClickListener {
-                onMovieClicked(add)
+                viewModel.onMovieClicked(viewModel.add)
+                binding.points.text = "Очки: ${viewModel.add}"
+
             }
             binding.img2.setOnClickListener {
-                onMovieClicked(add+1)
+                viewModel.onMovieClicked(viewModel.add + 1)
+                binding.points.text = "Очки: ${viewModel.add}"
             }
 
         })
 
     }
 
-
-    //TODO убрать во VM
-    private fun onMovieClicked(position: Int) {
-        when(position){
-            add ->
-                if (viewModel.movies.value?.movies?.get(position)?.popularity!!
-                    >= viewModel.movies.value?.movies?.get(position + 1)?.popularity!!
-                ) {
-                    add += 1
-                    binding.points.text = "Очки: $add"
-                    viewModel.clickedRight()
-                } else {
-                    add = 0
-                    binding.points.text = "Очки: $add"
-                    viewModel.clickedWrong()
-                }
-        add+1 ->
-                if (viewModel.movies.value?.movies?.get(position)?.popularity!!
-                    >= viewModel.movies.value?.movies?.get(position - 1)?.popularity!!
-                ) {
-                    add += 1
-                    binding.points.text = "Очки: $add"
-                    viewModel.clickedRight()
-                } else {
-                    add = 0
-                    binding.points.text = "Очки: $add"
-                    viewModel.clickedWrong()
-                }
-        }
-    }
 }
 
 class CustomGridLayoutManager(context: Context?) : LinearLayoutManager(context) {

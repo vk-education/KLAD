@@ -1,13 +1,9 @@
-package com.example.finema.ui.signIn
+package com.example.finema.repositories
 
 import android.content.Context
 import android.content.Intent
-import android.content.res.Resources
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContract
-import androidx.compose.ui.res.stringResource
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.finema.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -15,6 +11,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import org.koin.androidx.compose.get
 
 class Contract : ActivityResultContract<Context, Unit>() {
 
@@ -22,7 +19,7 @@ class Contract : ActivityResultContract<Context, Unit>() {
 
     private val gso: GoogleSignInOptions = GoogleSignInOptions
         .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-        .requestIdToken("677958878281-pmcs285i4cdvd5tob7c6ovd2j0msknvs.apps.googleusercontent.com")
+        .requestIdToken(defaultWebClientId)
         .requestEmail()
         .build()
 
@@ -71,5 +68,8 @@ class Contract : ActivityResultContract<Context, Unit>() {
             }
     }
 
-
+    companion object {
+        const val defaultWebClientId =
+            "677958878281-pmcs285i4cdvd5tob7c6ovd2j0msknvs.apps.googleusercontent.com"
+    }
 }
