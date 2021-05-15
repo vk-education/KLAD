@@ -8,9 +8,6 @@ import com.example.finema.ui.signIn.SignInViewModel
 import com.example.finema.ui.tmp.TmpViewModel
 import com.example.finema.ui.tournaments.TournamentVM
 import com.example.finema.ui.tournaments.genres.GenresTournamentVM
-import com.example.finema.ui.tournaments.TournamentDuoVM
-import com.example.finema.ui.tournaments.TournamentGenresVM
-import com.google.firebase.auth.FirebaseAuth
 import org.koin.androidx.experimental.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
