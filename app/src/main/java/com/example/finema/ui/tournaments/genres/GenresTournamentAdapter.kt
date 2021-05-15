@@ -1,6 +1,5 @@
-package com.example.finema.ui.tournaments
+package com.example.finema.ui.tournaments.genres
 
-import android.app.Dialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.finema.R
 import com.example.finema.models.databaseModels.GenreModel
 
-class TournamentAdapter(
+class GenresTournamentAdapter(
     private val listener: TournamentHolder.Listener
 
-) : RecyclerView.Adapter<TournamentAdapter.TournamentHolder>() {
+) : RecyclerView.Adapter<GenresTournamentAdapter.TournamentHolder>() {
 
     private var mListGenres = emptyList<GenreModel>()
 //    private lateinit var dialog: Dialog

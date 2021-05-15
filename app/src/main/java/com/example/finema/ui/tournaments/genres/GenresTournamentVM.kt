@@ -1,4 +1,4 @@
-package com.example.finema.ui.tournaments
+package com.example.finema.ui.tournaments.genres
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
@@ -10,7 +10,7 @@ import com.example.finema.util.Coroutines
 import com.example.finema.util.REPOSITORY
 import kotlinx.coroutines.Job
 
-class TournamentGenresVM (
+class GenresTournamentVM (
     private val repository: MoviesRepository
 ) : BaseViewModel() {
 

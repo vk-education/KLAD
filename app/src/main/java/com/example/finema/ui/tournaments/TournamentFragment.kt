@@ -10,13 +10,14 @@ import com.example.finema.R
 import com.example.finema.databinding.FragmentTournamentDuoBinding
 import com.example.finema.models.movieResponse.Movie
 import com.example.finema.ui.base.BaseFragment
+import com.example.finema.ui.tournaments.genres.GenresTournamentVM
 import com.example.finema.util.downloadAndSetImage
 import com.example.finema.util.APP_ACTIVITY
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 //TODO Переименовать, положить в отдельную папку
 //TODO Вынести всю логику во VM
-class TournamentDuo : BaseFragment<TournamentGenresVM, FragmentTournamentDuoBinding>() {
+class TournamentFragment : BaseFragment<GenresTournamentVM, FragmentTournamentDuoBinding>() {
 
     private var mListFilms: ArrayList<Movie> = ArrayList()
     private var mListFilms2: ArrayList<Movie> = ArrayList()

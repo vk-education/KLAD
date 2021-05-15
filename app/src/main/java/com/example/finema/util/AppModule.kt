@@ -6,8 +6,8 @@ import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.ui.movieDetail.MovieDetailsViewModel
 import com.example.finema.ui.signIn.SignInViewModel
 import com.example.finema.ui.tmp.TmpViewModel
-import com.example.finema.ui.tournaments.TournamentDuoVM
-import com.example.finema.ui.tournaments.TournamentGenresVM
+import com.example.finema.ui.tournaments.TournamentVM
+import com.example.finema.ui.tournaments.genres.GenresTournamentVM
 import org.koin.androidx.experimental.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -25,10 +25,10 @@ val appModule: Module = module {
 
     viewModel<BaseViewModel>()
 
-    viewModel<TournamentGenresVM>()
+    viewModel<GenresTournamentVM>()
 
     viewModel<MovieDetailsViewModel>()
 
-    viewModel<TournamentDuoVM>()
+    viewModel<TournamentVM>()
 
 }

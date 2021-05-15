@@ -8,4 +8,9 @@
     <string name="companies">Компании:</string>
     <string name="notifications">Уведомления</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tournament_count_films_title">16 Лучших фильмов</string>
+    <string name="tournament_round_count">Раунд №1</string>
+    <string name="tournament_film2_name">Фильм 2</string>
+    <string name="tournament_film1_name">Фильм 1</string>
+    <string name="genre_item_genre_name">Жанр</string>
 </resources>

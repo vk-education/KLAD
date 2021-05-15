@@ -1,4 +1,4 @@
-package com.example.finema.ui.tournaments
+package com.example.finema.ui.tournaments.genres
 
 import android.app.Dialog
 import android.os.Bundle
@@ -9,9 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finema.R
 import com.example.finema.databinding.FragmentTournamentGenresBinding
@@ -21,12 +19,12 @@ import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.APP_ACTIVITY
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class TournamentGenresFragment :
-    BaseFragment<TournamentGenresVM, FragmentTournamentGenresBinding>(),
-    TournamentAdapter.TournamentHolder.Listener {
+class GenresTournamentFragment :
+    BaseFragment<GenresTournamentVM, FragmentTournamentGenresBinding>(),
+    GenresTournamentAdapter.TournamentHolder.Listener {
 
     private lateinit var mRecyclerView: RecyclerView
-    private lateinit var mAdapter: TournamentAdapter
+    private lateinit var mAdapter: GenresTournamentAdapter
     private lateinit var mObserverList: Observer<List<GenreModel>>
     private var allFilms = ArrayList<Movie>()
 
@@ -47,7 +45,7 @@ class TournamentGenresFragment :
     }
 
     private fun initialization() {
-        mAdapter = TournamentAdapter(this)
+        mAdapter = GenresTournamentAdapter(this)
         mRecyclerView = binding.tournamentsRecycler
         mRecyclerView.adapter = mAdapter
         mObserverList = Observer {
