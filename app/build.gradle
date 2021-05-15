@@ -156,5 +156,6 @@ dependencies {
     testImplementation "io.insert-koin:koin-test-junit5:$koin_version"
     // Koin Extended & experimental features (JVM)
     implementation "io.insert-koin:koin-core-ext:$koin_version"
-
+    // WorkManager
+    implementation "android.arch.work:work-runtime:1.0.1"
 }
