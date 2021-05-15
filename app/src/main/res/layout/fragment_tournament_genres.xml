@@ -7,10 +7,9 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".ui.tournaments.TournamentGenresFragment">
+            android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/tournaments_recycler"
@@ -24,16 +23,6 @@
                 tools:listitem="@layout/genre_item"
                 app:spanCount="2"
                 android:visibility="visible"
-                android:scrollbars="none"/>
-
-<!--        <include-->
-<!--                layout="@layout/number_fragment"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintBottom_toBottomOf="@+id/tournaments_recycler"-->
-<!--                android:visibility="gone"/>-->
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                android:scrollbars="none" />
+    </FrameLayout>
 </layout>

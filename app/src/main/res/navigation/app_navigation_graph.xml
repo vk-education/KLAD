@@ -68,7 +68,7 @@
 
     <fragment
             android:id="@+id/fragmentGenre"
-            android:name="com.example.finema.ui.tournaments.TournamentGenresFragment"
+            android:name="com.example.finema.ui.tournaments.genres.GenresTournamentFragment"
             android:label="Genre fragment"
             tools:layout="@layout/fragment_tournament_genres">
         <action
@@ -78,7 +78,7 @@
 
     <fragment
             android:id="@+id/fragmentTournament"
-            android:name="com.example.finema.ui.tournaments.TournamentDuo"
+            android:name="com.example.finema.ui.tournaments.TournamentFragment"
             android:label="Tournament fragment"
             tools:layout="@layout/tournament_fragment">
 

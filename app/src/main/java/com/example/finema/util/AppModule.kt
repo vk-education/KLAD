@@ -6,6 +6,8 @@ import com.example.finema.ui.higherlower.HigherLowerViewModel
 import com.example.finema.ui.movieDetail.MovieDetailsViewModel
 import com.example.finema.ui.signIn.SignInViewModel
 import com.example.finema.ui.tmp.TmpViewModel
+import com.example.finema.ui.tournaments.TournamentVM
+import com.example.finema.ui.tournaments.genres.GenresTournamentVM
 import com.example.finema.ui.tournaments.TournamentDuoVM
 import com.example.finema.ui.tournaments.TournamentGenresVM
 import com.google.firebase.auth.FirebaseAuth
@@ -27,10 +29,10 @@ val appModule: Module = module {
 
     viewModel<BaseViewModel>()
 
-    viewModel<TournamentGenresVM>()
+    viewModel<GenresTournamentVM>()
 
     viewModel<MovieDetailsViewModel>()
 
-    viewModel<TournamentDuoVM>()
+    viewModel<TournamentVM>()
 
 }

@@ -8,10 +8,10 @@
         app:cardCornerRadius="@dimen/card_corner_radius"
         app:cardElevation="@dimen/card_corner_elevation">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
         <TextView
                 android:id="@+id/item_genre_name"
                 android:layout_width="match_parent"
@@ -24,14 +24,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Жанр" />
-        <TextView
-                android:id="@+id/item_genre_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="@id/item_genre_id"
-                app:layout_constraintStart_toEndOf="@id/item_genre_name"
-                android:textColor="#FFFFFF"/>
+                tools:text="@string/genre_item_genre_name" />
 
         <ImageView
                 android:id="@+id/item_film_img"
@@ -45,5 +38,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/item_genre_name" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+
+
 </androidx.cardview.widget.CardView>
