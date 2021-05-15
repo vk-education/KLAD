@@ -51,6 +51,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "677958878281-o32p6sa8b711am4ikvr2inhjql9en9us.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.finema",
+            "certificate_hash": "549d918079a35c978f5226f4a7ecd7d5bf250ae9"
+          }
+        },
+        {
           "client_id": "677958878281-pmcs285i4cdvd5tob7c6ovd2j0msknvs.apps.googleusercontent.com",
           "client_type": 3
         }
