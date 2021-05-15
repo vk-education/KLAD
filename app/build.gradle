@@ -161,4 +161,6 @@ dependencies {
     def pagingVersion = "3.0.0"
     implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
 
+    // WorkManager
+    implementation "android.arch.work:work-runtime:1.0.1"
 }

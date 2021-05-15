@@ -1,77 +1,51 @@
 package com.example.finema.ui.settings
 
-import android.app.Notification
+import android.R
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.content.BroadcastReceiver
+import android.app.PendingIntent
+import android.app.TaskStackBuilder
 import android.content.Context
 import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
 import android.os.Build
+import androidx.core.app.NotificationCompat
+import androidx.work.Worker
+import androidx.work.WorkerParameters
+import com.example.finema.MainActivity
 
 
-class NotificationService: BroadcastReceiver() {
+class NotificationService(context: Context, workerParams: WorkerParameters) :
+    Worker(context, workerParams){
 
-    private val channel = "MyChannel2"
-    private val id = 111
-
-
-
-
-//    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-//        Log.d(tag, "CREATE NOTIF")
-//
-//        Thread.sleep(5000)
-//
-//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-//            val channel =
-//                NotificationChannel(channel, "My channel", NotificationManager.IMPORTANCE_MIN)
-//            val notificationService: NotificationManager =
-//                getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-//            notificationService.createNotificationChannel(channel)
-//        }
-//
-//        val notification = NotificationCompat.Builder(this, channel)
-//            .setContentTitle("Стало скучно?")
-//            .setContentText("Выбери себе фильм на вечер.")
-//            .setPriority(NotificationCompat.PRIORITY_LOW)
-//            .setSmallIcon(R.drawable.ic_launcher_foreground)
-//            .setAutoCancel(true)
-//            .build()
-//
-//        startForeground(id, notification)
-//
-//        return START_NOT_STICKY
-//    }
-
-    companion object {
-
-        var NOTIFICATION_ID = "notification-id"
-        var NOTIFICATION = "notification"
+    override fun doWork(): Result {
+        sendNotification();
+        return Result.success();
     }
-//    override fun onReceive(context: Context?, intent: Intent?) {
-//        val notification = NotificationCompat.Builder(context)
-//            .setContentTitle("Стало скучно?")
-//            .setContentText("Выбери себе фильм на вечер.")
-//            .setPriority(NotificationCompat.PRIORITY_LOW)
-//            .setSmallIcon(R.drawable.ic_launcher_foreground)
-//            .setAutoCancel(true)
-//            .build()
-//
-//        val manager = context!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-//        manager.notify(0, notification)
-//    }
 
-    override fun onReceive(context: Context, intent: Intent) {
+    private fun sendNotification() {
         val notificationManager =
-            context.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-        val notification: Notification = intent.getParcelableExtra(NOTIFICATION)!!
+            applicationContext.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        val resultIntent = Intent(applicationContext, MainActivity::class.java)
+        val stackBuilder: TaskStackBuilder = TaskStackBuilder.create(applicationContext)
+        stackBuilder.addParentStack(MainActivity::class.java)
+            .addNextIntent(resultIntent)
+        val resultPendingIntent: PendingIntent =
+            stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val notification = NotificationCompat.Builder(applicationContext, "default")
+            .setContentTitle("Стало скучно?")
+            .setContentText("Выбери себе фильм на вечер.")
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setSmallIcon(R.mipmap.sym_def_app_icon)
+            .setAutoCancel(true)
+            .setContentIntent(resultPendingIntent)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel =
-                NotificationChannel("10001", "NOTIFICATION_CHANNEL_NAME", NotificationManager.IMPORTANCE_MIN)
+                NotificationChannel("default", "Default", NotificationManager.IMPORTANCE_DEFAULT)
             notificationManager.createNotificationChannel(channel)
         }
-        val id = intent.getIntExtra(NOTIFICATION_ID, 0)
-        notificationManager.notify(id, notification)
+        notificationManager.notify(0, notification.build())
     }
 }
