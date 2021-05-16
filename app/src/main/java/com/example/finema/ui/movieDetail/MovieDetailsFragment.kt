@@ -37,11 +37,11 @@ class MovieDetailsFragment: BaseFragment<MovieDetailsViewModel, MovieDetailsFrag
 
         viewModel.getMovieDetails(arg)
 
-//        binding.filmLoader.visibility = GONE
+        binding.filmLoader.visibility = View.GONE
 
         viewModel.film.observe(viewLifecycleOwner, {
             binding.layout.visibility = VISIBLE
-//            binding.filmLoader.visibility = INVISIBLE
+            binding.filmLoader.visibility = View.INVISIBLE
 
             it.posterPath = POSTER_BASE_URL + it.posterPath
             binding.filmId = it

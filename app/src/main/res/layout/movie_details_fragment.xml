@@ -12,46 +12,63 @@
     </data>
 
 
-    <!--            <ProgressBar-->
-    <!--                android:id="@+id/filmLoader"-->
-    <!--                android:layout_width="60dp"-->
-    <!--                android:layout_height="60dp"-->
-    <!--                android:indeterminateTint="@color/purple_200"-->
-    <!--                android:progressTint="@color/purple_200"-->
-    <!--                android:layout_gravity="center" />-->
 
 
-    <LinearLayout
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/filmLoader"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:indeterminateTint="@color/purple_200"
+            android:progressTint="@color/purple_200"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
             android:id="@+id/layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="invisible">
-        <androidx.cardview.widget.CardView
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/app_margin"
                 app:cardCornerRadius="@dimen/card_corner_radius"
                 app:cardElevation="@dimen/card_corner_elevation"
                 android:layout_gravity="center">
-            <ImageView
+
+                <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="250dp"
                     android:layout_height="320dp"
                     android:scaleType="fitCenter"
                     app:srcCompat="@drawable/movies_24" />
-        </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
 
-        <ScrollView
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            <LinearLayout
+
+                <LinearLayout
                     android:id="@+id/layoutText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                <TextView
+
+                    <TextView
                         android:text="@{filmId.title}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -61,7 +78,7 @@
                         android:layout_gravity="center"
                         android:gravity="center" />
 
-                <TextView
+                    <TextView
                         android:id="@+id/textView3"
 
                         android:layout_width="match_parent"
@@ -70,9 +87,9 @@
                         android:textSize="18sp"
                         android:paddingStart="10dp"
                         android:textStyle="bold"
-                        android:text="@string/about_film"/>
+                        android:text="@string/about_film" />
 
-                <TextView
+                    <TextView
                         android:text="@{filmId.overview}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -80,7 +97,7 @@
                         android:textSize="18sp"
                         android:padding="10dp" />
 
-                <TextView
+                    <TextView
                         android:text="@string/genres"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -90,8 +107,8 @@
                         android:paddingTop="10dp"
                         android:textStyle="bold" />
 
-                <TextView
-                        tools:text="Жанр"
+                    <TextView
+                        tools:text="@{filmId.stringGenres}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/genres"
@@ -99,7 +116,7 @@
                         android:paddingStart="10dp"
                         android:paddingTop="10dp" />
 
-                <TextView
+                    <TextView
                         android:text="@string/rating"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -109,7 +126,7 @@
                         android:paddingTop="10dp"
                         android:textStyle="bold" />
 
-                <TextView
+                    <TextView
                         tools:text="10.0"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -117,7 +134,7 @@
                         android:textSize="18sp"
                         android:padding="10dp" />
 
-                <TextView
+                    <TextView
                         android:text="@string/companies"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -127,8 +144,8 @@
                         android:paddingTop="10dp"
                         android:textStyle="bold" />
 
-                <TextView
-                        tools:text="KLAD"
+                    <TextView
+                        tools:text="@{filmId.stringCompanies}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/companies"
@@ -136,8 +153,11 @@
                         android:padding="10dp" />
 
 
-            </LinearLayout>
-        </ScrollView>
+                </LinearLayout>
+            </ScrollView>
 
-    </LinearLayout>
-</layout>
+        </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+        </layout>

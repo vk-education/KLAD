@@ -4,7 +4,8 @@
 
     <SwitchPreferenceCompat
         app:key="notifications"
-        app:title="@string/notifications"/>
+        app:title="@string/notifications"
+        app:defaultValue="true"/>
 
 <!--    <Preference-->
 <!--        app:key="feedback"-->
