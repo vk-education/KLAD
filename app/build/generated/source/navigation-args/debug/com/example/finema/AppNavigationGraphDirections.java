@@ -24,6 +24,11 @@ public class AppNavigationGraphDirections {
   }
 
   @NonNull
+  public static NavDirections actionGlobalSignIn() {
+    return new ActionOnlyNavDirections(R.id.action_global_signIn);
+  }
+
+  @NonNull
   public static NavDirections actionGlobalFragmentFavourite() {
     return new ActionOnlyNavDirections(R.id.action_global_fragmentFavourite);
   }

@@ -1918,6 +1918,7 @@ id action_global_fragmentHigherLower
 id action_global_fragmentProfile
 id action_global_fragmentSettings
 id action_global_fragmentTmp
+id action_global_signIn
 id action_image
 id action_menu_divider
 id action_menu_presenter
@@ -2101,7 +2102,6 @@ id invisible
 id inward
 id italic
 id item_film_img
-id item_genre_id
 id item_genre_name
 id item_touch_helper_previous_elevation
 id jumpToEnd
@@ -2460,7 +2460,6 @@ layout favourite_fragment
 layout fragment_base
 layout fragment_tournament_duo
 layout fragment_tournament_genres
-layout genre_fragment
 layout genre_item
 layout higher_lower_fragment
 layout image_frame
@@ -2640,6 +2639,7 @@ string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
 string gcm_defaultSenderId
+string genre_item_genre_name
 string genres
 string google_api_key
 string google_app_id
@@ -2648,6 +2648,7 @@ string google_storage_bucket
 string guest
 string hello_blank_fragment
 string hide_bottom_view_on_scroll_behavior
+string higher_lower_score
 string icon_content_description
 string item_view_role_description
 string material_clock_display_divider
@@ -2709,6 +2710,7 @@ string path_password_eye
 string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
+string poster_base_url
 string preference_copied
 string profile
 string project_id
@@ -2716,6 +2718,10 @@ string rating
 string search_menu_title
 string status_bar_notification_info_overflow
 string summary_collapsed_preference_list
+string tournament_count_films_title
+string tournament_film1_name
+string tournament_film2_name
+string tournament_round_count
 string v7_preference_off
 string v7_preference_on
 style AlertDialog_AppCompat

@@ -18,7 +18,7 @@ public class FragmentTournamentGenresBindingImpl extends FragmentTournamentGenre
     }
     // views
     @NonNull
-    private final androidx.constraintlayout.widget.ConstraintLayout mboundView0;
+    private final android.widget.FrameLayout mboundView0;
     // variables
     // values
     // listeners
@@ -31,7 +31,7 @@ public class FragmentTournamentGenresBindingImpl extends FragmentTournamentGenre
         super(bindingComponent, root, 0
             , (androidx.recyclerview.widget.RecyclerView) bindings[1]
             );
-        this.mboundView0 = (androidx.constraintlayout.widget.ConstraintLayout) bindings[0];
+        this.mboundView0 = (android.widget.FrameLayout) bindings[0];
         this.mboundView0.setTag(null);
         setRootTag(root);
         // listeners

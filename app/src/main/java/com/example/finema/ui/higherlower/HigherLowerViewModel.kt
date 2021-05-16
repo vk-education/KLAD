@@ -1,8 +1,14 @@
 package com.example.finema.ui.higherlower
 
+import android.app.DownloadManager
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.example.finema.models.movieResponse.MovieResponse
 import com.example.finema.api.MoviesRepository
+import com.example.finema.models.movieResponse.Movie
 import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.util.Coroutines
 
@@ -14,72 +20,72 @@ class HigherLowerViewModel(
     val movies: MutableLiveData<MovieResponse>
     get() = _movies
 
-    private lateinit var opp : MovieResponse
-    var add = 0
+    var score = RESET_SCORE_INDEX
+    var img1 = IMG1_INDEX
+    var img2 = IMG2_INDEX
+    private var page = DEFAULT_PAGE_INDEX
 
-
-    //TODO getMovies
     init {
-        for(i in 1..5)
-        {
-            job = Coroutines.ioThenMain (
-                { repository.getMovies(i) },
-                { _movies.value = it },
-                { opp = it!! },
-                false
-            )
-        }
+        getMovies()
     }
 
     private fun getMovies() {
-        for(i in 1..5) {
             job = Coroutines.ioThenMain(
-                { repository.getMovies(i) },
-                { _movies.value = it },
-                { opp = it!! },
-                true
+                { repository.getMovies(page) },
+                { _movies.value = it }
             )
-        }
     }
 
     private fun clickedRight() {
+        score += ADD_SCORE_POINT
         changeMovRes()
-        _movies.value = opp
     }
 
     private fun clickedWrong() {
+        score = RESET_SCORE_INDEX
+        page = DEFAULT_PAGE_INDEX
         getMovies()
     }
 
     private fun changeMovRes() {
-        opp.movies.drop(1)
+        if(score % MOVIE_SIZE_RESET == 0) {
+            page += NEXT_PAGE
+            getMovies()
+        } else {
+            _movies.value?.movies = _movies.value?.movies?.drop(1)!!
+            _movies.value = _movies.value
+
+        }
     }
 
     fun onMovieClicked(position: Int) {
         when(position){
-            add ->
-                if (movies.value?.movies?.get(position)?.popularity!!
-                    >= movies.value?.movies?.get(position + 1)?.popularity!!
+            img1 ->
+                if (movies.value?.movies?.get(img1)?.popularity!!
+                    >= movies.value?.movies?.get(img2)?.popularity!!
                 ) {
-                    add += 1
                     clickedRight()
                 } else {
-                    add = 0
                     clickedWrong()
                 }
-            add+1 ->
-                if (movies.value?.movies?.get(position)?.popularity!!
-                    >= movies.value?.movies?.get(position - 1)?.popularity!!
+            img2 ->
+                if (movies.value?.movies?.get(img2)?.popularity!!
+                    >= movies.value?.movies?.get(img1)?.popularity!!
                 ) {
-                    add += 1
                     clickedRight()
                 } else {
-                    add = 0
                     clickedWrong()
                 }
         }
     }
+
+    companion object {
+        const val DEFAULT_PAGE_INDEX = 1
+        const val RESET_SCORE_INDEX = 0
+        const val ADD_SCORE_POINT = 1
+        const val NEXT_PAGE = 1
+        const val MOVIE_SIZE_RESET = 19
+        const val IMG1_INDEX = 0
+        const val IMG2_INDEX = 1
+    }
 }
-
-
-

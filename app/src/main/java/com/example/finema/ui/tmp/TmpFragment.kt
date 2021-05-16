@@ -8,13 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.finema.R
 import com.example.finema.databinding.TmpFragmentBinding
 import com.example.finema.models.GenreRequest.GenreList
 import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.AppPreference
+import com.example.finema.util.TYPE_ROOM
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.firebase.auth.FirebaseAuth
 import org.koin.androidx.compose.get
@@ -31,11 +34,18 @@ class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
         savedInstanceState: Bundle?
     ): View {
         binding = TmpFragmentBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = getViewModel()
+        if (!AppPreference.getInitUser()) {
+            viewModel.initDatabase(requireContext(), TYPE_ROOM) {
+                Navigation.findNavController(requireActivity(), R.id.fragment)
+                    .navigate(R.id.action_tmpFragment_to_sigInFragment)
+            }
+        }
 
         super.onViewCreated(view, savedInstanceState)
         requireActivity()
@@ -50,8 +60,7 @@ class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
             loadGenresList()
         }
         binding.genre.setOnClickListener {
-            //TODO убрать it
-            it.findNavController().navigate(R.id.action_fragment_tmp_to_fragment_genre)
+            findNavController().navigate(R.id.action_fragment_tmp_to_fragment_genre)
         }
     }
 

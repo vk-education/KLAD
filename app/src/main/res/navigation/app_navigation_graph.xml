@@ -3,7 +3,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/app_navigation_graph"
-        app:startDestination="@id/sigInFragment">
+        app:startDestination="@id/fragmentTmp">
 
     <fragment
             android:id="@+id/fragmentFavourite"
@@ -152,6 +152,7 @@
     <action android:id="@+id/action_global_fragmentSettings" app:destination="@id/fragmentSettings" />
     <action android:id="@+id/action_global_fragmentProfile" app:destination="@id/fragmentProfile" />
     <action android:id="@+id/action_global_fragmentTmp" app:destination="@id/fragmentTmp" />
+    <action android:id="@+id/action_global_signIn" app:destination="@id/sigInFragment" />
     <action android:id="@+id/action_global_fragmentFavourite" app:destination="@id/fragmentFavourite"/>
     <action android:id="@+id/action_global_fragmentHigherLower" app:destination="@id/fragmentHigherLower"/>
 

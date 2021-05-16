@@ -23,16 +23,12 @@ public final class GenreItemBinding implements ViewBinding {
   public final ImageView itemFilmImg;
 
   @NonNull
-  public final TextView itemGenreId;
-
-  @NonNull
   public final TextView itemGenreName;
 
   private GenreItemBinding(@NonNull CardView rootView, @NonNull ImageView itemFilmImg,
-      @NonNull TextView itemGenreId, @NonNull TextView itemGenreName) {
+      @NonNull TextView itemGenreName) {
     this.rootView = rootView;
     this.itemFilmImg = itemFilmImg;
-    this.itemGenreId = itemGenreId;
     this.itemGenreName = itemGenreName;
   }
 
@@ -69,19 +65,13 @@ public final class GenreItemBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.item_genre_id;
-      TextView itemGenreId = rootView.findViewById(id);
-      if (itemGenreId == null) {
-        break missingId;
-      }
-
       id = R.id.item_genre_name;
       TextView itemGenreName = rootView.findViewById(id);
       if (itemGenreName == null) {
         break missingId;
       }
 
-      return new GenreItemBinding((CardView) rootView, itemFilmImg, itemGenreId, itemGenreName);
+      return new GenreItemBinding((CardView) rootView, itemFilmImg, itemGenreName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

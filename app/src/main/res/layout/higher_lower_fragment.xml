@@ -17,7 +17,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:layout_marginTop="16dp"
-                    android:text="У какого фильма больше бюджет?"
+                    android:text="Какой фильм сейчас популярнее?"
                     android:textColor="@android:color/holo_purple"
                     android:textSize="20sp"
                     android:textStyle="bold" />

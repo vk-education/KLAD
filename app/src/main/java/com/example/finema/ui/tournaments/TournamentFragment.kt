@@ -46,6 +46,7 @@ class TournamentFragment : BaseFragment<GenresTournamentVM, FragmentTournamentDu
         val allFilms = arguments?.getParcelableArrayList<Movie>("list") as ArrayList<Movie>
         val numFilms = arguments?.getSerializable("num") as Int
         // cut to num
+        // cum to nut hehehe
         //TODO Убрать строки в ресурсы
         binding.txtNumCategory.text = "$numFilms Лучших фильмов"
         binding.roundCount.text = "Раунд $roundCount"

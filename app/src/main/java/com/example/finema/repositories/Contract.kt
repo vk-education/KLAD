@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import org.koin.androidx.compose.get
 
-class Contract : ActivityResultContract<Context, Unit>() {
+class Contract : ActivityResultContract<Unit, Unit>() {
 
     private val mAuth  = FirebaseAuth.getInstance()
 
@@ -23,8 +23,8 @@ class Contract : ActivityResultContract<Context, Unit>() {
         .requestEmail()
         .build()
 
-    override fun createIntent(context: Context, input: Context): Intent {
-        val googleSignInClient = GoogleSignIn.getClient(input, gso)
+    override fun createIntent(context: Context, input: Unit): Intent {
+        val googleSignInClient = GoogleSignIn.getClient(context, gso)
 
         return  googleSignInClient.signInIntent
     }
@@ -32,8 +32,7 @@ class Contract : ActivityResultContract<Context, Unit>() {
     override fun parseResult(resultCode: Int, intent: Intent?) =
         activityResult(intent)
 
-
-    private fun activityResult(data: Intent?){
+    private fun activityResult(data: Intent?) {
         val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
         val exception = task.exception
         if(task.isSuccessful) {

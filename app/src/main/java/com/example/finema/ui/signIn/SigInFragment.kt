@@ -1,7 +1,9 @@
 package com.example.finema.ui.signIn
 
+import android.app.Instrumentation
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.INVISIBLE
@@ -48,15 +50,17 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         viewModel = getViewModel()
 
         //TODO изменить на перевод сюда из активити
-        if (AppPreference.getInitUser()) {
-            viewModel.initDatabase(requireContext(), TYPE_ROOM) {
-                Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
-                    .navigate(R.id.action_sigInFragment_to_tmpFragment)
-            }
-        }
+//        if (AppPreference.getInitUser()) {
+//            viewModel.initDatabase(requireContext(), TYPE_ROOM) {
+//                Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
+//                    .navigate(R.id.action_sigInFragment_to_tmpFragment)
+//            }
+//        }
 
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().findViewById<DrawerLayout>(R.id.drawer_layout).setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
+        requireActivity().findViewById<DrawerLayout>(R.id.drawer_layout).setDrawerLockMode(
+            LOCK_MODE_LOCKED_CLOSED
+        )
         requireActivity().findViewById<MaterialToolbar>(R.id.topAppBar).visibility = INVISIBLE
 
         //TODO вынести во Repository, но только после того как будет DI (dagger/koin)
@@ -66,12 +70,10 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
 
         binding.signInWithGoogle.setOnClickListener{
             viewModel.initDatabase(requireContext(), TYPE_ROOM) {
-
                 signIn()
                 navigationOpen()
                 AppPreference.setInitUser(true)
                 findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
-
             }
         }
 
@@ -82,19 +84,20 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
             navigationOpen()
             findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
             }
-
         }
     }
 
     //TODO репозиторий по нажатию на кнопку возвращает интент, через VM, который и надо здесь
     // запускать
     private fun signIn(){
-        customContract.launch(requireContext())
+        customContract.launch(Unit)
     }
 
 
     private fun navigationOpen(){
-        requireActivity().findViewById<DrawerLayout>(R.id.drawer_layout).setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED)
+        requireActivity().findViewById<DrawerLayout>(R.id.drawer_layout).setDrawerLockMode(
+            DrawerLayout.LOCK_MODE_UNDEFINED
+        )
         requireActivity().findViewById<MaterialToolbar>(R.id.topAppBar).visibility = View.VISIBLE
     }
 

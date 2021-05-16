@@ -1,19 +1,21 @@
 package com.example.finema
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.Navigation
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.navigation.Navigation.findNavController
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequest
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
+import com.example.finema.database.room.RoomDataBase
+import com.example.finema.database.room.RoomRepository
 import com.example.finema.databinding.ActivityMainBinding
-import com.example.finema.util.appModule
 import com.example.finema.ui.settings.NotificationService
-import com.example.finema.util.APP_ACTIVITY
-import com.example.finema.util.AppPreference
+import com.example.finema.util.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import java.util.concurrent.TimeUnit
@@ -31,13 +33,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
 
-    var simpleNotification = OneTimeWorkRequestBuilder<NotificationService>()
+    private var simpleNotification = OneTimeWorkRequestBuilder<NotificationService>()
         .addTag("tag")
         .setInitialDelay(5, TimeUnit.SECONDS)
         .build()
 
-
-    private lateinit var service: Intent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,13 +63,13 @@ class MainActivity : AppCompatActivity() {
 
             when (it.itemId) {
 
-                R.id.budget -> Navigation.findNavController(this, R.id.fragment)
+                R.id.budget -> findNavController(this, R.id.fragment)
                     .navigate(R.id.action_global_fragmentHigherLower)
 
-                R.id.tournament -> Navigation.findNavController(this, R.id.fragment)
+                R.id.tournament -> findNavController(this, R.id.fragment)
                     .navigate(R.id.action_global_fragmentTmp)
 
-                R.id.settings -> Navigation.findNavController(this, R.id.fragment)
+                R.id.settings -> findNavController(this, R.id.fragment)
                     .navigate(R.id.action_global_fragmentSettings)
             }
 
@@ -88,4 +88,24 @@ class MainActivity : AppCompatActivity() {
                 .enqueue()
         }
     }
+
+    private fun checkUser() {
+        if (!AppPreference.getInitUser()) {
+            initDatabase(applicationContext, TYPE_ROOM) {
+                findNavController(binding.root)
+                    .navigate(R.id.action_global_signIn)
+            }
+        }
+    }
+
+    private fun initDatabase(context: Context, type:String, onSuccess:() -> Unit){
+        when (type){
+            TYPE_ROOM -> {
+                val dao = RoomDataBase.getInstance(context).getRoomDao()
+                REPOSITORY = RoomRepository(dao)
+                onSuccess()
+            }
+        }
+    }
+
 }

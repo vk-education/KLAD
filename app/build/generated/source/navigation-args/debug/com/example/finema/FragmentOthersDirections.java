@@ -35,6 +35,11 @@ public class FragmentOthersDirections {
   }
 
   @NonNull
+  public static NavDirections actionGlobalSignIn() {
+    return AppNavigationGraphDirections.actionGlobalSignIn();
+  }
+
+  @NonNull
   public static NavDirections actionGlobalFragmentFavourite() {
     return AppNavigationGraphDirections.actionGlobalFragmentFavourite();
   }

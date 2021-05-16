@@ -34,8 +34,9 @@ public abstract interface MoviesApi {
     java.lang.String with_genres, @org.jetbrains.annotations.NotNull()
     kotlin.coroutines.Continuation<? super retrofit2.Response<com.example.finema.models.movieResponse.MovieResponse>> p2);
     
-    @kotlin.Metadata(mv = {1, 4, 2}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000\u0012\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\b\u0086\u0003\u0018\u00002\u00020\u0001B\u0007\b\u0002\u00a2\u0006\u0002\u0010\u0002J\t\u0010\u0003\u001a\u00020\u0004H\u0086\u0002\u00a8\u0006\u0005"}, d2 = {"Lcom/example/finema/api/MoviesApi$Companion;", "", "()V", "invoke", "Lcom/example/finema/api/MoviesApi;", "app_debug"})
+    @kotlin.Metadata(mv = {1, 4, 2}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000\u0018\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0010\u000e\n\u0000\n\u0002\u0018\u0002\n\u0000\b\u0086\u0003\u0018\u00002\u00020\u0001B\u0007\b\u0002\u00a2\u0006\u0002\u0010\u0002J\t\u0010\u0005\u001a\u00020\u0006H\u0086\u0002R\u000e\u0010\u0003\u001a\u00020\u0004X\u0082T\u00a2\u0006\u0002\n\u0000\u00a8\u0006\u0007"}, d2 = {"Lcom/example/finema/api/MoviesApi$Companion;", "", "()V", "BASE_URL", "", "invoke", "Lcom/example/finema/api/MoviesApi;", "app_debug"})
     public static final class Companion {
+        private static final java.lang.String BASE_URL = "https://api.themoviedb.org/3/";
         
         @org.jetbrains.annotations.NotNull()
         public final com.example.finema.api.MoviesApi invoke() {

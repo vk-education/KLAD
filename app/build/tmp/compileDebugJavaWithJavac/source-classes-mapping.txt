@@ -1,7 +1,7 @@
-com/example/finema/ui/tournaments/TournamentDuoDirections.java
- com.example.finema.ui.tournaments.TournamentDuoDirections
- com.example.finema.ui.tournaments.TournamentDuoDirections$1
- com.example.finema.ui.tournaments.TournamentDuoDirections$ActionFragmentTournamentToFragmentFilm
+com/example/finema/ui/tournaments/TournamentFragmentDirections.java
+ com.example.finema.ui.tournaments.TournamentFragmentDirections
+ com.example.finema.ui.tournaments.TournamentFragmentDirections$1
+ com.example.finema.ui.tournaments.TournamentFragmentDirections$ActionFragmentTournamentToFragmentFilm
 com/example/finema/ui/settings/SettingsFragmentDirections.java
  com.example.finema.ui.settings.SettingsFragmentDirections
 androidx/databinding/DataBinderMapperImpl.java
@@ -26,8 +26,6 @@ com/example/finema/databinding/FragmentTournamentDuoBindingImpl.java
  com.example.finema.databinding.FragmentTournamentDuoBindingImpl
 com/example/finema/databinding/ProfileFragmentBinding.java
  com.example.finema.databinding.ProfileFragmentBinding
-com/example/finema/databinding/GenreFragmentBinding.java
- com.example.finema.databinding.GenreFragmentBinding
 com/example/finema/ui/movieDetail/MovieDetailsFragmentDirections.java
  com.example.finema.ui.movieDetail.MovieDetailsFragmentDirections
 com/example/finema/databinding/FragmentBaseBindingImpl.java
@@ -73,10 +71,6 @@ com/example/finema/FragmentFavouriteDirections.java
  com.example.finema.FragmentFavouriteDirections$ActionFragmentFavouriteToFragmentFilm
 com/example/finema/databinding/OwnTournamentFragmentBinding.java
  com.example.finema.databinding.OwnTournamentFragmentBinding
-com/example/finema/ui/tournaments/TournamentDuoArgs.java
- com.example.finema.ui.tournaments.TournamentDuoArgs
- com.example.finema.ui.tournaments.TournamentDuoArgs$1
- com.example.finema.ui.tournaments.TournamentDuoArgs$Builder
 com/example/finema/databinding/SignInFragmentBinding.java
  com.example.finema.databinding.SignInFragmentBinding
 com/example/finema/databinding/WelcomeFragmentBinding.java
@@ -85,8 +79,16 @@ com/example/finema/databinding/NavHeaderBindingImpl.java
  com.example.finema.databinding.NavHeaderBindingImpl
 com/example/finema/databinding/OthersFragmentBinding.java
  com.example.finema.databinding.OthersFragmentBinding
+com/example/finema/ui/tournaments/genres/GenresTournamentFragmentDirections.java
+ com.example.finema.ui.tournaments.genres.GenresTournamentFragmentDirections
+ com.example.finema.ui.tournaments.genres.GenresTournamentFragmentDirections$1
+ com.example.finema.ui.tournaments.genres.GenresTournamentFragmentDirections$ActionFragmentGenreToFragmentTournament
 com/example/finema/databinding/NumberFragmentBinding.java
  com.example.finema.databinding.NumberFragmentBinding
+com/example/finema/ui/tournaments/TournamentFragmentArgs.java
+ com.example.finema.ui.tournaments.TournamentFragmentArgs
+ com.example.finema.ui.tournaments.TournamentFragmentArgs$1
+ com.example.finema.ui.tournaments.TournamentFragmentArgs$Builder
 com/example/finema/databinding/FavouriteFragmentBinding.java
  com.example.finema.databinding.FavouriteFragmentBinding
 com/example/finema/ui/movieDetail/MovieDetailsFragmentArgs.java
@@ -101,10 +103,6 @@ com/example/finema/databinding/MovieItemBindingImpl.java
  com.example.finema.databinding.MovieItemBindingImpl
 com/example/finema/databinding/TournamentFragmentBinding.java
  com.example.finema.databinding.TournamentFragmentBinding
-com/example/finema/ui/tournaments/TournamentGenresFragmentDirections.java
- com.example.finema.ui.tournaments.TournamentGenresFragmentDirections
- com.example.finema.ui.tournaments.TournamentGenresFragmentDirections$1
- com.example.finema.ui.tournaments.TournamentGenresFragmentDirections$ActionFragmentGenreToFragmentTournament
 com/example/finema/databinding/HigherLowerFragmentBinding.java
  com.example.finema.databinding.HigherLowerFragmentBinding
 com/example/finema/databinding/FragmentTournamentDuoBinding.java

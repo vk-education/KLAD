@@ -16,9 +16,8 @@ class MovieDetailsViewModel(
 
     var film = MutableLiveData<MovieDetails>()
 
-
     fun getMovieDetails(id: Long) {
-        job = Coroutines.movieDetailsThenMain(
+        job = Coroutines.ioThenMan(
             { repository.getMovieDetails(id) },
             { film.value = it }
         )

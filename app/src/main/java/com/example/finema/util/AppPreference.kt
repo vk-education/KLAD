@@ -19,13 +19,13 @@ object AppPreference {
         return mPreferences
     }
 
-    fun setInitUser(init:Boolean){
+    fun setInitUser(init:Boolean) {
         mPreferences.edit()
             .putBoolean(INIT_USER,init)
             .apply()
     }
 
-    fun  getInitUser():Boolean{
+    fun  getInitUser():Boolean {
         return mPreferences.getBoolean(INIT_USER,false)
     }
 
