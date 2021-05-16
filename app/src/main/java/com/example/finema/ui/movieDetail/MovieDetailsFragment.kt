@@ -39,26 +39,14 @@ class MovieDetailsFragment: BaseFragment<MovieDetailsViewModel, MovieDetailsFrag
 
         viewModel.getMovieDetails(arg)
 
-//        binding.filmLoader.visibility = GONE
+        binding.filmLoader.visibility = View.GONE
 
         viewModel.film.observe(viewLifecycleOwner, {
             binding.layout.visibility = VISIBLE
-//            binding.filmLoader.visibility = INVISIBLE
+            binding.filmLoader.visibility = View.INVISIBLE
 
             it.posterPath = "https://image.tmdb.org/t/p/w342" + it.posterPath
             binding.filmId = it
-
-            var genres = ""
-            for (item in it.genres){
-                genres += item.name + "\n"
-            }
-            binding.genres.text = genres
-
-            var companies = ""
-            for (item in it.productionCompanies){
-                companies += item.name + "\t" + item.originCountry + "\n"
-            }
-            binding.companies.text = companies
 
             //TODO изменить на вызов extension
             Glide.with(view)

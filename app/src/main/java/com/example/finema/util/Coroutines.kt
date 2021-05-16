@@ -43,14 +43,14 @@ object Coroutines {
             callback(data)
         }
 
-    fun movieDetailsThenMain(work: suspend (() -> MovieDetails?), callback: ((MovieDetails?)->Unit)) =
-        CoroutineScope(Dispatchers.Main).launch {
-            val data = CoroutineScope(Dispatchers.IO).async  rt@{
-                return@rt work()
-            }.await()
-            data?.let {
-                movie = it
-            }
-            callback(movie)
-        }
+//    fun movieDetailsThenMain(work: suspend (() -> MovieDetails?), callback: ((MovieDetails?)->Unit)) =
+//        CoroutineScope(Dispatchers.Main).launch {
+//            val data = CoroutineScope(Dispatchers.IO).async  rt@{
+//                return@rt work()
+//            }.await()
+//            data?.let {
+//                movie = it
+//            }
+//            callback(movie)
+//        }
 }

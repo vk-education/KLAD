@@ -18,9 +18,21 @@ class MovieDetailsViewModel(
 
 
     fun getMovieDetails(id: Long) {
-        job = Coroutines.movieDetailsThenMain(
+        job = Coroutines.ioThenMan(
             { repository.getMovieDetails(id) },
-            { film.value = it }
+            {
+                film.value = it
+                film.value!!.stringGenres = ""
+                film.value!!.stringCompanies = ""
+
+                for (item in it!!.genres){
+                    film.value!!.stringGenres += item.name + "\n"
+                }
+
+                for (item in it.productionCompanies){
+                    film.value!!.stringCompanies += item.name + "\t\t" + item.originCountry + "\n"
+                }
+            }
         )
     }
 
