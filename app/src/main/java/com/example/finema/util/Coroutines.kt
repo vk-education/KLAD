@@ -13,6 +13,7 @@ object Coroutines {
     private val dataSet = ArrayList<Movie>()
     private lateinit var resp: MovieResponse
 
+    //TODO Убрать, ниже есть обобщенный метод
     fun ioThenMain(work: suspend (() -> MovieResponse?),
                    callback: ((MovieResponse?)->Unit)
                     ) =
