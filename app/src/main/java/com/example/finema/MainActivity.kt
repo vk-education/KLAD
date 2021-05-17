@@ -41,7 +41,6 @@ class MainActivity : AppCompatActivity() {
         .setInitialDelay(5, TimeUnit.SECONDS)
         .build()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         APP_ACTIVITY = this
@@ -61,17 +60,6 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        if (!AppPreference.getInitUser()) {
-//            findNavController(this, R.id.fragment).graph.startDestination =
-//                findNavController(this, R.id.sigInFragment)
-
-
-            initDatabase(this, TYPE_ROOM) {
-                findNavController(this, R.id.fragment)
-                    .navigate(R.id.action_global_signIn)
-            }
-        }
-
         binding.navView.setNavigationItemSelectedListener {
             binding.drawerLayout.close()
 
@@ -88,6 +76,18 @@ class MainActivity : AppCompatActivity() {
             }
 
             true
+        }
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+
+        if (!AppPreference.getInitUser()) {
+            initDatabase(this, TYPE_ROOM) {
+                findNavController(this, R.id.fragment)
+                    .navigate(R.id.action_global_signIn)
+            }
         }
     }
 
@@ -121,5 +121,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 }

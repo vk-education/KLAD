@@ -15,21 +15,21 @@
 
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
 
-        <ProgressBar
-            android:id="@+id/filmLoader"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:indeterminateTint="@color/purple_200"
-            android:progressTint="@color/purple_200"
-            android:layout_gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+<!--        <ProgressBar-->
+<!--            android:id="@+id/filmLoader"-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:indeterminateTint="@color/purple_200"-->
+<!--            android:progressTint="@color/purple_200"-->
+<!--            android:layout_gravity="center"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent" />-->
 
         <LinearLayout
             android:id="@+id/layout"
@@ -159,5 +159,6 @@
         </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
-        </layout>
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+
+</layout>
