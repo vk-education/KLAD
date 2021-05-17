@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequest
 import androidx.work.OneTimeWorkRequestBuilder
@@ -14,6 +16,7 @@ import androidx.work.WorkManager
 import com.example.finema.database.room.RoomDataBase
 import com.example.finema.database.room.RoomRepository
 import com.example.finema.databinding.ActivityMainBinding
+import com.example.finema.databinding.SignInFragmentBinding
 import com.example.finema.ui.settings.NotificationService
 import com.example.finema.util.*
 import org.koin.android.ext.koin.androidContext
@@ -56,6 +59,17 @@ class MainActivity : AppCompatActivity() {
             modules(
                 appModule
             )
+        }
+
+        if (!AppPreference.getInitUser()) {
+//            findNavController(this, R.id.fragment).graph.startDestination =
+//                findNavController(this, R.id.sigInFragment)
+
+
+            initDatabase(this, TYPE_ROOM) {
+                findNavController(this, R.id.fragment)
+                    .navigate(R.id.action_global_signIn)
+            }
         }
 
         binding.navView.setNavigationItemSelectedListener {

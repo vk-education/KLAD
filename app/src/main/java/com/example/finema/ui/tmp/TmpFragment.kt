@@ -40,12 +40,12 @@ class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = getViewModel()
-        if (!AppPreference.getInitUser()) {
-            viewModel.initDatabase(requireContext(), TYPE_ROOM) {
-                Navigation.findNavController(requireActivity(), R.id.fragment)
-                    .navigate(R.id.action_tmpFragment_to_sigInFragment)
-            }
-        }
+//        if (!AppPreference.getInitUser()) {
+//            viewModel.initDatabase(requireContext(), TYPE_ROOM) {
+//                Navigation.findNavController(requireActivity(), R.id.fragment)
+//                    .navigate(R.id.action_tmpFragment_to_sigInFragment)
+//            }
+//        }
 
         super.onViewCreated(view, savedInstanceState)
         requireActivity()
