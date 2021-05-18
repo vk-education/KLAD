@@ -2050,6 +2050,7 @@ id fill
 id fill_horizontal
 id fill_vertical
 id filled
+id filmLoader
 id filmTitle
 id fitToContents
 id fixed

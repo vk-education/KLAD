@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData
 import com.example.finema.database.DatabaseRepository
 import com.example.finema.models.databaseModels.GenreModel
 
-class RoomRepository(private val roomDao: RoomDao):DatabaseRepository {
+class RoomRepository (
+    private val roomDao: RoomDao
+    ): DatabaseRepository {
 
     override val allGenres: LiveData<List<GenreModel>>
         get() = roomDao.getAllGenres()

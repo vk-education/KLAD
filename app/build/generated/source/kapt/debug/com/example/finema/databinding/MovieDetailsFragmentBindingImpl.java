@@ -14,42 +14,48 @@ public class MovieDetailsFragmentBindingImpl extends MovieDetailsFragmentBinding
     static {
         sIncludes = null;
         sViewsWithIds = new android.util.SparseIntArray();
-        sViewsWithIds.put(R.id.imageView, 3);
-        sViewsWithIds.put(R.id.layoutText, 4);
-        sViewsWithIds.put(R.id.textView3, 5);
-        sViewsWithIds.put(R.id.textView6, 6);
-        sViewsWithIds.put(R.id.genres, 7);
-        sViewsWithIds.put(R.id.textView8, 8);
-        sViewsWithIds.put(R.id.rating, 9);
-        sViewsWithIds.put(R.id.textView7, 10);
-        sViewsWithIds.put(R.id.companies, 11);
+        sViewsWithIds.put(R.id.filmLoader, 5);
+        sViewsWithIds.put(R.id.layout, 6);
+        sViewsWithIds.put(R.id.imageView, 7);
+        sViewsWithIds.put(R.id.layoutText, 8);
+        sViewsWithIds.put(R.id.textView3, 9);
+        sViewsWithIds.put(R.id.textView6, 10);
+        sViewsWithIds.put(R.id.textView8, 11);
+        sViewsWithIds.put(R.id.rating, 12);
+        sViewsWithIds.put(R.id.textView7, 13);
     }
     // views
+    @NonNull
+    private final androidx.constraintlayout.widget.ConstraintLayout mboundView0;
     // variables
     // values
     // listeners
     // Inverse Binding Event Handlers
 
     public MovieDetailsFragmentBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 12, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 14, sIncludes, sViewsWithIds));
     }
     private MovieDetailsFragmentBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
-            , (android.widget.TextView) bindings[11]
+            , (android.widget.TextView) bindings[4]
+            , (android.widget.ProgressBar) bindings[5]
             , (android.widget.TextView) bindings[1]
-            , (android.widget.TextView) bindings[7]
-            , (android.widget.ImageView) bindings[3]
-            , (android.widget.LinearLayout) bindings[0]
-            , (android.widget.LinearLayout) bindings[4]
+            , (android.widget.TextView) bindings[3]
+            , (android.widget.ImageView) bindings[7]
+            , (android.widget.LinearLayout) bindings[6]
+            , (android.widget.LinearLayout) bindings[8]
             , (android.widget.TextView) bindings[2]
+            , (android.widget.TextView) bindings[12]
             , (android.widget.TextView) bindings[9]
-            , (android.widget.TextView) bindings[5]
-            , (android.widget.TextView) bindings[6]
             , (android.widget.TextView) bindings[10]
-            , (android.widget.TextView) bindings[8]
+            , (android.widget.TextView) bindings[13]
+            , (android.widget.TextView) bindings[11]
             );
+        this.companies.setTag(null);
         this.filmTitle.setTag(null);
-        this.layout.setTag(null);
+        this.genres.setTag(null);
+        this.mboundView0 = (androidx.constraintlayout.widget.ConstraintLayout) bindings[0];
+        this.mboundView0.setTag(null);
         this.overview.setTag(null);
         setRootTag(root);
         // listeners
@@ -111,7 +117,9 @@ public class MovieDetailsFragmentBindingImpl extends MovieDetailsFragmentBinding
         }
         java.lang.String filmIdTitle = null;
         java.lang.String filmIdOverview = null;
+        java.lang.String filmIdStringGenres = null;
         com.example.finema.models.movieResponse.MovieDetails filmId = mFilmId;
+        java.lang.String filmIdStringCompanies = null;
 
         if ((dirtyFlags & 0x3L) != 0) {
 
@@ -122,13 +130,19 @@ public class MovieDetailsFragmentBindingImpl extends MovieDetailsFragmentBinding
                     filmIdTitle = filmId.getTitle();
                     // read filmId.overview
                     filmIdOverview = filmId.getOverview();
+                    // read filmId.stringGenres
+                    filmIdStringGenres = filmId.getStringGenres();
+                    // read filmId.stringCompanies
+                    filmIdStringCompanies = filmId.getStringCompanies();
                 }
         }
         // batch finished
         if ((dirtyFlags & 0x3L) != 0) {
             // api target 1
 
+            this.companies.setText(filmIdStringCompanies);
             androidx.databinding.adapters.TextViewBindingAdapter.setText(this.filmTitle, filmIdTitle);
+            this.genres.setText(filmIdStringGenres);
             androidx.databinding.adapters.TextViewBindingAdapter.setText(this.overview, filmIdOverview);
         }
     }

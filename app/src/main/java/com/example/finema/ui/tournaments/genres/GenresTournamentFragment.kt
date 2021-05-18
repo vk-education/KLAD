@@ -26,7 +26,6 @@ class GenresTournamentFragment :
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var mAdapter: GenresTournamentAdapter
     private lateinit var mObserverList: Observer<List<GenreModel>>
-    private var allFilms = ArrayList<Movie>()
 
 
     override fun onCreateView(

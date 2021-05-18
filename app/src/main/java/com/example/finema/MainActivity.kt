@@ -17,6 +17,9 @@ import com.example.finema.databinding.ActivityMainBinding
 import com.example.finema.ui.settings.NotificationService
 import com.example.finema.util.*
 import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.compose.get
+import org.koin.core.context.GlobalContext
+import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
 import java.util.concurrent.TimeUnit
 
@@ -31,7 +34,6 @@ import java.util.concurrent.TimeUnit
 //                    }
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
 
     private var simpleNotification = OneTimeWorkRequestBuilder<NotificationService>()
         .addTag("tag")
@@ -51,10 +53,16 @@ class MainActivity : AppCompatActivity() {
             binding.drawerLayout.open()
         }
 
+        checkUser()
+
         startKoin {
             androidContext(this@MainActivity)
-            modules(
-                appModule
+            modules( listOf(
+                apiModule,
+                databaseModule,
+                repositoryModule,
+                viewModelModule
+                )
             )
         }
 
@@ -90,10 +98,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkUser() {
-        if (!AppPreference.getInitUser()) {
+        if (AppPreference.getInitUser()) {
             initDatabase(applicationContext, TYPE_ROOM) {
-                findNavController(binding.root)
-                    .navigate(R.id.action_global_signIn)
             }
         }
     }
@@ -101,8 +107,6 @@ class MainActivity : AppCompatActivity() {
     private fun initDatabase(context: Context, type:String, onSuccess:() -> Unit){
         when (type){
             TYPE_ROOM -> {
-                val dao = RoomDataBase.getInstance(context).getRoomDao()
-                REPOSITORY = RoomRepository(dao)
                 onSuccess()
             }
         }

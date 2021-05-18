@@ -20,6 +20,4 @@ open class BaseViewModel(
     private val errorMessage = MutableLiveData<String>()
 
     fun showError(throwable: Throwable) = errorMessage.postValue("ERROR")
-
-
 }
