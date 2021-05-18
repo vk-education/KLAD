@@ -39,20 +39,13 @@ class GenresTournamentVM (
     var filmListVM = MutableLiveData<List<Movie>>()
     var genreListVM = MutableLiveData<GenreList>()
 
-    private fun getMovies(genre:String) {
-        job = Coroutines.ioThenMan(
-            { apiRepository.getMoviesWithGenre(1, genre) },
-            { filmListVM.value = it?.movies }
-        )
-    }
-
     fun signOut() {
         DBRepository.signOut()
     }
 
-    private fun getGenres(onSuccess:() -> Unit) {
+    fun getGenres(onSuccess:() -> Unit){
         job = Coroutines.ioThenMan(
-            { apiRepository.getGenres() },
+            { repository.getGenres() },
             { genreListVM.value = it }
         )
         onSuccess()
@@ -63,5 +56,4 @@ class GenresTournamentVM (
             DBRepository.insert(genreModel) {
             }
         }
-
 }

@@ -77,10 +77,10 @@
     </fragment>
 
     <fragment
-        android:id="@+id/fragmentTournament"
-        android:name="com.example.finema.ui.tournaments.TournamentFragment"
-        android:label="Tournament fragment"
-        tools:layout="@layout/tournament_fragment">
+            android:id="@+id/fragmentTournament"
+            android:name="com.example.finema.ui.tournaments.tournament.TournamentFragment"
+            android:label="Tournament fragment"
+            tools:layout="@layout/fragment_tournament">
 
         <argument
             android:name="number"

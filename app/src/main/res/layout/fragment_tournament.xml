@@ -34,6 +34,13 @@
                 android:textColor="@android:color/holo_purple"
                 android:textSize="18sp"
                 android:text="@string/tournament_round_count" />
+        <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:visibility="visible"
+                />
 
         <androidx.cardview.widget.CardView
                 android:id="@+id/cardview1"
@@ -44,7 +51,8 @@
                 android:layout_margin="@dimen/app_margin"
                 app:cardCornerRadius="@dimen/card_corner_radius"
                 app:cardElevation="@dimen/card_corner_elevation"
-                android:layout_weight="0.5">
+                android:layout_weight="0.5"
+                android:visibility="gone">
 
             <LinearLayout
                     android:layout_width="match_parent"
@@ -83,7 +91,8 @@
                 android:layout_margin="@dimen/app_margin"
                 app:cardCornerRadius="@dimen/card_corner_radius"
                 app:cardElevation="@dimen/card_corner_elevation"
-                android:layout_weight="0.5">
+                android:layout_weight="0.5"
+                android:visibility="gone">
 
             <LinearLayout
                     android:layout_width="match_parent"

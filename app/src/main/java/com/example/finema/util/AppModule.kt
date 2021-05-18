@@ -10,7 +10,7 @@ import com.example.finema.ui.higherlowerrating.HigherLowerRatingViewModel
 import com.example.finema.ui.movieDetail.MovieDetailsViewModel
 import com.example.finema.ui.signIn.SignInViewModel
 import com.example.finema.ui.tmp.TmpViewModel
-import com.example.finema.ui.tournaments.TournamentVM
+import com.example.finema.ui.tournaments.tournament.TournamentVM
 import com.example.finema.ui.tournaments.genres.GenresTournamentVM
 import com.example.finema.ui.userProfile.ProfileViewModel
 import org.koin.android.ext.koin.androidContext

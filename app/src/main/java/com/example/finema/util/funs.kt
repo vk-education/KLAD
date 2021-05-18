@@ -8,6 +8,7 @@ fun ImageView.downloadAndSetImage(url:String){
         .with(this)
         .load(url)
         .centerCrop()
+        .override(500, 500)
         .placeholder(R.drawable.movies_24)
         .into(this);
 }

@@ -1,4 +1,4 @@
-package com.example.finema.ui.tournaments
+package com.example.finema.ui.tournaments.tournament
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,16 +7,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
 import com.example.finema.R
-import com.example.finema.databinding.FragmentTournamentDuoBinding
+import com.example.finema.databinding.FragmentTournamentBinding
 import com.example.finema.models.movieResponse.Movie
 import com.example.finema.ui.base.BaseFragment
-import com.example.finema.ui.tournaments.genres.GenresTournamentVM
-import com.example.finema.util.downloadAndSetImage
 import com.example.finema.util.APP_ACTIVITY
+import com.example.finema.util.downloadAndSetImage
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
+//TODO Переименовать, положить в отдельную папку
 //TODO Вынести всю логику во VM
-class TournamentFragment : BaseFragment<GenresTournamentVM, FragmentTournamentDuoBinding>() {
+class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>() {
 
     private var mListFilms: ArrayList<Movie> = ArrayList()
     private var mListFilms2: ArrayList<Movie> = ArrayList()
@@ -27,11 +27,13 @@ class TournamentFragment : BaseFragment<GenresTournamentVM, FragmentTournamentDu
     private var roundCount = 1
     private var flagMain = true
 
+    private var allFilms : ArrayList<Movie> = ArrayList()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentTournamentDuoBinding
+        binding = FragmentTournamentBinding
             .inflate(inflater, container, false)
 
         return binding.root
@@ -41,17 +43,26 @@ class TournamentFragment : BaseFragment<GenresTournamentVM, FragmentTournamentDu
         viewModel = getViewModel()
 
         super.onViewCreated(view, savedInstanceState)
-        // get List of Films and number from previous fragment
-        val allFilms = arguments?.getParcelableArrayList<Movie>("list") as ArrayList<Movie>
+        // get number from previous fragment
         val numFilms = arguments?.getSerializable("num") as Int
-        // cut to num
-        // cum to nut hehehe
+        val genreFilm = arguments?.getSerializable("genre") as String
+
+        viewModel.filmListVM.observe(APP_ACTIVITY, {
+            allFilms = it as ArrayList<Movie>
+            mListFilms = allFilms.take(numFilms) as ArrayList<Movie>
+
+            binding.progressBar.visibility = View.GONE
+            binding.cardview1.visibility = View.VISIBLE
+            binding.cardview2.visibility = View.VISIBLE
+            // first initialization of cards (image and text)
+            fillCard(mListFilms)
+        })
+
+        viewModel.getMovies(genreFilm)
         //TODO Убрать строки в ресурсы
-        binding.txtNumCategory.text = getString(R.string.n_best_movies, numFilms)
-        binding.roundCount.text = getString(R.string.round, roundCount)
-        mListFilms = allFilms.take(numFilms) as ArrayList<Movie>
-        // first initialization of cards (image and text)
-        fillCard(mListFilms)
+
+        binding.txtNumCategory.text = "$numFilms Лучших фильмов"
+        binding.roundCount.text = "Раунд $roundCount"
 
         binding.cardview1.setOnClickListener {
             clickFirstButton()
@@ -149,6 +160,10 @@ class TournamentFragment : BaseFragment<GenresTournamentVM, FragmentTournamentDu
             )
         }
 
+    }
+
+    companion object{
+        const val POSTER_BASE_URL =  "https://image.tmdb.org/t/p/w342"
     }
 
 }
