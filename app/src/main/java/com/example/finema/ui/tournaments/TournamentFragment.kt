@@ -15,7 +15,6 @@ import com.example.finema.util.downloadAndSetImage
 import com.example.finema.util.APP_ACTIVITY
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-//TODO Переименовать, положить в отдельную папку
 //TODO Вынести всю логику во VM
 class TournamentFragment : BaseFragment<GenresTournamentVM, FragmentTournamentDuoBinding>() {
 

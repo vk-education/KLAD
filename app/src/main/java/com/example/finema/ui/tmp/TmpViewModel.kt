@@ -20,7 +20,7 @@ class TmpViewModel(
     //TODO Аналогичнго с TournamentGenresVM
     var genreListVM = MutableLiveData<GenreList>()
 
-    fun getGenres(){
+    fun getGenres(onSuccess:() -> Unit){
         job = Coroutines.ioThenMan(
             { apiRepository.getGenres() },
             { genreListVM.value = it }

@@ -14,26 +14,26 @@ import com.example.finema.ui.tournaments.TournamentVM
 import com.example.finema.ui.tournaments.genres.GenresTournamentVM
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.compose.get
 import org.koin.androidx.experimental.dsl.viewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
 import retrofit2.Retrofit
 
 val viewModelModule: Module = module {
 
-    viewModel<HigherLowerViewModel>()
+    viewModel { HigherLowerViewModel(get()) }
 
-    viewModel<SignInViewModel>()
+    viewModel { SignInViewModel() }
 
-    viewModel<TmpViewModel>()
+    viewModel { TmpViewModel(get(), get()) }
 
-    viewModel<BaseViewModel>()
+    viewModel { GenresTournamentVM(get(), get()) }
 
-    viewModel<GenresTournamentVM>()
+    viewModel { MovieDetailsViewModel(get()) }
 
-    viewModel<MovieDetailsViewModel>()
-
-    viewModel<TournamentVM>()
+    viewModel { TournamentVM() }
 }
 
 val apiModule: Module = module {

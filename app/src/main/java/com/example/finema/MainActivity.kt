@@ -1,25 +1,20 @@
 package com.example.finema
 
+import android.app.Application
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.Navigation.findNavController
 import androidx.work.ExistingWorkPolicy
-import androidx.work.OneTimeWorkRequest
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
-import com.example.finema.database.room.RoomDataBase
-import com.example.finema.database.room.RoomRepository
 import com.example.finema.databinding.ActivityMainBinding
 import com.example.finema.ui.settings.NotificationService
 import com.example.finema.util.*
 import org.koin.android.ext.koin.androidContext
-import org.koin.androidx.compose.get
-import org.koin.core.context.GlobalContext
-import org.koin.core.context.loadKoinModules
+import org.koin.android.ext.koin.androidFileProperties
+import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import java.util.concurrent.TimeUnit
 
@@ -40,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         .setInitialDelay(5, TimeUnit.SECONDS)
         .build()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         APP_ACTIVITY = this
@@ -54,17 +48,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         checkUser()
-
-        startKoin {
-            androidContext(this@MainActivity)
-            modules( listOf(
-                apiModule,
-                databaseModule,
-                repositoryModule,
-                viewModelModule
-                )
-            )
-        }
 
         binding.navView.setNavigationItemSelectedListener {
             binding.drawerLayout.close()
@@ -82,6 +65,18 @@ class MainActivity : AppCompatActivity() {
             }
 
             true
+        }
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+
+        if (!AppPreference.getInitUser()) {
+            initDatabase(this, TYPE_ROOM) {
+                findNavController(this, R.id.fragment)
+                    .navigate(R.id.action_global_signIn)
+            }
         }
     }
 
@@ -111,5 +106,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 }

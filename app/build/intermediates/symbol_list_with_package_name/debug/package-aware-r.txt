@@ -2050,7 +2050,6 @@ id fill
 id fill_horizontal
 id fill_vertical
 id filled
-id filmLoader
 id filmTitle
 id fitToContents
 id fixed
@@ -2095,6 +2094,7 @@ id ignore
 id ignoreRequest
 id image
 id imageView
+id imageView2
 id img1
 id img2
 id info
@@ -2118,6 +2118,7 @@ id light
 id line1
 id line3
 id linear
+id linearLayout
 id listMode
 id list_item
 id lovely
@@ -2213,6 +2214,12 @@ id position
 id postLayout
 id progress_circular
 id progress_horizontal
+id projectHead
+id projectName
+id projectState
+id projectType
+id projectVacancies
+id projectsList
 id radio
 id rating
 id ratio
@@ -2236,6 +2243,8 @@ id scrollIndicatorDown
 id scrollIndicatorUp
 id scrollView
 id scrollable
+id searchLayout
+id searchLoader
 id search_badge
 id search_bar
 id search_button
@@ -2458,6 +2467,7 @@ layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout expand_button
 layout favourite_fragment
+layout favourite_movie_item
 layout fragment_base
 layout fragment_tournament_duo
 layout fragment_tournament_genres

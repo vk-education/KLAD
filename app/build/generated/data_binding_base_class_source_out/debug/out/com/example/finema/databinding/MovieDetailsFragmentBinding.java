@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,9 +20,6 @@ import java.lang.Object;
 public abstract class MovieDetailsFragmentBinding extends ViewDataBinding {
   @NonNull
   public final TextView companies;
-
-  @NonNull
-  public final ProgressBar filmLoader;
 
   @NonNull
   public final TextView filmTitle;
@@ -62,13 +58,11 @@ public abstract class MovieDetailsFragmentBinding extends ViewDataBinding {
   protected MovieDetails mFilmId;
 
   protected MovieDetailsFragmentBinding(Object _bindingComponent, View _root, int _localFieldCount,
-      TextView companies, ProgressBar filmLoader, TextView filmTitle, TextView genres,
-      ImageView imageView, LinearLayout layout, LinearLayout layoutText, TextView overview,
-      TextView rating, TextView textView3, TextView textView6, TextView textView7,
-      TextView textView8) {
+      TextView companies, TextView filmTitle, TextView genres, ImageView imageView,
+      LinearLayout layout, LinearLayout layoutText, TextView overview, TextView rating,
+      TextView textView3, TextView textView6, TextView textView7, TextView textView8) {
     super(_bindingComponent, _root, _localFieldCount);
     this.companies = companies;
-    this.filmLoader = filmLoader;
     this.filmTitle = filmTitle;
     this.genres = genres;
     this.imageView = imageView;

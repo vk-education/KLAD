@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginTop="4dp"
+        android:elevation="4dp"
+        app:cardCornerRadius="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="15dp">
+
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                tools:srcCompat="@tools:sample/backgrounds/scenic"
+                android:id="@+id/imageView2"
+                android:layout_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+                app:layout_constraintTop_toTopOf="@+id/linearLayout"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayout" />
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/linearLayout"
+                android:layout_marginEnd="8dp">
+
+            <TextView
+                    android:id="@+id/filmTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/purple_200"
+                    tools:text="Something" />
+
+            <TextView
+                    android:id="@+id/projectName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="16sp"
+                    android:textColor="?android:attr/textColorPrimary"
+                    tools:text="Za warudo toki wo tomare" />
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="4dp">
+
+                <TextView
+                        android:id="@+id/projectState"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:textColor="@color/purple_200"
+                        tools:text="Рабочий" />
+
+                <TextView
+                        android:id="@+id/projectVacancies"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/purple_200"
+                        android:visibility="gone"
+                        tools:text="3 вакансии"
+                        tools:visibility="visible" />
+
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/projectHead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:textSize="15sp"
+                    android:textColor="?android:attr/textColorPrimary"
+                    tools:text="Руководитель: ДИО" />
+
+            <TextView
+                    android:id="@+id/projectType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="?android:attr/textColorPrimary"
+                    tools:text="Тип: Прогр-аппарат." />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

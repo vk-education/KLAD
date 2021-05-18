@@ -27,11 +27,10 @@ class NotificationService(context: Context, workerParams: WorkerParameters) :
         val notificationManager =
             applicationContext.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         val resultIntent = Intent(applicationContext, MainActivity::class.java)
-        val stackBuilder: TaskStackBuilder = TaskStackBuilder.create(applicationContext)
-        stackBuilder.addParentStack(MainActivity::class.java)
+        val resultPendingIntent = TaskStackBuilder.create(applicationContext)
+            .addParentStack(MainActivity::class.java)
             .addNextIntent(resultIntent)
-        val resultPendingIntent: PendingIntent =
-            stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
+            .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
 
         val notification = NotificationCompat.Builder(applicationContext, "default")
             .setContentTitle("Стало скучно?")
