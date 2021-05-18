@@ -24,7 +24,7 @@ class TmpViewModel(
     private val repository= MoviesRepository(apiTmp)
     var genreListVM = MutableLiveData<GenreList>()
 
-    fun getGenres(){
+    fun getGenres(onSuccess:() -> Unit){
         job = Coroutines.ioThenMan(
             { repository.getGenres() },
             { genreListVM.value = it }

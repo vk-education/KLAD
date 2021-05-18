@@ -1,6 +1,5 @@
 package com.example.finema.ui.tmp
 
-import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,7 +8,6 @@ import android.view.ViewGroup
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.finema.R
 import com.example.finema.databinding.TmpFragmentBinding
@@ -19,8 +17,6 @@ import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.AppPreference
 import com.example.finema.util.TYPE_ROOM
 import com.google.android.material.appbar.MaterialToolbar
-import com.google.firebase.auth.FirebaseAuth
-import org.koin.androidx.compose.get
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
@@ -40,25 +36,27 @@ class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = getViewModel()
-//        if (!AppPreference.getInitUser()) {
-//            viewModel.initDatabase(requireContext(), TYPE_ROOM) {
-//                Navigation.findNavController(requireActivity(), R.id.fragment)
-//                    .navigate(R.id.action_tmpFragment_to_sigInFragment)
-//            }
-//        }
-
         super.onViewCreated(view, savedInstanceState)
+        if (!AppPreference.getInitUser()) {
+            //if user not authorized then -> signInFragment
+            Navigation.findNavController(requireActivity(), R.id.fragment)
+                .navigate(R.id.action_tmpFragment_to_sigInFragment)
+        } else {
+            // if genres not downloaded -> loadGenresList()
+            if (!AppPreference.getGeneratedGenres()) {
+                loadGenresList()
+            }
+            // initialization for Database
+            viewModel.initDatabase(requireContext(), TYPE_ROOM) {
+                Log.d("testLog", "kook")
+            }
+        }
         requireActivity()
             .findViewById<DrawerLayout>(R.id.drawer_layout)
             .setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
 
         //TODO убрать
         requireActivity().findViewById<MaterialToolbar>(R.id.topAppBar).visibility = View.VISIBLE
-//        if genre list not exist in database then download it
-        //TODO перенести в VM
-        if (!AppPreference.getGeneratedGenres()) {
-            loadGenresList()
-        }
         binding.genre.setOnClickListener {
             findNavController().navigate(R.id.action_fragment_tmp_to_fragment_genre)
         }
@@ -70,18 +68,14 @@ class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
             val list = it.genres
             for (item in list) {
                 viewModel.insert(GenreModel(name = item.name, id = item.id)) {
-                    Log.d("testLog","Row inserted")
+                    Log.d("testLog", "Row inserted")
                 }
             }
         }
-        if (!AppPreference.getGeneratedGenres()) {
-            viewModel.getGenres()
+        viewModel.getGenres{
+            AppPreference.setGeneratedGenres(true)
         }
-        viewModel.getGenres()
         viewModel.genreListVM.observe(viewLifecycleOwner, mObserverList)
-        //TODO Убрать во VM
-        AppPreference.setGeneratedGenres(true)
-
     }
 
 
