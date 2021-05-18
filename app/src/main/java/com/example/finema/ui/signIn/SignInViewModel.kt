@@ -10,14 +10,4 @@ import com.example.finema.util.TYPE_ROOM
 class SignInViewModel(
 ): BaseViewModel() {
 
-    //TODO я ничего не понял, Дима объясни
-    fun initDatabase(context: Context, type:String, onSuccess:() -> Unit){
-        when (type){
-            TYPE_ROOM -> {
-                val dao = RoomDataBase.getInstance(context).getRoomDao()
-                REPOSITORY = RoomRepository(dao)
-                onSuccess()
-            }
-        }
-    }
 }

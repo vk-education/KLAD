@@ -69,21 +69,17 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
             .getHeaderView(0).findViewById(R.id.nickProfile)
 
         binding.signInWithGoogle.setOnClickListener{
-            viewModel.initDatabase(requireContext(), TYPE_ROOM) {
                 signIn()
                 navigationOpen()
                 AppPreference.setInitUser(true)
                 findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
-            }
         }
 
         binding.signInAsGuest.setOnClickListener{
-            viewModel.initDatabase(requireContext(), TYPE_ROOM) {
             AppPreference.setInitUser(true)
             header.text = resources.getText(R.string.guest)
             navigationOpen()
             findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
-            }
         }
     }
 
