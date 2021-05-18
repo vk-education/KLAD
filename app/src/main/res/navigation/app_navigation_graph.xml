@@ -112,7 +112,11 @@
             android:id="@+id/fragmentSettings"
             android:name="com.example.finema.ui.settings.SettingsFragment"
             android:label="Settings fragment"
-            tools:layout="@layout/settings_fragment" />
+            tools:layout="@layout/settings_fragment" >
+        <action
+                android:id="@+id/action_fragmentSettings_to_sigInFragment"
+                app:destination="@id/sigInFragment" />
+    </fragment>
 
     <fragment
             android:id="@+id/fragmentProfile"

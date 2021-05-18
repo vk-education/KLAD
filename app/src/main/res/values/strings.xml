@@ -15,4 +15,5 @@
     <string name="genre_item_genre_name">Жанр</string>
     <string name="higher_lower_score">Очки: %1$d</string>
     <string name="poster_base_url">https://image.tmdb.org/t/p/w342%1$s</string>
+    <string name="quit">Выйти из приложения</string>
 </resources>
