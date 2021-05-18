@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation.findNavController
 import androidx.work.ExistingWorkPolicy
@@ -76,6 +77,11 @@ class MainActivity : AppCompatActivity() {
             initDatabase(this, TYPE_ROOM) {
                 findNavController(this, R.id.fragment)
                     .navigate(R.id.action_global_signIn)
+            }
+        }
+        else {
+            initDatabase(this, TYPE_ROOM) {
+                Log.d("testLog","nothing")
             }
         }
     }

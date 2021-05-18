@@ -3,6 +3,7 @@ package com.example.finema.ui.tournaments.genres
 import android.app.Dialog
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,10 +14,12 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finema.R
 import com.example.finema.databinding.FragmentTournamentGenresBinding
+import com.example.finema.models.GenreRequest.GenreList
 import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.models.movieResponse.Movie
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.APP_ACTIVITY
+import com.example.finema.util.AppPreference
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class GenresTournamentFragment :
@@ -38,12 +41,14 @@ class GenresTournamentFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = getViewModel()
-
         super.onViewCreated(view, savedInstanceState)
         initialization()
     }
 
     private fun initialization() {
+        if (!AppPreference.getGeneratedGenres()) {
+            loadGenresList()
+        }
         mAdapter = GenresTournamentAdapter(this)
         mRecyclerView = binding.tournamentsRecycler
         mRecyclerView.adapter = mAdapter
@@ -122,5 +127,22 @@ class GenresTournamentFragment :
 //        TODO findNavController() ?
         Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
             .navigate(R.id.action_fragmentGenre_to_fragmentTournament, bundle)
+    }
+
+    private fun loadGenresList() {
+        val mObserverList: Observer<GenreList> = Observer {
+            val list = it.genres
+            for (item in list) {
+                viewModel.insert(GenreModel(name = item.name, id = item.id)) {
+                    Log.d("testLog", "Row inserted")
+                }
+            }
+        }
+
+        viewModel.getGenres {
+            AppPreference.setGeneratedGenres(true)
+        }
+
+        viewModel.genreListVM.observe(viewLifecycleOwner, mObserverList)
     }
 }

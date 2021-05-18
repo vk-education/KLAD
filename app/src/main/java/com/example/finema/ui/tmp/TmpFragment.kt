@@ -21,16 +21,12 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
 
-    private lateinit var mObserverList: Observer<GenreList>
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = TmpFragmentBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -38,51 +34,17 @@ class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
         viewModel = getViewModel()
 
         super.onViewCreated(view, savedInstanceState)
-        if (!AppPreference.getInitUser()) {
-            //if user not authorized then -> signInFragment
-            Navigation.findNavController(requireActivity(), R.id.fragment)
-                .navigate(R.id.action_tmpFragment_to_sigInFragment)
-        } else {
-            // if genres not downloaded -> loadGenresList()
-            if (!AppPreference.getGeneratedGenres()) {
-                loadGenresList()
-            }
-            // initialization for Database
-        }
         requireActivity()
             .findViewById<DrawerLayout>(R.id.drawer_layout)
             .setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-
         //TODO убрать
         requireActivity().findViewById<MaterialToolbar>(R.id.topAppBar).visibility = View.VISIBLE
-//        if genre list not exist in database then download it
-        //TODO перенести в VM
-        if (!AppPreference.getGeneratedGenres()) {
-            loadGenresList()
-        }
         binding.genre.setOnClickListener {
             findNavController().navigate(R.id.action_fragment_tmp_to_fragment_genre)
         }
     }
 
-    //TODO переделать, убрать логику в VM
-    private fun loadGenresList() {
-        mObserverList = Observer {
-            val list = it.genres
-            for (item in list) {
-                viewModel.insert(GenreModel(name = item.name, id = item.id)) {
-                    Log.d("testLog", "Row inserted")
-                }
-            }
-        }
-        viewModel.getGenres{
-            AppPreference.setGeneratedGenres(true)
-        }
-        viewModel.genreListVM.observe(viewLifecycleOwner, mObserverList)
-        //TODO Убрать во VM
-        AppPreference.setGeneratedGenres(true)
 
-    }
 
 
 }

@@ -13,25 +13,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class TmpViewModel(
-    private val apiRepository: MoviesRepository,
-    private val BDRepository: RoomRepository
-    ): BaseViewModel() {
-
-    //TODO Аналогичнго с TournamentGenresVM
-    var genreListVM = MutableLiveData<GenreList>()
-
-    fun getGenres(onSuccess:() -> Unit){
-        job = Coroutines.ioThenMan(
-            { apiRepository.getGenres() },
-            { genreListVM.value = it }
-        )
-    }
-
-    fun insert(genreModel: GenreModel, onSuccess: () -> Unit) =
-        viewModelScope.launch(Dispatchers.Main) {
-            BDRepository.insert(genreModel){
-                onSuccess()
-            }
-        }
+): BaseViewModel() {
 
 }
