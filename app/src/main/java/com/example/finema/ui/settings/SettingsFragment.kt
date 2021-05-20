@@ -9,7 +9,7 @@ import com.example.finema.R
 import com.example.finema.util.AppPreference
 
 
-class SettingsFragment: PreferenceFragmentCompat(){
+class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings, rootKey)

@@ -5,17 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.bumptech.glide.Glide
 import com.example.finema.databinding.MovieDetailsFragmentBinding
 import com.example.finema.ui.base.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class MovieDetailsFragment: BaseFragment<MovieDetailsViewModel, MovieDetailsFragmentBinding>() {
-
-    //TODO убрать после фикса viewModel
-    //TODO убрать
-    //TODO Аналогично строке 16
+class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFragmentBinding>() {
     private var arg: Long = 0
 
     override fun onCreateView(
@@ -23,8 +18,6 @@ class MovieDetailsFragment: BaseFragment<MovieDetailsViewModel, MovieDetailsFrag
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-//        val smt = requireArguments().getLong("filmId")
-
         binding = MovieDetailsFragmentBinding.inflate(inflater, container, false)
 
         return binding.root
@@ -47,13 +40,13 @@ class MovieDetailsFragment: BaseFragment<MovieDetailsViewModel, MovieDetailsFrag
             binding.filmId = it
 
             var genres = STARTING_GENRE_VALUE
-            for (item in it.genres){
+            for (item in it.genres) {
                 genres += item.name + NEW_LINE
             }
             binding.genres.text = genres
 
             var companies = STARTING_COMPANIES_VALUE
-            for (item in it.productionCompanies){
+            for (item in it.productionCompanies) {
                 companies += item.name + TAB + item.originCountry + NEW_LINE
             }
             binding.companies.text = companies
