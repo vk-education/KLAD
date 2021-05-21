@@ -9,23 +9,14 @@ import com.example.finema.R
 import com.example.finema.models.databaseModels.GenreModel
 
 class GenresTournamentAdapter(
-    private val listener: TournamentHolder.Listener
-
+    private val listener: TournamentHolder.Listener,
 ) : RecyclerView.Adapter<GenresTournamentAdapter.TournamentHolder>() {
 
     private var mListGenres = emptyList<GenreModel>()
-//    private lateinit var dialog: Dialog
 
-    class TournamentHolder(
-        view: View,
-        private val listener: Listener
-    ) : RecyclerView.ViewHolder(view) {
-        val genreName: TextView = view.findViewById(R.id.item_genre_name)
-//
-        interface Listener {
-            fun onMovieClicked(view: View, genreModel: GenreModel)
-        }
-
+    fun setList(list: List<GenreModel>) {
+        mListGenres = list
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TournamentHolder {
@@ -35,22 +26,33 @@ class GenresTournamentAdapter(
     }
 
     override fun onBindViewHolder(holder: TournamentHolder, position: Int) {
-        holder.genreName.text = mListGenres[position].name
+        holder.bind(mListGenres[position].name)
     }
 
     override fun getItemCount(): Int = mListGenres.size
 
 
-    fun setList(list: List<GenreModel>) {
-        mListGenres = list
-        notifyDataSetChanged()
-    }
+    class TournamentHolder(
+        view: View,
+        private val listener: Listener
+    ) : RecyclerView.ViewHolder(view) {
 
-    //TODO перенести в холдер
-    override fun onViewAttachedToWindow(holder: TournamentHolder) {
-        holder.itemView.setOnClickListener {
-            listener.onMovieClicked(holder.itemView,mListGenres[holder.adapterPosition])
+        private val genreName: TextView = view.findViewById(R.id.item_genre_name)
+
+        interface Listener {
+            fun onMovieClicked(view: View, genreModelId: GenreModel)
         }
+
+        fun bind(name: String) {
+            genreName.text = name
+        }
+
+        fun onViewAttachedToWindow(mListGenres: List<GenreModel>) {
+            itemView.setOnClickListener {
+                listener.onMovieClicked(itemView, mListGenres[adapterPosition])
+            }
+        }
+
     }
 
 }

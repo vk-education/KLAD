@@ -21,6 +21,7 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

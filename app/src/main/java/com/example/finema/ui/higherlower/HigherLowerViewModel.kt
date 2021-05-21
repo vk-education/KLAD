@@ -54,7 +54,6 @@ class HigherLowerViewModel(
         } else {
             _movies.value?.movies = _movies.value?.movies?.drop(1)!!
             _movies.value = _movies.value
-
         }
     }
 

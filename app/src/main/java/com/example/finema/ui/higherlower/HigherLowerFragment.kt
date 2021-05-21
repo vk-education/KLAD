@@ -28,21 +28,21 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
         viewModel = getViewModel()
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.movies.observe(viewLifecycleOwner, { movies ->
-            binding.txtFilm1.text = movies.movies[viewModel.img1].title
-            binding.txtFilm2.text = movies.movies[viewModel.img2].title
+        viewModel.movies.observe(viewLifecycleOwner, { movieList ->
+            binding.txtFilm1.text = movieList.movies[viewModel.img1].title
+            binding.txtFilm2.text = movieList.movies[viewModel.img2].title
 
             Glide
                 .with(binding.root)
                 .load(getString(
                     R.string.poster_base_url,
-                    movies.movies[viewModel.img1].posterPath))
+                    movieList.movies[viewModel.img1].posterPath))
                 .into(binding.img1)
             Glide
                 .with(binding.root)
                 .load(getString(
                     R.string.poster_base_url,
-                    movies.movies[viewModel.img2].posterPath))
+                    movieList.movies[viewModel.img2].posterPath))
                 .into(binding.img2)
 
             binding.img1.setOnClickListener {

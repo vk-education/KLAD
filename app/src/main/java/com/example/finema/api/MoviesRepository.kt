@@ -10,8 +10,8 @@ import java.util.*
 
 class MoviesRepository(
     private val api: MoviesApi,
-    private val context: Context,
-    private val dao: RoomDao
+    private val dao: RoomDao,
+    private val context: Context
 ) : IMoviesRepository, SafeApiRequest() {
 
     override suspend fun getMovies(page: Int) = apiRequest {
