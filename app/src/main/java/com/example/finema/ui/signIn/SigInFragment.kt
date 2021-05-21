@@ -31,10 +31,8 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
     private lateinit var header: TextView
 
     private val customContract = registerForActivityResult(Contract()) {
-        Log.d("", "dfef")
+        header.text = it?.currentUser?.displayName!!
     }
-
-    //TODO изменить
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -71,7 +69,7 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
 
     //TODO репозиторий по нажатию на кнопку возвращает интент, через VM, который и надо здесь
     // запускать
-    private fun signIn(){
+    private fun signIn() {
         customContract.launch(Unit)
     }
 

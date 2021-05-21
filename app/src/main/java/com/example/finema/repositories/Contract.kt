@@ -11,9 +11,8 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import org.koin.androidx.compose.get
 
-class Contract : ActivityResultContract<Unit, Unit>() {
+class Contract : ActivityResultContract<Unit, FirebaseAuth?>() {
 
     private val mAuth  = FirebaseAuth.getInstance()
 
@@ -29,10 +28,11 @@ class Contract : ActivityResultContract<Unit, Unit>() {
         return  googleSignInClient.signInIntent
     }
 
-    override fun parseResult(resultCode: Int, intent: Intent?) =
-        activityResult(intent)
+    override fun parseResult(resultCode: Int, intent: Intent?): FirebaseAuth? {
+        return activityResult(intent)
+    }
 
-    private fun activityResult(data: Intent?) {
+    private fun activityResult(data: Intent?): FirebaseAuth? {
         val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
         val exception = task.exception
         if(task.isSuccessful) {
@@ -40,18 +40,19 @@ class Contract : ActivityResultContract<Unit, Unit>() {
                 // Google Sign In was successful, authenticate with Firebase
                 val account: GoogleSignInAccount? = task.getResult(ApiException::class.java)
                 Log.d("Sign In Fragment", "firebaseAuthWithGoogle:" + account?.id)
-                firebaseAuthWithGoogle(account?.idToken!!)
-
+                return firebaseAuthWithGoogle(account?.idToken!!)
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
                 Log.w("Sign In Fragment", "Google sign in failed", e)
+                return null
             }
         }else{
             Log.w("Sign In Fragment", exception.toString())
+            return null
         }
     }
 
-    private fun firebaseAuthWithGoogle(idToken: String) {
+    private fun firebaseAuthWithGoogle(idToken: String): FirebaseAuth {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         mAuth.signInWithCredential(credential)
             .addOnCompleteListener { task ->
@@ -65,6 +66,7 @@ class Contract : ActivityResultContract<Unit, Unit>() {
                     Log.w("firebaseAuthWithGoogle", "signInWithCredential:failure", task.exception)
                 }
             }
+        return mAuth
     }
 
     companion object {

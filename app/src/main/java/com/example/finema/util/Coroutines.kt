@@ -14,6 +14,7 @@ object Coroutines {
     private lateinit var resp: MovieResponse
 
     //TODO Убрать, ниже есть обобщенный метод
+    // не братан, иначе пользователь будет
     fun ioThenMain(work: suspend (() -> MovieResponse?),
                    callback: ((MovieResponse?)->Unit)
                     ) =

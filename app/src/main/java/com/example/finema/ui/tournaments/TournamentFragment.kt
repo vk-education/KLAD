@@ -47,8 +47,8 @@ class TournamentFragment : BaseFragment<GenresTournamentVM, FragmentTournamentDu
         // cut to num
         // cum to nut hehehe
         //TODO Убрать строки в ресурсы
-        binding.txtNumCategory.text = "$numFilms Лучших фильмов"
-        binding.roundCount.text = "Раунд $roundCount"
+        binding.txtNumCategory.text = getString(R.string.n_best_movies, numFilms)
+        binding.roundCount.text = getString(R.string.round, roundCount)
         mListFilms = allFilms.take(numFilms) as ArrayList<Movie>
         // first initialization of cards (image and text)
         fillCard(mListFilms)
@@ -71,7 +71,7 @@ class TournamentFragment : BaseFragment<GenresTournamentVM, FragmentTournamentDu
                 fillCard(mListFilms)
             } else {
                 roundCount += 1
-                binding.roundCount.text = "Раунд " + roundCount
+                binding.roundCount.text =  getString(R.string.round, roundCount)
                 flagMain = false
                 fillCard(mListFilms2)
             }
@@ -83,7 +83,7 @@ class TournamentFragment : BaseFragment<GenresTournamentVM, FragmentTournamentDu
                 fillCard(mListFilms2)
             } else {
                 roundCount += 1
-                binding.roundCount.text = "Раунд " + roundCount
+                binding.roundCount.text =  getString(R.string.round, roundCount)
                 flagMain = true
                 fillCard(mListFilms)
             }
@@ -99,7 +99,7 @@ class TournamentFragment : BaseFragment<GenresTournamentVM, FragmentTournamentDu
                 fillCard(mListFilms)
             } else {
                 roundCount += 1
-                binding.roundCount.text = "Раунд " + roundCount
+                binding.roundCount.text =  getString(R.string.round, roundCount)
                 flagMain = false
                 fillCard(mListFilms2)
             }
@@ -111,7 +111,7 @@ class TournamentFragment : BaseFragment<GenresTournamentVM, FragmentTournamentDu
                 fillCard(mListFilms2)
             } else {
                 roundCount += 1
-                binding.roundCount.text = "Раунд " + roundCount
+                binding.roundCount.text = getString(R.string.round, roundCount)
                 flagMain = true
                 fillCard(mListFilms)
             }
@@ -136,21 +136,21 @@ class TournamentFragment : BaseFragment<GenresTournamentVM, FragmentTournamentDu
             }
             binding.txtFilm1.text = el1.title
             binding.txtFilm2.text = el2.title
+
             binding.img1.downloadAndSetImage(
-                POSTER_BASE_URL +
-                        el1.posterPath
+                getString(
+                    R.string.poster_base_url,
+                    el1.posterPath)
             )
             binding.img2.downloadAndSetImage(
-                POSTER_BASE_URL +
-                        el2.posterPath
+                getString(
+                    R.string.poster_base_url,
+                    el2.posterPath)
             )
         }
 
     }
 
-    companion object{
-        const val POSTER_BASE_URL =  "https://image.tmdb.org/t/p/w342"
-    }
 }
 
 

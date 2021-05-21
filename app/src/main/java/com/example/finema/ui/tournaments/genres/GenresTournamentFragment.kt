@@ -64,9 +64,7 @@ class GenresTournamentFragment(
         })
     }
 
-    override fun onMovieClicked(view: View,
-                                genreModelId: GenreModel)
-    {
+    override fun onMovieClicked(view: View, genreModelId: GenreModel) {
         viewModel.genreModel(genreModelId.id.toString())
     }
 

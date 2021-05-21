@@ -21,4 +21,7 @@
     <string name="settings">Настройки</string>
     <string name="game_higher_lower">Игра больше/меньше</string>
     <string name="popularity">Популярность</string>
+    <string name="n_best_movies">%1$d Лучших фильмов</string>
+    <string name="round">Раунд %1$d</string>
+
 </resources>

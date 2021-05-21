@@ -9,6 +9,7 @@ import com.example.finema.R
 import com.example.finema.databinding.HigherLowerFragmentBinding
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.POSTER_BASE_URL
+import com.example.finema.util.downloadAndSetImage
 import org.koin.android.ext.android.get
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
@@ -29,21 +30,23 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.movies.observe(viewLifecycleOwner, { movieList ->
+            if(viewModel.score == 0) {
+                viewModel.shuffle()
+            }
             binding.txtFilm1.text = movieList.movies[viewModel.img1].title
             binding.txtFilm2.text = movieList.movies[viewModel.img2].title
 
-            Glide
-                .with(binding.root)
-                .load(getString(
+            binding.img1.downloadAndSetImage(
+                getString(
                     R.string.poster_base_url,
-                    movieList.movies[viewModel.img1].posterPath))
-                .into(binding.img1)
-            Glide
-                .with(binding.root)
-                .load(getString(
+                    movieList.movies[viewModel.img1].posterPath)
+            )
+
+            binding.img2.downloadAndSetImage(
+                getString(
                     R.string.poster_base_url,
-                    movieList.movies[viewModel.img2].posterPath))
-                .into(binding.img2)
+                    movieList.movies[viewModel.img2].posterPath)
+            )
 
             binding.img1.setOnClickListener {
                 viewModel.onMovieClicked(viewModel.img1)

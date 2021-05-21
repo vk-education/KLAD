@@ -26,9 +26,6 @@ class GenresTournamentVM (
         }
     }
 
-    //TODO Инстант класса
-
-
     // TODO Убрать, данные получаются от репозитория
     val allGenres: LiveData<List<GenreModel>>
         get() {

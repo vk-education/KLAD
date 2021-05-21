@@ -1,17 +1,22 @@
 package com.example.finema.ui.movieDetail
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.finema.databinding.MovieDetailsFragmentBinding
+import com.example.finema.models.GenreRequest.GenreList
+import com.example.finema.models.databaseModels.GenreModel
+import com.example.finema.models.movieResponse.MovieDetails
 import com.example.finema.ui.base.BaseFragment
+import com.example.finema.util.downloadAndSetImage
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFragmentBinding>() {
-    private var arg: Long = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,39 +30,37 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
 
     //TODO убрать подготовку данных в VM
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        arg = requireArguments().getLong(KEY)
+        viewModel.arg = requireArguments().getLong(KEY)
+
         viewModel = getViewModel()
 
-        viewModel.getMovieDetails(arg)
-
 //        binding.filmLoader.visibility = View.GONE
+        viewModel.film.observe(viewLifecycleOwner, observerList)
 
-        viewModel.film.observe(viewLifecycleOwner, {
-            binding.layout.visibility = VISIBLE
-//            binding.filmLoader.visibility = View.INVISIBLE
+    }
 
-            it.posterPath = POSTER_BASE_URL + it.posterPath
-            binding.filmId = it
+    private val observerList: Observer<MovieDetails> = Observer {
+        binding.layout.visibility = VISIBLE
+//      binding.filmLoader.visibility = View.INVISIBLE
 
-            var genres = STARTING_GENRE_VALUE
-            for (item in it.genres) {
-                genres += item.name + NEW_LINE
-            }
-            binding.genres.text = genres
+        binding.filmId = it
 
-            var companies = STARTING_COMPANIES_VALUE
-            for (item in it.productionCompanies) {
-                companies += item.name + TAB + item.originCountry + NEW_LINE
-            }
-            binding.companies.text = companies
+        for (item in it.genres) {
+            viewModel.genres += item.name + NEW_LINE
+        }
+        binding.genres.text = viewModel.genres
 
-            //TODO изменить на вызов extension
-            Glide.with(view)
-                .load(it.posterPath)
-                .into(binding.imageView)
+        for (item in it.productionCompanies) {
+            viewModel.companies += item.name + TAB + item.originCountry + NEW_LINE
+        }
+        binding.companies.text = viewModel.companies
 
-            binding.rating.text = it.voteAverage.toString()
-        })
+        binding.imageView.downloadAndSetImage(
+            POSTER_BASE_URL + it.posterPath
+        )
+
+        binding.rating.text = it.voteAverage.toString()
+
     }
 
     companion object {

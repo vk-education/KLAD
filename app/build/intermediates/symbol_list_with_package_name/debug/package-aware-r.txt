@@ -2711,6 +2711,7 @@ string mtrl_picker_toggle_to_calendar_input_mode
 string mtrl_picker_toggle_to_day_selection
 string mtrl_picker_toggle_to_text_input_mode
 string mtrl_picker_toggle_to_year_selection
+string n_best_movies
 string nav_app_bar_navigate_up_description
 string nav_app_bar_open_drawer_description
 string not_set
@@ -2727,6 +2728,7 @@ string profile
 string project_id
 string quit
 string rating
+string round
 string search_menu_title
 string settings
 string status_bar_notification_info_overflow

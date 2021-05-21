@@ -3,6 +3,7 @@ package com.example.finema.ui.higherlower
 import android.app.DownloadManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
@@ -16,8 +17,8 @@ class HigherLowerViewModel(
     private val repository: MoviesRepository
 ) : BaseViewModel() {
 
-    private val _movies = MutableLiveData<MovieResponse>()
-    val movies: MutableLiveData<MovieResponse>
+    private var _movies = MutableLiveData<MovieResponse>()
+    val movies: LiveData<MovieResponse>
     get() = _movies
 
     var score = RESET_SCORE_INDEX
@@ -29,8 +30,15 @@ class HigherLowerViewModel(
         getMovies()
     }
 
+    fun shuffle() {
+        _movies.value?.movies.let {
+            _movies.value?.movies = it?.shuffled()!!
+        }
+        _movies = _movies
+    }
+
     private fun getMovies() {
-            job = Coroutines.ioThenMain(
+            job = Coroutines.ioThenMan(
                 { repository.getMovies(page) },
                 { _movies.value = it }
             )
