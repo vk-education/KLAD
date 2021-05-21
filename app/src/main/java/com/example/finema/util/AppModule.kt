@@ -36,19 +36,15 @@ val apiModule: Module = module {
 
 val databaseModule: Module = module {
 
-    fun provideRoomDao(database: RoomDataBase): RoomDao {
-        return  database.getRoomDao()
-    }
+    single { RoomDataBase.getInstance(androidContext()) }
 
-    single<RoomDataBase> { RoomDataBase_Impl() }
-
-    single { provideRoomDao(get()) }
+    single { RoomDataBase.getInstance(androidContext()).getRoomDao() }
 
 }
 
 val repositoryModule: Module = module {
 
-    single<DatabaseRepository> { RoomRepository(get()) }
+    single { RoomRepository(get()) }
 
     single { MoviesRepository(get(), get(), androidContext()) }
 }

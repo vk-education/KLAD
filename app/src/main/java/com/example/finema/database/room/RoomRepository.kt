@@ -9,15 +9,12 @@ class RoomRepository (
     private val roomDao: RoomDao
     ): DatabaseRepository {
 
-    override val allGenres: LiveData<List<GenreModel>>
-        get() = roomDao.getAllGenres()
-
+    override val allGenres: LiveData<List<GenreModel>> = roomDao.getAllGenres()
 
     override suspend fun insert(genre: GenreModel, onSuccess: () -> Unit) {
         roomDao.insert(genre)
         onSuccess()
     }
-
 
     override fun signOut(){
 

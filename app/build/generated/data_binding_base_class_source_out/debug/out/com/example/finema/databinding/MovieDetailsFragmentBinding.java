@@ -19,10 +19,19 @@ import java.lang.Object;
 
 public abstract class MovieDetailsFragmentBinding extends ViewDataBinding {
   @NonNull
+  public final TextView aboutTitle;
+
+  @NonNull
   public final TextView companies;
 
   @NonNull
+  public final TextView companiesTitle;
+
+  @NonNull
   public final TextView filmTitle;
+
+  @NonNull
+  public final TextView genreTitle;
 
   @NonNull
   public final TextView genres;
@@ -43,37 +52,28 @@ public abstract class MovieDetailsFragmentBinding extends ViewDataBinding {
   public final TextView rating;
 
   @NonNull
-  public final TextView textView3;
-
-  @NonNull
-  public final TextView textView6;
-
-  @NonNull
-  public final TextView textView7;
-
-  @NonNull
-  public final TextView textView8;
+  public final TextView ratingTitle;
 
   @Bindable
   protected MovieDetails mFilmId;
 
   protected MovieDetailsFragmentBinding(Object _bindingComponent, View _root, int _localFieldCount,
-      TextView companies, TextView filmTitle, TextView genres, ImageView imageView,
-      LinearLayout layout, LinearLayout layoutText, TextView overview, TextView rating,
-      TextView textView3, TextView textView6, TextView textView7, TextView textView8) {
+      TextView aboutTitle, TextView companies, TextView companiesTitle, TextView filmTitle,
+      TextView genreTitle, TextView genres, ImageView imageView, LinearLayout layout,
+      LinearLayout layoutText, TextView overview, TextView rating, TextView ratingTitle) {
     super(_bindingComponent, _root, _localFieldCount);
+    this.aboutTitle = aboutTitle;
     this.companies = companies;
+    this.companiesTitle = companiesTitle;
     this.filmTitle = filmTitle;
+    this.genreTitle = genreTitle;
     this.genres = genres;
     this.imageView = imageView;
     this.layout = layout;
     this.layoutText = layoutText;
     this.overview = overview;
     this.rating = rating;
-    this.textView3 = textView3;
-    this.textView6 = textView6;
-    this.textView7 = textView7;
-    this.textView8 = textView8;
+    this.ratingTitle = ratingTitle;
   }
 
   public abstract void setFilmId(@Nullable MovieDetails filmId);

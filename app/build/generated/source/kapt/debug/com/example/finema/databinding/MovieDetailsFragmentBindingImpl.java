@@ -16,11 +16,11 @@ public class MovieDetailsFragmentBindingImpl extends MovieDetailsFragmentBinding
         sViewsWithIds = new android.util.SparseIntArray();
         sViewsWithIds.put(R.id.imageView, 5);
         sViewsWithIds.put(R.id.layoutText, 6);
-        sViewsWithIds.put(R.id.textView3, 7);
-        sViewsWithIds.put(R.id.textView6, 8);
-        sViewsWithIds.put(R.id.textView8, 9);
+        sViewsWithIds.put(R.id.aboutTitle, 7);
+        sViewsWithIds.put(R.id.genreTitle, 8);
+        sViewsWithIds.put(R.id.ratingTitle, 9);
         sViewsWithIds.put(R.id.rating, 10);
-        sViewsWithIds.put(R.id.textView7, 11);
+        sViewsWithIds.put(R.id.companiesTitle, 11);
     }
     // views
     // variables
@@ -33,17 +33,17 @@ public class MovieDetailsFragmentBindingImpl extends MovieDetailsFragmentBinding
     }
     private MovieDetailsFragmentBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
+            , (android.widget.TextView) bindings[7]
             , (android.widget.TextView) bindings[4]
+            , (android.widget.TextView) bindings[11]
             , (android.widget.TextView) bindings[1]
+            , (android.widget.TextView) bindings[8]
             , (android.widget.TextView) bindings[3]
             , (android.widget.ImageView) bindings[5]
             , (android.widget.LinearLayout) bindings[0]
             , (android.widget.LinearLayout) bindings[6]
             , (android.widget.TextView) bindings[2]
             , (android.widget.TextView) bindings[10]
-            , (android.widget.TextView) bindings[7]
-            , (android.widget.TextView) bindings[8]
-            , (android.widget.TextView) bindings[11]
             , (android.widget.TextView) bindings[9]
             );
         this.companies.setTag(null);
@@ -134,9 +134,9 @@ public class MovieDetailsFragmentBindingImpl extends MovieDetailsFragmentBinding
         if ((dirtyFlags & 0x3L) != 0) {
             // api target 1
 
-            this.companies.setText(filmIdStringCompanies);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.companies, filmIdStringCompanies);
             androidx.databinding.adapters.TextViewBindingAdapter.setText(this.filmTitle, filmIdTitle);
-            this.genres.setText(filmIdStringGenres);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.genres, filmIdStringGenres);
             androidx.databinding.adapters.TextViewBindingAdapter.setText(this.overview, filmIdOverview);
         }
     }

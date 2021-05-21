@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 
 class GenresTournamentVM (
     private val apiRepository: MoviesRepository,
-    val DBRepository: DatabaseRepository
+    private val DBRepository: RoomRepository
 ) : BaseViewModel() {
 
     init {
@@ -30,6 +30,10 @@ class GenresTournamentVM (
 
 
     // TODO Убрать, данные получаются от репозитория
+    val allGenres: LiveData<List<GenreModel>>
+        get() {
+            return DBRepository.allGenres
+        }
 
     val genreModel: (String) -> Unit = { genre ->
         getMovies(genre)

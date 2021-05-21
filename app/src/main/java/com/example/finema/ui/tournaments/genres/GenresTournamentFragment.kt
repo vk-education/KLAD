@@ -56,7 +56,7 @@ class GenresTournamentFragment(
         mRecyclerView = binding.tournamentsRecycler
         mRecyclerView.adapter = mAdapter
 
-        viewModel.DBRepository.allGenres.observe(viewLifecycleOwner, mObserverList)
+        viewModel.allGenres.observe(viewLifecycleOwner, mObserverList)
 
         //TODO Изменить на фрагмент
         viewModel.filmListVM.observe(viewLifecycleOwner, {

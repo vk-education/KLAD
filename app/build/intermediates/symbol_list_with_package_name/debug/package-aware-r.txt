@@ -1859,6 +1859,7 @@ id SHOW_PROGRESS
 id SYM
 id TOP_END
 id TOP_START
+id aboutTitle
 id accelerate
 id accessibility_action_clickable_span
 id accessibility_custom_action_0
@@ -1907,6 +1908,7 @@ id action_divider
 id action_fragmentFavourite_to_fragmentFilm
 id action_fragmentGenre_to_fragmentTournament
 id action_fragmentOthers_to_fragmentTournament
+id action_fragmentSettings_to_sigInFragment
 id action_fragment_own_tournament_to_fragment_tournament
 id action_fragment_profile_to_fragment_film
 id action_fragment_tmp_to_fragment_genre
@@ -1993,6 +1995,7 @@ id clip_vertical
 id clockwise
 id collapseActionView
 id companies
+id companiesTitle
 id confirm_button
 id container
 id content
@@ -2070,6 +2073,7 @@ id fragmentTournament
 id fragment_container_view_tag
 id game
 id genre
+id genreTitle
 id genres
 id ghost_view
 id ghost_view_holder
@@ -2214,14 +2218,10 @@ id position
 id postLayout
 id progress_circular
 id progress_horizontal
-id projectHead
-id projectName
-id projectState
-id projectType
-id projectVacancies
 id projectsList
 id radio
 id rating
+id ratingTitle
 id ratio
 id rectangles
 id recycler_view
@@ -2327,11 +2327,7 @@ id textSpacerNoTitle
 id textStart
 id textTop
 id textView
-id textView3
 id textView5
-id textView6
-id textView7
-id textView8
 id textViewTitle
 id textWatcher
 id text_input_end_icon
@@ -2622,6 +2618,7 @@ string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
 string chip_text
+string choose_best_film
 string clear_text_end_icon_content_description
 string common_google_play_services_enable_button
 string common_google_play_services_enable_text
@@ -2649,6 +2646,7 @@ string expand_button_title
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+string game_higher_lower
 string gcm_defaultSenderId
 string genre_item_genre_name
 string genres
@@ -2662,6 +2660,7 @@ string hide_bottom_view_on_scroll_behavior
 string higher_lower_score
 string icon_content_description
 string item_view_role_description
+string lovely_films
 string material_clock_display_divider
 string material_clock_toggle_content_description
 string material_hour_selection
@@ -2721,12 +2720,15 @@ string path_password_eye
 string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
+string popularity
 string poster_base_url
 string preference_copied
 string profile
 string project_id
+string quit
 string rating
 string search_menu_title
+string settings
 string status_bar_notification_info_overflow
 string summary_collapsed_preference_list
 string tournament_count_films_title

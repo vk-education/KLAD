@@ -26,7 +26,7 @@ class GenresTournamentAdapter(
     }
 
     override fun onBindViewHolder(holder: TournamentHolder, position: Int) {
-        holder.bind(mListGenres[position].name)
+        holder.bind(mListGenres[position].name, mListGenres)
     }
 
     override fun getItemCount(): Int = mListGenres.size
@@ -43,14 +43,12 @@ class GenresTournamentAdapter(
             fun onMovieClicked(view: View, genreModelId: GenreModel)
         }
 
-        fun bind(name: String) {
+        fun bind(name: String, mListGenres: List<GenreModel>) {
             genreName.text = name
-        }
-
-        fun onViewAttachedToWindow(mListGenres: List<GenreModel>) {
             itemView.setOnClickListener {
                 listener.onMovieClicked(itemView, mListGenres[adapterPosition])
             }
+
         }
 
     }
