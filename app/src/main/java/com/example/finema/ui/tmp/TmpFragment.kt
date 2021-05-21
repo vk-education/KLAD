@@ -35,11 +35,6 @@ class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
         viewModel = getViewModel()
 
         super.onViewCreated(view, savedInstanceState)
-        requireActivity()
-            .findViewById<DrawerLayout>(R.id.drawer_layout)
-            .setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-        //TODO убрать
-        requireActivity().findViewById<MaterialToolbar>(R.id.topAppBar).visibility = View.VISIBLE
         binding.genre.setOnClickListener {
             findNavController().navigate(R.id.action_fragment_tmp_to_fragment_genre)
         }

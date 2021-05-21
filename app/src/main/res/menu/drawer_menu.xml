@@ -4,33 +4,29 @@
 
     <item
         android:id="@+id/tournament"
-        android:title="Выбери лучший фильм"
+        android:title="@string/choose_best_film"
         android:icon="@drawable/outline_star_24" />
 
     <item
         android:id="@+id/lovely"
-        android:title="Избранные фильмы" />
+        android:title="@string/lovely_films" />
 
     <item
         android:id="@+id/settings"
-        android:title="Настройки"
-        />
+        android:title="@string/settings" />
 
     <item
         android:id="@+id/game"
-        android:title="Игра больше/меньше">
+        android:title="@string/game_higher_lower">
         <menu>
             <item
                 android:id="@+id/budget"
-                android:title="Популярность" />
+                android:title="@string/popularity" />
             <item
                 android:id="@+id/rating"
-                android:title="Рейтинг"/>
+                android:title="@string/rating" />
         </menu>
     </item>
-
-
-
 
 
 </menu>

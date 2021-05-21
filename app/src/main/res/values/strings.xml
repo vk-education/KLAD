@@ -2,10 +2,10 @@
     <string name="app_name">Finema</string>
     <string name="profile">Профиль</string>
     <string name="guest">Гость</string>
-    <string name="about_film">О фильме:</string>
+    <string name="about_film">О фильме</string>
     <string name="genres">Жанры:</string>
-    <string name="rating">Рейтинг:</string>
-    <string name="companies">Компании:</string>
+    <string name="rating">Рейтинг</string>
+    <string name="companies">Компании</string>
     <string name="notifications">Уведомления</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tournament_count_films_title">16 Лучших фильмов</string>
@@ -15,4 +15,10 @@
     <string name="genre_item_genre_name">Жанр</string>
     <string name="higher_lower_score">Очки: %1$d</string>
     <string name="poster_base_url">https://image.tmdb.org/t/p/w342%1$s</string>
+    <string name="quit">Выйти из приложения</string>
+    <string name="choose_best_film">Выбери лучший фильм</string>
+    <string name="lovely_films">Избранные фильмы</string>
+    <string name="settings">Настройки</string>
+    <string name="game_higher_lower">Игра больше/меньше</string>
+    <string name="popularity">Популярность</string>
 </resources>

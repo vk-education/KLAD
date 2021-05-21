@@ -7,9 +7,8 @@
         app:title="@string/notifications"
         app:defaultValue="true"/>
 
-<!--    <Preference-->
-<!--        app:key="feedback"-->
-<!--        app:title="Send feedback"-->
-<!--        app:summary="Report technical issues or suggest new features"/>-->
+    <Preference
+        app:key="quit"
+        app:title="@string/quit"/>
 
 </PreferenceScreen>

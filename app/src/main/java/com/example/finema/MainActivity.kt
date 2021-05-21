@@ -5,8 +5,10 @@ import android.content.Context
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.Navigation.findNavController
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.findNavController
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
@@ -19,15 +21,6 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import java.util.concurrent.TimeUnit
 
-
-//TODO добавить по аналогии
-// findNavController(R.id.fragment_container)
-//                    .addOnDestinationChangedListener { _, destination, _ ->
-//                        if(SCREENS_WITHOUT_BOTTOM_BAR.contains(destination.id))
-//                            binding.bottomBar.visibility = GONE
-//                        else
-//                            binding.bottomBar.visibility = VISIBLE
-//                    }
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
@@ -53,15 +46,16 @@ class MainActivity : AppCompatActivity() {
         binding.navView.setNavigationItemSelectedListener {
             binding.drawerLayout.close()
 
+
             when (it.itemId) {
 
-                R.id.budget -> findNavController(this, R.id.fragment)
+                R.id.budget -> findNavController(R.id.fragment)
                     .navigate(R.id.action_global_fragmentHigherLower)
 
-                R.id.tournament -> findNavController(this, R.id.fragment)
+                R.id.tournament -> findNavController(R.id.fragment)
                     .navigate(R.id.action_global_fragmentTmp)
 
-                R.id.settings -> findNavController(this, R.id.fragment)
+                R.id.settings -> findNavController(R.id.fragment)
                     .navigate(R.id.action_global_fragmentSettings)
             }
 
@@ -73,15 +67,25 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
+        findNavController(R.id.fragment)
+            .addOnDestinationChangedListener { _, destination, _ ->
+                if (SCREENS_WITHOUT_DRAWER.contains(destination.id)) {
+                    binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                    binding.topAppBar.visibility = View.GONE
+                } else {
+                    binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED)
+                    binding.topAppBar.visibility = View.VISIBLE
+                }
+            }
+
         if (!AppPreference.getInitUser()) {
             initDatabase(this, TYPE_ROOM) {
-                findNavController(this, R.id.fragment)
+                findNavController(R.id.fragment)
                     .navigate(R.id.action_global_signIn)
             }
-        }
-        else {
+        } else {
             initDatabase(this, TYPE_ROOM) {
-                Log.d("testLog","nothing")
+                Log.d("testLog", "nothing")
             }
         }
     }
@@ -105,11 +109,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun initDatabase(context: Context, type:String, onSuccess:() -> Unit){
-        when (type){
+    private fun initDatabase(context: Context, type: String, onSuccess: () -> Unit) {
+        when (type) {
             TYPE_ROOM -> {
                 onSuccess()
             }
         }
+    }
+
+    companion object {
+        private val SCREENS_WITHOUT_DRAWER = listOf(
+            R.id.sigInFragment
+        )
     }
 }

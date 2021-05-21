@@ -16,7 +16,7 @@ import com.example.finema.MainActivity
 
 
 class NotificationService(context: Context, workerParams: WorkerParameters) :
-    Worker(context, workerParams){
+    Worker(context, workerParams) {
 
     override fun doWork(): Result {
         sendNotification();
