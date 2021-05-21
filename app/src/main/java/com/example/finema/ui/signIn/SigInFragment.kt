@@ -31,7 +31,7 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
     private lateinit var header: TextView
 
     private val customContract = registerForActivityResult(Contract()) {
-        header.text = it?.currentUser?.displayName!!
+        viewModel.setName(it?.currentUser?.displayName.orEmpty())
     }
 
     override fun onCreateView(
@@ -54,10 +54,19 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         header = requireActivity().findViewById<NavigationView>(R.id.nav_view)
             .getHeaderView(0).findViewById(R.id.nickProfile)
 
+        viewModel.contract.movies.observe(viewLifecycleOwner, {
+            header.text = it?.currentUser?.displayName
+            findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
+        })
+
+        viewModel.name.observe(viewLifecycleOwner, {
+            header.text = it
+            findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
+        })
+
         binding.signInWithGoogle.setOnClickListener{
             signIn()
             AppPreference.setInitUser(true)
-            findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
         }
 
         binding.signInAsGuest.setOnClickListener{

@@ -46,7 +46,6 @@ class MainActivity : AppCompatActivity() {
         binding.navView.setNavigationItemSelectedListener {
             binding.drawerLayout.close()
 
-
             when (it.itemId) {
 
                 R.id.budget -> findNavController(R.id.fragment)

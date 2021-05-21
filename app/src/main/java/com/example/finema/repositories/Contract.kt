@@ -4,6 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContract
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.example.finema.models.movieResponse.MovieResponse
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -15,6 +18,11 @@ import com.google.firebase.auth.GoogleAuthProvider
 class Contract : ActivityResultContract<Unit, FirebaseAuth?>() {
 
     private val mAuth  = FirebaseAuth.getInstance()
+
+    private var _movies = MutableLiveData<FirebaseAuth>()
+    val movies: LiveData<FirebaseAuth>
+        get() = _movies
+
 
     private val gso: GoogleSignInOptions = GoogleSignInOptions
         .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -28,9 +36,8 @@ class Contract : ActivityResultContract<Unit, FirebaseAuth?>() {
         return  googleSignInClient.signInIntent
     }
 
-    override fun parseResult(resultCode: Int, intent: Intent?): FirebaseAuth? {
-        return activityResult(intent)
-    }
+    override fun parseResult(resultCode: Int, intent: Intent?): FirebaseAuth? =
+        activityResult(intent)
 
     private fun activityResult(data: Intent?): FirebaseAuth? {
         val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
@@ -66,6 +73,7 @@ class Contract : ActivityResultContract<Unit, FirebaseAuth?>() {
                     Log.w("firebaseAuthWithGoogle", "signInWithCredential:failure", task.exception)
                 }
             }
+        _movies.value = mAuth
         return mAuth
     }
 

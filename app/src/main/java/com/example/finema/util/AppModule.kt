@@ -3,6 +3,7 @@ package com.example.finema.util
 import com.example.finema.api.*
 import com.example.finema.database.DatabaseRepository
 import com.example.finema.database.room.*
+import com.example.finema.repositories.Contract
 import com.example.finema.ui.higherlower.HigherLowerViewModel
 import com.example.finema.ui.movieDetail.MovieDetailsViewModel
 import com.example.finema.ui.signIn.SignInViewModel
@@ -18,7 +19,7 @@ val viewModelModule: Module = module {
 
     viewModel { HigherLowerViewModel(get()) }
 
-    viewModel { SignInViewModel() }
+    viewModel { SignInViewModel(get()) }
 
     viewModel { TmpViewModel() }
 
@@ -43,6 +44,8 @@ val databaseModule: Module = module {
 }
 
 val repositoryModule: Module = module {
+
+    single { Contract() }
 
     single { RoomRepository(get()) }
 
