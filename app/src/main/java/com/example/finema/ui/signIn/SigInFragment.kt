@@ -9,6 +9,7 @@ import android.view.View
 import android.view.View.INVISIBLE
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.activity.result.ActivityResultLauncher
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
 import androidx.navigation.Navigation
@@ -22,7 +23,10 @@ import com.example.finema.util.AppPreference
 import com.example.finema.util.TYPE_ROOM
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
+import kotlinx.coroutines.flow.collect
 
 
 class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
@@ -30,9 +34,8 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
     //TODO убрать, есть биндинг
     private lateinit var header: TextView
 
-    private val customContract = registerForActivityResult(Contract()) {
-        viewModel.setName(it?.currentUser?.displayName.orEmpty())
-    }
+    @InternalCoroutinesApi
+    private lateinit var customContract: ActivityResultLauncher<Unit>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,9 +47,15 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         return binding.root
     }
 
+    @InternalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = getViewModel()
 
+        customContract = registerForActivityResult(viewModel.contract) {
+            CoroutineScope(Dispatchers.Main).launch {
+                it?.collect { value -> viewModel.setName(value?.currentUser?.displayName.orEmpty()) }
+            }
+        }
         super.onViewCreated(view, savedInstanceState)
 
         //TODO вынести во Repository, но только после того как будет DI (dagger/koin)
@@ -54,14 +63,13 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         header = requireActivity().findViewById<NavigationView>(R.id.nav_view)
             .getHeaderView(0).findViewById(R.id.nickProfile)
 
-        viewModel.contract.movies.observe(viewLifecycleOwner, {
-            header.text = it?.currentUser?.displayName
-            findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
-        })
-
         viewModel.name.observe(viewLifecycleOwner, {
-            header.text = it
-            findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
+            if(it != "") {
+                header.text = it
+                findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
+            }else{
+                binding.signInWithGoogle.callOnClick()
+            }
         })
 
         binding.signInWithGoogle.setOnClickListener{
@@ -78,6 +86,7 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
 
     //TODO репозиторий по нажатию на кнопку возвращает интент, через VM, который и надо здесь
     // запускать
+    @InternalCoroutinesApi
     private fun signIn() {
         customContract.launch(Unit)
     }

@@ -30,9 +30,9 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
 
     //TODO убрать подготовку данных в VM
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.arg = requireArguments().getLong(KEY)
-
         viewModel = getViewModel()
+
+        viewModel.arg = requireArguments().getLong(KEY)
 
 //        binding.filmLoader.visibility = View.GONE
         viewModel.film.observe(viewLifecycleOwner, observerList)

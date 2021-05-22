@@ -14,8 +14,10 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
-class Contract : ActivityResultContract<Unit, FirebaseAuth?>() {
+class Contract : ActivityResultContract<Unit, Flow<FirebaseAuth?>?>() {
 
     private val mAuth  = FirebaseAuth.getInstance()
 
@@ -36,8 +38,9 @@ class Contract : ActivityResultContract<Unit, FirebaseAuth?>() {
         return  googleSignInClient.signInIntent
     }
 
-    override fun parseResult(resultCode: Int, intent: Intent?): FirebaseAuth? =
-        activityResult(intent)
+    override fun parseResult(resultCode: Int, intent: Intent?): Flow<FirebaseAuth?> = flow {
+        emit(activityResult(intent))
+    }
 
     private fun activityResult(data: Intent?): FirebaseAuth? {
         val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
@@ -47,7 +50,22 @@ class Contract : ActivityResultContract<Unit, FirebaseAuth?>() {
                 // Google Sign In was successful, authenticate with Firebase
                 val account: GoogleSignInAccount? = task.getResult(ApiException::class.java)
                 Log.d("Sign In Fragment", "firebaseAuthWithGoogle:" + account?.id)
-                return firebaseAuthWithGoogle(account?.idToken!!)
+                val credential = GoogleAuthProvider.getCredential(account?.idToken, null)
+                mAuth.signInWithCredential(credential)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("firebaseAuthWithGoogle", "signInWithCredential:success")
+                            val user = mAuth.currentUser
+                            Log.d("WOW", user.displayName!!)
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("firebaseAuthWithGoogle", "signInWithCredential:failure", task.exception)
+                        }
+                    }
+                _movies.value = mAuth
+                return mAuth
+
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
                 Log.w("Sign In Fragment", "Google sign in failed", e)
@@ -59,7 +77,7 @@ class Contract : ActivityResultContract<Unit, FirebaseAuth?>() {
         }
     }
 
-    private fun firebaseAuthWithGoogle(idToken: String): FirebaseAuth {
+    private fun firebaseAuthWithGoogle(idToken: String): FirebaseAuth? {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         mAuth.signInWithCredential(credential)
             .addOnCompleteListener { task ->
