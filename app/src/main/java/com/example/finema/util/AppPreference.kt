@@ -2,6 +2,8 @@ package com.example.finema.util
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
+import com.google.firebase.auth.FirebaseAuth
 
 //TODO Сделать репозиторием с интерфейсом
 object AppPreference {
@@ -10,12 +12,12 @@ object AppPreference {
     private const val INIT_GENRES = "initGenres"
     private const val NAME_PREF = "preference"
 
-
+    private val googleUser: FirebaseAuth = FirebaseAuth.getInstance()
     private lateinit var mPreferences: SharedPreferences
 
     //TODO такого не должно быть, преференсы должны исполььзоваться только здесь
     fun getPreference(context: Context):SharedPreferences{
-        mPreferences = context.getSharedPreferences(NAME_PREF,Context.MODE_PRIVATE)
+        mPreferences = context.getSharedPreferences(NAME_PREF, Context.MODE_PRIVATE)
         return mPreferences
     }
 
@@ -37,6 +39,11 @@ object AppPreference {
         mPreferences.edit()
             .putBoolean(INIT_GENRES,init)
             .apply()
+    }
+
+    fun googleUserSignOut() {
+        googleUser.signOut()
+        Log.d("OJOF", googleUser.currentUser?.displayName.orEmpty())
     }
 
 

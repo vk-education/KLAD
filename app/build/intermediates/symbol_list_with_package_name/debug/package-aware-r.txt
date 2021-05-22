@@ -1846,6 +1846,7 @@ drawable test_custom_background
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 id ALT
+id Avatar
 id BOTTOM_END
 id BOTTOM_START
 id CTRL
@@ -1920,6 +1921,7 @@ id action_global_fragmentHigherLower
 id action_global_fragmentProfile
 id action_global_fragmentSettings
 id action_global_fragmentTmp
+id action_global_higherLowerRatingFragment
 id action_global_signIn
 id action_image
 id action_menu_divider
@@ -1989,6 +1991,7 @@ id chip3
 id chip_group
 id chronometer
 id circle_center
+id clear_statistics
 id clear_text
 id clip_horizontal
 id clip_vertical
@@ -2085,7 +2088,9 @@ id group_divider
 id groups
 id guideline
 id header_title
+id help
 id hideable
+id higherLowerRatingFragment
 id home
 id homeAsUp
 id honorRequest
@@ -2113,6 +2118,7 @@ id jumpToEnd
 id jumpToStart
 id labelGroup
 id labeled
+id language
 id largeLabel
 id layout
 id layoutText
@@ -2123,6 +2129,7 @@ id line1
 id line3
 id linear
 id linearLayout
+id linearUser
 id listMode
 id list_item
 id lovely
@@ -2190,6 +2197,7 @@ id nickProfile
 id noScroll
 id none
 id normal
+id notfications
 id notification_background
 id notification_main_column
 id notification_main_column_container
@@ -2216,6 +2224,7 @@ id pin
 id points
 id position
 id postLayout
+id profile_short
 id progress_circular
 id progress_horizontal
 id projectsList
@@ -2339,6 +2348,7 @@ id textinput_helper_text
 id textinput_placeholder
 id textinput_prefix_text
 id textinput_suffix_text
+id theme
 id time
 id title
 id titleDividerNoCustom
@@ -2367,6 +2377,8 @@ id unlabeled
 id up
 id useLogo
 id userAvatar
+id userName
+id userPhone
 id view_offset_helper
 id view_tree_lifecycle_owner
 id view_tree_saved_state_registry_owner
@@ -2469,6 +2481,7 @@ layout fragment_tournament_duo
 layout fragment_tournament_genres
 layout genre_item
 layout higher_lower_fragment
+layout higher_lower_rating_fragment
 layout image_frame
 layout material_chip_input_combo
 layout material_clock_display

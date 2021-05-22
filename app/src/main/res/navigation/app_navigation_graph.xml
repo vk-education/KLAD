@@ -120,7 +120,7 @@
 
     <fragment
         android:id="@+id/fragmentProfile"
-        android:name=""
+        android:name="com.example.finema.ui.userProfile.ProfileFragment"
         android:label="Profile fragment"
         tools:layout="@layout/profile_fragment">
         <action
@@ -152,6 +152,11 @@
         android:label="More less fragment"
         tools:layout="@layout/higher_lower_fragment" />
 
+    <fragment
+            android:id="@+id/higherLowerRatingFragment"
+            android:name="com.example.finema.ui.higherlowerrating.HigherLowerRatingFragment"
+            android:label="higher_lower_rating_fragment"
+            tools:layout="@layout/higher_lower_rating_fragment" />
 
     <action
         android:id="@+id/action_global_fragmentSettings"
@@ -171,5 +176,9 @@
     <action
         android:id="@+id/action_global_fragmentHigherLower"
         app:destination="@id/fragmentHigherLower" />
+    <action
+        android:id="@+id/action_global_higherLowerRatingFragment"
+        app:destination="@id/higherLowerRatingFragment" />
+
 
 </navigation>

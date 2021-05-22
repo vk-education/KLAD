@@ -9,21 +9,21 @@ import com.example.finema.R
 import com.example.finema.util.AppPreference
 
 
-class SettingsFragment : PreferenceFragmentCompat() {
+class SettingsFragment(): PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        setPreferencesFromResource(R.xml.settings, rootKey)
 
+        setPreferencesFromResource(R.xml.settings, rootKey)
 
         val button: Preference = findPreference("quit")!!
 
         button.onPreferenceClickListener =
             Preference.OnPreferenceClickListener { //code for what you want it to do
                 AppPreference.setInitUser(false)
+                AppPreference.googleUserSignOut()
                 findNavController().navigate(R.id.action_fragmentSettings_to_sigInFragment)
                 true
             }
 
     }
-
 }

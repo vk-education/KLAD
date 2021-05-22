@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContract
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.finema.models.movieResponse.MovieResponse
@@ -16,10 +17,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.shareIn
 
 class Contract : ActivityResultContract<Unit, Flow<FirebaseAuth?>?>() {
 
-    private val mAuth  = FirebaseAuth.getInstance()
+    val mAuth  = FirebaseAuth.getInstance()
 
     private var _movies = MutableLiveData<FirebaseAuth>()
     val movies: LiveData<FirebaseAuth>
@@ -50,28 +52,13 @@ class Contract : ActivityResultContract<Unit, Flow<FirebaseAuth?>?>() {
                 // Google Sign In was successful, authenticate with Firebase
                 val account: GoogleSignInAccount? = task.getResult(ApiException::class.java)
                 Log.d("Sign In Fragment", "firebaseAuthWithGoogle:" + account?.id)
-                val credential = GoogleAuthProvider.getCredential(account?.idToken, null)
-                mAuth.signInWithCredential(credential)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("firebaseAuthWithGoogle", "signInWithCredential:success")
-                            val user = mAuth.currentUser
-                            Log.d("WOW", user.displayName!!)
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("firebaseAuthWithGoogle", "signInWithCredential:failure", task.exception)
-                        }
-                    }
-                _movies.value = mAuth
-                return mAuth
-
+                return firebaseAuthWithGoogle(account?.idToken!!)
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
                 Log.w("Sign In Fragment", "Google sign in failed", e)
                 return null
             }
-        }else{
+        } else {
             Log.w("Sign In Fragment", exception.toString())
             return null
         }

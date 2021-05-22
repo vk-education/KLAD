@@ -43,6 +43,11 @@ class MainActivity : AppCompatActivity() {
 
         checkUser()
 
+        binding.navView.getHeaderView(0).setOnClickListener {
+            findNavController(R.id.fragment)
+                .navigate(R.id.action_global_fragmentProfile)
+        }
+
         binding.navView.setNavigationItemSelectedListener {
             binding.drawerLayout.close()
 
@@ -50,6 +55,9 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.budget -> findNavController(R.id.fragment)
                     .navigate(R.id.action_global_fragmentHigherLower)
+
+                R.id.rating -> findNavController(R.id.fragment)
+                    .navigate(R.id.action_global_higherLowerRatingFragment)
 
                 R.id.tournament -> findNavController(R.id.fragment)
                     .navigate(R.id.action_global_fragmentTmp)

@@ -5,11 +5,13 @@ import com.example.finema.database.DatabaseRepository
 import com.example.finema.database.room.*
 import com.example.finema.repositories.Contract
 import com.example.finema.ui.higherlower.HigherLowerViewModel
+import com.example.finema.ui.higherlowerrating.HigherLowerRatingViewModel
 import com.example.finema.ui.movieDetail.MovieDetailsViewModel
 import com.example.finema.ui.signIn.SignInViewModel
 import com.example.finema.ui.tmp.TmpViewModel
 import com.example.finema.ui.tournaments.TournamentVM
 import com.example.finema.ui.tournaments.genres.GenresTournamentVM
+import com.example.finema.ui.userProfile.ProfileViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
@@ -28,6 +30,10 @@ val viewModelModule: Module = module {
     viewModel { MovieDetailsViewModel(get()) }
 
     viewModel { TournamentVM() }
+
+    viewModel { HigherLowerRatingViewModel(get()) }
+
+    viewModel { ProfileViewModel() }
 }
 
 val apiModule: Module = module {
