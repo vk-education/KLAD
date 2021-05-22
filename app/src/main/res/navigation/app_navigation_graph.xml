@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragmentFavourite"
-        android:name=""
+        android:name="com.example.finema.ui.favourite.FavouriteFragment"
         android:label="Favourite fragment"
         tools:layout="@layout/favourite_fragment">
         <action

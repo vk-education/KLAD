@@ -5,9 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.finema.models.databaseModels.GenreModel
+import com.example.finema.models.databaseModels.MovieModel
 
 
-@Database(entities = [GenreModel::class], version = 1)
+@Database(entities = [GenreModel::class, MovieModel::class], version = 4)
 abstract class RoomDataBase(
 ) : RoomDatabase() {
 

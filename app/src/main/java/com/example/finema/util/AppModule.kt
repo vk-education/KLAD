@@ -4,6 +4,7 @@ import com.example.finema.api.*
 import com.example.finema.database.DatabaseRepository
 import com.example.finema.database.room.*
 import com.example.finema.repositories.Contract
+import com.example.finema.ui.favourite.FavouriteViewModel
 import com.example.finema.ui.higherlower.HigherLowerViewModel
 import com.example.finema.ui.higherlowerrating.HigherLowerRatingViewModel
 import com.example.finema.ui.movieDetail.MovieDetailsViewModel
@@ -27,13 +28,15 @@ val viewModelModule: Module = module {
 
     viewModel { GenresTournamentVM(get(), get()) }
 
-    viewModel { MovieDetailsViewModel(get()) }
+    viewModel { MovieDetailsViewModel(get(), get()) }
 
     viewModel { TournamentVM() }
 
     viewModel { HigherLowerRatingViewModel(get()) }
 
     viewModel { ProfileViewModel() }
+
+    viewModel { FavouriteViewModel(get()) }
 }
 
 val apiModule: Module = module {

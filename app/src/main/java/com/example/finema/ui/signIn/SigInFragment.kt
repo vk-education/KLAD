@@ -1,6 +1,7 @@
 package com.example.finema.ui.signIn
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,10 +18,11 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
 import kotlinx.coroutines.flow.collect
 
 
-class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
+class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
 
     //TODO убрать, есть биндинг
     private lateinit var header: TextView
+
     @InternalCoroutinesApi
     private lateinit var customContract: ActivityResultLauncher<Unit>
 
@@ -48,24 +50,24 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
             .getHeaderView(0).findViewById(R.id.nickProfile)
 
         viewModel.name.observe(viewLifecycleOwner, { name ->
-            if(name != "") {
+            if (name != "") {
                 header.text = name
                 findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
             } else {
                 //начать анимацию загрузки
-                    //кстати реализцая хуйня
-                        //потом разберусь
-                            //или нет
+                //кстати реализцая хуйня
+                //потом разберусь
+                //или нет
                 binding.signInWithGoogle.callOnClick()
             }
         })
 
-        binding.signInWithGoogle.setOnClickListener{
+        binding.signInWithGoogle.setOnClickListener {
             signIn()
             AppPreference.setInitUser(true)
         }
 
-        binding.signInAsGuest.setOnClickListener{
+        binding.signInAsGuest.setOnClickListener {
             AppPreference.setInitUser(true)
             header.text = resources.getText(R.string.guest)
             findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
@@ -84,12 +86,9 @@ class SigInFragment: BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         customContract = registerForActivityResult(viewModel.contract) {
             CoroutineScope(Dispatchers.Main).launch {
                 it?.collect { value ->
-                    viewModel
-                            .setName(
-                                value
-                                    ?.currentUser
-                                    ?.displayName
-                                    .orEmpty())
+                    Log.d("WeWantName", value?.currentUser?.displayName.orEmpty()
+                            + "\t\tNothing")
+                    viewModel.setName(value?.currentUser?.displayName.orEmpty())
                 }
             }
         }
