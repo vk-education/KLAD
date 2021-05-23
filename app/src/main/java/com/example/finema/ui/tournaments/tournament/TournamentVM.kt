@@ -7,14 +7,14 @@ import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.util.Coroutines
 
 class TournamentVM(
-    private val apiRepository: MoviesRepository,
+    private val repository: MoviesRepository
 ) : BaseViewModel() {
     var filmListVM = MutableLiveData<List<Movie>>()
 
 
     fun getMovies(genre: String) {
         job = Coroutines.ioThenMan(
-            { apiRepository.getMoviesWithGenre(1, genre) },
+            { repository.getMoviesWithGenre(1, genre) },
             { filmListVM.value = it?.movies }
         )
     }

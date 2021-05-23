@@ -55,6 +55,14 @@ class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>
             binding.cardview1.visibility = View.VISIBLE
             binding.cardview2.visibility = View.VISIBLE
             // first initialization of cards (image and text)
+            binding.bookmark1.setOnClickListener{
+                Toast.makeText(context,"Логики нет", Toast.LENGTH_SHORT).show()
+                binding.bookmark1.setImageResource(R.drawable.bookmark_24)
+            }
+            binding.bookmark2.setOnClickListener{
+                Toast.makeText(context,"Логики нет", Toast.LENGTH_SHORT).show()
+                binding.bookmark2.setImageResource(R.drawable.bookmark_24)
+            }
             fillCard(mListFilms)
         })
 

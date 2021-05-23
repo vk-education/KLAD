@@ -34,13 +34,14 @@
                 android:textColor="@android:color/holo_purple"
                 android:textSize="18sp"
                 android:text="@string/tournament_round_count" />
+
         <ProgressBar
                 android:id="@+id/progress_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:visibility="visible"
-                />
+                tools:visibility="gone" />
 
         <androidx.cardview.widget.CardView
                 android:id="@+id/cardview1"
@@ -52,23 +53,42 @@
                 app:cardCornerRadius="@dimen/card_corner_radius"
                 app:cardElevation="@dimen/card_corner_elevation"
                 android:layout_weight="0.5"
-                android:visibility="gone">
+                android:visibility="gone"
+                tools:visibility="visible">
 
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                <TextView
-                        android:id="@+id/txt_film1"
+                <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/app_margin"
-                        android:gravity="center"
-                        android:lines="1"
-                        android:textColor="@android:color/holo_purple"
-                        android:textStyle="bold"
-                        tools:text="@string/tournament_film1_name" />
+                        android:orientation="horizontal"
+                        android:layout_gravity="center">
+
+                    <TextView
+                            android:id="@+id/txt_film1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.7"
+                            android:layout_marginTop="@dimen/app_margin"
+                            android:gravity="center"
+                            android:lines="1"
+                            android:textColor="@android:color/holo_purple"
+                            android:textStyle="bold"
+                            tools:text="@string/tournament_film1_name" />
+
+                    <ImageButton
+                            android:id="@+id/bookmark1"
+                            android:background="#FFFFFF"
+                            android:layout_marginTop="@dimen/app_margin"
+                            android:layout_marginEnd="@dimen/app_margin"
+                            android:layout_marginStart="@dimen/app_margin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/bookmark_border_24" />
+                </LinearLayout>
 
                 <ImageView
                         android:id="@+id/img1"
@@ -92,23 +112,43 @@
                 app:cardCornerRadius="@dimen/card_corner_radius"
                 app:cardElevation="@dimen/card_corner_elevation"
                 android:layout_weight="0.5"
-                android:visibility="gone">
+                android:visibility="gone"
+                tools:visibility="visible">
 
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                <TextView
-                        android:id="@+id/txt_film2"
+                <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/app_margin"
-                        android:gravity="center"
-                        android:lines="1"
-                        android:textColor="@android:color/holo_purple"
-                        android:textStyle="bold"
-                        tools:text="@string/tournament_film2_name" />
+                        android:orientation="horizontal"
+                        android:layout_gravity="center">
+
+                    <TextView
+                            android:id="@+id/txt_film2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/app_margin"
+                            android:gravity="center"
+                            android:layout_weight="0.7"
+                            android:lines="1"
+                            android:textColor="@android:color/holo_purple"
+                            android:textStyle="bold"
+                            tools:text="@string/tournament_film2_name" />
+
+                    <ImageButton
+                            android:id="@+id/bookmark2"
+                            android:background="#FFFFFF"
+                            android:layout_marginTop="@dimen/app_margin"
+                            android:layout_marginEnd="@dimen/app_margin"
+                            android:layout_marginStart="@dimen/app_margin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/bookmark_border_24" />
+                </LinearLayout>
+
 
                 <ImageView
                         android:id="@+id/img2"

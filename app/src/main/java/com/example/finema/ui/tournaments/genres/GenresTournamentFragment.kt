@@ -49,14 +49,18 @@ class GenresTournamentFragment(
         if (!AppPreference.getGeneratedGenres()) {
             loadGenresList()
         }
+
         mAdapter = GenresTournamentAdapter(this)
         mRecyclerView = binding.tournamentsRecycler
         mRecyclerView.adapter = mAdapter
+
         mObserverList = Observer {
             mAdapter.setList(it)
         }
         //TODO Убрать получение и обращаться к VM базового класса
         viewModel.allGenres.observe(APP_ACTIVITY, mObserverList)
+
+
     }
 
     //TODO genreModel -> {} : GenreModel -> Unit
