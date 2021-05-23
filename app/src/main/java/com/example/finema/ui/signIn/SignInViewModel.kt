@@ -23,6 +23,7 @@ class SignInViewModel(
         get() = _name
 
     fun setName(name: String) {
+        Log.d("WeWantName", "$name\t\tNothing")
         _name.value = name
     }
 }

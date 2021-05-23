@@ -52,6 +52,8 @@ class MainActivity : AppCompatActivity() {
             binding.drawerLayout.close()
 
             when (it.itemId) {
+                R.id.lovely -> findNavController(R.id.fragment)
+                    .navigate(R.id.action_global_fragmentFavourite)
 
                 R.id.budget -> findNavController(R.id.fragment)
                     .navigate(R.id.action_global_fragmentHigherLower)
