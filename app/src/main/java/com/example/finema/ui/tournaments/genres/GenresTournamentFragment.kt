@@ -97,7 +97,6 @@ class GenresTournamentFragment(
 
     private fun goNextFragment(num: Int, genre: String) {
         val bundle = Bundle()
-        bundle.putParcelableArrayList("list", list1 as java.util.ArrayList<out Parcelable>)
         bundle.putSerializable("num", num)
         bundle.putSerializable("genre", genre)
 //        TODO FragmentGenreDestinations.action(_, _, _)
@@ -110,9 +109,7 @@ class GenresTournamentFragment(
         val mObserverList: Observer<GenreList> = Observer {
             val list = it.genres
             for (item in list) {
-                viewModel.insert(GenreModel(name = item.name, id = item.id)) {
-                    Log.d("testLog", "Row inserted")
-                }
+                viewModel.insert(GenreModel(name = item.name, id = item.id))
             }
         }
 

@@ -20,11 +20,6 @@ class GenresTournamentVM (
     private val DBRepository: RoomRepository
 ) : BaseViewModel() {
 
-    init {
-        getGenres {
-            AppPreference.setGeneratedGenres(true)
-        }
-    }
 
     // TODO Убрать, данные получаются от репозитория
     val allGenres: LiveData<List<GenreModel>>
@@ -32,11 +27,6 @@ class GenresTournamentVM (
             return DBRepository.allGenres
         }
 
-    val genreModel: (String) -> Unit = { genre ->
-        getMovies(genre)
-    }
-
-    var filmListVM = MutableLiveData<List<Movie>>()
     var genreListVM = MutableLiveData<GenreList>()
 
     fun signOut() {
@@ -45,7 +35,7 @@ class GenresTournamentVM (
 
     fun getGenres(onSuccess:() -> Unit){
         job = Coroutines.ioThenMan(
-            { repository.getGenres() },
+        { apiRepository.getGenres() },
             { genreListVM.value = it }
         )
         onSuccess()

@@ -1,6 +1,5 @@
 package com.example.finema.api
 
-import androidx.annotation.IntRange
 import com.example.finema.models.GenreRequest.GenreList
 import com.example.finema.models.movieResponse.MovieDetails
 import com.example.finema.models.movieResponse.MovieResponse
@@ -12,7 +11,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import java.util.*
 
 interface MoviesApi {
 

@@ -1,13 +1,12 @@
 package com.example.finema.ui.favourite
 
 import android.util.Log
-import com.example.finema.R
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.finema.R
 import com.example.finema.models.databaseModels.MovieModel
 
 
