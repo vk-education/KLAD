@@ -2133,6 +2133,7 @@ id linearLayout
 id linearUser
 id listMode
 id list_item
+id loader
 id lovely
 id masked
 id material_clock_display
@@ -2165,6 +2166,7 @@ id month_navigation_next
 id month_navigation_previous
 id month_title
 id motion_base
+id moviesList
 id mtrl_anchor_parent
 id mtrl_calendar_day_selector_frame
 id mtrl_calendar_days_of_week
@@ -2228,7 +2230,6 @@ id postLayout
 id profile_short
 id progress_circular
 id progress_horizontal
-id projectsList
 id radio
 id rating
 id ratingTitle
@@ -2563,6 +2564,7 @@ layout preference_widget_seekbar
 layout preference_widget_seekbar_material
 layout preference_widget_switch
 layout preference_widget_switch_compat
+layout profile_fragment
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
@@ -2632,6 +2634,7 @@ string character_counter_overflowed_content_description
 string character_counter_pattern
 string chip_text
 string choose_best_film
+string clear_statistics
 string clear_text_end_icon_content_description
 string common_google_play_services_enable_button
 string common_google_play_services_enable_text

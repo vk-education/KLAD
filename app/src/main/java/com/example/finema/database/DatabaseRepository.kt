@@ -14,6 +14,8 @@ interface DatabaseRepository {
 
     suspend fun insertFavourite(movie: MovieModel,onSuccess:()-> Unit)
 
+    suspend fun deleteFavourite(onSuccess: () -> Unit)
+
     fun connectToDatabase(onSuccess: () -> Unit, onFail: (String)-> Unit){}
 
     fun signOut(){}

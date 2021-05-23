@@ -14,13 +14,15 @@ class FavouriteViewModel (
     private val DBRepository: RoomRepository
 ) : BaseViewModel() {
 
-    var favouriteMovies: LiveData<List<MovieModel>>? = null
+    val favouriteMovies: LiveData<List<MovieModel>>
+        get() {
+            return  DBRepository.allFavourites
+        }
 
     init{
         Log.d("gypsy", "DB")
-        favouriteMovies = DBRepository.allFavourites
 
-        Log.d("gypsy", favouriteMovies?.value.toString())
+        Log.d("gypsy", favouriteMovies.value.toString())
     }
 
 }

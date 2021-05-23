@@ -24,6 +24,11 @@ class RoomRepository (
         onSuccess()
     }
 
+    override suspend fun deleteFavourite(onSuccess: () -> Unit) {
+        roomDao.deleteFavourite()
+        onSuccess()
+    }
+
     override fun signOut(){
     }
 }

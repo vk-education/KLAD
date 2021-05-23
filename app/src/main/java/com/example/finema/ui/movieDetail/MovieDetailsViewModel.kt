@@ -44,15 +44,15 @@ class MovieDetailsViewModel(
         )
     }
 
-    companion object{
-        const val NEW_LINE = "\n"
-        const val TAB = "\t"
-    }
-
     fun insert(movieModel: MovieModel) =
         viewModelScope.launch(Dispatchers.Main) {
             DBRepository.insertFavourite(movieModel) {
             }
         }
+
+    companion object{
+        const val NEW_LINE = "\n"
+        const val TAB = "\t"
+    }
 
 }

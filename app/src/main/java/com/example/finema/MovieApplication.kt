@@ -19,7 +19,6 @@ class MovieApplication: Application() {
                 apiModule,
                 databaseModule,
                 repositoryModule,
-                extraModule,
                 viewModelModule
                 )
             )

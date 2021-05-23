@@ -22,7 +22,6 @@ class FavouriteAdapter(private val films: List<MovieModel>) :
         return ViewHolder(view)
     }
 
-
     override fun onBindViewHolder(viewholder: ViewHolder, position: Int) {
         Log.d("gypsy", position.toString())
         viewholder.filmTitle?.text = films[position].title

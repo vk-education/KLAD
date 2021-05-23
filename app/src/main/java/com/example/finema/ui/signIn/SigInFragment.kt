@@ -51,6 +51,7 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
 
         viewModel.name.observe(viewLifecycleOwner, { name ->
             if (name != "") {
+                binding.loader.visibility = View.INVISIBLE
                 header.text = name
                 findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
             } else {
@@ -63,6 +64,7 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         })
 
         binding.signInWithGoogle.setOnClickListener {
+            binding.loader.visibility = View.VISIBLE
             signIn()
             AppPreference.setInitUser(true)
         }
