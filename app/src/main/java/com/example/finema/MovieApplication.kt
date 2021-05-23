@@ -1,10 +1,7 @@
 package com.example.finema
 
 import android.app.Application
-import com.example.finema.util.apiModule
-import com.example.finema.util.databaseModule
-import com.example.finema.util.repositoryModule
-import com.example.finema.util.viewModelModule
+import com.example.finema.util.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
 import org.koin.android.ext.koin.androidLogger
@@ -22,6 +19,7 @@ class MovieApplication: Application() {
                 apiModule,
                 databaseModule,
                 repositoryModule,
+                extraModule,
                 viewModelModule
                 )
             )
