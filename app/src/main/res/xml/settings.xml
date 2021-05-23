@@ -11,4 +11,9 @@
         app:key="quit"
         app:title="@string/quit"/>
 
+    <Preference
+            app:key="clear_statistics"
+            app:title="@string/clear_statistics"/>
+
+
 </PreferenceScreen>

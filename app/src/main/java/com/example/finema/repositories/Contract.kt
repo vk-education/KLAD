@@ -21,12 +21,7 @@ import kotlinx.coroutines.flow.shareIn
 
 class Contract : ActivityResultContract<Unit, Flow<FirebaseAuth?>?>() {
 
-    val mAuth  = FirebaseAuth.getInstance()
-
-    private var _movies = MutableLiveData<FirebaseAuth>()
-    val movies: LiveData<FirebaseAuth>
-        get() = _movies
-
+    private val mAuth  = FirebaseAuth.getInstance()
 
     private val gso: GoogleSignInOptions = GoogleSignInOptions
         .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -78,7 +73,6 @@ class Contract : ActivityResultContract<Unit, Flow<FirebaseAuth?>?>() {
                     Log.w("firebaseAuthWithGoogle", "signInWithCredential:failure", task.exception)
                 }
             }
-        _movies.value = mAuth
         return mAuth
     }
 

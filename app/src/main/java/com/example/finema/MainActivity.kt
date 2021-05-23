@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.work.ExistingWorkPolicy
@@ -15,6 +17,8 @@ import androidx.work.WorkManager
 import com.example.finema.databinding.ActivityMainBinding
 import com.example.finema.ui.settings.NotificationService
 import com.example.finema.util.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.auth.FirebaseAuthCredentialsProvider
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
 import org.koin.android.ext.koin.androidLogger
@@ -41,12 +45,10 @@ class MainActivity : AppCompatActivity() {
             binding.drawerLayout.open()
         }
 
-        checkUser()
-
-        binding.navView.getHeaderView(0).setOnClickListener {
-            findNavController(R.id.fragment)
-                .navigate(R.id.action_global_fragmentProfile)
-        }
+//        binding.navView.getHeaderView(0).setOnClickListener {
+//            findNavController(R.id.fragment)
+//                .navigate(R.id.action_global_fragmentProfile)
+//        }
 
         binding.navView.setNavigationItemSelectedListener {
             binding.drawerLayout.close()
@@ -94,6 +96,10 @@ class MainActivity : AppCompatActivity() {
             }
         } else {
             initDatabase(this, TYPE_ROOM) {
+                binding.navView
+                    .getHeaderView(0)
+                    .findViewById<TextView>(R.id.nickProfile)
+                    .text = FirebaseAuth.getInstance().currentUser?.displayName.orEmpty()
                 Log.d("testLog", "nothing")
             }
         }
@@ -108,13 +114,6 @@ class MainActivity : AppCompatActivity() {
             WorkManager.getInstance(this)
                 .beginUniqueWork("notification", ExistingWorkPolicy.REPLACE, simpleNotification)
                 .enqueue()
-        }
-    }
-
-    private fun checkUser() {
-        if (AppPreference.getInitUser()) {
-            initDatabase(applicationContext, TYPE_ROOM) {
-            }
         }
     }
 

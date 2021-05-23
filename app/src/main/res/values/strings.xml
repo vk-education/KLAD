@@ -16,6 +16,7 @@
     <string name="higher_lower_score">Очки: %1$d</string>
     <string name="poster_base_url">https://image.tmdb.org/t/p/w342%1$s</string>
     <string name="quit">Выйти из приложения</string>
+    <string name="clear_statistics">Очистить статистику</string>
     <string name="choose_best_film">Выбери лучший фильм</string>
     <string name="lovely_films">Избранные фильмы</string>
     <string name="settings">Настройки</string>

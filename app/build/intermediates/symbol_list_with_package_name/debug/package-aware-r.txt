@@ -2046,6 +2046,7 @@ id endToStart
 id end_padder
 id enterAlways
 id enterAlwaysCollapsed
+id exit
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
@@ -2127,6 +2128,7 @@ id linear
 id linearLayout
 id listMode
 id list_item
+id loader
 id lovely
 id masked
 id material_clock_display
@@ -2623,6 +2625,7 @@ string character_counter_overflowed_content_description
 string character_counter_pattern
 string chip_text
 string choose_best_film
+string clear_statistics
 string clear_text_end_icon_content_description
 string common_google_play_services_enable_button
 string common_google_play_services_enable_text

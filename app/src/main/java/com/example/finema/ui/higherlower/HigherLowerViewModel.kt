@@ -34,7 +34,6 @@ class HigherLowerViewModel(
         _movies.value?.movies.let {
             _movies.value?.movies = it?.shuffled()!!
         }
-        _movies = _movies
     }
 
     private fun getMovies() {

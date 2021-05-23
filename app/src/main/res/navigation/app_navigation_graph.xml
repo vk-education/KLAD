@@ -110,7 +110,7 @@
 
     <fragment
         android:id="@+id/fragmentSettings"
-        android:name="com.example.finema.ui.settings.SettingsFragment"
+        android:name="com.example.finema.ui.settings.SetFragment"
         android:label="Settings fragment"
         tools:layout="@layout/settings_fragment">
         <action
@@ -120,9 +120,9 @@
 
     <fragment
         android:id="@+id/fragmentProfile"
-        android:name="com.example.finema.ui.userProfile.ProfileFragment"
+        android:name=""
         android:label="Profile fragment"
-        tools:layout="@layout/profile_fragment">
+        tools:layout="@layout/settings_fragment">
         <action
             android:id="@+id/action_fragment_profile_to_fragment_film"
             app:destination="@id/fragmentFilm">

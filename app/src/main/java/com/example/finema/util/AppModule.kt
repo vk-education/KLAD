@@ -8,11 +8,11 @@ import com.example.finema.ui.favourite.FavouriteViewModel
 import com.example.finema.ui.higherlower.HigherLowerViewModel
 import com.example.finema.ui.higherlowerrating.HigherLowerRatingViewModel
 import com.example.finema.ui.movieDetail.MovieDetailsViewModel
+import com.example.finema.ui.settings.SettingsViewModel
 import com.example.finema.ui.signIn.SignInViewModel
 import com.example.finema.ui.tmp.TmpViewModel
 import com.example.finema.ui.tournaments.tournament.TournamentVM
 import com.example.finema.ui.tournaments.genres.GenresTournamentVM
-import com.example.finema.ui.userProfile.ProfileViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
@@ -34,9 +34,9 @@ val viewModelModule: Module = module {
 
     viewModel { HigherLowerRatingViewModel(get()) }
 
-    viewModel { ProfileViewModel() }
-
     viewModel { FavouriteViewModel(get()) }
+
+    viewModel { SettingsViewModel(get()) }
 }
 
 val apiModule: Module = module {

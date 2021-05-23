@@ -1,29 +1,43 @@
 package com.example.finema.ui.settings
 
-
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
 import com.example.finema.R
+import com.example.finema.databinding.SettingsFragmentBinding
+import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.AppPreference
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 
+class SettingsFragment
+    : BaseFragment<SettingsViewModel, SettingsFragmentBinding>() {
 
-class SettingsFragment(): PreferenceFragmentCompat() {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = SettingsFragmentBinding.inflate(inflater, container, false)
 
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        return binding.root
+    }
 
-        setPreferencesFromResource(R.xml.settings, rootKey)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel = getViewModel()
+        super.onViewCreated(view, savedInstanceState)
 
-        val button: Preference = findPreference("quit")!!
+        binding.exit.setOnClickListener {
+            AppPreference.setInitUser(false)
+            AppPreference.googleUserSignOut()
+            findNavController().navigate(R.id.action_fragmentSettings_to_sigInFragment)
+        }
 
-        button.onPreferenceClickListener =
-            Preference.OnPreferenceClickListener { //code for what you want it to do
-                AppPreference.setInitUser(false)
-                AppPreference.googleUserSignOut()
-                findNavController().navigate(R.id.action_fragmentSettings_to_sigInFragment)
-                true
-            }
+        binding.notfications.setOnClickListener {
+            
+        }
 
     }
 }

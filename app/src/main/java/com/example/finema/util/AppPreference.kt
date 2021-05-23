@@ -3,6 +3,7 @@ package com.example.finema.util
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
+import com.example.finema.database.room.RoomRepository
 import com.google.firebase.auth.FirebaseAuth
 
 //TODO Сделать репозиторием с интерфейсом
@@ -23,7 +24,7 @@ object AppPreference {
 
     fun setInitUser(init:Boolean) {
         mPreferences.edit()
-            .putBoolean(INIT_USER,init)
+            .putBoolean(INIT_USER, init)
             .apply()
     }
 
