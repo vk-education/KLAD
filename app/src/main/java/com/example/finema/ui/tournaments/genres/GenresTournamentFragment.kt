@@ -65,7 +65,6 @@ class GenresTournamentFragment(
         dialogBinding(genreModel.id.toString())
     }
 
-
     private fun dialogBinding(genre: String) {
         //TODO Изменить на фрагмент
         //TODO Заменить на нормальный контекст
