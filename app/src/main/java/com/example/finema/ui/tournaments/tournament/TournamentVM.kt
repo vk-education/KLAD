@@ -1,8 +1,6 @@
 package com.example.finema.ui.tournaments.tournament
 
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.Navigation
 import com.example.finema.R
@@ -33,7 +31,18 @@ class TournamentVM(
         start()
     }
 
-    fun getMovies(genre: String, onSuccess:() -> Unit) {
+
+    private fun start() {
+        getMovies("12") {
+            gotList.observe(APP_ACTIVITY, {
+                mainList = it.take(numFilms) as ArrayList<Movie>
+                updateCards()
+            })
+        }
+
+    }
+
+    fun getMovies(genre: String, onSuccess: () -> Unit) {
         job = Coroutines.ioThenMan(
             { apiRepository.getMoviesWithGenre(1, genre) },
             { gotList.value = it?.movies }
@@ -42,63 +51,52 @@ class TournamentVM(
     }
 
 
-    private fun start() {
-        getMovies("12"){
-            gotList.observe(APP_ACTIVITY,{
-                mainList = it.take(numFilms) as ArrayList<Movie>
-                updateCards()
-            })
+    fun itemClick(position: Int) {
+        when (position) {
+            0 -> {
+                if (mainList.isEmpty()) {
+                    if (secondList.isEmpty()) {
+                        val filmIdInfo = el1.id.toLong()
+                        goNextFragment(filmIdInfo)
+                    } else {
+                        secondList.add(el1)
+                        secondListToMainList()
+                        updateCards()
+                    }
+                } else {
+                    secondList.add(el1)
+                    updateCards()
+                }
+            }
+            1 -> {
+                if (mainList.isEmpty()) {
+                    if (secondList.isEmpty()) {
+                        val filmIdInfo = el2.id.toLong()
+                        goNextFragment(filmIdInfo)
+                    } else {
+                        secondList.add(el2)
+                        secondListToMainList()
+                        updateCards()
+                    }
+                } else {
+                    secondList.add(el2)
+                    updateCards()
+                }
+            }
         }
-
     }
 
+    private fun secondListToMainList() {
+        mainList.addAll(secondList)
+        secondList.clear()
+        roundCount += 1
+    }
 
-
-    fun itemClick(position: Int) {
-        Log.d("testLog","main"+mainList.size.toString())
-        Log.d("testLog","second"+secondList.size.toString())
-        if (mainList.isEmpty()) {
-            if (secondList.isEmpty()) {
-                val bundle = Bundle()
-                when (position) {
-                    0 -> {
-                        val filmIdInfo = el1.id.toLong()
-                        bundle.putSerializable("filmId", filmIdInfo)
-                    }
-                    1 -> {
-                        val filmIdInfo = el2.id.toLong()
-                        bundle.putSerializable("filmId", filmIdInfo)
-                    }
-                }
-
-                Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
-                    .navigate(R.id.action_fragment_tournament_to_fragment_film, bundle)
-            } else {
-                when (position) {
-                    0 -> {
-                        secondList.add(el1)
-                    }
-                    1 -> {
-                        secondList.add(el2)
-                    }
-                }
-                mainList.addAll(secondList)
-                secondList.clear()
-                roundCount+=1
-                updateCards()
-            }
-        } else {
-            when (position) {
-                0 -> {
-                    secondList.add(el1)
-                }
-                1 -> {
-                    secondList.add(el2)
-                }
-            }
-            updateCards()
-        }
-
+    private fun goNextFragment(filmIdInfo: Long) {
+        val bundle = Bundle()
+        bundle.putSerializable("filmId", filmIdInfo)
+        Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
+            .navigate(R.id.action_fragment_tournament_to_fragment_film, bundle)
     }
 
     private fun updateCards() {
@@ -111,3 +109,6 @@ class TournamentVM(
 
 
 }
+
+
+
