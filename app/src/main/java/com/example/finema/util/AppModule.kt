@@ -1,7 +1,6 @@
 package com.example.finema.util
 
 import com.example.finema.api.*
-import com.example.finema.database.DatabaseRepository
 import com.example.finema.database.room.*
 import com.example.finema.repositories.Contract
 import com.example.finema.ui.favourite.FavouriteViewModel

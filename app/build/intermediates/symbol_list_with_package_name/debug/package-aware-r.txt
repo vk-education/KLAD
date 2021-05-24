@@ -1759,6 +1759,8 @@ drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable avd_hide_password
 drawable avd_show_password
+drawable bookmark_24
+drawable bookmark_border_24
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -1842,10 +1844,12 @@ drawable outline_menu_24
 drawable outline_star_24
 drawable parasite
 drawable preference_list_divider_material
+drawable settings_24
 drawable test_custom_background
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 id ALT
+id Avatar
 id BOTTOM_END
 id BOTTOM_START
 id CTRL
@@ -1955,6 +1959,8 @@ id baseline
 id beginOnFirstDraw
 id beginning
 id blocking
+id bookmark1
+id bookmark2
 id bottom
 id bounce
 id browser_actions_header_text
@@ -1990,6 +1996,7 @@ id chip3
 id chip_group
 id chronometer
 id circle_center
+id clear_statistics
 id clear_text
 id clip_horizontal
 id clip_vertical
@@ -2087,6 +2094,7 @@ id group_divider
 id groups
 id guideline
 id header_title
+id help
 id hideable
 id higherLowerRatingFragment
 id home
@@ -2116,6 +2124,7 @@ id jumpToEnd
 id jumpToStart
 id labelGroup
 id labeled
+id language
 id largeLabel
 id layout
 id layoutText
@@ -2126,6 +2135,7 @@ id line1
 id line3
 id linear
 id linearLayout
+id linearUser
 id listMode
 id list_item
 id loader
@@ -2195,6 +2205,7 @@ id nickProfile
 id noScroll
 id none
 id normal
+id notfications
 id notification_background
 id notification_main_column
 id notification_main_column_container
@@ -2345,6 +2356,7 @@ id textinput_helper_text
 id textinput_placeholder
 id textinput_prefix_text
 id textinput_suffix_text
+id theme
 id time
 id title
 id titleDividerNoCustom
@@ -2373,6 +2385,8 @@ id unlabeled
 id up
 id useLogo
 id userAvatar
+id userName
+id userPhone
 id view_offset_helper
 id view_tree_lifecycle_owner
 id view_tree_saved_state_registry_owner
