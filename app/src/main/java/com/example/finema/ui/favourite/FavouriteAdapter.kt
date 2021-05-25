@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.finema.R
 import com.example.finema.models.databaseModels.MovieModel
 
-
 class FavouriteAdapter(
     private val navigateToMovie: (Long) -> Unit
 ) :
@@ -31,7 +30,7 @@ class FavouriteAdapter(
 
     override fun getItemCount() = movies.size
 
-    fun update(movies: List<MovieModel>){
+    fun update(movies: List<MovieModel>) {
         this.movies = movies
     }
 
