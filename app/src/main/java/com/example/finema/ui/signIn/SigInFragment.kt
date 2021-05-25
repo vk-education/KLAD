@@ -16,6 +16,7 @@ import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 
 
 class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
@@ -54,12 +55,6 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
                 binding.loader.visibility = View.INVISIBLE
                 header.text = name
                 findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
-            } else {
-                //начать анимацию загрузки
-                //кстати реализцая хуйня
-                //потом разберусь
-                //или нет
-                binding.signInWithGoogle.callOnClick()
             }
         })
 
@@ -87,10 +82,8 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
     private fun initCustomContract() {
         customContract = registerForActivityResult(viewModel.contract) {
             CoroutineScope(Dispatchers.Main).launch {
-                it?.collect { value ->
-                    Log.d("WeWantName", value?.currentUser?.displayName.orEmpty()
-                            + "\t\tNothing")
-                    viewModel.setName(value?.currentUser?.displayName.orEmpty())
+                it.collectLatest {
+                    viewModel.setName(it)
                 }
             }
         }

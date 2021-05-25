@@ -1,9 +1,10 @@
 package com.example.finema.util
 
 import com.example.finema.api.*
-import com.example.finema.database.DatabaseRepository
 import com.example.finema.database.room.*
 import com.example.finema.repositories.Contract
+import com.example.finema.ui.chooseFavourite.ChooseFavouriteViewModel
+import com.example.finema.ui.chooseFavourite.MoviePagingSource
 import com.example.finema.ui.favourite.FavouriteViewModel
 import com.example.finema.ui.higherlower.HigherLowerViewModel
 import com.example.finema.ui.higherlowerrating.HigherLowerRatingViewModel
@@ -30,13 +31,15 @@ val viewModelModule: Module = module {
 
     viewModel { MovieDetailsViewModel(get(), get()) }
 
-    viewModel { TournamentVM() }
+    viewModel { TournamentVM(get()) }
 
     viewModel { HigherLowerRatingViewModel(get()) }
 
     viewModel { FavouriteViewModel(get()) }
 
     viewModel { SettingsViewModel(get()) }
+
+    viewModel { ChooseFavouriteViewModel(get()) }
 }
 
 val apiModule: Module = module {
@@ -49,7 +52,6 @@ val databaseModule: Module = module {
     single { RoomDataBase.getInstance(androidContext()) }
 
     single { RoomDataBase.getInstance(androidContext()).getRoomDao() }
-
 }
 
 val repositoryModule: Module = module {

@@ -1916,6 +1916,7 @@ id action_fragment_tmp_to_fragment_genre
 id action_fragment_tmp_to_fragment_others
 id action_fragment_tmp_to_fragment_own_tournament
 id action_fragment_tournament_to_fragment_film
+id action_global_chooseFavouriteFragment
 id action_global_fragmentFavourite
 id action_global_fragmentHigherLower
 id action_global_fragmentProfile
@@ -1935,6 +1936,7 @@ id action_tmpFragment_to_sigInFragment
 id actions
 id activity_chooser_view_content
 id add
+id addFav
 id adjust_height
 id adjust_width
 id alertTitle
@@ -1989,6 +1991,7 @@ id chip1
 id chip2
 id chip3
 id chip_group
+id chooseFavouriteFragment
 id chronometer
 id circle_center
 id clear_statistics
@@ -2000,6 +2003,7 @@ id collapseActionView
 id companies
 id companiesTitle
 id confirm_button
+id cons
 id container
 id content
 id contentPanel
@@ -2167,6 +2171,7 @@ id month_navigation_previous
 id month_title
 id motion_base
 id moviesList
+id movs
 id mtrl_anchor_parent
 id mtrl_calendar_day_selector_frame
 id mtrl_calendar_days_of_week
@@ -2230,6 +2235,7 @@ id postLayout
 id profile_short
 id progress_circular
 id progress_horizontal
+id query
 id radio
 id rating
 id ratingTitle
@@ -2370,6 +2376,8 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id tv_name
+id tv_status
 id txt_film1
 id txt_film2
 id txt_num_category
@@ -2459,6 +2467,7 @@ layout abc_tooltip
 layout activity_main
 layout browser_actions_context_menu_page
 layout browser_actions_context_menu_row
+layout choose_favourite_fragment
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -2530,6 +2539,7 @@ layout mtrl_picker_header_toggle
 layout mtrl_picker_text_input_date
 layout mtrl_picker_text_input_date_range
 layout nav_header
+layout nice
 layout notification_action
 layout notification_action_tombstone
 layout notification_media_action
@@ -2625,6 +2635,7 @@ string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string about_film
+string add_favourite
 string app_name
 string appbar_scrolling_view_behavior
 string bottom_sheet_behavior

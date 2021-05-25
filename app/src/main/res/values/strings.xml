@@ -20,6 +20,7 @@
     <string name="choose_best_film">Выбери лучший фильм</string>
     <string name="lovely_films">Избранные фильмы</string>
     <string name="settings">Настройки</string>
+    <string name="add_favourite">Добавить</string>
     <string name="game_higher_lower">Игра больше/меньше</string>
     <string name="popularity">Популярность</string>
     <string name="n_best_movies">%1$d Лучших фильмов</string>

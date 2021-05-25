@@ -2,6 +2,7 @@ package com.example.finema.api
 
 import androidx.annotation.IntRange
 import com.example.finema.models.GenreRequest.GenreList
+import com.example.finema.models.infinite.MovieDiscover
 import com.example.finema.models.movieResponse.MovieDetails
 import com.example.finema.models.movieResponse.MovieResponse
 import com.example.finema.util.GENRE_LIST
@@ -36,6 +37,12 @@ interface MoviesApi {
         @Query("with_genres") with_genres: String
     ): Response<MovieResponse>
 
+    @GET(DISCOVER)
+    suspend fun everything(
+        @Query("page") page: Int,
+        @Query("query") query: String
+        ): Response<MovieDiscover>
+
     companion object {
         operator fun invoke(): MoviesApi {
             return Retrofit.Builder()
@@ -46,5 +53,11 @@ interface MoviesApi {
         }
 
         private const val BASE_URL = "https://api.themoviedb.org/3/"
+        private const val GENRE_LIST =
+            "genre/movie/list?api_key=bbf5a3000e95f1dddf266b5e187d4b21&language=ru-Ru"
+        private const val TOP_RATED_LIST =
+            "movie/top_rated?api_key=bbf5a3000e95f1dddf266b5e187d4b21&language=ru-Ru"
+        private const val DISCOVER =
+            "search/keyword?api_key=bbf5a3000e95f1dddf266b5e187d4b21"
     }
 }

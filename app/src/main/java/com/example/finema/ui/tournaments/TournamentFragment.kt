@@ -14,6 +14,7 @@ import com.example.finema.ui.tournaments.genres.GenresTournamentVM
 import com.example.finema.util.downloadAndSetImage
 import com.example.finema.util.APP_ACTIVITY
 import org.koin.androidx.viewmodel.ext.android.getViewModel
+import java.lang.System.setProperty
 
 //TODO Вынести всю логику во VM
 class TournamentFragment : BaseFragment<GenresTournamentVM, FragmentTournamentDuoBinding>() {
@@ -38,6 +39,7 @@ class TournamentFragment : BaseFragment<GenresTournamentVM, FragmentTournamentDu
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         viewModel = getViewModel()
 
         super.onViewCreated(view, savedInstanceState)
