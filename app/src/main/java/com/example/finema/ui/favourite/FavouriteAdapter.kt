@@ -10,27 +10,32 @@ import com.example.finema.R
 import com.example.finema.models.databaseModels.MovieModel
 
 
-class FavouriteAdapter(private val films: List<MovieModel>) :
-    RecyclerView.Adapter<FavouriteAdapter.ViewHolder>() {
+class FavouriteAdapter(
+    private val navigateToMovie: (Long) -> Unit
+) :
+    RecyclerView.Adapter<FavouriteAdapter.MovieViewHolder>() {
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        // Create a new view, which defines the UI of the list item
+    private var movies: List<MovieModel> = emptyList()
+
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): MovieViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.favourite_movie_item, viewGroup, false)
 
-        return ViewHolder(view)
+        return MovieViewHolder(view)
     }
 
-    override fun onBindViewHolder(viewholder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(viewholder: MovieViewHolder, position: Int) {
         Log.d("gypsy", position.toString())
-        viewholder.filmTitle?.text = films[position].title
-        viewholder.rating?.text = films[position].rating
-        viewholder.genre?.text = films[position].genres
+        viewholder.bind(movies[position], navigateToMovie)
     }
 
-    override fun getItemCount() = films.size
+    override fun getItemCount() = movies.size
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    fun update(movies: List<MovieModel>){
+        this.movies = movies
+    }
+
+    class MovieViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         //        val imageMovie: ImageView = view.findViewById(R.id.imageMovie) as ImageView
         var filmTitle: TextView? = null
         var rating: TextView? = null
@@ -40,6 +45,14 @@ class FavouriteAdapter(private val films: List<MovieModel>) :
             filmTitle = view.findViewById(R.id.filmTitle)
             rating = view.findViewById(R.id.rating)
             genre = view.findViewById(R.id.genre)
+        }
+
+        fun bind(movie: MovieModel, navigateToMovie: (Long) -> Unit) = itemView.apply {
+            filmTitle?.text = movie.title
+            rating?.text = movie.rating
+            genre?.text = movie.genres
+
+            setOnClickListener { navigateToMovie(movie.id) }
         }
     }
 }

@@ -14,10 +14,7 @@ class FavouriteViewModel (
     private val DBRepository: RoomRepository
 ) : BaseViewModel() {
 
-    val favouriteMovies: LiveData<List<MovieModel>>
-        get() {
-            return  DBRepository.allFavourites
-        }
+    val favouriteMovies: LiveData<List<MovieModel>> = DBRepository.allFavourites
 
     init{
         Log.d("gypsy", "DB")

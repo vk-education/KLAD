@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finema.databinding.FavouriteFragmentBinding
@@ -14,11 +15,11 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class FavouriteFragment : BaseFragment<FavouriteViewModel, FavouriteFragmentBinding>() {
 
-    val list = listOf(460465, 567189, 399566, 578701)
+    private val favouriteAdapter = FavouriteAdapter {
+        val action = FavouriteFragmentDirections.actionFragmentFavouriteToFragmentFilm(it)
+        findNavController().navigate(action)
+    }
 
-    private lateinit var adapter: FavouriteAdapter
-    private var movies: List<MovieModel>? = listOf()
-    private lateinit var recyclerView: RecyclerView
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,10 +38,11 @@ class FavouriteFragment : BaseFragment<FavouriteViewModel, FavouriteFragmentBind
             if (it != null){
                 binding.searchLoader.visibility = View.INVISIBLE
                 binding.moviesList.visibility = View.VISIBLE
-                binding.moviesList.layoutManager = LinearLayoutManager(context)
-                binding.moviesList.adapter = FavouriteAdapter(it)
+                favouriteAdapter.update(it)
             }
 
+            binding.moviesList.layoutManager = LinearLayoutManager(context)
+            binding.moviesList.adapter = favouriteAdapter
         })
 
     }
