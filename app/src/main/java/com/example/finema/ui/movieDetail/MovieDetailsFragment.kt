@@ -1,6 +1,7 @@
 package com.example.finema.ui.movieDetail
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.VISIBLE
@@ -15,6 +16,7 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFragmentBinding>() {
 
+    var movie: MovieModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,6 +38,12 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
 
 //        binding.filmLoader.visibility = View.GONE
         viewModel.film.observe(viewLifecycleOwner, observerList)
+        
+        binding.checkFavourite.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked && movie != null){
+                viewModel.insert(movie!!)
+            }
+        }
 
     }
 
@@ -55,7 +63,12 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
 
         binding.rating.text = it.voteAverage.toString()
 
-        val movie = MovieModel(
+        if (viewModel.checkFavourite(it.id.toLong())){
+            Log.d("gypsy", "True")
+            binding.checkFavourite.isChecked = true
+        }
+
+        movie = MovieModel(
             it.id.toLong(),
             it.title,
             null,
@@ -64,8 +77,6 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
             it.voteAverage.toString(),
             null
         )
-
-        viewModel.insert(movie)
     }
 
 

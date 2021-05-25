@@ -2,16 +2,17 @@ package com.example.finema.models.databaseModels
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
-@Entity(tableName = "favourite_list")
+@Entity(tableName = "favourite_list", indices = [Index("id")])
 data class MovieModel(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     @ColumnInfo
     val title: String = "",
-    @ColumnInfo (typeAffinity = ColumnInfo.BLOB)
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     var image: ByteArray? = null,
     @ColumnInfo
     val about: String = "",
@@ -24,5 +25,5 @@ data class MovieModel(
 
     val idFirebase: String = ""
 
-): Serializable
+) : Serializable
 
