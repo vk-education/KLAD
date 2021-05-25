@@ -14,7 +14,7 @@
             android:id="@+id/profile_short"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:background="@android:color/holo_purple"
+        android:background="@color/design_default_color_primary"
         android:fitsSystemWindows="true">
 
         <ImageView

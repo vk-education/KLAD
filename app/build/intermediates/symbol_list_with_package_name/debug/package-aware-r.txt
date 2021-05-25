@@ -1759,6 +1759,8 @@ drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable avd_hide_password
 drawable avd_show_password
+drawable bookmark_24
+drawable bookmark_border_24
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -1842,6 +1844,7 @@ drawable outline_menu_24
 drawable outline_star_24
 drawable parasite
 drawable preference_list_divider_material
+drawable settings_24
 drawable test_custom_background
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
@@ -1958,6 +1961,8 @@ id baseline
 id beginOnFirstDraw
 id beginning
 id blocking
+id bookmark1
+id bookmark2
 id bottom
 id bounce
 id browser_actions_header_text
@@ -2233,6 +2238,7 @@ id points
 id position
 id postLayout
 id profile_short
+id progress_bar
 id progress_circular
 id progress_horizontal
 id query
@@ -2488,7 +2494,7 @@ layout expand_button
 layout favourite_fragment
 layout favourite_movie_item
 layout fragment_base
-layout fragment_tournament_duo
+layout fragment_tournament
 layout fragment_tournament_genres
 layout genre_item
 layout higher_lower_fragment
@@ -2597,7 +2603,6 @@ layout text_view_with_theme_line_height
 layout text_view_without_line_height
 layout thematic_fragment
 layout tmp_fragment
-layout tournament_fragment
 layout welcome_fragment
 menu drawer_menu
 mipmap ic_launcher
@@ -2645,6 +2650,7 @@ string character_counter_overflowed_content_description
 string character_counter_pattern
 string chip_text
 string choose_best_film
+string clear
 string clear_statistics
 string clear_text_end_icon_content_description
 string common_google_play_services_enable_button

@@ -1,11 +1,8 @@
 package com.example.finema.api
 
-import androidx.lifecycle.LiveData
-import androidx.paging.Pager
 import androidx.paging.PagingData
 import com.example.finema.models.GenreRequest.GenreList
 import com.example.finema.models.infinite.MovieDiscoverResult
-import com.example.finema.models.movieResponse.Movie
 import com.example.finema.models.movieResponse.MovieDetails
 import com.example.finema.models.movieResponse.MovieResponse
 import kotlinx.coroutines.flow.Flow

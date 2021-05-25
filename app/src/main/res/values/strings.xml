@@ -25,5 +25,6 @@
     <string name="popularity">Популярность</string>
     <string name="n_best_movies">%1$d Лучших фильмов</string>
     <string name="round">Раунд %1$d</string>
+    <string name="clear">Ваша статистика очищена</string>
 
 </resources>

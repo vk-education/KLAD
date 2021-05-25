@@ -8,12 +8,14 @@
         android:icon="@drawable/outline_star_24" />
 
     <item
-        android:id="@+id/lovely"
-        android:title="@string/lovely_films" />
+            android:id="@+id/lovely"
+            android:title="@string/lovely_films"
+            android:icon="@drawable/bookmark_24" />
 
     <item
-        android:id="@+id/settings"
-        android:title="@string/settings" />
+            android:id="@+id/settings"
+            android:title="@string/settings"
+            android:icon="@drawable/settings_24" />
 
     <item
             android:id="@+id/addFav"
