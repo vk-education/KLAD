@@ -8,7 +8,7 @@ import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.models.databaseModels.MovieModel
 
 
-@Database(entities = [GenreModel::class, MovieModel::class], version = 4)
+@Database(entities = [GenreModel::class, MovieModel::class], version = 5)
 abstract class RoomDataBase(
 ) : RoomDatabase() {
 

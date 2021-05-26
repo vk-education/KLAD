@@ -10,16 +10,18 @@ interface DatabaseRepository {
 
     val allFavourites: LiveData<List<MovieModel>>
 
-    suspend fun insert(genre: GenreModel,onSuccess:()-> Unit)
+//    suspend fun checkFavourite(movieId: Long, onSuccess: () -> Unit)
 
-    suspend fun insertFavourite(movie: MovieModel,onSuccess:()-> Unit)
+    suspend fun insert(genre: GenreModel, onSuccess: () -> Unit)
+
+    suspend fun insertFavourite(movie: MovieModel, onSuccess: () -> Unit)
 
     suspend fun deleteAllFavourite(onSuccess: () -> Unit)
 
     suspend fun deleteFavourite(movie: MovieModel, onSuccess: () -> Unit)
 
-    fun connectToDatabase(onSuccess: () -> Unit, onFail: (String)-> Unit){}
+    fun connectToDatabase(onSuccess: () -> Unit, onFail: (String) -> Unit) {}
 
-    fun signOut(){}
+    fun signOut() {}
 
 }
