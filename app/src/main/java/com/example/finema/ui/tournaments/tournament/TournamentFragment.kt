@@ -74,12 +74,10 @@ class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>
         })
 
         binding.bookmark1.setOnClickListener {
-            Toast.makeText(context, "Логики нет", Toast.LENGTH_SHORT).show()
             setBookmarks(binding.bookmark1, 0)
         }
 
         binding.bookmark2.setOnClickListener {
-            Toast.makeText(context, "Логики нет", Toast.LENGTH_SHORT).show()
             setBookmarks(binding.bookmark2, 1)
             viewModel
         }
@@ -94,10 +92,12 @@ class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>
 
     private fun setBookmarks(bookmark: ImageButton, position: Int) {
         if(bookmark.tag == "bruh") {
+            Toast.makeText(context, "Удалено из избранные", Toast.LENGTH_SHORT).show()
             bookmark.setImageResource(R.drawable.bookmark_border_24)
             viewModel.removeFromFav(position)
             bookmark.tag = "b"
         } else {
+            Toast.makeText(context, "Добавлено в избранные", Toast.LENGTH_SHORT).show()
             bookmark.setImageResource(R.drawable.bookmark_24)
             viewModel.addToFav(position)
             bookmark.tag = "bruh"
