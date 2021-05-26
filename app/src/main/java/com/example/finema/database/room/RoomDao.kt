@@ -1,7 +1,6 @@
 package com.example.finema.database.room
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.models.databaseModels.MovieModel
@@ -22,5 +21,9 @@ interface RoomDao {
     suspend fun insert(note: GenreModel)
 
     @Query("DELETE FROM favourite_list;")
-    suspend fun deleteFavourite()
+    suspend fun deleteAllFavourite()
+
+    @Delete
+    suspend fun deleteFavourite(note: MovieModel)
+
 }

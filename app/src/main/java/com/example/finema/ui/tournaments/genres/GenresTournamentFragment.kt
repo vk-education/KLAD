@@ -46,7 +46,7 @@ class GenresTournamentFragment(
     }
 
     private fun initialization() {
-        if (!AppPreference.getGeneratedGenres()) {
+        if (AppPreference.getGeneratedGenres()) {
             loadGenresList()
         }
 

@@ -34,7 +34,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cons"
                     app:lineHeight="18dp"
-                    tools:text="Rick" />
+                    tools:text="Movie" />
 
             <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv_status"
@@ -49,7 +49,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_name"
                     app:lineHeight="14dp"
-                    tools:text="Alive" />
+                    tools:text="" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

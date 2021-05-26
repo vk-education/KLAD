@@ -2,16 +2,22 @@ package com.example.finema.ui.tournaments.tournament
 
 import android.os.Bundle
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
 import com.example.finema.R
 import com.example.finema.api.MoviesRepository
+import com.example.finema.database.room.RoomRepository
+import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.movieResponse.Movie
 import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.util.APP_ACTIVITY
 import com.example.finema.util.Coroutines
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class TournamentVM(
-    private val apiRepository: MoviesRepository
+    private val apiRepository: MoviesRepository,
+    private val DBRepository: RoomRepository
 ) : BaseViewModel() {
 
     var twoFilms = MutableLiveData<List<Movie>>()
@@ -107,8 +113,58 @@ class TournamentVM(
         twoFilms.value = listOf(el1, el2)
     }
 
+    fun addToFav(position: Int) {
+        when (position) {
+            0 -> {
+                insert(el1)
+            }
+            1 -> {
+                insert(el2)
+            }
+        }
+    }
+
+    fun removeFromFav(position: Int) {
+        when (position) {
+            0 -> {
+                delete(el1)
+            }
+            1 -> {
+                delete(el2)
+            }
+        }
+    }
+
+    private fun insert(movie: Movie) =
+        viewModelScope.launch(Dispatchers.Main) {
+            DBRepository.insertFavourite(
+                MovieModel(
+                    movie.id.toLong(),
+                    movie.title,
+                    null,
+                    movie.overview,
+                    null,
+                    movie.voteAverage.toString(),
+                    null
+                )
+            ) {
+            }
+        }
+
+    private fun delete(movie: Movie) =
+        viewModelScope.launch(Dispatchers.Main) {
+            DBRepository.deleteFavourite(
+                MovieModel(
+                    movie.id.toLong(),
+                    movie.title,
+                    null,
+                    movie.overview,
+                    null,
+                    movie.voteAverage.toString(),
+                    null
+                )
+            ) {
+            }
+        }
 
 }
-
-
-

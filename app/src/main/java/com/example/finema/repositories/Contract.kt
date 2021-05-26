@@ -4,10 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContract
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.example.finema.models.movieResponse.MovieResponse
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions

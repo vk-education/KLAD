@@ -31,7 +31,7 @@ val viewModelModule: Module = module {
 
     viewModel { MovieDetailsViewModel(get(), get()) }
 
-    viewModel { TournamentVM(get()) }
+    viewModel { TournamentVM(get(), get()) }
 
     viewModel { HigherLowerRatingViewModel(get()) }
 
