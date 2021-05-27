@@ -19,11 +19,12 @@
                 android:layout_margin="@dimen/app_margin"
                 android:gravity="center"
                 android:lines="1"
-                android:textColor="#2196F3"
+                android:textColor="@color/purple_500"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                android:textAllCaps="false"
                 tools:text="@string/genre_item_genre_name" />
 
         <ImageView

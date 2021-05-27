@@ -46,8 +46,10 @@
         android:label="Others fragment"
         tools:layout="@layout/fragment_category_tournament">
         <action
-            android:id="@+id/action_fragmentOthers_to_fragmentTournament"
-            app:destination="@id/fragmentTournament" />
+                android:id="@+id/action_fragmentOthers_to_fragmentTournament"
+                app:destination="@id/fragmentTournament"
+                app:popUpTo="@id/fragmentOthers"
+                app:launchSingleTop="true" />
     </fragment>
 
     <fragment
@@ -72,8 +74,10 @@
         android:label="Genre fragment"
         tools:layout="@layout/fragment_tournament_genres">
         <action
-            android:id="@+id/action_fragmentGenre_to_fragmentTournament"
-            app:destination="@id/fragmentTournament" />
+                android:id="@+id/action_fragmentGenre_to_fragmentTournament"
+                app:destination="@id/fragmentTournament"
+                app:popUpTo="@id/fragmentGenre"
+                app:launchSingleTop="true" />
     </fragment>
 
     <fragment
@@ -87,13 +91,15 @@
             app:argType="integer"
             app:nullable="false" />
         <action
-            android:id="@+id/action_fragment_tournament_to_fragment_film"
-            app:destination="@id/fragmentFilm">
+                android:id="@+id/action_fragment_tournament_to_fragment_film"
+                app:destination="@id/fragmentFilm"
+                app:popUpTo="@id/fragmentTmp"
+                app:launchSingleTop="true">
 
             <argument
-                android:name="filmId"
-                app:argType="long"
-                app:nullable="false" />
+                    android:name="filmId"
+                    app:argType="long"
+                    app:nullable="false" />
         </action>
 
     </fragment>
