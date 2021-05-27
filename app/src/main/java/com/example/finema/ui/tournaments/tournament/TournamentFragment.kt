@@ -79,7 +79,6 @@ class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>
 
         binding.bookmark2.setOnClickListener {
             setBookmarks(binding.bookmark2, 1)
-            viewModel
         }
     }
 

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
 import com.example.finema.R
 import com.example.finema.api.MoviesRepository
 import com.example.finema.database.room.RoomRepository
@@ -101,7 +102,7 @@ class TournamentVM(
     private fun goNextFragment(filmIdInfo: Long) {
         val bundle = Bundle()
         bundle.putSerializable("filmId", filmIdInfo)
-        Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
+        findNavController(APP_ACTIVITY, R.id.fragment)
             .navigate(R.id.action_fragment_tournament_to_fragment_film, bundle)
     }
 
@@ -138,15 +139,7 @@ class TournamentVM(
     private fun insert(movie: Movie) =
         viewModelScope.launch(Dispatchers.Main) {
             DBRepository.insertFavourite(
-                MovieModel(
-                    movie.id.toLong(),
-                    movie.title,
-                    null,
-                    movie.overview,
-                    null,
-                    movie.voteAverage.toString(),
-                    null
-                )
+                makeMovieModel(movie)
             ) {
             }
         }
@@ -154,17 +147,19 @@ class TournamentVM(
     private fun delete(movie: Movie) =
         viewModelScope.launch(Dispatchers.Main) {
             DBRepository.deleteFavourite(
-                MovieModel(
-                    movie.id.toLong(),
-                    movie.title,
-                    null,
-                    movie.overview,
-                    null,
-                    movie.voteAverage.toString(),
-                    null
-                )
+                makeMovieModel(movie)
             ) {
             }
         }
 
+    private fun makeMovieModel(movie: Movie) =
+        MovieModel(
+            movie.id.toLong(),
+            movie.title,
+            null,
+            movie.overview,
+            null,
+            movie.voteAverage.toString(),
+            null
+        )
 }

@@ -4,6 +4,7 @@ package com.example.finema.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,6 +21,9 @@ import java.lang.Object;
 public abstract class MovieDetailsFragmentBinding extends ViewDataBinding {
   @NonNull
   public final TextView aboutTitle;
+
+  @NonNull
+  public final CheckBox checkFavourite;
 
   @NonNull
   public final TextView companies;
@@ -58,11 +62,13 @@ public abstract class MovieDetailsFragmentBinding extends ViewDataBinding {
   protected MovieDetails mFilmId;
 
   protected MovieDetailsFragmentBinding(Object _bindingComponent, View _root, int _localFieldCount,
-      TextView aboutTitle, TextView companies, TextView companiesTitle, TextView filmTitle,
-      TextView genreTitle, TextView genres, ImageView imageView, LinearLayout layout,
-      LinearLayout layoutText, TextView overview, TextView rating, TextView ratingTitle) {
+      TextView aboutTitle, CheckBox checkFavourite, TextView companies, TextView companiesTitle,
+      TextView filmTitle, TextView genreTitle, TextView genres, ImageView imageView,
+      LinearLayout layout, LinearLayout layoutText, TextView overview, TextView rating,
+      TextView ratingTitle) {
     super(_bindingComponent, _root, _localFieldCount);
     this.aboutTitle = aboutTitle;
+    this.checkFavourite = checkFavourite;
     this.companies = companies;
     this.companiesTitle = companiesTitle;
     this.filmTitle = filmTitle;

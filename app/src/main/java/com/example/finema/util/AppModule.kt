@@ -33,7 +33,7 @@ val viewModelModule: Module = module {
 
     viewModel { TournamentVM(get(), get()) }
 
-    viewModel { HigherLowerRatingViewModel(get()) }
+    viewModel { HigherLowerRatingViewModel(get(), get()) }
 
     viewModel { FavouriteViewModel(get()) }
 

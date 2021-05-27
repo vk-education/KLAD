@@ -5,23 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finema.databinding.ChooseFavouriteFragmentBinding
 import com.example.finema.ui.base.BaseFragment
-import com.example.finema.ui.favourite.FavouriteAdapter
-import com.example.finema.ui.tournaments.genres.GenresTournamentAdapter
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.getViewModel
-import java.lang.System.setProperty
 
 class ChooseFavouriteFragment
-    : BaseFragment<ChooseFavouriteViewModel, ChooseFavouriteFragmentBinding>() {
+    : BaseFragment<ChooseFavouriteViewModel, ChooseFavouriteFragmentBinding>(),
+      MovieAdapter.CharacterViewHolder.Listener  {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,7 +35,7 @@ class ChooseFavouriteFragment
         viewModel = getViewModel()
         super.onViewCreated(view, savedInstanceState)
 
-        val adapterMovs = MovieAdapter(requireContext())
+        val adapterMovs = MovieAdapter(requireContext(), this)
 
         binding.movs.apply {
             layoutManager = LinearLayoutManager(context)
@@ -54,8 +50,11 @@ class ChooseFavouriteFragment
             viewModel.movies.collectLatest { pagingData ->
                 adapterMovs.submitData(pagingData)
             }
-
         }
-
     }
+
+    override fun onMovieClicked(index: Int) {
+        viewModel.goDetailsFragment(index.toLong())
+    }
+
 }

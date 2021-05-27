@@ -16,11 +16,12 @@ public class MovieDetailsFragmentBindingImpl extends MovieDetailsFragmentBinding
         sViewsWithIds = new android.util.SparseIntArray();
         sViewsWithIds.put(R.id.imageView, 5);
         sViewsWithIds.put(R.id.layoutText, 6);
-        sViewsWithIds.put(R.id.aboutTitle, 7);
-        sViewsWithIds.put(R.id.genreTitle, 8);
-        sViewsWithIds.put(R.id.ratingTitle, 9);
-        sViewsWithIds.put(R.id.rating, 10);
-        sViewsWithIds.put(R.id.companiesTitle, 11);
+        sViewsWithIds.put(R.id.checkFavourite, 7);
+        sViewsWithIds.put(R.id.aboutTitle, 8);
+        sViewsWithIds.put(R.id.genreTitle, 9);
+        sViewsWithIds.put(R.id.ratingTitle, 10);
+        sViewsWithIds.put(R.id.rating, 11);
+        sViewsWithIds.put(R.id.companiesTitle, 12);
     }
     // views
     // variables
@@ -29,22 +30,23 @@ public class MovieDetailsFragmentBindingImpl extends MovieDetailsFragmentBinding
     // Inverse Binding Event Handlers
 
     public MovieDetailsFragmentBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 12, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 13, sIncludes, sViewsWithIds));
     }
     private MovieDetailsFragmentBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
-            , (android.widget.TextView) bindings[7]
-            , (android.widget.TextView) bindings[4]
-            , (android.widget.TextView) bindings[11]
-            , (android.widget.TextView) bindings[1]
             , (android.widget.TextView) bindings[8]
+            , (android.widget.CheckBox) bindings[7]
+            , (android.widget.TextView) bindings[4]
+            , (android.widget.TextView) bindings[12]
+            , (android.widget.TextView) bindings[1]
+            , (android.widget.TextView) bindings[9]
             , (android.widget.TextView) bindings[3]
             , (android.widget.ImageView) bindings[5]
             , (android.widget.LinearLayout) bindings[0]
             , (android.widget.LinearLayout) bindings[6]
             , (android.widget.TextView) bindings[2]
+            , (android.widget.TextView) bindings[11]
             , (android.widget.TextView) bindings[10]
-            , (android.widget.TextView) bindings[9]
             );
         this.companies.setTag(null);
         this.filmTitle.setTag(null);

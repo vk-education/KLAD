@@ -2,13 +2,23 @@ package com.example.finema.ui.higherlowerrating
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.finema.models.movieResponse.MovieResponse
 import com.example.finema.api.MoviesRepository
+import com.example.finema.database.DatabaseRepository
+import com.example.finema.database.room.RoomRepository
+import com.example.finema.models.databaseModels.MovieModel
+import com.example.finema.models.movieResponse.Movie
 import com.example.finema.ui.base.BaseViewModel
+import com.example.finema.ui.higherlower.HigherLowerViewModel
 import com.example.finema.util.Coroutines
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlin.random.Random
 
 class HigherLowerRatingViewModel(
-    private val repository: MoviesRepository
+    private val repository: MoviesRepository,
+    private val DBRepository: RoomRepository
 ) : BaseViewModel() {
 
     private var _movies = MutableLiveData<MovieResponse>()
@@ -28,7 +38,6 @@ class HigherLowerRatingViewModel(
         _movies.value?.movies.let {
             _movies.value?.movies = it?.shuffled()!!
         }
-        _movies = _movies
     }
 
     private fun getMovies() {
@@ -45,7 +54,7 @@ class HigherLowerRatingViewModel(
 
     private fun clickedWrong() {
         score = RESET_SCORE_INDEX
-        page = DEFAULT_PAGE_INDEX
+        page = Random.nextInt(1, 500)
         getMovies()
     }
 
@@ -79,6 +88,55 @@ class HigherLowerRatingViewModel(
                 }
         }
     }
+
+    fun addToFav(position: Int) {
+        when (position) {
+            0 -> {
+                insert(_movies.value?.movies?.get(0)!!)
+            }
+            1 -> {
+                insert(_movies.value?.movies?.get(1)!!)
+            }
+        }
+    }
+
+    fun removeFromFav(position: Int) {
+        when (position) {
+            0 -> {
+                delete(_movies.value?.movies?.get(0)!!)
+            }
+            1 -> {
+                delete(_movies.value?.movies?.get(1)!!)
+            }
+        }
+    }
+
+    private fun insert(movie: Movie) =
+        viewModelScope.launch(Dispatchers.Main) {
+            DBRepository.insertFavourite(
+                makeMovieModel(movie)
+            ) {
+            }
+        }
+
+    private fun delete(movie: Movie) =
+        viewModelScope.launch(Dispatchers.Main) {
+            DBRepository.deleteFavourite(
+                makeMovieModel(movie)
+            ) {
+            }
+        }
+
+    private fun makeMovieModel(movie: Movie) =
+        MovieModel(
+            movie.id.toLong(),
+            movie.title,
+            null,
+            movie.overview,
+            null,
+            movie.voteAverage.toString(),
+            null
+        )
 
     companion object {
         const val DEFAULT_PAGE_INDEX = 1

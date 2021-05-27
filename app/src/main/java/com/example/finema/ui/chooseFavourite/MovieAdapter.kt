@@ -4,16 +4,22 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finema.R
+import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.models.infinite.MovieDiscoverResult
 import com.example.finema.ui.favourite.FavouriteAdapter
+import com.example.finema.ui.tournaments.genres.GenresTournamentAdapter
 
-class MovieAdapter(context: Context) :
-    PagingDataAdapter<MovieDiscoverResult, MovieAdapter.CharacterViewHolder>(CharacterComparator)  {
+class MovieAdapter(
+    context: Context,
+    private val listener: CharacterViewHolder.Listener,
+    )
+    : PagingDataAdapter<MovieDiscoverResult, MovieAdapter.CharacterViewHolder>(CharacterComparator)  {
 
     private val layoutInflater: LayoutInflater = LayoutInflater.from(context)
 
@@ -21,18 +27,32 @@ class MovieAdapter(context: Context) :
         parent: ViewGroup,
         viewType: Int
     ): CharacterViewHolder {
-        return CharacterViewHolder(layoutInflater.inflate(R.layout.nice, parent, false))
+        return CharacterViewHolder(
+            layoutInflater.inflate(R.layout.nice, parent, false),
+            listener
+            )
     }
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
         getItem(position)?.let { holder.bind(it) }
     }
 
-    inner class CharacterViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class CharacterViewHolder(
+        view: View,
+        private val listener: Listener
+    )
+        : RecyclerView.ViewHolder(view) {
         var filmTitle: TextView? = null
 
+        interface Listener {
+            fun onMovieClicked(index: Int)
+        }
+
         fun bind(item: MovieDiscoverResult) {
-            filmTitle?.text = item.name
+            filmTitle?.text = item.title
+            filmTitle?.setOnClickListener {
+                listener.onMovieClicked(item.id)
+            }
         }
 
         init {

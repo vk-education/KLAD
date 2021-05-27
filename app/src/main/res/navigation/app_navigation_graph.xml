@@ -162,7 +162,11 @@
             android:id="@+id/chooseFavouriteFragment"
             android:name="com.example.finema.ui.chooseFavourite.ChooseFavouriteFragment"
             android:label="choose_favourite_fragment"
-            tools:layout="@layout/choose_favourite_fragment" />
+            tools:layout="@layout/choose_favourite_fragment" >
+        <action
+                android:id="@+id/action_chooseFavouriteFragment_to_fragmentFilm"
+                app:destination="@id/fragmentFilm" />
+    </fragment>
 
 
     <action

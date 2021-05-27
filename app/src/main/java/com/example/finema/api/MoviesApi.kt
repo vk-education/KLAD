@@ -56,6 +56,6 @@ interface MoviesApi {
         private const val TOP_RATED_LIST =
             "movie/top_rated?api_key=bbf5a3000e95f1dddf266b5e187d4b21&language=ru-Ru"
         private const val DISCOVER =
-            "search/keyword?api_key=bbf5a3000e95f1dddf266b5e187d4b21"
+            "search/movie?api_key=bbf5a3000e95f1dddf266b5e187d4b21&language=ru-Ru"
     }
 }

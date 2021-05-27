@@ -29,12 +29,8 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel = getViewModel()
+        initViewModel()
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel.arg = requireArguments().getLong(KEY)
-
-        viewModel = getViewModel()
 
 //        binding.filmLoader.visibility = View.GONE
         viewModel.film.observe(viewLifecycleOwner, observerList)
@@ -79,7 +75,11 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
         )
     }
 
-
+    private fun initViewModel() {
+        viewModel = getViewModel()
+        viewModel.arg = requireArguments().getLong(KEY)
+        viewModel.getMovieDetails()
+    }
 
     companion object {
         const val POSTER_BASE_URL = "https://image.tmdb.org/t/p/w342"
