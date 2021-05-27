@@ -17,6 +17,11 @@ class RoomRepository (
 
 
 
+//    override suspend fun checkFavourite(movieId: Long, onSuccess: () -> Unit){
+//        checkFavourite = roomDao.checkFavourite(movieId)
+//        onSuccess()
+//    }
+
     override suspend fun insert(genre: GenreModel, onSuccess: () -> Unit) {
         roomDao.insert(genre)
         onSuccess()
@@ -27,8 +32,13 @@ class RoomRepository (
         onSuccess()
     }
 
-    override suspend fun deleteFavourite(onSuccess: () -> Unit) {
-        roomDao.deleteFavourite()
+    override suspend fun deleteAllFavourite(onSuccess: () -> Unit) {
+        roomDao.deleteAllFavourite()
+        onSuccess()
+    }
+
+    override suspend fun deleteFavourite(movie: MovieModel, onSuccess: () -> Unit) {
+        roomDao.deleteFavourite(movie)
         onSuccess()
     }
 

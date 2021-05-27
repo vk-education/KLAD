@@ -1,16 +1,12 @@
 package com.example.finema.api
 
 import android.content.Context
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.liveData
 import com.example.finema.database.room.RoomDao
 import com.example.finema.repositories.SafeApiRequest
-import retrofit2.http.Query
 import java.util.*
 
 class MoviesRepository(
-    private val api: MoviesApi,
+    val api: MoviesApi,
     private val dao: RoomDao,
     private val context: Context
 ) : IMoviesRepository, SafeApiRequest() {
@@ -37,4 +33,14 @@ class MoviesRepository(
     override suspend fun getMovieFromList(list_id: Int) = apiRequest {
         api.getMovieFromList(list_id)
     }
+
+    override suspend fun getDiscoverMovies(query: String) =
+        Pager(
+            PagingConfig(
+                pageSize = 20,
+                maxSize = 100,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = { MoviePagingSource(api, query) }
+        ).flow
 }

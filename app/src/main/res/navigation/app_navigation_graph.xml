@@ -116,7 +116,7 @@
 
     <fragment
         android:id="@+id/fragmentSettings"
-        android:name="com.example.finema.ui.settings.SetFragment"
+        android:name="com.example.finema.ui.settings.SettingsFragment"
         android:label="Settings fragment"
         tools:layout="@layout/settings_fragment">
         <action
@@ -164,6 +164,13 @@
             android:label="higher_lower_rating_fragment"
             tools:layout="@layout/higher_lower_rating_fragment" />
 
+    <fragment
+            android:id="@+id/chooseFavouriteFragment"
+            android:name="com.example.finema.ui.chooseFavourite.ChooseFavouriteFragment"
+            android:label="choose_favourite_fragment"
+            tools:layout="@layout/choose_favourite_fragment" />
+
+
     <action
         android:id="@+id/action_global_fragmentSettings"
         app:destination="@id/fragmentSettings" />
@@ -185,6 +192,9 @@
     <action
         android:id="@+id/action_global_higherLowerRatingFragment"
         app:destination="@id/higherLowerRatingFragment" />
+    <action
+        android:id="@+id/action_global_chooseFavouriteFragment"
+        app:destination="@id/chooseFavouriteFragment" />
 
 
 </navigation>

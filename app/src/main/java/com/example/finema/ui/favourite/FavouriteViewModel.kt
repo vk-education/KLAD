@@ -10,16 +10,13 @@ import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.ui.movieDetail.MovieDetailsViewModel
 import com.example.finema.util.Coroutines
 
-class FavouriteViewModel (
+class FavouriteViewModel(
     private val DBRepository: RoomRepository
 ) : BaseViewModel() {
 
-    val favouriteMovies: LiveData<List<MovieModel>>
-        get() {
-            return  DBRepository.allFavourites
-        }
+    val favouriteMovies: LiveData<List<MovieModel>> = DBRepository.allFavourites
 
-    init{
+    init {
         Log.d("gypsy", "DB")
 
         Log.d("gypsy", favouriteMovies.value.toString())

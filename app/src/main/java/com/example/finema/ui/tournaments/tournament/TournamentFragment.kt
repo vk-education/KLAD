@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.Toast
 import com.example.finema.R
 import com.example.finema.databinding.FragmentTournamentBinding
@@ -57,24 +58,46 @@ class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>
 
             binding.cardview1.setOnClickListener {
                 viewModel.itemClick(0)
+                resetBookmarks()
             }
 
             binding.cardview2.setOnClickListener {
                 viewModel.itemClick(1)
+                resetBookmarks()
             }
         })
 
         binding.bookmark1.setOnClickListener {
-            Toast.makeText(context, "Логики нет", Toast.LENGTH_SHORT).show()
-            binding.bookmark1.setImageResource(R.drawable.bookmark_24)
+            setBookmarks(binding.bookmark1, 0)
         }
 
         binding.bookmark2.setOnClickListener {
-            Toast.makeText(context, "Логики нет", Toast.LENGTH_SHORT).show()
-            binding.bookmark2.setImageResource(R.drawable.bookmark_24)
+            setBookmarks(binding.bookmark2, 1)
+            viewModel
         }
     }
 
+    private fun resetBookmarks() {
+        binding.bookmark1.setImageResource(R.drawable.bookmark_border_24)
+        binding.bookmark2.setImageResource(R.drawable.bookmark_border_24)
+        binding.bookmark1.tag = ""
+        binding.bookmark2.tag = ""
+    }
+
+    private fun setBookmarks(bookmark: ImageButton, position: Int) {
+        if(bookmark.tag == "bruh") {
+            Toast.makeText(context, "Удалено из избранные", Toast.LENGTH_SHORT).show()
+            bookmark.setImageResource(R.drawable.bookmark_border_24)
+            viewModel.removeFromFav(position)
+            bookmark.tag = "b"
+        } else {
+            Toast.makeText(context, "Добавлено в избранные", Toast.LENGTH_SHORT).show()
+            bookmark.setImageResource(R.drawable.bookmark_24)
+            viewModel.addToFav(position)
+            bookmark.tag = "bruh"
+        }
+
+    }
 
 }
 

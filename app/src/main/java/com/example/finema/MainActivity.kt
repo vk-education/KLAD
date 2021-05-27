@@ -68,6 +68,10 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.settings -> findNavController(R.id.fragment)
                     .navigate(R.id.action_global_fragmentSettings)
+
+                R.id.addFav -> findNavController(R.id.fragment)
+                    .navigate(R.id.action_global_chooseFavouriteFragment)
+
             }
 
             true
