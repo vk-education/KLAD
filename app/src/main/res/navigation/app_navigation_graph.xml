@@ -42,9 +42,9 @@
 
     <fragment
         android:id="@+id/fragmentOthers"
-        android:name=""
+        android:name="com.example.finema.ui.tournaments.categories.CategoryTournamentFragment"
         android:label="Others fragment"
-        tools:layout="@layout/others_fragment">
+        tools:layout="@layout/fragment_category_tournament">
         <action
             android:id="@+id/action_fragmentOthers_to_fragmentTournament"
             app:destination="@id/fragmentTournament" />

@@ -2,6 +2,7 @@ package com.example.finema.database
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.finema.models.databaseModels.CategoryModel
 import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.models.databaseModels.MovieModel
 
@@ -16,8 +17,8 @@ interface DatabaseRepository {
 
     suspend fun deleteFavourite(onSuccess: () -> Unit)
 
-    fun connectToDatabase(onSuccess: () -> Unit, onFail: (String)-> Unit){}
-
     fun signOut(){}
+
+
 
 }

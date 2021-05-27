@@ -8,6 +8,7 @@ import com.example.finema.api.MoviesRepository
 import com.example.finema.models.movieResponse.Movie
 import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.util.APP_ACTIVITY
+import com.example.finema.util.AppPreference
 import com.example.finema.util.Coroutines
 
 class TournamentVM(
@@ -25,7 +26,7 @@ class TournamentVM(
 
     var roundCount = 1
 
-    private val numFilms = 8
+    var numFilms = 8
 
     init {
         start()
@@ -33,20 +34,34 @@ class TournamentVM(
 
 
     private fun start() {
-        getMovies("12") {
+        numFilms = AppPreference.getNumOfFilms()
+        getMovies{
             gotList.observe(APP_ACTIVITY, {
                 mainList = it.take(numFilms) as ArrayList<Movie>
                 updateCards()
             })
         }
 
+
     }
 
-    fun getMovies(genre: String, onSuccess: () -> Unit) {
-        job = Coroutines.ioThenMan(
-            { apiRepository.getMoviesWithGenre(1, genre) },
-            { gotList.value = it?.movies }
-        )
+    fun getMovies( onSuccess: () -> Unit) {
+        when (AppPreference.getTournamentType()) {
+            "GENRE" -> {
+                val genre = AppPreference.getGenre()?: "12"
+                job = Coroutines.ioThenMan(
+                    { apiRepository.getMoviesWithGenre(1, genre) },
+                    { gotList.value = it?.movies }
+                )
+            }
+            "CATEGORY" -> {
+                val categoryLink = AppPreference.getCategoryLink()?: 1
+                job = Coroutines.ioThenMan(
+                    { apiRepository.getMovieFromList(categoryLink) },
+                    { gotList.value = it?.movies }
+                )
+            }
+        }
         onSuccess()
     }
 

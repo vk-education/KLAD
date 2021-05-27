@@ -32,7 +32,6 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         savedInstanceState: Bundle?
     ): View {
         binding = SignInFragmentBinding.inflate(inflater, container, false)
-        // ���� ������������ �����������, �� �������� ����������� ���������
         return binding.root
     }
 

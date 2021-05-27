@@ -74,38 +74,28 @@ class GenresTournamentFragment(
         //TODO Заменить на нормальный контекст
         val dialog = Dialog(requireContext())
 
-        //TODO Dialog(APP_ACTIVITY).let {
-        //            it.setContentView(R.layout.number_fragment)
-        //            it.findViewById<View>(R.id.btn8).setOnClickListener { _ ->
-        //                goNext(8, list1)
-        //                it.hide()
-        //            }
-        //        }
+        dialog.let {
+            it.setContentView(R.layout.number_fragment)
+            it.findViewById<View>(R.id.btn8).setOnClickListener {
+                goNextFragment(8, genre)
+                dialog.hide()
+            }
+            it.findViewById<View>(R.id.btn16).setOnClickListener {
+                goNextFragment(16, genre)
+                dialog.hide()
+            }
 
-        dialog.setContentView(R.layout.number_fragment)
-
-        val btn8: TextView = dialog.findViewById(R.id.btn8)
-        val btn16: Button = dialog.findViewById(R.id.btn16)
-
-        btn8.setOnClickListener {
-            goNextFragment(8, genre)
-            dialog.hide()
-        }
-        btn16.setOnClickListener {
-            goNextFragment(16, genre)
-            dialog.hide()
         }
         dialog.show()
     }
 
     private fun goNextFragment(num: Int, genre: String) {
-        val bundle = Bundle()
-        bundle.putSerializable("num", num)
-        bundle.putSerializable("genre", genre)
+        AppPreference.setNumOfFilms(num)
+        AppPreference.setGenre(genre)
 //        TODO FragmentGenreDestinations.action(_, _, _)
 //        TODO findNavController() ?
         Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
-            .navigate(R.id.action_fragmentGenre_to_fragmentTournament, bundle)
+            .navigate(R.id.action_fragmentGenre_to_fragmentTournament)
     }
 
     private fun loadGenresList() {

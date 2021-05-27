@@ -20,6 +20,7 @@ class GenresTournamentVM (
     private val DBRepository: RoomRepository
 ) : BaseViewModel() {
 
+
     // TODO Убрать, данные получаются от репозитория
     val allGenres: LiveData<List<GenreModel>>
         get() {
@@ -27,6 +28,7 @@ class GenresTournamentVM (
         }
 
     var genreListVM = MutableLiveData<GenreList>()
+
 
     fun signOut() {
         DBRepository.signOut()

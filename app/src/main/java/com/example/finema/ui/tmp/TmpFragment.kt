@@ -1,26 +1,19 @@
 package com.example.finema.ui.tmp
 
-import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.finema.R
 import com.example.finema.databinding.TmpFragmentBinding
-import com.example.finema.models.GenreRequest.GenreList
-import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.ui.base.BaseFragment
-import com.example.finema.util.*
-import com.google.android.material.appbar.MaterialToolbar
+import com.example.finema.util.AppPreference
+import com.google.firebase.database.FirebaseDatabase
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,9 +30,14 @@ class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
         super.onViewCreated(view, savedInstanceState)
         binding.genre.setOnClickListener {
             findNavController().navigate(R.id.action_fragment_tmp_to_fragment_genre)
+            AppPreference.setTournamentType("GENRE")
+        }
+
+        binding.category.setOnClickListener{
+            findNavController().navigate(R.id.action_fragment_tmp_to_fragment_others)
+            AppPreference.setTournamentType("CATEGORY")
         }
     }
-
 
 
 

@@ -6,6 +6,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.liveData
 import com.example.finema.database.room.RoomDao
 import com.example.finema.repositories.SafeApiRequest
+import retrofit2.http.Query
 import java.util.*
 
 class MoviesRepository(
@@ -31,5 +32,9 @@ class MoviesRepository(
 
     override suspend fun getMovieDetails(id: Long) = apiRequest {
         api.getMovieDetails(id, Locale.getDefault().toString().replace('_', '-'))
+    }
+
+    override suspend fun getMovieFromList(list_id: Int) = apiRequest {
+        api.getMovieFromList(list_id)
     }
 }

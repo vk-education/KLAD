@@ -3,6 +3,7 @@ package com.example.finema.api
 import com.example.finema.models.GenreRequest.GenreList
 import com.example.finema.models.movieResponse.MovieDetails
 import com.example.finema.models.movieResponse.MovieResponse
+import com.example.finema.models.movieResponse.MovieResponseFromList
 import com.example.finema.util.GENRE_LIST
 import com.example.finema.util.TOP_RATED_LIST
 import retrofit2.Response
@@ -34,6 +35,13 @@ interface MoviesApi {
         @Query("with_genres") with_genres: String
     ): Response<MovieResponse>
 
+
+    @GET("list/{list_id}?${API_AND_LANGUAGE}")
+    suspend fun getMovieFromList(
+        @Path("list_id") list_id: Int
+    ): Response<MovieResponseFromList>
+
+
     companion object {
         operator fun invoke(): MoviesApi {
             return Retrofit.Builder()
@@ -42,6 +50,7 @@ interface MoviesApi {
                 .build()
                 .create(MoviesApi::class.java)
         }
+        private const val API_AND_LANGUAGE = "api_key=bbf5a3000e95f1dddf266b5e187d4b21&language=ru-ru"
 
         private const val BASE_URL = "https://api.themoviedb.org/3/"
     }

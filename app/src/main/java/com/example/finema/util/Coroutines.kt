@@ -10,26 +10,26 @@ import kotlinx.coroutines.launch
 
 object Coroutines {
 
-    private val dataSet = ArrayList<Movie>()
-    private lateinit var resp: MovieResponse
+//    private val dataSet = ArrayList<Movie>()
+//    private lateinit var resp: MovieResponse
 
     //TODO Убрать, ниже есть обобщенный метод
     // не братан, иначе пользователь будет
-    fun ioThenMain(work: suspend (() -> MovieResponse?),
-                   callback: ((MovieResponse?)->Unit)
-                    ) =
-        CoroutineScope(Dispatchers.Main).launch {
-            dataSet.clear()
-            val data = CoroutineScope(Dispatchers.IO).async  rt@{
-                return@rt work()
-            }.await()
-            data?.movies.let {
-                data?.movies = it?.shuffled()!!
-            }
-            dataSet.addAll(data!!.movies)
-            resp = MovieResponse(dataSet)
-            callback(resp)
-        }
+//    fun ioThenMain(work: suspend (() -> MovieResponse?),
+//                   callback: ((MovieResponse?)->Unit)
+//                    ) =
+//        CoroutineScope(Dispatchers.Main).launch {
+//            dataSet.clear()
+//            val data = CoroutineScope(Dispatchers.IO).async  rt@{
+//                return@rt work()
+//            }.await()
+//            data?.movies.let {
+//                data?.movies = it?.shuffled()!!
+//            }
+//            dataSet.addAll(data!!.movies)
+//            resp = MovieResponse(dataSet)
+//            callback(resp)
+//        }
 
 
     fun<T> ioThenMan(work: suspend (() -> T?), callback: ((T?)->Unit)) =
