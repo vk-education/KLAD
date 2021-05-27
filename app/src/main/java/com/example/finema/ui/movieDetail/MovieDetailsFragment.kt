@@ -34,13 +34,13 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
 
         viewModel.arg = requireArguments().getLong(KEY)
 
-        viewModel = getViewModel()
-
 //        binding.filmLoader.visibility = View.GONE
         viewModel.film.observe(viewLifecycleOwner, observerList)
-        
+
+        viewModel.checkFavourite()
+
         binding.checkFavourite.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked && movie != null){
+            if (isChecked && movie != null) {
                 viewModel.insert(movie!!)
             }
         }
@@ -63,7 +63,14 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
 
         binding.rating.text = it.voteAverage.toString()
 
-        if (viewModel.checkFavourite(it.id.toLong())){
+//        if (viewModel.favouriteMovies == ){
+//            Log.d("gypsy", "True")
+//            binding.checkFavourite.isChecked = true
+//        }
+
+        Log.d("gypsy", "ObserverList")
+
+        if (viewModel.favouriteMovies != null && viewModel.favouriteMovies!!.contains(it.id.toLong())) {
             Log.d("gypsy", "True")
             binding.checkFavourite.isChecked = true
         }
@@ -78,7 +85,6 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
             null
         )
     }
-
 
 
     companion object {

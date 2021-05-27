@@ -10,7 +10,7 @@ interface DatabaseRepository {
 
     val allFavourites: LiveData<List<MovieModel>>
 
-//    suspend fun checkFavourite(movieId: Long, onSuccess: () -> Unit)
+    fun checkFavourite(movieId: Long): List<Long>
 
     suspend fun insert(genre: GenreModel, onSuccess: () -> Unit)
 
