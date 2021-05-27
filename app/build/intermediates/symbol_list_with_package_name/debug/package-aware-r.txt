@@ -1818,6 +1818,7 @@ drawable common_google_signin_btn_text_light
 drawable common_google_signin_btn_text_light_focused
 drawable common_google_signin_btn_text_light_normal
 drawable common_google_signin_btn_text_light_normal_background
+drawable custom_button
 drawable default_profile_avatar
 drawable design_bottom_navigation_item_background
 drawable design_fab_background
@@ -1962,7 +1963,6 @@ id action_menu_presenter
 id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
-id action_settings
 id action_sigInFragment_to_tmpFragment
 id action_text
 id action_tmpFragment_to_sigInFragment
@@ -2637,7 +2637,6 @@ layout thematic_fragment
 layout tmp_fragment
 layout welcome_fragment
 menu drawer_menu
-menu menu_main
 mipmap ic_launcher
 mipmap ic_launcher1
 mipmap ic_launcher1_foreground
