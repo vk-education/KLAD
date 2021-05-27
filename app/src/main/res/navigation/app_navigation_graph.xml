@@ -27,11 +27,15 @@
         android:label="Tmp Fragment"
         tools:layout="@layout/tmp_fragment">
         <action
-            android:id="@+id/action_fragment_tmp_to_fragment_others"
-            app:destination="@id/fragmentOthers" />
+                android:id="@+id/action_fragment_tmp_to_fragment_others"
+                app:destination="@id/fragmentOthers"
+                app:enterAnim="@android:anim/slide_in_left"
+                app:exitAnim="@android:anim/slide_out_right" />
         <action
-            android:id="@+id/action_fragment_tmp_to_fragment_genre"
-            app:destination="@id/fragmentGenre" />
+                android:id="@+id/action_fragment_tmp_to_fragment_genre"
+                app:destination="@id/fragmentGenre"
+                app:exitAnim="@android:anim/slide_out_right"
+                app:enterAnim="@android:anim/slide_in_left" />
         <action
             android:id="@+id/action_fragment_tmp_to_fragment_own_tournament"
             app:destination="@id/fragmentOwnTournament" />
@@ -94,7 +98,9 @@
                 android:id="@+id/action_fragment_tournament_to_fragment_film"
                 app:destination="@id/fragmentFilm"
                 app:popUpTo="@id/fragmentTmp"
-                app:launchSingleTop="true">
+                app:launchSingleTop="true"
+                app:enterAnim="@android:anim/slide_in_left"
+                app:exitAnim="@android:anim/slide_out_right">
 
             <argument
                     android:name="filmId"
@@ -110,8 +116,11 @@
         android:label="SigInFragment"
         tools:layout="@layout/sign_in_fragment">
         <action
-            android:id="@+id/action_sigInFragment_to_tmpFragment"
-            app:destination="@id/fragmentTmp" />
+                android:id="@+id/action_sigInFragment_to_tmpFragment"
+                app:destination="@id/fragmentTmp"
+                app:popUpTo="@id/fragmentTmp"
+                app:launchSingleTop="true"
+                app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -120,8 +129,10 @@
         android:label="Settings fragment"
         tools:layout="@layout/settings_fragment">
         <action
-            android:id="@+id/action_fragmentSettings_to_sigInFragment"
-            app:destination="@id/sigInFragment" />
+                android:id="@+id/action_fragmentSettings_to_sigInFragment"
+                app:destination="@id/sigInFragment"
+                app:popUpTo="@id/sigInFragment"
+                app:launchSingleTop="true" />
     </fragment>
 
     <fragment
@@ -185,8 +196,11 @@
         android:id="@+id/action_global_fragmentTmp"
         app:destination="@id/fragmentTmp" />
     <action
-        android:id="@+id/action_global_signIn"
-        app:destination="@id/sigInFragment" />
+            android:id="@+id/action_global_signIn"
+            app:destination="@id/sigInFragment"
+            app:popUpTo="@id/sigInFragment"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true" />
     <action
         android:id="@+id/action_global_fragmentFavourite"
         app:destination="@id/fragmentFavourite" />

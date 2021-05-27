@@ -4,54 +4,54 @@
     <data>
 
         <variable
-            name="nickname"
-            type="String" />
+                name="nickname"
+                type="String" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/profile_short"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="@color/design_default_color_primary"
-        android:fitsSystemWindows="true">
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@color/main_500"
+            android:fitsSystemWindows="true">
 
         <ImageView
-            android:id="@+id/userAvatar"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginStart="16dp"
+                android:id="@+id/userAvatar"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_margin="@dimen/app_margin"
 
-            app:srcCompat="@drawable/default_profile_avatar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:text="@string/profile"
-            android:textSize="20sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-
-            app:layout_constraintStart_toEndOf="@+id/userAvatar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/userAvatar" />
+                app:srcCompat="@drawable/default_profile_avatar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
-            android:id="@+id/nickProfile"
-            android:text="@{nickname}"
-            android:textSize="18sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
+                android:id="@+id/textView5"
+                android:text="@string/profile"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
 
-            app:layout_constraintEnd_toEndOf="@+id/textView5"
-            app:layout_constraintStart_toStartOf="@+id/textView5"
-            app:layout_constraintBottom_toBottomOf="@+id/userAvatar"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                app:layout_constraintStart_toEndOf="@+id/userAvatar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/userAvatar" />
+
+        <TextView
+                android:id="@+id/nickProfile"
+                android:text="@{nickname}"
+                android:textSize="17sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_margin="@dimen/app_margin"
+
+                app:layout_constraintEnd_toEndOf="@+id/textView5"
+                app:layout_constraintStart_toStartOf="@+id/textView5"
+                app:layout_constraintBottom_toBottomOf="@+id/userAvatar"
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -20,7 +20,7 @@
                 android:layout_margin="@dimen/app_margin"
                 android:gravity="center"
                 android:lines="1"
-                android:textColor="@android:color/holo_purple"
+                android:textColor="@color/main_500"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:text="@string/tournament_count_films_title" />
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:lines="1"
-                android:textColor="@android:color/holo_purple"
+                android:textColor="@color/main_500"
                 android:textSize="18sp"
                 android:text="@string/tournament_round_count" />
 
@@ -68,7 +68,7 @@
                         android:layout_marginTop="@dimen/app_margin"
                         android:gravity="center"
                         android:lines="1"
-                        android:textColor="@android:color/holo_purple"
+                        android:textColor="@color/main_500"
                         android:textStyle="bold"
                         tools:text="@string/tournament_film1_name"
                         app:layout_constraintTop_toTopOf="parent"
@@ -127,7 +127,7 @@
                         android:gravity="center"
                         android:layout_weight="0.7"
                         android:lines="1"
-                        android:textColor="@android:color/holo_purple"
+                        android:textColor="@color/main_500"
                         android:textStyle="bold"
                         tools:text="@string/tournament_film2_name"
                         app:layout_constraintTop_toTopOf="parent"

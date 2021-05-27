@@ -10,4 +10,8 @@
     <color name="pale_black">#1D1D1D</color>
     <color name="dark_grey">#2D2D2D</color>
 
+    <color name="main_200">#8561c5</color>
+    <color name="main_500">#673ab7</color>
+    <color name="main_700">#482880</color>
+
 </resources>
