@@ -5,6 +5,7 @@ import com.example.finema.models.GenreRequest.GenreList
 import com.example.finema.models.infinite.MovieDiscoverResult
 import com.example.finema.models.movieResponse.MovieDetails
 import com.example.finema.models.movieResponse.MovieResponse
+import com.example.finema.models.movieResponse.MovieResponseFromList
 import kotlinx.coroutines.flow.Flow
 
 interface IMoviesRepository{
@@ -18,4 +19,6 @@ interface IMoviesRepository{
 
     suspend fun getDiscoverMovies(query: String)
     : Flow<PagingData<MovieDiscoverResult>>
+
+    suspend fun getMovieFromList(list_id: Int): MovieResponseFromList
 }

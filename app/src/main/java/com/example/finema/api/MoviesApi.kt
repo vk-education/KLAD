@@ -4,6 +4,7 @@ import com.example.finema.models.GenreRequest.GenreList
 import com.example.finema.models.infinite.MovieDiscover
 import com.example.finema.models.movieResponse.MovieDetails
 import com.example.finema.models.movieResponse.MovieResponse
+import com.example.finema.models.movieResponse.MovieResponseFromList
 import com.example.finema.util.GENRE_LIST
 import com.example.finema.util.TOP_RATED_LIST
 import retrofit2.Response
@@ -35,6 +36,13 @@ interface MoviesApi {
         @Query("with_genres") with_genres: String
     ): Response<MovieResponse>
 
+
+    @GET("list/{list_id}?${API_AND_LANGUAGE}")
+    suspend fun getMovieFromList(
+        @Path("list_id") list_id: Int
+    ): Response<MovieResponseFromList>
+
+
     @GET(DISCOVER)
     suspend fun everything(
         @Query("page") page: Int,
@@ -49,6 +57,7 @@ interface MoviesApi {
                 .build()
                 .create(MoviesApi::class.java)
         }
+        private const val API_AND_LANGUAGE = "api_key=bbf5a3000e95f1dddf266b5e187d4b21&language=ru-ru"
 
         private const val BASE_URL = "https://api.themoviedb.org/3/"
         private const val GENRE_LIST =
@@ -56,6 +65,6 @@ interface MoviesApi {
         private const val TOP_RATED_LIST =
             "movie/top_rated?api_key=bbf5a3000e95f1dddf266b5e187d4b21&language=ru-Ru"
         private const val DISCOVER =
-            "search/keyword?api_key=bbf5a3000e95f1dddf266b5e187d4b21"
+            "search/keyword?api_key=bbf5a3000e95f1dddf266b5e187d4b21&language=ru-Ru"
     }
 }

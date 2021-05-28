@@ -1,6 +1,7 @@
 package com.example.finema.ui.tournaments.tournament
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,10 +16,7 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
 import kotlin.properties.Delegates
 
 class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>() {
-
-    private var numFilms by Delegates.notNull<Int>()
-    private lateinit var genreFilm: String
-
+    
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,10 +31,6 @@ class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>
         viewModel = getViewModel()
 
         super.onViewCreated(view, savedInstanceState)
-        // get number from previous fragment
-        numFilms = arguments?.getSerializable("num") as Int
-        genreFilm = arguments?.getSerializable("genre") as String
-
         viewModel.twoFilms.observe(APP_ACTIVITY, {
 
             binding.txtFilm1.text = it[0].title
@@ -59,7 +53,7 @@ class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>
             binding.cardview1.visibility = View.VISIBLE
             binding.cardview2.visibility = View.VISIBLE
 
-            binding.txtNumCategory.text = "$numFilms Лучших фильмов"
+            binding.txtNumCategory.text = "${viewModel.numFilms} Лучших фильмов"
             binding.roundCount.text = "Раунд ${viewModel.roundCount}"
 
             binding.cardview1.setOnClickListener {
