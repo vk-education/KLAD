@@ -13,6 +13,14 @@
         android:layout_height="60dp"
         android:layout_gravity="center" />
 
+    <Button
+        android:id="@+id/choose"
+        android:text="@string/empty_favourite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="invisible"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/moviesList"
         android:layout_width="match_parent"
@@ -27,6 +35,8 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 
         tools:listitem="@layout/favourite_movie_item"
-        tools:visibility="visible" />
+        tools:visibility="visible">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

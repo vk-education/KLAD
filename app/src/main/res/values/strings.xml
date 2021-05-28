@@ -28,4 +28,5 @@
     <string name="clear">Ваша статистика очищена</string>
     <string name="start_level">Level 1</string>
     <string name="next_level">Next Level</string>
+    <string name="empty_favourite">Здесь пусто\nДавайте найдем\nВаши любимые фильмы</string>
 </resources>
