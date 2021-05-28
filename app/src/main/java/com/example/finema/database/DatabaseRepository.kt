@@ -19,6 +19,8 @@ interface DatabaseRepository {
 
     suspend fun deleteAllFavourite(onSuccess: () -> Unit)
 
+    suspend fun deleteFavouriteMovie(movieId: Long, onSuccess: () -> Unit)
+
     suspend fun deleteFavourite(movie: MovieModel, onSuccess: () -> Unit)
 
     fun signOut(){}

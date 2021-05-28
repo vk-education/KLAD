@@ -59,6 +59,10 @@ class MovieDetailsViewModel(
         }
     }
 
+    suspend fun deleteMovie(id: Long) {
+        DBRepository.deleteFavouriteMovie(id) {}
+    }
+
     companion object {
         const val NEW_LINE = "\n"
         const val TAB = "\t"

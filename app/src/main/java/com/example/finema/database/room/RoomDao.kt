@@ -23,6 +23,9 @@ interface RoomDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(note: GenreModel)
 
+    @Query("DELETE FROM favourite_list WHERE id = :movieId;")
+    suspend fun deleteFavouriteMovie(movieId: Long)
+
     @Query("DELETE FROM favourite_list;")
     suspend fun deleteAllFavourite()
 

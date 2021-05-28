@@ -31,6 +31,11 @@ class RoomRepository (
         onSuccess()
     }
 
+    override suspend fun deleteFavouriteMovie(movieId: Long, onSuccess: () -> Unit) {
+        roomDao.deleteFavouriteMovie(movieId)
+        onSuccess()
+    }
+
     override suspend fun deleteFavourite(movie: MovieModel, onSuccess: () -> Unit) {
         roomDao.deleteFavourite(movie)
         onSuccess()

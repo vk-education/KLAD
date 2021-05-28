@@ -12,6 +12,10 @@ import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.movieResponse.MovieDetails
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.downloadAndSetImage
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFragmentBinding>() {
@@ -42,6 +46,10 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
         binding.checkFavourite.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked && movie != null) {
                 viewModel.insert(movie!!)
+            } else if (!isChecked && movie != null) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    viewModel.deleteMovie(movie!!.id)
+                }
             }
         }
 
