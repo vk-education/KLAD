@@ -1,11 +1,11 @@
 package com.example.finema.api
 
 import android.content.Context
-import androidx.paging.*
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import com.example.finema.database.room.RoomDao
 import com.example.finema.repositories.SafeApiRequest
 import com.example.finema.ui.chooseFavourite.MoviePagingSource
-import kotlinx.coroutines.flow.Flow
 import java.util.*
 
 class MoviesRepository(
@@ -31,6 +31,10 @@ class MoviesRepository(
 
     override suspend fun getMovieDetails(id: Long) = apiRequest {
         api.getMovieDetails(id, Locale.getDefault().toString().replace('_', '-'))
+    }
+
+    override suspend fun getMovieFromList(list_id: Int) = apiRequest {
+        api.getMovieFromList(list_id)
     }
 
     override suspend fun getDiscoverMovies(query: String) =

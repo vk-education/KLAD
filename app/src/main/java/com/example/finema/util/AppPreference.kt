@@ -12,6 +12,10 @@ object AppPreference {
     private const val INIT_USER = "initUser"
     private const val INIT_GENRES = "initGenres"
     private const val NAME_PREF = "preference"
+    private const val NUM_FILMS = "numFilms"
+    private const val TOURNAMENT_TYPE = "tournamentType"
+    private const val GENRE_ID = "genre_id"
+    private const val CATEGORY_LINK = "category_link"
     private const val MOVIE_ONE = "movieOne"
 
     private val googleUser: FirebaseAuth = FirebaseAuth.getInstance()
@@ -22,18 +26,18 @@ object AppPreference {
         mPreferences = context.getSharedPreferences(NAME_PREF, Context.MODE_PRIVATE)
     }
 
-    fun setInitUser(init:Boolean) {
+    fun setInitUser(init: Boolean) {
         mPreferences.edit()
             .putBoolean(INIT_USER, init)
             .apply()
     }
 
-    fun  getInitUser():Boolean {
-        return mPreferences.getBoolean(INIT_USER,false)
+    fun getInitUser(): Boolean {
+        return mPreferences.getBoolean(INIT_USER, false)
     }
 
     fun getGeneratedGenres(): Boolean {
-        return mPreferences.getBoolean(INIT_GENRES,false)
+        return mPreferences.getBoolean(INIT_GENRES, false)
     }
 
     fun setGeneratedGenres(init: Boolean) {
@@ -46,6 +50,47 @@ object AppPreference {
         googleUser.signOut()
         Log.d("OJOF", googleUser.currentUser?.displayName.orEmpty())
     }
+
+    fun getNumOfFilms(): Int {
+        return mPreferences.getInt(NUM_FILMS, 8)
+    }
+
+    fun setNumOfFilms(num: Int) {
+        mPreferences.edit()
+            .putInt(NUM_FILMS, num)
+            .apply()
+    }
+
+    fun getTournamentType(): String? {
+        return mPreferences.getString(TOURNAMENT_TYPE, "")
+    }
+
+    fun setTournamentType(type: String) {
+        mPreferences.edit()
+            .putString(TOURNAMENT_TYPE, type)
+            .apply()
+    }
+
+    fun getGenre(): String? {
+        return mPreferences.getString(GENRE_ID, "")
+    }
+
+    fun setGenre(genre: String) {
+        mPreferences.edit()
+            .putString(GENRE_ID, genre)
+            .apply()
+    }
+
+    fun getCategoryLink(): Int? {
+        return mPreferences.getInt(CATEGORY_LINK, -1)
+    }
+
+    fun setCategoryLink(categoryLink: Int) {
+        mPreferences.edit()
+            .putInt(CATEGORY_LINK, categoryLink)
+            .apply()
+    }
+
 
     fun setMovieAddedToFav(movie :String) {
             mPreferences.edit()

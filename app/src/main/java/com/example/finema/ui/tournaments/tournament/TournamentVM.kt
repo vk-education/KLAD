@@ -12,6 +12,7 @@ import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.movieResponse.Movie
 import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.util.APP_ACTIVITY
+import com.example.finema.util.AppPreference
 import com.example.finema.util.Coroutines
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,7 +23,8 @@ class TournamentVM(
 ) : BaseViewModel() {
 
     var twoFilms = MutableLiveData<List<Movie>>()
-
+    var loopNum: Int = 1
+    var flag: Int = 0
     var gotList = MutableLiveData<List<Movie>>()
     var mainList: ArrayList<Movie> = ArrayList()
     var secondList: ArrayList<Movie> = ArrayList()
@@ -32,7 +34,7 @@ class TournamentVM(
 
     var roundCount = 1
 
-    private val numFilms = 8
+    var numFilms = 8
 
     init {
         start()
@@ -40,20 +42,43 @@ class TournamentVM(
 
 
     private fun start() {
-        getMovies("12") {
+        numFilms = AppPreference.getNumOfFilms()
+        setLoopNum()
+        getMovies {
             gotList.observe(APP_ACTIVITY, {
-                mainList = it.take(numFilms) as ArrayList<Movie>
-                updateCards()
+                mainList.addAll(it)
+
+                if(flag == loopNum) {
+                    mainList = mainList.take(numFilms) as ArrayList<Movie>
+                    updateCards()
+                }
             })
         }
-
     }
 
-    fun getMovies(genre: String, onSuccess: () -> Unit) {
-        job = Coroutines.ioThenMan(
-            { apiRepository.getMoviesWithGenre(1, genre) },
-            { gotList.value = it?.movies }
-        )
+    private fun getMovies(onSuccess: () -> Unit) {
+        when (AppPreference.getTournamentType()) {
+            "GENRE" -> {
+                val genre = AppPreference.getGenre()?: "12"
+                for(page in 1..loopNum) {
+                    job = Coroutines.ioThenMan(
+                        { apiRepository.getMoviesWithGenre(page, genre) },
+                        { gotList.value = it?.movies }
+                        )   
+                    flag += 1
+                }
+            }
+            "CATEGORY" -> {
+                val categoryLink = AppPreference.getCategoryLink()?: 1
+                for(page in 1..loopNum) {
+                    job = Coroutines.ioThenMan(
+                    { apiRepository.getMovieFromList(categoryLink) },
+                    { gotList.value = it?.movies }
+                    )
+                    flag += 1
+                }
+            }
+        }
         onSuccess()
     }
 
@@ -162,4 +187,24 @@ class TournamentVM(
             movie.voteAverage.toString(),
             null
         )
+
+    private fun setLoopNum() {
+        when (numFilms) {
+            8 or 16 -> {
+                loopNum = 1
+            }
+            32 -> {
+                loopNum = 2
+            }
+            64 -> {
+                loopNum = 4
+            }
+            128 -> {
+                loopNum = 7
+            }
+            256 -> {
+                loopNum = 13
+            }
+        }
+    }
 }

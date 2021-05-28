@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "677958878281",
+    "firebase_url": "https://finema-b7bde-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "finema-b7bde",
     "storage_bucket": "finema-b7bde.appspot.com"
   },
@@ -50,6 +51,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "677958878281-bc2fulmg7en9sgv9ingij4sav2u4g35r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.finema",
+            "certificate_hash": "08fa697c85845235d17c47709bceeae4bfe3692c"
+          }
+        },
         {
           "client_id": "677958878281-o32p6sa8b711am4ikvr2inhjql9en9us.apps.googleusercontent.com",
           "client_type": 1,

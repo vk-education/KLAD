@@ -45,10 +45,10 @@ class MainActivity : AppCompatActivity() {
             binding.drawerLayout.open()
         }
 
-//        binding.navView.getHeaderView(0).setOnClickListener {
-//            findNavController(R.id.fragment)
-//                .navigate(R.id.action_global_fragmentProfile)
-//        }
+        binding.navView.getHeaderView(0).setOnClickListener {
+            findNavController(R.id.fragment)
+                .navigate(R.id.action_global_fragmentProfile)
+        }
 
         binding.navView.setNavigationItemSelectedListener {
             binding.drawerLayout.close()
