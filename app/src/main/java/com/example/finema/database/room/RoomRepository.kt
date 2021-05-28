@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.finema.database.DatabaseRepository
 import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.models.databaseModels.MovieModel
+import com.example.finema.models.databaseModels.TopModel
 
 class RoomRepository (
     private val roomDao: RoomDao
@@ -14,11 +15,17 @@ class RoomRepository (
 
     override val allFavourites: LiveData<List<MovieModel>> = roomDao.getAllFavourites()
 
+    override val allTop: LiveData<List<TopModel>> = roomDao.getAllTop()
+
     override fun checkFavourite(movieId: Long) = roomDao.checkFavourite(movieId)
 
     override suspend fun insert(genre: GenreModel, onSuccess: () -> Unit) {
         roomDao.insert(genre)
         onSuccess()
+    }
+
+    override suspend fun insertTop(movie: TopModel, onSuccess: () -> Unit) {
+        roomDao.insertTop(movie)
     }
 
     override suspend fun insertFavourite(movie: MovieModel, onSuccess: () -> Unit) {

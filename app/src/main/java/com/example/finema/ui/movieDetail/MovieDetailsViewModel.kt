@@ -7,6 +7,7 @@ import com.example.finema.models.movieResponse.MovieDetails
 import com.example.finema.api.MoviesRepository
 import com.example.finema.database.room.RoomRepository
 import com.example.finema.models.databaseModels.MovieModel
+import com.example.finema.models.databaseModels.TopModel
 import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.util.Coroutines
 import kotlinx.coroutines.*
@@ -55,8 +56,24 @@ class MovieDetailsViewModel(
         }
     }
 
+    fun toTopModel(movieModel: MovieModel): TopModel {
+        return TopModel(
+            movieModel.id,
+            movieModel.title,
+            null,
+            movieModel.about,
+            null,
+            movieModel.rating,
+            null
+        )
+    }
+
     suspend fun deleteMovie(id: Long) {
         DBRepository.deleteFavouriteMovie(id) {}
+    }
+
+    suspend fun addToTopMovies(movieModel: TopModel) {
+        DBRepository.insertTop(movieModel){}
     }
 
     companion object {

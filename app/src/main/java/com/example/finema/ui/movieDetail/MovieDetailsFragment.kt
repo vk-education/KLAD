@@ -11,10 +11,9 @@ import com.example.finema.databinding.MovieDetailsFragmentBinding
 import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.movieResponse.MovieDetails
 import com.example.finema.ui.base.BaseFragment
-import com.example.finema.util.downloadAndSetImage
+import com.example.finema.util.downloadAndSetImageUrl
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
@@ -35,8 +34,6 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initViewModel()
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel.arg = requireArguments().getLong(KEY)
 
 //        binding.filmLoader.visibility = View.GONE
         viewModel.film.observe(viewLifecycleOwner, observerList)
@@ -65,7 +62,7 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
 
         binding.companies.text = viewModel.film.value!!.stringCompanies
 
-        binding.imageView.downloadAndSetImage(
+        binding.imageView.downloadAndSetImageUrl(
             POSTER_BASE_URL + it.posterPath
         )
 
@@ -92,6 +89,13 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
             it.voteAverage.toString(),
             null
         )
+        
+        CoroutineScope(Dispatchers.IO).launch {
+            viewModel.addToTopMovies(
+                viewModel.toTopModel(movie!!)
+            )
+        }
+
     }
 
     private fun initViewModel() {

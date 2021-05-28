@@ -1,7 +1,6 @@
 package com.example.finema.ui.tournaments.tournament
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +10,8 @@ import com.example.finema.R
 import com.example.finema.databinding.FragmentTournamentBinding
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.APP_ACTIVITY
-import com.example.finema.util.downloadAndSetImage
+import com.example.finema.util.downloadAndSetImageUrl
 import org.koin.androidx.viewmodel.ext.android.getViewModel
-import kotlin.properties.Delegates
 
 class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>() {
     
@@ -36,13 +34,13 @@ class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>
             binding.txtFilm1.text = it[0].title
             binding.txtFilm2.text = it[1].title
 
-            binding.img1.downloadAndSetImage(
+            binding.img1.downloadAndSetImageUrl(
                 getString(
                     R.string.poster_base_url,
                     it[0].posterPath
                 )
             )
-            binding.img2.downloadAndSetImage(
+            binding.img2.downloadAndSetImageUrl(
                 getString(
                     R.string.poster_base_url,
                     it[1].posterPath

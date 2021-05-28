@@ -4,13 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
 import com.example.finema.R
 import com.example.finema.databinding.HigherLowerFragmentBinding
 import com.example.finema.ui.base.BaseFragment
-import com.example.finema.util.POSTER_BASE_URL
-import com.example.finema.util.downloadAndSetImage
-import org.koin.android.ext.android.get
+import com.example.finema.util.downloadAndSetImageUrl
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 
@@ -36,13 +33,13 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
             binding.txtFilm1.text = movieList.movies[viewModel.img1].title
             binding.txtFilm2.text = movieList.movies[viewModel.img2].title
 
-            binding.img1.downloadAndSetImage(
+            binding.img1.downloadAndSetImageUrl(
                 getString(
                     R.string.poster_base_url,
                     movieList.movies[viewModel.img1].posterPath)
             )
 
-            binding.img2.downloadAndSetImage(
+            binding.img2.downloadAndSetImageUrl(
                 getString(
                     R.string.poster_base_url,
                     movieList.movies[viewModel.img2].posterPath)

@@ -7,17 +7,12 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
-import com.bumptech.glide.Glide
 import com.example.finema.R
-import com.example.finema.databinding.HigherLowerFragmentBinding
 import com.example.finema.databinding.HigherLowerRatingFragmentBinding
 import com.example.finema.models.movieResponse.MovieResponse
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.AppPreference
-import com.example.finema.util.POSTER_BASE_URL
-import com.example.finema.util.downloadAndSetImage
-import org.koin.android.ext.android.bind
-import org.koin.android.ext.android.get
+import com.example.finema.util.downloadAndSetImageUrl
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 
@@ -97,7 +92,7 @@ class HigherLowerRatingFragment : BaseFragment<HigherLowerRatingViewModel, Highe
     }
 
     private fun setImage(imgIndex: Int, movieList: MovieResponse, img: ImageView) {
-        img.downloadAndSetImage(
+        img.downloadAndSetImageUrl(
             getString(
                 R.string.poster_base_url,
                 movieList.movies[imgIndex].posterPath)

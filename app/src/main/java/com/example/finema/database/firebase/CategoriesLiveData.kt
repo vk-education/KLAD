@@ -9,6 +9,7 @@ import com.google.firebase.database.ValueEventListener
 
 class CategoriesLiveData: LiveData<List<CategoryModel>>() {
     private val listener = object : ValueEventListener {
+
         override fun onDataChange(p0: DataSnapshot) {
             value = p0.children.map {
                 it.getValue(CategoryModel::class.java)?: CategoryModel()

@@ -17,4 +17,4 @@ data class GenreModel(
 
     val idFirebase: String = ""
 
-):Serializable
+) : Serializable

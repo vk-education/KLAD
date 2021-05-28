@@ -45,7 +45,7 @@ val viewModelModule: Module = module {
 
     viewModel { ChooseFavouriteViewModel(get()) }
 
-    viewModel { ProfileViewModel() }
+    viewModel { ProfileViewModel(get()) }
 }
 
 val apiModule: Module = module {

@@ -52,7 +52,7 @@
                     android:layout_marginStart="30dp">
 
                 <TextView
-                        android:id="@+id/userName"
+                        android:id="@+id/user_name"
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
                         android:gravity="center_vertical" />
 
                 <TextView
-                        android:id="@+id/userPhone"
+                        android:id="@+id/user_phone"
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="100dp"
+                    android:layout_marginTop="50dp"
                     android:layout_marginStart="50dp"
                     android:layout_marginEnd="50dp"
                     android:text="Твой топ"
@@ -96,50 +96,24 @@
                     android:gravity="center"
                     android:textSize="30sp"/>
 
-            <TextView
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/top_recycler"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="60dp"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginEnd="50dp"
-                    android:text="1. Твой топ"
-                    android:textColor="@color/black"
-                    android:backgroundTint="@color/design_default_color_primary"
-                    android:gravity="center"
-                    android:textSize="30sp"/>
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginEnd="50dp"
-                    android:text="2. Твой топ"
-                    android:textColor="@color/black"
-                    android:backgroundTint="@color/design_default_color_primary"
-                    android:gravity="center"
-                    android:textSize="30sp"/>
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginEnd="50dp"
-                    android:text="3. Твой топ"
-                    android:textColor="@color/black"
-                    android:backgroundTint="@color/design_default_color_primary"
-                    android:gravity="center"
-                    android:textSize="30sp"/>
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginEnd="50dp"
-                    android:text="4. Твой топ"
-                    android:textColor="@color/black"
-                    android:backgroundTint="@color/design_default_color_primary"
-                    android:gravity="center"
-                    android:textSize="30sp"/>
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                    android:layout_marginTop="40dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginEnd="40dp"
+
+                    tools:listitem="@layout/top_movie_item"
+                    app:spanCount="1"
+                    android:visibility="visible"
+                    android:scrollbars="none" />
 
 
         </LinearLayout>

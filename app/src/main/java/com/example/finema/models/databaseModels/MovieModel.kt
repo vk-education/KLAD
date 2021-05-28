@@ -23,7 +23,6 @@ data class MovieModel(
     @ColumnInfo
     val companies: String? = "",
 
-    val idFirebase: String = ""
+    val idFirebase: String = "",
 
 ) : Serializable
-
