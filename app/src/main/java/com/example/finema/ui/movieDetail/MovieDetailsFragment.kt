@@ -12,6 +12,10 @@ import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.movieResponse.MovieDetails
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.downloadAndSetImage
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFragmentBinding>() {
@@ -32,12 +36,20 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
         initViewModel()
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.arg = requireArguments().getLong(KEY)
+
 //        binding.filmLoader.visibility = View.GONE
         viewModel.film.observe(viewLifecycleOwner, observerList)
-        
+
+        viewModel.checkFavourite()
+
         binding.checkFavourite.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked && movie != null){
+            if (isChecked && movie != null) {
                 viewModel.insert(movie!!)
+            } else if (!isChecked && movie != null) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    viewModel.deleteMovie(movie!!.id)
+                }
             }
         }
 
@@ -59,7 +71,14 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
 
         binding.rating.text = it.voteAverage.toString()
 
-        if (viewModel.checkFavourite(it.id.toLong())){
+//        if (viewModel.favouriteMovies == ){
+//            Log.d("gypsy", "True")
+//            binding.checkFavourite.isChecked = true
+//        }
+
+        Log.d("gypsy", "ObserverList")
+
+        if (viewModel.favouriteMovies != null && viewModel.favouriteMovies!!.contains(it.id.toLong())) {
             Log.d("gypsy", "True")
             binding.checkFavourite.isChecked = true
         }
