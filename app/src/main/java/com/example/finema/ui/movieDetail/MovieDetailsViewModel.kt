@@ -68,8 +68,11 @@ class MovieDetailsViewModel(
         )
     }
 
-    suspend fun deleteMovie(id: Long) {
-        DBRepository.deleteFavouriteMovie(id) {}
+    fun deleteMovie(id: Long) {
+        viewModelScope.launch(Dispatchers.Main) {
+            DBRepository.deleteFavouriteMovie(id) {}
+        }
+
     }
 
     suspend fun addToTopMovies(movieModel: TopModel) {
