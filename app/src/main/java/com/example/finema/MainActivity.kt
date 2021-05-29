@@ -20,7 +20,6 @@ import com.example.finema.util.*
 import com.google.firebase.auth.FirebaseAuth
 import java.util.concurrent.TimeUnit
 
-
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
@@ -86,9 +85,19 @@ class MainActivity : AppCompatActivity() {
                 if (SCREENS_WITHOUT_DRAWER.contains(destination.id)) {
                     binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
                     binding.topAppBar.visibility = View.GONE
+                    binding.appBarCollapse.visibility = View.GONE
                 } else {
                     binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED)
                     binding.topAppBar.visibility = View.VISIBLE
+                    binding.appBarCollapse.visibility = View.VISIBLE
+                }
+
+                if (SCREENS_WITH_IMAGE.contains(destination.id)) {
+                    binding.imageAppBar.visibility = View.VISIBLE
+                } else {
+                    binding.imageAppBar.visibility = View.GONE
+                    binding.imageAppBar.setImageDrawable(null)
+                    binding.topAppBar.title = resources.getString(R.string.app_name)
                 }
 
                 when (destination.label) {
@@ -139,9 +148,14 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
     companion object {
         private val SCREENS_WITHOUT_DRAWER = listOf(
             R.id.sigInFragment
+        )
+
+        private val SCREENS_WITH_IMAGE = listOf(
+            R.id.fragmentFilm
         )
     }
 }
