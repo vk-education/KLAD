@@ -48,6 +48,10 @@ class RoomRepository (
         onSuccess()
     }
 
+    override suspend fun deleteAllTop(onSuccess: () -> Unit) {
+        roomDao.deleteAllTop()
+    }
+
     override fun signOut(){
     }
 }

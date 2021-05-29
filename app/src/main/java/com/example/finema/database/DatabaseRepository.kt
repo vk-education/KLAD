@@ -28,6 +28,8 @@ interface DatabaseRepository {
 
     suspend fun deleteFavourite(movie: MovieModel, onSuccess: () -> Unit)
 
+    suspend fun deleteAllTop(onSuccess: () -> Unit)
+
     fun signOut(){}
 
 }

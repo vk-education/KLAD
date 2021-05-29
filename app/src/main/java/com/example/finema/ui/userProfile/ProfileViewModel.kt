@@ -27,14 +27,26 @@ class ProfileViewModel (
     }
 
     fun getName(): String? {
-        return mAuth.currentUser?.displayName
+        return if(mAuth.currentUser?.displayName == null) {
+            "Удлиннитель"
+        } else {
+            mAuth.currentUser?.displayName
+        }
     }
 
     fun getNumber(): String? {
-        return mAuth.currentUser?.phoneNumber
+        return if(mAuth.currentUser?.phoneNumber == null) {
+            "8 800 555 35 35"
+        } else {
+            mAuth.currentUser?.phoneNumber
+        }
     }
 
     fun getImage(): Uri? {
-        return mAuth.currentUser?.photoUrl
-    }
+
+        return if(mAuth.currentUser?.photoUrl == null) {
+            Uri.parse("android.resource://com.example.finema/drawable/default_profile_avatar");
+        } else {
+            mAuth.currentUser?.photoUrl
+        }    }
 }

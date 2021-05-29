@@ -1944,6 +1944,7 @@ id action_chooseFavouriteFragment_to_fragmentFilm
 id action_container
 id action_context_bar
 id action_divider
+id action_fragmentFavourite_to_chooseFavouriteFragment
 id action_fragmentFavourite_to_fragmentFilm
 id action_fragmentGenre_to_fragmentTournament
 id action_fragmentOthers_to_fragmentTournament
@@ -2034,6 +2035,7 @@ id chip1
 id chip2
 id chip3
 id chip_group
+id choose
 id chooseFavouriteFragment
 id chronometer
 id circle_center
@@ -2729,6 +2731,7 @@ string common_signin_button_text_long
 string companies
 string copy
 string default_web_client_id
+string empty_favourite
 string error_icon_content_description
 string expand_button_title
 string exposed_dropdown_menu_content_description

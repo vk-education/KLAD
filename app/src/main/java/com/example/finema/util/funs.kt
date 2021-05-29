@@ -5,7 +5,7 @@ import com.bumptech.glide.Glide
 import com.example.finema.R
 
 
-fun ImageView.downloadAndSetImageUrl(url:String){
+fun ImageView.downloadAndSetImageUrl(url: String?) {
     Glide
         .with(this)
         .load(url)
@@ -15,7 +15,7 @@ fun ImageView.downloadAndSetImageUrl(url:String){
         .into(this);
 }
 
-fun ImageView.downloadAndSetImageUri(uri: Uri){
+fun ImageView.downloadAndSetImageUri(uri: Uri?) {
     Glide
         .with(this)
         .load(uri)

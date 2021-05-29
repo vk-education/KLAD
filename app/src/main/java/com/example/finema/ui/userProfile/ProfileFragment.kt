@@ -35,7 +35,7 @@ class ProfileFragment (
 
         binding.userName.text = viewModel.getName()
         binding.userPhone.text = viewModel.getNumber()
-        binding.Avatar.downloadAndSetImageUri(viewModel.getImage()!!)
+        binding.Avatar.downloadAndSetImageUri(viewModel.getImage())
 
         profileAdapter = ProfileAdapter(this)
         viewModel.topMovies.observe(viewLifecycleOwner, {
