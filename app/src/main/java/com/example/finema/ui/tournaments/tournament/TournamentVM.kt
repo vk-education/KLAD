@@ -3,7 +3,6 @@ package com.example.finema.ui.tournaments.tournament
 import android.os.Bundle
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
 import com.example.finema.R
 import com.example.finema.api.MoviesRepository
@@ -48,7 +47,7 @@ class TournamentVM(
             gotList.observe(APP_ACTIVITY, {
                 mainList.addAll(it)
 
-                if(flag == loopNum) {
+                if (flag == loopNum) {
                     mainList = mainList.take(numFilms) as ArrayList<Movie>
                     updateCards()
                 }
@@ -59,21 +58,21 @@ class TournamentVM(
     private fun getMovies(onSuccess: () -> Unit) {
         when (AppPreference.getTournamentType()) {
             "GENRE" -> {
-                val genre = AppPreference.getGenre()?: "12"
-                for(page in 1..loopNum) {
+                val genre = AppPreference.getGenre() ?: "12"
+                for (page in 1..loopNum) {
                     job = Coroutines.ioThenMan(
                         { apiRepository.getMoviesWithGenre(page, genre) },
                         { gotList.value = it?.movies }
-                        )   
+                    )
                     flag += 1
                 }
             }
             "CATEGORY" -> {
-                val categoryLink = AppPreference.getCategoryLink()?: 1
-                for(page in 1..loopNum) {
+                val categoryLink = AppPreference.getCategoryLink() ?: 1
+                for (page in 1..loopNum) {
                     job = Coroutines.ioThenMan(
-                    { apiRepository.getMovieFromList(categoryLink) },
-                    { gotList.value = it?.movies }
+                        { apiRepository.getMovieFromList(categoryLink) },
+                        { gotList.value = it?.movies }
                     )
                     flag += 1
                 }

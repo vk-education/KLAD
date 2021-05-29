@@ -2,14 +2,11 @@ package com.example.finema.ui.tournaments.genres
 
 import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finema.R
@@ -19,7 +16,6 @@ import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.APP_ACTIVITY
 import com.example.finema.util.AppPreference
-import org.koin.androidx.scope.scopeActivity
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class GenresTournamentFragment(
@@ -46,9 +42,7 @@ class GenresTournamentFragment(
     }
 
     private fun initialization() {
-        if (AppPreference.getGeneratedGenres()) {
-            loadGenresList()
-        }
+        if (!viewModel.checkDatabaseNotEmpty()) loadGenresList()
 
         mAdapter = GenresTournamentAdapter(this)
         mRecyclerView = binding.tournamentsRecycler
@@ -60,13 +54,16 @@ class GenresTournamentFragment(
         //TODO Убрать получение и обращаться к VM базового класса
         viewModel.allGenres.observe(APP_ACTIVITY, mObserverList)
 
-
     }
 
     //TODO genreModel -> {} : GenreModel -> Unit
     // Заменить на лямбду, хз так ли написал выше
     override fun onMovieClicked(view: View, genreModel: GenreModel) {
-        dialogBinding(genreModel.id.toString())
+        if (genreModel.id == 99) {
+            Toast.makeText(context, "Этот жанр временно отсутсвует", Toast.LENGTH_SHORT).show()
+        } else {
+            dialogBinding(genreModel.id.toString())
+        }
     }
 
     private fun dialogBinding(genre: String) {
@@ -122,9 +119,7 @@ class GenresTournamentFragment(
             }
         }
 
-        viewModel.getGenres {
-            AppPreference.setGeneratedGenres(true)
-        }
+        viewModel.getGenres()
 
         viewModel.genreListVM.observe(viewLifecycleOwner, mObserverList)
     }

@@ -4,18 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.finema.api.MoviesRepository
-import com.example.finema.database.DatabaseRepository
+import com.example.finema.database.room.RoomRepository
 import com.example.finema.models.GenreRequest.GenreList
 import com.example.finema.models.databaseModels.GenreModel
-import com.example.finema.database.room.RoomRepository
-import com.example.finema.models.movieResponse.Movie
 import com.example.finema.ui.base.BaseViewModel
-import com.example.finema.util.AppPreference
 import com.example.finema.util.Coroutines
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class GenresTournamentVM (
+class GenresTournamentVM(
     private val apiRepository: MoviesRepository,
     private val DBRepository: RoomRepository
 ) : BaseViewModel() {
@@ -29,17 +26,20 @@ class GenresTournamentVM (
 
     var genreListVM = MutableLiveData<GenreList>()
 
+    fun checkDatabaseNotEmpty(): Boolean {
+        // TODO не работает, так как вызов асинхронный
+        return allGenres.value != null
+    }
 
     fun signOut() {
         DBRepository.signOut()
     }
 
-    fun getGenres(onSuccess:() -> Unit){
+    fun getGenres() {
         job = Coroutines.ioThenMan(
-        { apiRepository.getGenres() },
+            { apiRepository.getGenres() },
             { genreListVM.value = it }
         )
-        onSuccess()
     }
 
     fun insert(genreModel: GenreModel) =

@@ -36,15 +36,6 @@ object AppPreference {
         return mPreferences.getBoolean(INIT_USER, false)
     }
 
-    fun getGeneratedGenres(): Boolean {
-        return mPreferences.getBoolean(INIT_GENRES, false)
-    }
-
-    fun setGeneratedGenres(init: Boolean) {
-        mPreferences.edit()
-            .putBoolean(INIT_GENRES, init)
-            .apply()
-    }
 
     fun googleUserSignOut() {
         googleUser.signOut()

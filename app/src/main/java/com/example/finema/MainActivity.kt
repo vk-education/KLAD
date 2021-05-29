@@ -104,7 +104,6 @@ class MainActivity : AppCompatActivity() {
                     .getHeaderView(0)
                     .findViewById<TextView>(R.id.nickProfile)
                     .text = FirebaseAuth.getInstance().currentUser?.displayName.orEmpty()
-                Log.d("testLog", "nothing")
             }
         }
     }

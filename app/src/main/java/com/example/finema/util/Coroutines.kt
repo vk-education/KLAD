@@ -1,8 +1,5 @@
 package com.example.finema.util
 
-import com.example.finema.models.movieResponse.Movie
-import com.example.finema.models.movieResponse.MovieDetails
-import com.example.finema.models.movieResponse.MovieResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
