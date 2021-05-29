@@ -10,6 +10,7 @@ import com.example.finema.database.room.RoomRepository
 import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.movieResponse.Movie
 import com.example.finema.ui.base.BaseViewModel
+import com.example.finema.ui.movieDetail.MovieDetailsFragment
 import com.example.finema.util.APP_ACTIVITY
 import com.example.finema.util.AppPreference
 import com.example.finema.util.Coroutines
@@ -211,7 +212,7 @@ class TournamentVM(
         MovieModel(
             movie.id.toLong(),
             movie.title,
-            null,
+            POSTER_BASE_URL + movie.posterPath,
             movie.overview,
             null,
             movie.voteAverage.toString(),
@@ -236,5 +237,9 @@ class TournamentVM(
                 loopNum = 13
             }
         }
+    }
+
+    companion object {
+        const val POSTER_BASE_URL = "https://image.tmdb.org/t/p/w342"
     }
 }
