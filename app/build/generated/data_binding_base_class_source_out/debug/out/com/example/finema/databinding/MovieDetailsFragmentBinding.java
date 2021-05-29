@@ -4,12 +4,13 @@ package com.example.finema.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.widget.NestedScrollView;
 import androidx.databinding.Bindable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
@@ -23,13 +24,16 @@ public abstract class MovieDetailsFragmentBinding extends ViewDataBinding {
   public final TextView aboutTitle;
 
   @NonNull
-  public final CheckBox checkFavourite;
-
-  @NonNull
   public final TextView companies;
 
   @NonNull
   public final TextView companiesTitle;
+
+  @NonNull
+  public final ImageButton favourite;
+
+  @NonNull
+  public final ProgressBar filmLoader;
 
   @NonNull
   public final TextView filmTitle;
@@ -41,13 +45,10 @@ public abstract class MovieDetailsFragmentBinding extends ViewDataBinding {
   public final TextView genres;
 
   @NonNull
-  public final ImageView imageView;
+  public final NestedScrollView layout;
 
   @NonNull
-  public final LinearLayout layout;
-
-  @NonNull
-  public final LinearLayout layoutText;
+  public final ConstraintLayout layoutText;
 
   @NonNull
   public final TextView overview;
@@ -62,19 +63,19 @@ public abstract class MovieDetailsFragmentBinding extends ViewDataBinding {
   protected MovieDetails mFilmId;
 
   protected MovieDetailsFragmentBinding(Object _bindingComponent, View _root, int _localFieldCount,
-      TextView aboutTitle, CheckBox checkFavourite, TextView companies, TextView companiesTitle,
-      TextView filmTitle, TextView genreTitle, TextView genres, ImageView imageView,
-      LinearLayout layout, LinearLayout layoutText, TextView overview, TextView rating,
+      TextView aboutTitle, TextView companies, TextView companiesTitle, ImageButton favourite,
+      ProgressBar filmLoader, TextView filmTitle, TextView genreTitle, TextView genres,
+      NestedScrollView layout, ConstraintLayout layoutText, TextView overview, TextView rating,
       TextView ratingTitle) {
     super(_bindingComponent, _root, _localFieldCount);
     this.aboutTitle = aboutTitle;
-    this.checkFavourite = checkFavourite;
     this.companies = companies;
     this.companiesTitle = companiesTitle;
+    this.favourite = favourite;
+    this.filmLoader = filmLoader;
     this.filmTitle = filmTitle;
     this.genreTitle = genreTitle;
     this.genres = genres;
-    this.imageView = imageView;
     this.layout = layout;
     this.layoutText = layoutText;
     this.overview = overview;
