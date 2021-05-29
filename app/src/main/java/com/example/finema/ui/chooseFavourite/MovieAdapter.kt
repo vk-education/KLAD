@@ -56,7 +56,7 @@ class MovieAdapter(
         }
 
         init {
-            filmTitle = view.findViewById(R.id.tv_name)
+            filmTitle = view.findViewById(R.id.movie_title)
         }
     }
 

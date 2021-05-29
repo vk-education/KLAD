@@ -41,7 +41,7 @@ class FavouriteFragment : BaseFragment<FavouriteViewModel, FavouriteFragmentBind
 
     }
 
-    fun content() {
+    private fun content() {
         viewModel.favouriteMovies.observe(viewLifecycleOwner, {
             if (it != null) {
                 binding.searchLoader.visibility = View.INVISIBLE

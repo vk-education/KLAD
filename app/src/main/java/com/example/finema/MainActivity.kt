@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.navView.getHeaderView(0).setOnClickListener {
+            binding.drawerLayout.close()
             findNavController(R.id.fragment)
                 .navigate(R.id.action_global_fragmentProfile)
         }
