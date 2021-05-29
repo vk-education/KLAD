@@ -51,7 +51,7 @@ class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>
             binding.cardview1.visibility = View.VISIBLE
             binding.cardview2.visibility = View.VISIBLE
 
-            binding.txtNumCategory.text = "${viewModel.numFilms} Лучших фильмов"
+            binding.txtNumCategory.text = viewModel.title
             binding.roundCount.text = "Раунд ${viewModel.roundCount}"
 
             binding.cardview1.setOnClickListener {

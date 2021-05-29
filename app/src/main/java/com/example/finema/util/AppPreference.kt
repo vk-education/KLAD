@@ -15,7 +15,9 @@ object AppPreference {
     private const val NUM_FILMS = "numFilms"
     private const val TOURNAMENT_TYPE = "tournamentType"
     private const val GENRE_ID = "genre_id"
+    private const val GENRE_NAME = "genre_name"
     private const val CATEGORY_LINK = "category_link"
+    private const val CATEGORY_NAME = "category_name"
     private const val MOVIE_ONE = "movieOne"
 
     private val googleUser: FirebaseAuth = FirebaseAuth.getInstance()
@@ -62,13 +64,23 @@ object AppPreference {
             .apply()
     }
 
-    fun getGenre(): String? {
+    fun getGenreId(): String? {
         return mPreferences.getString(GENRE_ID, "")
     }
 
     fun setGenre(genre: String) {
         mPreferences.edit()
             .putString(GENRE_ID, genre)
+            .apply()
+    }
+
+    fun getGenreName(): String? {
+        return mPreferences.getString(GENRE_NAME, "")
+    }
+
+    fun setGenreName(genre: String) {
+        mPreferences.edit()
+            .putString(GENRE_NAME, genre)
             .apply()
     }
 
@@ -79,6 +91,16 @@ object AppPreference {
     fun setCategoryLink(categoryLink: Int) {
         mPreferences.edit()
             .putInt(CATEGORY_LINK, categoryLink)
+            .apply()
+    }
+
+    fun getCategoryName(): String? {
+        return mPreferences.getString(CATEGORY_NAME, "")
+    }
+
+    fun setCategoryName(categoryName: String) {
+        mPreferences.edit()
+            .putString(CATEGORY_NAME, categoryName)
             .apply()
     }
 
