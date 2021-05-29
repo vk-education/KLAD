@@ -1,6 +1,5 @@
 package com.example.finema
 
-import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -9,8 +8,8 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.view.get
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
@@ -19,12 +18,8 @@ import com.example.finema.databinding.ActivityMainBinding
 import com.example.finema.ui.settings.NotificationService
 import com.example.finema.util.*
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.auth.FirebaseAuthCredentialsProvider
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidFileProperties
-import org.koin.android.ext.koin.androidLogger
-import org.koin.core.context.startKoin
 import java.util.concurrent.TimeUnit
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -48,6 +43,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.navView.getHeaderView(0).setOnClickListener {
+            binding.drawerLayout.close()
             findNavController(R.id.fragment)
                 .navigate(R.id.action_global_fragmentProfile)
         }
@@ -78,6 +74,7 @@ class MainActivity : AppCompatActivity() {
 
             true
         }
+
     }
 
 
@@ -92,6 +89,19 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED)
                     binding.topAppBar.visibility = View.VISIBLE
+                }
+
+                when (destination.label) {
+                    "Tournament fragment" -> {
+                        AppPreference.setFragment(destination.label as String)
+                    }
+                    "Film fragment" -> {
+
+                    }
+
+                    else -> {
+                        AppPreference.setFragment("")
+                    }
                 }
             }
 
@@ -129,7 +139,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
     companion object {
         private val SCREENS_WITHOUT_DRAWER = listOf(
             R.id.sigInFragment

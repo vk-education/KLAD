@@ -165,4 +165,7 @@ dependencies {
 
     // WorkManager
     implementation "android.arch.work:work-runtime:1.0.1"
+
+    //FlexBox
+    implementation 'com.google.android.flexbox:flexbox:3.0.0'
 }

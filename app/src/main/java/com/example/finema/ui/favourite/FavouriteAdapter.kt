@@ -4,10 +4,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finema.R
 import com.example.finema.models.databaseModels.MovieModel
+import com.example.finema.ui.movieDetail.MovieDetailsFragment
+import com.example.finema.util.downloadAndSetImageUrl
 
 class FavouriteAdapter(
     private val navigateToMovie: (Long) -> Unit
@@ -35,18 +38,22 @@ class FavouriteAdapter(
     }
 
     class MovieViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        //        val imageMovie: ImageView = view.findViewById(R.id.imageMovie) as ImageView
+        var imageMovie: ImageView? = null
         var filmTitle: TextView? = null
         var rating: TextView? = null
         var genre: TextView? = null
 
         init {
+            imageMovie = view.findViewById(R.id.imageMovie) as ImageView
             filmTitle = view.findViewById(R.id.filmTitle)
             rating = view.findViewById(R.id.rating)
             genre = view.findViewById(R.id.genre)
         }
 
         fun bind(movie: MovieModel, navigateToMovie: (Long) -> Unit) = itemView.apply {
+            imageMovie?.downloadAndSetImageUrl(
+                movie.imageUrl
+            )
             filmTitle?.text = movie.title
             rating?.text = movie.rating
             genre?.text = movie.genres

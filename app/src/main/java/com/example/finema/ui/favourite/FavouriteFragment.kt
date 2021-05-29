@@ -1,6 +1,7 @@
 package com.example.finema.ui.favourite
 
 import android.os.Bundle
+import android.util.LayoutDirection
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finema.R
 import com.example.finema.databinding.FavouriteFragmentBinding
 import com.example.finema.ui.base.BaseFragment
+import com.google.android.flexbox.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class FavouriteFragment : BaseFragment<FavouriteViewModel, FavouriteFragmentBinding>() {
@@ -41,7 +43,7 @@ class FavouriteFragment : BaseFragment<FavouriteViewModel, FavouriteFragmentBind
 
     }
 
-    fun content() {
+    private fun content() {
         viewModel.favouriteMovies.observe(viewLifecycleOwner, {
             if (it != null) {
                 binding.searchLoader.visibility = View.INVISIBLE
@@ -55,9 +57,17 @@ class FavouriteFragment : BaseFragment<FavouriteViewModel, FavouriteFragmentBind
                 binding.choose.visibility = View.INVISIBLE
             }
 
-            binding.moviesList.layoutManager = LinearLayoutManager(context)
+            binding.moviesList.layoutManager = flexBox()
             binding.moviesList.adapter = favouriteAdapter
         })
+    }
+
+    private fun flexBox(): FlexboxLayoutManager {
+        val flex = FlexboxLayoutManager(context)
+        flex.flexDirection = FlexDirection.ROW
+        flex.alignItems = AlignItems.CENTER
+        flex.justifyContent = JustifyContent.CENTER
+        return flex
     }
 
 }

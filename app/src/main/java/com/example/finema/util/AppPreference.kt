@@ -19,6 +19,7 @@ object AppPreference {
     private const val CATEGORY_LINK = "category_link"
     private const val CATEGORY_NAME = "category_name"
     private const val MOVIE_ONE = "movieOne"
+    private const val FRAGMENT = "fragment"
 
     private val googleUser: FirebaseAuth = FirebaseAuth.getInstance()
     private lateinit var mPreferences: SharedPreferences
@@ -115,4 +116,13 @@ object AppPreference {
         return mPreferences.getString(MOVIE_ONE, "")
     }
 
+    fun setFragment(name: String) {
+        mPreferences.edit()
+            .putString(FRAGMENT, name)
+            .apply()
+    }
+
+    fun getFragment(): String? {
+        return mPreferences.getString(FRAGMENT, "")
+    }
 }

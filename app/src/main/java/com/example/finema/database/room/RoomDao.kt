@@ -39,4 +39,7 @@ interface RoomDao {
     @Delete
     suspend fun deleteFavourite(note: MovieModel)
 
+    @Query("DELETE FROM top_list;")
+    suspend fun deleteAllTop()
+
 }

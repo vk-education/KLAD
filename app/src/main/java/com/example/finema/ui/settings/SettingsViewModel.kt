@@ -8,7 +8,7 @@ class SettingsViewModel(
 ) : BaseViewModel() {
 
     suspend fun clearStatistics() {
-        DBRepository.deleteAllFavourite {
-        }
+        DBRepository.deleteAllFavourite {}
+        DBRepository.deleteAllTop {}
     }
 }

@@ -1,7 +1,7 @@
 package com.example.finema.ui.signIn
 
 import android.os.Bundle
-import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,9 +14,8 @@ import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.AppPreference
 import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.*
-import org.koin.androidx.viewmodel.ext.android.getViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 
 class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
@@ -33,6 +32,7 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         savedInstanceState: Bundle?
     ): View {
         binding = SignInFragmentBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
@@ -40,6 +40,7 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = getViewModel()
 
+        blockBack()
         initCustomContract()
 
         super.onViewCreated(view, savedInstanceState)
@@ -86,6 +87,20 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
                 }
             }
         }
+    }
+
+    private fun blockBack() {
+        binding.root.isFocusableInTouchMode = true;
+        binding.root.requestFocus();
+        binding.root.setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
+            if (event.action === KeyEvent.ACTION_DOWN) {
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    return@OnKeyListener true
+                }
+            }
+            false
+        })
+
     }
 
 }

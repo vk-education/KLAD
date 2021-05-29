@@ -11,6 +11,7 @@ import com.example.finema.databinding.MovieDetailsFragmentBinding
 import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.movieResponse.MovieDetails
 import com.example.finema.ui.base.BaseFragment
+import com.example.finema.util.AppPreference
 import com.example.finema.util.downloadAndSetImageUrl
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -83,19 +84,19 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
         movie = MovieModel(
             it.id.toLong(),
             it.title,
-            null,
+            POSTER_BASE_URL + it.posterPath,
             it.overview,
             null,
             it.voteAverage.toString(),
             null
         )
-        
-        CoroutineScope(Dispatchers.IO).launch {
-            viewModel.addToTopMovies(
-                viewModel.toTopModel(movie!!)
-            )
+        if(AppPreference.getFragment() == "Tournament fragment") {
+            CoroutineScope(Dispatchers.IO).launch {
+                viewModel.addToTopMovies(
+                    viewModel.toTopModel(movie!!)
+                )
+            }
         }
-
     }
 
     private fun initViewModel() {
