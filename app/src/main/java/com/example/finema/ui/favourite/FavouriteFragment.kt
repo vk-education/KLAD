@@ -1,6 +1,7 @@
 package com.example.finema.ui.favourite
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,6 +33,15 @@ class FavouriteFragment : BaseFragment<FavouriteViewModel, FavouriteFragmentBind
         viewModel = getViewModel()
         super.onViewCreated(view, savedInstanceState)
 
+        content()
+
+        binding.choose.setOnClickListener {
+            findNavController().navigate(R.id.action_fragmentFavourite_to_chooseFavouriteFragment)
+        }
+
+    }
+
+    fun content() {
         viewModel.favouriteMovies.observe(viewLifecycleOwner, {
             if (it != null) {
                 binding.searchLoader.visibility = View.INVISIBLE
@@ -39,18 +49,15 @@ class FavouriteFragment : BaseFragment<FavouriteViewModel, FavouriteFragmentBind
                 favouriteAdapter.update(it)
             }
 
-            if (it.isEmpty()){
+            if (it.isEmpty()) {
                 binding.choose.visibility = View.VISIBLE
+            } else {
+                binding.choose.visibility = View.INVISIBLE
             }
 
             binding.moviesList.layoutManager = LinearLayoutManager(context)
             binding.moviesList.adapter = favouriteAdapter
         })
-
-        binding.choose.setOnClickListener {
-            findNavController().navigate(R.id.action_fragmentFavourite_to_chooseFavouriteFragment)
-        }
-
     }
 
 }
