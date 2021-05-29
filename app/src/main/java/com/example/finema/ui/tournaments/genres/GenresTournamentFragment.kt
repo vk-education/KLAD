@@ -70,7 +70,7 @@ class GenresTournamentFragment(
         //TODO Изменить на фрагмент
         //TODO Заменить на нормальный контекст
         val dialog = Dialog(requireContext())
-
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
         dialog.let {
             it.setContentView(R.layout.number_fragment)
             it.findViewById<View>(R.id.btn8).setOnClickListener {

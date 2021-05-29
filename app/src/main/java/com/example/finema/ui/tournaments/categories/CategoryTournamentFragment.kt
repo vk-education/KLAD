@@ -65,6 +65,7 @@ class CategoryTournamentFragment(
     private fun dialogBinding(link: String, categoryName: String) {
         //TODO Изменить на фрагмент
         val dialog = Dialog(requireContext())
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
         dialog.let {
             it.setContentView(R.layout.number_fragment)
             it.findViewById<View>(R.id.btn8).setOnClickListener {
