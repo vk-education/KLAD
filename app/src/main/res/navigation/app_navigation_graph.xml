@@ -19,6 +19,12 @@
                 app:argType="long"
                 app:nullable="false" />
         </action>
+
+        <action
+            android:id="@+id/action_fragmentFavourite_to_chooseFavouriteFragment"
+            app:destination="@id/chooseFavouriteFragment" />
+
+
     </fragment>
 
     <fragment
@@ -50,10 +56,10 @@
         android:label="Others fragment"
         tools:layout="@layout/fragment_category_tournament">
         <action
-                android:id="@+id/action_fragmentOthers_to_fragmentTournament"
-                app:destination="@id/fragmentTournament"
-                app:popUpTo="@id/fragmentOthers"
-                app:launchSingleTop="true" />
+            android:id="@+id/action_fragmentOthers_to_fragmentTournament"
+            app:destination="@id/fragmentTournament"
+            app:popUpTo="@id/fragmentOthers"
+            app:launchSingleTop="true" />
     </fragment>
 
     <fragment
@@ -78,17 +84,17 @@
         android:label="Genre fragment"
         tools:layout="@layout/fragment_tournament_genres">
         <action
-                android:id="@+id/action_fragmentGenre_to_fragmentTournament"
-                app:destination="@id/fragmentTournament"
-                app:popUpTo="@id/fragmentGenre"
-                app:launchSingleTop="true" />
+            android:id="@+id/action_fragmentGenre_to_fragmentTournament"
+            app:destination="@id/fragmentTournament"
+            app:popUpTo="@id/fragmentGenre"
+            app:launchSingleTop="true" />
     </fragment>
 
     <fragment
-            android:id="@+id/fragmentTournament"
-            android:name="com.example.finema.ui.tournaments.tournament.TournamentFragment"
-            android:label="Tournament fragment"
-            tools:layout="@layout/fragment_tournament">
+        android:id="@+id/fragmentTournament"
+        android:name="com.example.finema.ui.tournaments.tournament.TournamentFragment"
+        android:label="Tournament fragment"
+        tools:layout="@layout/fragment_tournament">
 
         <argument
             android:name="number"
@@ -103,9 +109,9 @@
                 app:exitAnim="@android:anim/slide_out_right">
 
             <argument
-                    android:name="filmId"
-                    app:argType="long"
-                    app:nullable="false" />
+                android:name="filmId"
+                app:argType="long"
+                app:nullable="false" />
         </action>
 
     </fragment>
@@ -170,19 +176,19 @@
         tools:layout="@layout/higher_lower_fragment" />
 
     <fragment
-            android:id="@+id/higherLowerRatingFragment"
-            android:name="com.example.finema.ui.higherlowerrating.HigherLowerRatingFragment"
-            android:label="higher_lower_rating_fragment"
-            tools:layout="@layout/higher_lower_rating_fragment" />
+        android:id="@+id/higherLowerRatingFragment"
+        android:name="com.example.finema.ui.higherlowerrating.HigherLowerRatingFragment"
+        android:label="higher_lower_rating_fragment"
+        tools:layout="@layout/higher_lower_rating_fragment" />
 
     <fragment
-            android:id="@+id/chooseFavouriteFragment"
-            android:name="com.example.finema.ui.chooseFavourite.ChooseFavouriteFragment"
-            android:label="choose_favourite_fragment"
-            tools:layout="@layout/choose_favourite_fragment" >
+        android:id="@+id/chooseFavouriteFragment"
+        android:name="com.example.finema.ui.chooseFavourite.ChooseFavouriteFragment"
+        android:label="choose_favourite_fragment"
+        tools:layout="@layout/choose_favourite_fragment">
         <action
-                android:id="@+id/action_chooseFavouriteFragment_to_fragmentFilm"
-                app:destination="@id/fragmentFilm" />
+            android:id="@+id/action_chooseFavouriteFragment_to_fragmentFilm"
+            app:destination="@id/fragmentFilm" />
     </fragment>
 
 
