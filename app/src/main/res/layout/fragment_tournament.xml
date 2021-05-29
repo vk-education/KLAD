@@ -19,7 +19,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/app_margin"
                 android:gravity="center"
-                android:lines="1"
                 android:textColor="@color/main_500"
                 android:textStyle="bold"
                 android:textSize="20sp"

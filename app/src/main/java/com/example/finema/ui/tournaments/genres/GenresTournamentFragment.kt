@@ -62,11 +62,11 @@ class GenresTournamentFragment(
         if (genreModel.id == 99) {
             Toast.makeText(context, "Этот жанр временно отсутсвует", Toast.LENGTH_SHORT).show()
         } else {
-            dialogBinding(genreModel.id.toString())
+            dialogBinding(genreModel.id.toString(), genreModel.name)
         }
     }
 
-    private fun dialogBinding(genre: String) {
+    private fun dialogBinding(genreId: String,genreName:String) {
         //TODO Изменить на фрагмент
         //TODO Заменить на нормальный контекст
         val dialog = Dialog(requireContext())
@@ -74,27 +74,27 @@ class GenresTournamentFragment(
         dialog.let {
             it.setContentView(R.layout.number_fragment)
             it.findViewById<View>(R.id.btn8).setOnClickListener {
-                goNextFragment(8, genre)
+                goNextFragment(8, genreId, genreName)
                 dialog.hide()
             }
             it.findViewById<View>(R.id.btn16).setOnClickListener {
-                goNextFragment(16, genre)
+                goNextFragment(16,  genreId, genreName)
                 dialog.hide()
             }
             it.findViewById<View>(R.id.btn32).setOnClickListener {
-                goNextFragment(32, genre)
+                goNextFragment(32,  genreId, genreName)
                 dialog.hide()
             }
             it.findViewById<View>(R.id.btn64).setOnClickListener {
-                goNextFragment(64, genre)
+                goNextFragment(64,  genreId, genreName)
                 dialog.hide()
             }
             it.findViewById<View>(R.id.btn128).setOnClickListener {
-                goNextFragment(128, genre)
+                goNextFragment(128,  genreId, genreName)
                 dialog.hide()
             }
             it.findViewById<View>(R.id.btn256).setOnClickListener {
-                goNextFragment(256, genre)
+                goNextFragment(256,  genreId, genreName)
                 dialog.hide()
             }
 
@@ -102,9 +102,10 @@ class GenresTournamentFragment(
         dialog.show()
     }
 
-    private fun goNextFragment(num: Int, genre: String) {
+    private fun goNextFragment(num: Int, genreId: String, genreName:String) {
         AppPreference.setNumOfFilms(num)
-        AppPreference.setGenre(genre)
+        AppPreference.setGenreName(genreName)
+        AppPreference.setGenre(genreId)
 //        TODO FragmentGenreDestinations.action(_, _, _)
 //        TODO findNavController() ?
         Navigation.findNavController(APP_ACTIVITY, R.id.fragment)

@@ -59,21 +59,21 @@ class CategoryTournamentFragment(
     }
 
     override fun onMovieClicked(view: View, categoryModel: CategoryModel) {
-        dialogBinding(categoryModel.link)
+        dialogBinding(categoryModel.link, categoryModel.name)
     }
 
-    private fun dialogBinding(link: String) {
+    private fun dialogBinding(link: String, categoryName: String) {
         //TODO Изменить на фрагмент
         val dialog = Dialog(requireContext())
         dialog.let {
             it.setContentView(R.layout.number_fragment)
             it.findViewById<View>(R.id.btn8).setOnClickListener {
-                goNextFragment(8, link)
+                goNextFragment(8, link, categoryName)
                 dialog.hide()
             }
 
             it.findViewById<View>(R.id.btn16).setOnClickListener {
-                goNextFragment(16, link)
+                goNextFragment(16, link,categoryName)
                 dialog.hide()
             }
 
@@ -81,8 +81,9 @@ class CategoryTournamentFragment(
         dialog.show()
     }
 
-    private fun goNextFragment(num: Int, link: String) {
+    private fun goNextFragment(num: Int, link: String,categoryName: String) {
         AppPreference.setNumOfFilms(num)
+        AppPreference.setCategoryName(categoryName)
         AppPreference.setCategoryLink(link.toInt())
         Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
             .navigate(R.id.action_fragmentOthers_to_fragmentTournament)

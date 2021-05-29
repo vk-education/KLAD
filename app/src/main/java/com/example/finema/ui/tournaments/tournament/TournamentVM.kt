@@ -35,6 +35,8 @@ class TournamentVM(
 
     var numFilms = 8
 
+    var title = ""
+
     init {
         start()
     }
@@ -42,6 +44,7 @@ class TournamentVM(
 
     private fun start() {
         numFilms = AppPreference.getNumOfFilms()
+        genreOrCategory()
         setLoopNum()
         getMovies {
             gotList.observe(APP_ACTIVITY, {
@@ -58,7 +61,7 @@ class TournamentVM(
     private fun getMovies(onSuccess: () -> Unit) {
         when (AppPreference.getTournamentType()) {
             "GENRE" -> {
-                val genre = AppPreference.getGenre() ?: "12"
+                val genre = AppPreference.getGenreId() ?: "12"
                 for (page in 1..loopNum) {
                     job = Coroutines.ioThenMan(
                         { apiRepository.getMoviesWithGenre(page, genre) },
@@ -138,6 +141,8 @@ class TournamentVM(
         twoFilms.value = listOf(el1, el2)
     }
 
+
+
     fun addToFav(position: Int) {
         when (position) {
             0 -> {
@@ -148,6 +153,32 @@ class TournamentVM(
             }
         }
     }
+    private fun endOfWordGrammar():String{
+        var string = "фильмов"
+        when( numFilms){
+            8-> string = "фильмов"
+            16-> string = "фильмов"
+            32-> string = "фильма"
+            64 -> string = "фильма"
+            128 -> string = "фильмов"
+            256 -> string = "фильма"
+        }
+        return string
+    }
+
+    private fun genreOrCategory(){
+        when (AppPreference.getTournamentType()) {
+            "GENRE" -> {
+                val film = endOfWordGrammar()
+                val name = AppPreference.getGenreName()
+                title = "$numFilms Лучших $film в жанре $name"
+            }
+            "CATEGORY" -> {
+               title = AppPreference.getCategoryName()?:" "
+            }
+        }
+    }
+
 
     fun removeFromFav(position: Int) {
         when (position) {
