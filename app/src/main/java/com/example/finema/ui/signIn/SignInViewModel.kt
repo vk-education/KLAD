@@ -12,18 +12,17 @@ import com.example.finema.models.movieResponse.MovieResponse
 import com.example.finema.repositories.Contract
 import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.util.TYPE_ROOM
+import com.google.firebase.auth.FirebaseAuth
 import org.koin.androidx.compose.get
 
 class SignInViewModel(
     val contract: Contract
 ): BaseViewModel() {
 
-    private var _name = MutableLiveData<String>()
-    val name: LiveData<String>
-        get() = _name
+    val mAuth  = FirebaseAuth.getInstance()
 
-    fun setName(name: String) {
-        Log.d("WeWantName", "$name\t\tNothing")
-        _name.value = name
+    init  {
+        contract.setName("")
     }
+
 }

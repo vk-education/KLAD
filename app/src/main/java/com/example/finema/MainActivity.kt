@@ -108,8 +108,13 @@ class MainActivity : AppCompatActivity() {
 
                     }
 
+                    "SigInFragment" -> {
+                        AppPreference.setFragment(destination.label as String)
+                    }
+
                     else -> {
                         AppPreference.setFragment("")
+                        Log.d("Destination", destination.label as String)
                     }
                 }
             }

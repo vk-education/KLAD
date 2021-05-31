@@ -32,6 +32,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
             Preference.OnPreferenceClickListener { //code for what you want it to do
                 AppPreference.setInitUser(false)
                 AppPreference.googleUserSignOut()
+
+                viewModel.deleteCache(requireContext())
                 findNavController().navigate(R.id.action_fragmentSettings_to_sigInFragment)
                 true
             }

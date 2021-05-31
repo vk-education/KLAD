@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.coroutines.flow.*
 
-class Contract : ActivityResultContract<Unit, StateFlow<String>>() {
+class Contract : ActivityResultContract<Unit, Unit>() {
 
     private val _name = MutableStateFlow("")
     val name: StateFlow<String> = _name.asStateFlow()
@@ -26,17 +26,21 @@ class Contract : ActivityResultContract<Unit, StateFlow<String>>() {
         .requestEmail()
         .build()
 
+    fun setName(name: String) {
+        _name.value = name
+    }
+
     override fun createIntent(context: Context, input: Unit): Intent {
         val googleSignInClient = GoogleSignIn.getClient(context, gso)
 
         return  googleSignInClient.signInIntent
     }
 
-    override fun parseResult(resultCode: Int, intent: Intent?): StateFlow<String> {
-        return activityResult(intent)
+    override fun parseResult(resultCode: Int, intent: Intent?){
+        activityResult(intent)
     }
 
-    private fun activityResult(data: Intent?): StateFlow<String> {
+    private fun activityResult(data: Intent?) {
         val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
         val exception = task.exception
         if(task.isSuccessful) {
@@ -44,19 +48,17 @@ class Contract : ActivityResultContract<Unit, StateFlow<String>>() {
                 // Google Sign In was successful, authenticate with Firebase
                 val account: GoogleSignInAccount? = task.getResult(ApiException::class.java)
                 Log.d("Sign In Fragment", "firebaseAuthWithGoogle:" + account?.id)
-                return firebaseAuthWithGoogle(account?.idToken!!)
+                firebaseAuthWithGoogle(account?.idToken!!)
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
                 Log.w("Sign In Fragment", "Google sign in failed", e)
-                return MutableStateFlow("")
             }
         } else {
             Log.w("Sign In Fragment", exception.toString())
-            return MutableStateFlow("")
         }
     }
 
-    private fun firebaseAuthWithGoogle(idToken: String): StateFlow<String> {
+    private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         mAuth.signInWithCredential(credential)
             .addOnCompleteListener { task ->
@@ -64,16 +66,15 @@ class Contract : ActivityResultContract<Unit, StateFlow<String>>() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("firebaseAuthWithGoogle", "signInWithCredential:success")
                     val user = mAuth.currentUser
-                    _name.tryEmit(user.displayName!!)
+//                    _name.tryEmit(user.displayName!!)
+                    _name.value = user.displayName!!
                     Log.d("WOW", user.displayName!!)
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("firebaseAuthWithGoogle", "signInWithCredential:failure", task.exception)
                 }
             }
-        return _name
     }
-
     companion object {
         const val defaultWebClientId =
             "677958878281-pmcs285i4cdvd5tob7c6ovd2j0msknvs.apps.googleusercontent.com"

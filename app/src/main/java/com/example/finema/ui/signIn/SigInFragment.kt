@@ -1,19 +1,24 @@
 package com.example.finema.ui.signIn
 
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
+import androidx.compose.runtime.collectAsState
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.finema.R
 import com.example.finema.databinding.SignInFragmentBinding
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.AppPreference
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
@@ -39,24 +44,14 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
     @InternalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = getViewModel()
-
         blockBack()
         initCustomContract()
 
         super.onViewCreated(view, savedInstanceState)
-
         //TODO вынести во Repository, но только после того как будет DI (dagger/koin)
 
         header = requireActivity().findViewById<NavigationView>(R.id.nav_view)
             .getHeaderView(0).findViewById(R.id.nickProfile)
-
-        viewModel.name.observe(viewLifecycleOwner, { name ->
-            if (name != "") {
-                binding.loader.visibility = View.INVISIBLE
-                header.text = name
-                findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
-            }
-        })
 
         binding.signInWithGoogle.setOnClickListener {
             binding.loader.visibility = View.VISIBLE
@@ -81,12 +76,23 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
     @InternalCoroutinesApi
     private fun initCustomContract() {
         customContract = registerForActivityResult(viewModel.contract) {
-            CoroutineScope(Dispatchers.Main).launch {
-                it.collectLatest {
-                    viewModel.setName(it)
+            lifecycleScope.launchWhenStarted {
+                viewModel.contract.name.collect { name ->
+                    when (name) {
+                        "" -> Unit
+                        else -> letUserIn(name)
+                    }
                 }
             }
         }
+    }
+
+    private fun letUserIn(name: String) {
+        Log.d("ID", viewModel.mAuth.currentUser?.uid.toString())
+        binding.loader.visibility = View.INVISIBLE
+        header.text = name
+        findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
+
     }
 
     private fun blockBack() {
@@ -104,3 +110,15 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
     }
 
 }
+
+
+//{ name ->
+//    if (name != "") {
+//        Log.d("ID", mAuth.currentUser?.uid.toString())
+//        binding.loader.visibility = View.INVISIBLE
+//        header.text = name
+//        lifecycleScope.launchWhenCreated {
+//            findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
+//        }
+//    }
+//}
