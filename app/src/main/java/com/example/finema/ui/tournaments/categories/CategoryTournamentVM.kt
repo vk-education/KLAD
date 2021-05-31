@@ -9,6 +9,6 @@ class CategoryTournamentVM(
     val allCategories = fbRepository.allCategories
 
     init {
-        fbRepository.initRefs()
+        fbRepository.initRefCategory()
     }
 }

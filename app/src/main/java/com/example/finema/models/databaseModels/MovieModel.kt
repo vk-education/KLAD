@@ -9,7 +9,7 @@ import java.io.Serializable
 @Entity(tableName = "favourite_list", indices = [Index("id")])
 data class MovieModel(
     @PrimaryKey(autoGenerate = true)
-    val id: Long = 0,
+    var id: Long = 0,
     @ColumnInfo
     val title: String = "",
 //    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)

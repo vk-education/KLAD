@@ -56,11 +56,14 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         binding.signInWithGoogle.setOnClickListener {
             binding.loader.visibility = View.VISIBLE
             signIn()
+            AppPreference.setFirstSignIn(true)
             AppPreference.setInitUser(true)
+            AppPreference.setGuestOrAuth("AUTH")
         }
 
         binding.signInAsGuest.setOnClickListener {
             AppPreference.setInitUser(true)
+            AppPreference.setGuestOrAuth("GUEST")
             header.text = resources.getText(R.string.guest)
             findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
         }
@@ -110,15 +113,3 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
     }
 
 }
-
-
-//{ name ->
-//    if (name != "") {
-//        Log.d("ID", mAuth.currentUser?.uid.toString())
-//        binding.loader.visibility = View.INVISIBLE
-//        header.text = name
-//        lifecycleScope.launchWhenCreated {
-//            findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
-//        }
-//    }
-//}

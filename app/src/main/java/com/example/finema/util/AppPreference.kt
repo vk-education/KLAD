@@ -20,6 +20,8 @@ object AppPreference {
     private const val CATEGORY_NAME = "category_name"
     private const val MOVIE_ONE = "movieOne"
     private const val FRAGMENT = "fragment"
+    private const val FIRST_SIGN_IN = "firstSignIn"
+    private const val GUEST_OR_AUTH = "guestOrAuth"
 
     private val googleUser: FirebaseAuth = FirebaseAuth.getInstance()
     private lateinit var mPreferences: SharedPreferences
@@ -124,5 +126,24 @@ object AppPreference {
 
     fun getFragment(): String? {
         return mPreferences.getString(FRAGMENT, "")
+    }
+
+    fun setFirstSignIn(init: Boolean) {
+        mPreferences.edit()
+            .putBoolean(FIRST_SIGN_IN, init)
+            .apply()
+    }
+
+    fun getFirstSignIn(): Boolean {
+        return mPreferences.getBoolean(FIRST_SIGN_IN, false)
+    }
+
+    fun getGuestOrAuth():String?{
+        return mPreferences.getString(GUEST_OR_AUTH, "")
+    }
+    fun setGuestOrAuth(name: String) {
+        mPreferences.edit()
+            .putString(GUEST_OR_AUTH, name)
+            .apply()
     }
 }

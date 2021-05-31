@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -109,7 +108,7 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
         if (binding.favourite.tag == "yes") {
             Toast.makeText(context, "Удалено из избранные", Toast.LENGTH_SHORT).show()
             binding.favourite.setImageResource(R.drawable.bookmark_border_24)
-            viewModel.deleteMovie(movie!!.id)
+            viewModel.deleteMovie(movie!!.id, movie!!)
             binding.favourite.tag = "no"
         } else {
             Toast.makeText(context, "Добавлено в избранные", Toast.LENGTH_SHORT).show()

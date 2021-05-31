@@ -6,11 +6,11 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation.findNavController
 import com.example.finema.R
 import com.example.finema.api.MoviesRepository
+import com.example.finema.database.firebase.FirebaseRepository
 import com.example.finema.database.room.RoomRepository
 import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.movieResponse.Movie
 import com.example.finema.ui.base.BaseViewModel
-import com.example.finema.ui.movieDetail.MovieDetailsFragment
 import com.example.finema.util.APP_ACTIVITY
 import com.example.finema.util.AppPreference
 import com.example.finema.util.Coroutines
@@ -19,7 +19,8 @@ import kotlinx.coroutines.launch
 
 class TournamentVM(
     private val apiRepository: MoviesRepository,
-    private val DBRepository: RoomRepository
+    private val DBRepository: RoomRepository,
+    private val fbRepository: FirebaseRepository = FirebaseRepository()
 ) : BaseViewModel() {
 
     var twoFilms = MutableLiveData<List<Movie>>()
@@ -142,7 +143,6 @@ class TournamentVM(
     }
 
 
-
     fun addToFav(position: Int) {
         when (position) {
             0 -> {
@@ -153,12 +153,13 @@ class TournamentVM(
             }
         }
     }
-    private fun endOfWordGrammar():String{
+
+    private fun endOfWordGrammar(): String {
         var string = "фильмов"
-        when( numFilms){
-            8-> string = "фильмов"
-            16-> string = "фильмов"
-            32-> string = "фильма"
+        when (numFilms) {
+            8 -> string = "фильмов"
+            16 -> string = "фильмов"
+            32 -> string = "фильма"
             64 -> string = "фильма"
             128 -> string = "фильмов"
             256 -> string = "фильма"
@@ -166,7 +167,7 @@ class TournamentVM(
         return string
     }
 
-    private fun genreOrCategory(){
+    private fun genreOrCategory() {
         when (AppPreference.getTournamentType()) {
             "GENRE" -> {
                 val film = endOfWordGrammar()
@@ -174,7 +175,7 @@ class TournamentVM(
                 title = "$numFilms Лучших $film в жанре $name"
             }
             "CATEGORY" -> {
-               title = AppPreference.getCategoryName()?:" "
+                title = AppPreference.getCategoryName() ?: " "
             }
         }
     }
@@ -191,22 +192,35 @@ class TournamentVM(
         }
     }
 
-    private fun insert(movie: Movie) =
+    private fun insert(movie: Movie) {
         viewModelScope.launch(Dispatchers.Main) {
             DBRepository.insertFavourite(
                 makeMovieModel(movie)
             ) {
             }
         }
+        if (AppPreference.getGuestOrAuth() == "AUTH") {
+            viewModelScope.launch(Dispatchers.Main) {
+                fbRepository.insertFirebaseFavouriteFilm(makeMovieModel(movie))
+            }
+        }
+    }
 
-    private fun delete(movie: Movie) =
+    private fun delete(movie: Movie) {
+
         viewModelScope.launch(Dispatchers.Main) {
             DBRepository.deleteFavourite(
                 makeMovieModel(movie)
             ) {
             }
         }
+        if (AppPreference.getGuestOrAuth() == "AUTH"){
+            viewModelScope.launch(Dispatchers.Main) {
+                fbRepository.deleteFirebaseFavouriteFilm(makeMovieModel(movie))
+            }
+        }
 
+    }
     private fun makeMovieModel(movie: Movie) =
         MovieModel(
             movie.id.toLong(),
