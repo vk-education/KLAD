@@ -12,8 +12,10 @@ data class MovieModel(
     val id: Long = 0,
     @ColumnInfo
     val title: String = "",
-    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
-    var image: ByteArray? = null,
+//    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+//    var image: ByteArray? = null,
+    @ColumnInfo
+    val imageUrl: String? = "",
     @ColumnInfo
     val about: String = "",
     @ColumnInfo

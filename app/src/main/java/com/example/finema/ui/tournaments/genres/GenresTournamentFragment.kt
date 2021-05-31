@@ -70,7 +70,8 @@ class GenresTournamentFragment(
         //TODO Изменить на фрагмент
         //TODO Заменить на нормальный контекст
         val dialog = Dialog(requireContext())
-
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
         dialog.let {
             it.setContentView(R.layout.number_fragment)
             it.findViewById<View>(R.id.btn8).setOnClickListener {
@@ -106,8 +107,7 @@ class GenresTournamentFragment(
         AppPreference.setNumOfFilms(num)
         AppPreference.setGenreName(genreName)
         AppPreference.setGenre(genreId)
-//        TODO FragmentGenreDestinations.action(_, _, _)
-//        TODO findNavController() ?
+
         Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
             .navigate(R.id.action_fragmentGenre_to_fragmentTournament)
     }

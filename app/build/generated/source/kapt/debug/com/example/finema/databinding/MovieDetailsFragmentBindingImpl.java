@@ -14,9 +14,9 @@ public class MovieDetailsFragmentBindingImpl extends MovieDetailsFragmentBinding
     static {
         sIncludes = null;
         sViewsWithIds = new android.util.SparseIntArray();
-        sViewsWithIds.put(R.id.imageView, 5);
-        sViewsWithIds.put(R.id.layoutText, 6);
-        sViewsWithIds.put(R.id.checkFavourite, 7);
+        sViewsWithIds.put(R.id.layoutText, 5);
+        sViewsWithIds.put(R.id.filmLoader, 6);
+        sViewsWithIds.put(R.id.favourite, 7);
         sViewsWithIds.put(R.id.aboutTitle, 8);
         sViewsWithIds.put(R.id.genreTitle, 9);
         sViewsWithIds.put(R.id.ratingTitle, 10);
@@ -35,15 +35,15 @@ public class MovieDetailsFragmentBindingImpl extends MovieDetailsFragmentBinding
     private MovieDetailsFragmentBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
             , (android.widget.TextView) bindings[8]
-            , (android.widget.CheckBox) bindings[7]
             , (android.widget.TextView) bindings[4]
             , (android.widget.TextView) bindings[12]
+            , (android.widget.ImageButton) bindings[7]
+            , (android.widget.ProgressBar) bindings[6]
             , (android.widget.TextView) bindings[1]
             , (android.widget.TextView) bindings[9]
             , (android.widget.TextView) bindings[3]
-            , (android.widget.ImageView) bindings[5]
-            , (android.widget.LinearLayout) bindings[0]
-            , (android.widget.LinearLayout) bindings[6]
+            , (androidx.core.widget.NestedScrollView) bindings[0]
+            , (androidx.constraintlayout.widget.ConstraintLayout) bindings[5]
             , (android.widget.TextView) bindings[2]
             , (android.widget.TextView) bindings[11]
             , (android.widget.TextView) bindings[10]
