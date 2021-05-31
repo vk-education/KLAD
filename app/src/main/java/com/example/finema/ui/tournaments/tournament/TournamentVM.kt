@@ -49,6 +49,7 @@ class TournamentVM(
         getMovies {
             gotList.observe(APP_ACTIVITY, {
                 mainList.addAll(it)
+                flag += 1
 
                 if (flag == loopNum) {
                     mainList = mainList.take(numFilms) as ArrayList<Movie>
@@ -67,7 +68,6 @@ class TournamentVM(
                         { apiRepository.getMoviesWithGenre(page, genre) },
                         { gotList.value = it?.movies }
                     )
-                    flag += 1
                 }
             }
             "CATEGORY" -> {
@@ -77,7 +77,6 @@ class TournamentVM(
                         { apiRepository.getMovieFromList(categoryLink) },
                         { gotList.value = it?.movies }
                     )
-                    flag += 1
                 }
             }
         }

@@ -68,6 +68,19 @@ class HigherLowerRatingFragment : BaseFragment<HigherLowerRatingViewModel, Highe
 
     private fun setBookmarks(bookmark: ImageButton, position: Int) {
         if(bookmark.tag == "bruh") {
+
+            bookmark.animate().apply {
+                duration = 250
+                scaleXBy(1f)
+                scaleYBy(1f)
+            }.withEndAction {
+                bookmark.animate().apply {
+                    duration = 250
+                    scaleXBy(-1f)
+                    scaleYBy(-1f)
+                }
+            }
+
             Toast.makeText(context, "Удалено из избранные", Toast.LENGTH_SHORT).show()
             bookmark.setImageResource(R.drawable.bookmark_border_24)
             viewModel.removeFromFav(position)
@@ -78,6 +91,20 @@ class HigherLowerRatingFragment : BaseFragment<HigherLowerRatingViewModel, Highe
 
             bookmark.tag = "b"
         } else {
+
+            bookmark.animate().apply {
+                duration = 250
+                scaleXBy(1f)
+                scaleYBy(1f)
+            }.withEndAction {
+                bookmark.animate().apply {
+                    duration = 250
+                    scaleXBy(-1f)
+                    scaleYBy(-1f)
+                }
+            }
+
+
             Toast.makeText(context, "Добавлено в избранные", Toast.LENGTH_SHORT).show()
             bookmark.setImageResource(R.drawable.bookmark_24)
             viewModel.addToFav(position)

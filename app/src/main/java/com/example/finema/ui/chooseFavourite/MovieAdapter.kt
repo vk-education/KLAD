@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +15,7 @@ import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.models.infinite.MovieDiscoverResult
 import com.example.finema.ui.favourite.FavouriteAdapter
 import com.example.finema.ui.tournaments.genres.GenresTournamentAdapter
+import com.google.android.material.card.MaterialCardView
 
 class MovieAdapter(
     context: Context,
@@ -43,6 +45,7 @@ class MovieAdapter(
     )
         : RecyclerView.ViewHolder(view) {
         var filmTitle: TextView? = null
+        var movieTitle: MaterialCardView? = null
 
         interface Listener {
             fun onMovieClicked(index: Int)
@@ -50,13 +53,14 @@ class MovieAdapter(
 
         fun bind(item: MovieDiscoverResult) {
             filmTitle?.text = item.title
-            filmTitle?.setOnClickListener {
+            movieTitle?.setOnClickListener {
                 listener.onMovieClicked(item.id)
             }
         }
 
         init {
-            filmTitle = view.findViewById(R.id.movie_title)
+            filmTitle = view.findViewById(R.id.tv_name)
+            movieTitle = view.findViewById(R.id.movie_title)
         }
     }
 

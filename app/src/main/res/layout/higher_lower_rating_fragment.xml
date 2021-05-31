@@ -50,9 +50,10 @@
 
                 <TextView
                         android:id="@+id/txt_film1"
-                        android:layout_width="0dp"
+                        android:layout_width="290dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/app_margin"
+
                         android:gravity="center"
                         android:lines="1"
                         android:textColor="@android:color/holo_purple"
@@ -78,14 +79,14 @@
 
                 <ImageButton
                         android:id="@+id/bookmark1"
-                        android:background="#FFFFFF"
-                        app:layout_constraintStart_toEndOf="@id/txt_film1"
                         app:layout_constraintEnd_toEndOf="@+id/cl"
                         app:layout_constraintTop_toTopOf="@+id/cl"
-                        android:layout_marginEnd="20dp"
+                        android:layout_marginEnd="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+
+                        android:background="?attr/selectableItemBackgroundBorderless"
                         android:src="@drawable/bookmark_border_24" />
 
                 <ImageView
@@ -122,7 +123,7 @@
 
                 <TextView
                         android:id="@+id/txt_film2"
-                        android:layout_width="0dp"
+                        android:layout_width="290dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/app_margin"
                         android:gravity="center"
@@ -136,11 +137,10 @@
 
                 <ImageButton
                         android:id="@+id/bookmark2"
-                        android:background="#FFFFFF"
-                        app:layout_constraintStart_toEndOf="@id/txt_film2"
+                        android:background="?attr/selectableItemBackgroundBorderless"
                         app:layout_constraintEnd_toEndOf="@+id/cl2"
                         app:layout_constraintTop_toTopOf="@+id/cl2"
-                        android:layout_marginEnd="20dp"
+                        android:layout_marginEnd="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
