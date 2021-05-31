@@ -64,7 +64,7 @@ class CategoryTournamentFragment(
 
     private fun dialogBinding(link: String, categoryName: String) {
         //TODO Изменить на фрагмент
-        val dialog = Dialog(requireContext())
+        val dialog = Dialog(APP_ACTIVITY)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
         dialog.let {

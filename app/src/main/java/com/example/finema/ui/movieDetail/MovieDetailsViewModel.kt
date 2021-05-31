@@ -5,10 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.finema.models.movieResponse.MovieDetails
 import com.example.finema.api.MoviesRepository
+import com.example.finema.database.firebase.FirebaseRepository
 import com.example.finema.database.room.RoomRepository
 import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.databaseModels.TopModel
 import com.example.finema.ui.base.BaseViewModel
+import com.example.finema.util.AppPreference
 import com.example.finema.util.Coroutines
 import kotlinx.coroutines.*
 
@@ -17,6 +19,7 @@ class MovieDetailsViewModel(
     private val DBRepository: RoomRepository
 ) : BaseViewModel() {
 
+    private val fbRepository: FirebaseRepository = FirebaseRepository()
     var film = MutableLiveData<MovieDetails>()
     var arg: Long = 0
     var favouriteMovies: List<Long>? = null
@@ -42,11 +45,17 @@ class MovieDetailsViewModel(
         )
     }
 
-    fun insert(movieModel: MovieModel) =
+    fun insert(movieModel: MovieModel) {
         viewModelScope.launch(Dispatchers.Main) {
             DBRepository.insertFavourite(movieModel) {
             }
         }
+        if (AppPreference.getGuestOrAuth() == "AUTH") {
+            viewModelScope.launch(Dispatchers.Main) {
+                fbRepository.insertFirebaseFavouriteFilm(movieModel)
+            }
+        }
+    }
 
     fun checkFavourite() {
         GlobalScope.launch {
@@ -68,11 +77,15 @@ class MovieDetailsViewModel(
         )
     }
 
-    fun deleteMovie(id: Long) {
+    fun deleteMovie(id: Long, movie: MovieModel) {
         viewModelScope.launch(Dispatchers.Main) {
             DBRepository.deleteFavouriteMovie(id) {}
         }
-
+        if (AppPreference.getGuestOrAuth() == "AUTH") {
+            viewModelScope.launch(Dispatchers.Main) {
+                fbRepository.deleteFirebaseFavouriteFilm(movie)
+            }
+        }
     }
 
     suspend fun addToTopMovies(movieModel: TopModel) {

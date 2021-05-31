@@ -18,6 +18,10 @@ class SignInViewModel(
     val contract: Contract
 ): BaseViewModel() {
 
+    init {
+        contract.setName("")
+    }
+
     private var _name = MutableLiveData<String>()
     val name: LiveData<String>
         get() = _name
@@ -26,4 +30,5 @@ class SignInViewModel(
         Log.d("WeWantName", "$name\t\tNothing")
         _name.value = name
     }
+
 }

@@ -1,6 +1,7 @@
 package com.example.finema.ui.signIn
 
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.example.finema.databinding.SignInFragmentBinding
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.AppPreference
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.getViewModel
@@ -61,11 +63,14 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         binding.signInWithGoogle.setOnClickListener {
             binding.loader.visibility = View.VISIBLE
             signIn()
+            AppPreference.setFirstSignIn(true)
             AppPreference.setInitUser(true)
+            AppPreference.setGuestOrAuth("AUTH")
         }
 
         binding.signInAsGuest.setOnClickListener {
             AppPreference.setInitUser(true)
+            AppPreference.setGuestOrAuth("GUEST")
             header.text = resources.getText(R.string.guest)
             findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
         }
@@ -82,7 +87,7 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
     private fun initCustomContract() {
         customContract = registerForActivityResult(viewModel.contract) {
             CoroutineScope(Dispatchers.Main).launch {
-                it.collectLatest {
+                viewModel.contract.name.collectLatest {
                     viewModel.setName(it)
                 }
             }

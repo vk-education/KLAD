@@ -27,7 +27,7 @@ val viewModelModule: Module = module {
 
     viewModel { SignInViewModel(get()) }
 
-    viewModel { TmpViewModel() }
+    viewModel { TmpViewModel(get()) }
 
     viewModel { GenresTournamentVM(get(), get()) }
 

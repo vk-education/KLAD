@@ -36,6 +36,10 @@ class Contract : ActivityResultContract<Unit, StateFlow<String>>() {
         return activityResult(intent)
     }
 
+    fun setName(name:String){
+        _name.value = name
+    }
+
     private fun activityResult(data: Intent?): StateFlow<String> {
         val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
         val exception = task.exception

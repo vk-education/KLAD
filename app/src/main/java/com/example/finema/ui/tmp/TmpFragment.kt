@@ -1,7 +1,6 @@
 package com.example.finema.ui.tmp
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import com.example.finema.R
 import com.example.finema.databinding.TmpFragmentBinding
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.AppPreference
-import com.google.firebase.database.FirebaseDatabase
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
@@ -26,6 +24,10 @@ class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = getViewModel()
+        if (AppPreference.getFirstSignIn() && AppPreference.getGuestOrAuth() == "AUTH"){
+            viewModel.initRoomFromFirebaseToRoom()
+            AppPreference.setFirstSignIn(false)
+        }
 
         super.onViewCreated(view, savedInstanceState)
         binding.genre.setOnClickListener {
