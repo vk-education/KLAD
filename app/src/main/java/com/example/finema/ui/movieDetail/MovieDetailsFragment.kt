@@ -109,12 +109,12 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
         if (binding.favourite.tag == "yes") {
             Toast.makeText(context, "Удалено из избранные", Toast.LENGTH_SHORT).show()
             binding.favourite.setImageResource(R.drawable.bookmark_border_24)
-            viewModel.insert(movie!!)
+            viewModel.deleteMovie(movie!!.id)
             binding.favourite.tag = "no"
         } else {
             Toast.makeText(context, "Добавлено в избранные", Toast.LENGTH_SHORT).show()
             binding.favourite.setImageResource(R.drawable.bookmark_24)
-            viewModel.deleteMovie(movie!!.id)
+            viewModel.insert(movie!!)
             binding.favourite.tag = "yes"
         }
 
