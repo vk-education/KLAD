@@ -45,7 +45,7 @@ class ProfileViewModel (
     fun getImage(): Uri? {
 
         return if(mAuth.currentUser?.photoUrl == null) {
-            Uri.parse("android.resource://com.example.finema/drawable/default_profile_avatar");
+            Uri.parse("android.resource://com.example.finema/drawable/default_profile_avatar")
         } else {
             mAuth.currentUser?.photoUrl
         }    }
