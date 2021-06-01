@@ -58,7 +58,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
 
-                        android:text="Удлиннитель"
+                        android:text="@string/guest"
 
                         android:textColor="@color/main_500"
                         android:textSize="25sp"
@@ -70,7 +70,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
 
-                        android:text="8 800 555 35 35"
+                        android:text="@string/phone_number"
 
                         android:textColor="@color/dark_grey"
                         android:textSize="15sp"

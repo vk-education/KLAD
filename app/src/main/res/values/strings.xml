@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Finema</string>
     <string name="profile">Профиль</string>
-    <string name="guest">Гость</string>
     <string name="about_film">О фильме</string>
     <string name="genres">Жанры:</string>
     <string name="rating">Рейтинг</string>
@@ -31,4 +30,7 @@
     <string name="next_level">Next Level</string>
     <string name="empty_favourite">Здесь пусто\nДавайте найдем\nВаши любимые фильмы</string>
     <string name="your_top">Твой топ</string>
+    <string name="find">Поиск</string>
+    <string name="guest">Гость</string>
+    <string name="phone_number">8 800 555 35 35</string>
 </resources>
