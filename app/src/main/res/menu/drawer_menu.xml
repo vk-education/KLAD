@@ -19,7 +19,8 @@
 
     <item
             android:id="@+id/addFav"
-            android:title="@string/add_favourite" />
+            android:title="@string/find_movies"
+            android:icon="@drawable/search_24"/>
 
     <item
         android:id="@+id/game"

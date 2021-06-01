@@ -19,7 +19,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:visibility="invisible"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:background="@drawable/corner_button"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/moviesList"

@@ -51,7 +51,7 @@ class CategoryTournamentFragment(
         mRecyclerView = binding.categoryRecycler
         mRecyclerView.adapter = mAdapter
         mObserverList = Observer {
-            val list = it.reversed()
+            val list = it
             mAdapter.setList(list)
         }
         viewModel.allCategories.observe(APP_ACTIVITY, mObserverList)
