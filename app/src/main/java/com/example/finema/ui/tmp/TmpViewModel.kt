@@ -6,6 +6,7 @@ import com.example.finema.database.firebase.FirebaseRepository
 import com.example.finema.database.room.RoomRepository
 import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.util.APP_ACTIVITY
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

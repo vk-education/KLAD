@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -17,6 +18,7 @@ import androidx.work.WorkManager
 import com.example.finema.databinding.ActivityMainBinding
 import com.example.finema.ui.settings.NotificationService
 import com.example.finema.util.*
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import java.util.concurrent.TimeUnit
 
@@ -130,6 +132,11 @@ class MainActivity : AppCompatActivity() {
                     .getHeaderView(0)
                     .findViewById<TextView>(R.id.nickProfile)
                     .text = FirebaseAuth.getInstance().currentUser?.displayName.orEmpty()
+
+                binding.navView
+                    .getHeaderView(0)
+                    .findViewById<ImageView>(R.id.userAvatar)
+                    .downloadAndSetImageUri(FirebaseAuth.getInstance().currentUser?.photoUrl)
             }
         }
     }

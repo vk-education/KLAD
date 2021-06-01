@@ -16,11 +16,14 @@
             android:background="@color/main_500"
             android:fitsSystemWindows="true">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/userAvatar"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:layout_margin="@dimen/app_margin"
+
+                android:scaleType="fitStart"
+                app:shapeAppearanceOverlay="@style/Circular"
 
                 app:srcCompat="@drawable/default_profile_avatar"
                 app:layout_constraintStart_toStartOf="parent"

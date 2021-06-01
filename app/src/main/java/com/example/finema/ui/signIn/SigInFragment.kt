@@ -6,6 +6,7 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.runtime.collectAsState
@@ -15,6 +16,7 @@ import com.example.finema.R
 import com.example.finema.databinding.SignInFragmentBinding
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.AppPreference
+import com.example.finema.util.downloadAndSetImageUri
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.*
@@ -27,6 +29,7 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
 
     //TODO убрать, есть биндинг
     private lateinit var header: TextView
+    private lateinit var avatar: ImageView
 
     @InternalCoroutinesApi
     private lateinit var customContract: ActivityResultLauncher<Unit>
@@ -52,6 +55,8 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
 
         header = requireActivity().findViewById<NavigationView>(R.id.nav_view)
             .getHeaderView(0).findViewById(R.id.nickProfile)
+        avatar = requireActivity().findViewById<NavigationView>(R.id.nav_view)
+            .getHeaderView(0).findViewById(R.id.userAvatar)
 
         binding.signInWithGoogle.setOnClickListener {
             binding.loader.visibility = View.VISIBLE
@@ -94,8 +99,8 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         Log.d("ID", viewModel.mAuth.currentUser?.uid.toString())
         binding.loader.visibility = View.INVISIBLE
         header.text = name
+        avatar.downloadAndSetImageUri(viewModel.mAuth.currentUser?.photoUrl)
         findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
-
     }
 
     private fun blockBack() {
