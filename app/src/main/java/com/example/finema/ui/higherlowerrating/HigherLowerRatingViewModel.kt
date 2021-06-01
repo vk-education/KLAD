@@ -10,6 +10,7 @@ import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.movieResponse.Movie
 import com.example.finema.models.movieResponse.MovieResponse
 import com.example.finema.ui.base.BaseViewModel
+import com.example.finema.ui.tournaments.tournament.TournamentVM
 import com.example.finema.util.AppPreference
 import com.example.finema.util.Coroutines
 import kotlinx.coroutines.Dispatchers
@@ -19,10 +20,10 @@ import kotlin.random.Random
 class HigherLowerRatingViewModel(
     private val repository: MoviesRepository,
     private val DBRepository: RoomRepository,
+    private val fbRepository: FirebaseRepository
+) : BaseViewModel() {
 
-    ) : BaseViewModel() {
-
-    private val fbRepository: FirebaseRepository = FirebaseRepository()
+    val favouriteMovies: LiveData<List<MovieModel>> = DBRepository.allFavourites
 
     private var _movies = MutableLiveData<MovieResponse>()
     val movies: LiveData<MovieResponse>
@@ -145,7 +146,7 @@ class HigherLowerRatingViewModel(
         MovieModel(
             movie.id.toLong(),
             movie.title,
-            null,
+            TournamentVM.POSTER_BASE_URL + movie.posterPath,
             movie.overview,
             null,
             movie.voteAverage.toString(),

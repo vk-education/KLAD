@@ -7,12 +7,21 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.lifecycle.asFlow
 import com.example.finema.R
 import com.example.finema.databinding.HigherLowerRatingFragmentBinding
+import com.example.finema.models.databaseModels.MovieModel
+import com.example.finema.models.movieResponse.MovieDetails
 import com.example.finema.models.movieResponse.MovieResponse
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.AppPreference
+import com.example.finema.util.Coroutines
 import com.example.finema.util.downloadAndSetImageUrl
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 
@@ -27,6 +36,7 @@ class HigherLowerRatingFragment : BaseFragment<HigherLowerRatingViewModel, Highe
         return binding.root
     }
 
+    @InternalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = getViewModel()
         super.onViewCreated(view, savedInstanceState)
@@ -40,13 +50,22 @@ class HigherLowerRatingFragment : BaseFragment<HigherLowerRatingViewModel, Highe
 
             binding.txtRating.text = movieList.movies[viewModel.img1].voteAverage.toString()
 
-            if(AppPreference.getMovieAddedToFav() == binding.txtFilm1.text) {
-                binding.bookmark1.setImageResource(R.drawable.bookmark_24)
-                binding.bookmark1.tag = "bruh"
-            }
-
             setImage(0, movieList, binding.img1)
             setImage(1, movieList, binding.img2)
+            CoroutineScope(Dispatchers.Main).launch {
+                viewModel.favouriteMovies.asFlow().collectLatest {
+                    for(i in it) {
+                        if(binding.txtFilm1.text == i.title) {
+                            binding.bookmark1.setImageResource(R.drawable.bookmark_24)
+                            binding.bookmark1.tag = "bruh"
+                        }
+                        if(binding.txtFilm2.text == i.title) {
+                            binding.bookmark2.setImageResource(R.drawable.bookmark_24)
+                            binding.bookmark2.tag = "bruh"
+                        }
+                    }
+                }
+            }
         })
 
         binding.bookmark1.setOnClickListener {
@@ -68,50 +87,19 @@ class HigherLowerRatingFragment : BaseFragment<HigherLowerRatingViewModel, Highe
 
     private fun setBookmarks(bookmark: ImageButton, position: Int) {
         if(bookmark.tag == "bruh") {
-
-            bookmark.animate().apply {
-                duration = 250
-                scaleXBy(1f)
-                scaleYBy(1f)
-            }.withEndAction {
-                bookmark.animate().apply {
-                    duration = 250
-                    scaleXBy(-1f)
-                    scaleYBy(-1f)
-                }
-            }
+            animateBookmark(bookmark)
 
             Toast.makeText(context, "Удалено из избранные", Toast.LENGTH_SHORT).show()
             bookmark.setImageResource(R.drawable.bookmark_border_24)
             viewModel.removeFromFav(position)
 
-            if(position == 1) {
-                AppPreference.setMovieAddedToFav("")
-            }
-
             bookmark.tag = "b"
         } else {
-
-            bookmark.animate().apply {
-                duration = 250
-                scaleXBy(1f)
-                scaleYBy(1f)
-            }.withEndAction {
-                bookmark.animate().apply {
-                    duration = 250
-                    scaleXBy(-1f)
-                    scaleYBy(-1f)
-                }
-            }
-
+            animateBookmark(bookmark)
 
             Toast.makeText(context, "Добавлено в избранные", Toast.LENGTH_SHORT).show()
             bookmark.setImageResource(R.drawable.bookmark_24)
             viewModel.addToFav(position)
-
-            if(position == 1) {
-                AppPreference.setMovieAddedToFav(binding.txtFilm2.text as String)
-            }
 
             bookmark.tag = "bruh"
         }
@@ -129,6 +117,20 @@ class HigherLowerRatingFragment : BaseFragment<HigherLowerRatingViewModel, Highe
             resetBookmarks()
             viewModel.onMovieClicked(imgIndex)
             binding.points.text = getString(R.string.higher_lower_score, viewModel.score)
+        }
+    }
+
+    private fun animateBookmark(bookmark: ImageButton) {
+        bookmark.animate().apply {
+            duration = 250
+            scaleXBy(1f)
+            scaleYBy(1f)
+        }.withEndAction {
+            bookmark.animate().apply {
+                duration = 250
+                scaleXBy(-1f)
+                scaleYBy(-1f)
+            }
         }
     }
 

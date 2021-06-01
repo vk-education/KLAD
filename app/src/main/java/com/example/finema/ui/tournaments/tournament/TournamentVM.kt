@@ -1,6 +1,7 @@
 package com.example.finema.ui.tournaments.tournament
 
 import android.os.Bundle
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation.findNavController
@@ -22,6 +23,8 @@ class TournamentVM(
     private val DBRepository: RoomRepository,
     private val fbRepository: FirebaseRepository = FirebaseRepository()
 ) : BaseViewModel() {
+
+    val favouriteMovies: LiveData<List<MovieModel>> = DBRepository.allFavourites
 
     var twoFilms = MutableLiveData<List<Movie>>()
     var loopNum: Int = 1
@@ -207,20 +210,17 @@ class TournamentVM(
     }
 
     private fun delete(movie: Movie) {
-
         viewModelScope.launch(Dispatchers.Main) {
             DBRepository.deleteFavourite(
                 makeMovieModel(movie)
             ) {
             }
-        }
-        if (AppPreference.getGuestOrAuth() == "AUTH"){
-            viewModelScope.launch(Dispatchers.Main) {
+            if (AppPreference.getGuestOrAuth() == "AUTH") {
                 fbRepository.deleteFirebaseFavouriteFilm(makeMovieModel(movie))
             }
         }
-
     }
+
     private fun makeMovieModel(movie: Movie) =
         MovieModel(
             movie.id.toLong(),

@@ -1,6 +1,7 @@
 package com.example.finema.util
 
 import com.example.finema.api.*
+import com.example.finema.database.firebase.FirebaseRepository
 import com.example.finema.database.room.*
 import com.example.finema.repositories.Contract
 import com.example.finema.ui.chooseFavourite.ChooseFavouriteViewModel
@@ -23,7 +24,7 @@ import org.koin.dsl.module
 
 val viewModelModule: Module = module {
 
-    viewModel { HigherLowerViewModel(get()) }
+    viewModel { HigherLowerViewModel(get(), get(), get()) }
 
     viewModel { SignInViewModel(get()) }
 
@@ -37,7 +38,7 @@ val viewModelModule: Module = module {
 
     viewModel { CategoryTournamentVM() }
 
-    viewModel { HigherLowerRatingViewModel(get(), get()) }
+    viewModel { HigherLowerRatingViewModel(get(), get(), get()) }
 
     viewModel { FavouriteViewModel(get()) }
 
@@ -67,4 +68,6 @@ val repositoryModule: Module = module {
     single { RoomRepository(get()) }
 
     single { MoviesRepository(get(), get(), androidContext()) }
+
+    single { FirebaseRepository() }
 }

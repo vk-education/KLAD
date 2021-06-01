@@ -33,7 +33,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 AppPreference.setInitUser(false)
                 AppPreference.googleUserSignOut()
                 CoroutineScope(Dispatchers.IO).launch {
-                    viewModel.clearStatistics()
+                    viewModel.clearAllStatistics()
                 }
 
                 viewModel.deleteCache(requireContext())
@@ -44,7 +44,10 @@ class SettingsFragment : PreferenceFragmentCompat() {
         clear.onPreferenceClickListener =
             Preference.OnPreferenceClickListener {
                 CoroutineScope(Dispatchers.IO).launch {
-                    viewModel.clearStatistics()
+                    viewModel.clearAllStatistics()
+                    if(AppPreference.getGuestOrAuth() == "AUTH") {
+                        viewModel.clearFireBase()
+                    }
                 }
 
                 Toast.makeText(context, R.string.clear, Toast.LENGTH_SHORT).show()

@@ -14,7 +14,7 @@ class TmpViewModel(
     private val fbRepository: FirebaseRepository = FirebaseRepository()
 ) : BaseViewModel() {
 
-    val allMovies = fbRepository.allMovies
+    private val allMovies = fbRepository.allMovies
 
     init {
         fbRepository.initRefs()
