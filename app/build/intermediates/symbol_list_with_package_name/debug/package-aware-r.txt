@@ -1856,6 +1856,7 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable exit_to_app_24
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_arrow_down_24dp
@@ -1899,11 +1900,13 @@ drawable notification_icon_background
 drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
+drawable notifications_24
 drawable notify_panel_notification_icon_bg
 drawable outline_menu_24
 drawable outline_star_24
 drawable parasite
 drawable preference_list_divider_material
+drawable restore_from_trash_24
 drawable search_24
 drawable settings_24
 drawable test_custom_background
@@ -2099,6 +2102,7 @@ id decor_content_parent
 id default_activity_button
 id deltaRelative
 id dependency_ordering
+id desc
 id design_bottom_sheet
 id design_menu_item_action_area
 id design_menu_item_action_area_stub
@@ -2255,6 +2259,8 @@ id month_navigation_fragment_toggle
 id month_navigation_next
 id month_navigation_previous
 id month_title
+id more1
+id more2
 id motion_base
 id movie_title
 id moviesList
@@ -2612,6 +2618,7 @@ layout material_time_input
 layout material_timepicker
 layout material_timepicker_dialog
 layout material_timepicker_textinput_display
+layout movie_description
 layout movie_details_fragment
 layout movie_item
 layout mtrl_alert_dialog
@@ -2776,6 +2783,7 @@ string expand_button_title
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+string find
 string find_movies
 string firebase_database_url
 string game_higher_lower
@@ -2861,6 +2869,7 @@ string path_password_eye
 string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
+string phone_number
 string popularity
 string poster_base_url
 string preference_copied

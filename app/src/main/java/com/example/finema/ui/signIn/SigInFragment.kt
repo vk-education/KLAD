@@ -116,7 +116,6 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
             }
             false
         })
-
     }
 
     companion object {

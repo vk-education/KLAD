@@ -86,6 +86,23 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:src="@drawable/bookmark_border_24" />
 
+                <ImageButton
+                        android:id="@+id/more1"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+
+                        app:layout_constraintStart_toStartOf="@id/txt_film1"
+                        app:layout_constraintTop_toTopOf="@+id/txt_film1"
+
+                        android:layout_marginTop="30dp"
+                        android:layout_marginEnd="@dimen/app_margin"
+                        android:layout_marginStart="@dimen/app_margin"
+                        android:layout_marginBottom="@dimen/card_corner_radius"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:src="@drawable/search_24" />
+
                 <ImageView
                         android:id="@+id/img1"
                         android:layout_width="match_parent"
@@ -145,6 +162,22 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:src="@drawable/bookmark_border_24" />
 
+                <ImageButton
+                        android:id="@+id/more2"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+
+                        app:layout_constraintStart_toStartOf="@id/txt_film2"
+                        app:layout_constraintTop_toTopOf="@+id/txt_film2"
+
+                        android:layout_marginTop="30dp"
+                        android:layout_marginEnd="@dimen/app_margin"
+                        android:layout_marginStart="@dimen/app_margin"
+                        android:layout_marginBottom="@dimen/card_corner_radius"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:src="@drawable/search_24" />
 
                 <ImageView
                         android:id="@+id/img2"

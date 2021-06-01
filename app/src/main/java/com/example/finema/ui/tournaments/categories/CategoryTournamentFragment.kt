@@ -35,7 +35,7 @@ class CategoryTournamentFragment(
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentCategoryTournamentBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -71,12 +71,12 @@ class CategoryTournamentFragment(
             it.setContentView(R.layout.number_fragment)
             it.findViewById<View>(R.id.btn8).setOnClickListener {
                 goNextFragment(8, link, categoryName)
-                dialog.hide()
+                dialog.onBackPressed()
             }
 
             it.findViewById<View>(R.id.btn16).setOnClickListener {
                 goNextFragment(16, link,categoryName)
-                dialog.hide()
+                dialog.onBackPressed()
             }
 
         }

@@ -76,27 +76,27 @@ class GenresTournamentFragment(
             it.setContentView(R.layout.number_fragment)
             it.findViewById<View>(R.id.btn8).setOnClickListener {
                 goNextFragment(8, genreId, genreName)
-                dialog.hide()
+                dialog.onBackPressed()
             }
             it.findViewById<View>(R.id.btn16).setOnClickListener {
                 goNextFragment(16,  genreId, genreName)
-                dialog.hide()
+                dialog.onBackPressed()
             }
             it.findViewById<View>(R.id.btn32).setOnClickListener {
                 goNextFragment(32,  genreId, genreName)
-                dialog.hide()
+                dialog.onBackPressed()
             }
             it.findViewById<View>(R.id.btn64).setOnClickListener {
                 goNextFragment(64,  genreId, genreName)
-                dialog.hide()
+                dialog.onBackPressed()
             }
             it.findViewById<View>(R.id.btn128).setOnClickListener {
                 goNextFragment(128,  genreId, genreName)
-                dialog.hide()
+                dialog.onBackPressed()
             }
             it.findViewById<View>(R.id.btn256).setOnClickListener {
                 goNextFragment(256,  genreId, genreName)
-                dialog.hide()
+                dialog.onBackPressed()
             }
 
         }

@@ -1,10 +1,12 @@
 package com.example.finema.ui.tournaments.tournament
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.asFlow
 import com.example.finema.R
@@ -12,6 +14,7 @@ import com.example.finema.databinding.FragmentTournamentBinding
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.APP_ACTIVITY
 import com.example.finema.util.downloadAndSetImageUrl
+import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
@@ -19,7 +22,9 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>() {
-    
+
+    private lateinit var desc: TextView
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -69,6 +74,14 @@ class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>
                 resetBookmarks()
             }
 
+            binding.more1.setOnClickListener {
+                dialogBinding(0)
+            }
+
+            binding.more2.setOnClickListener {
+                dialogBinding(1)
+            }
+
             CoroutineScope(Dispatchers.Main).launch {
                 viewModel.favouriteMovies.asFlow().collectLatest {
                     for(i in it) {
@@ -93,6 +106,18 @@ class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>
         binding.bookmark2.setOnClickListener {
             setBookmarks(binding.bookmark2, 1)
         }
+    }
+
+    private fun dialogBinding(index: Int) {
+        val dialog = Dialog(requireContext())
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
+        dialog.let {
+            it.setContentView(R.layout.movie_description)
+            desc = it.findViewById(R.id.desc)
+            desc.text = viewModel.returnDesc(index)
+        }
+        dialog.show()
     }
 
     private fun resetBookmarks() {

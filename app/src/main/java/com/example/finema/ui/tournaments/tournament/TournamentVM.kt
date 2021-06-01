@@ -252,6 +252,18 @@ class TournamentVM(
         }
     }
 
+    fun returnDesc(index: Int): String {
+        return when (index) {
+            0 -> {
+                el1.overview
+            }
+            1 -> {
+                el2.overview
+            }
+            else -> ""
+        }
+    }
+
     companion object {
         const val POSTER_BASE_URL = "https://image.tmdb.org/t/p/w342"
     }
