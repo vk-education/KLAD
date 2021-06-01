@@ -1,5 +1,6 @@
 package com.example.finema.ui.signIn
 
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
@@ -70,6 +71,7 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
             AppPreference.setInitUser(true)
             AppPreference.setGuestOrAuth("GUEST")
             header.text = resources.getText(R.string.guest)
+            avatar.downloadAndSetImageUri(Uri.parse(DEFAULT_URI))
             findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
         }
     }
@@ -117,4 +119,8 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
 
     }
 
+    companion object {
+        private const val DEFAULT_URI =
+            "android.resource://com.example.finema/drawable/default_profile_avatar"
+    }
 }

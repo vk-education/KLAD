@@ -33,7 +33,7 @@ class Contract : ActivityResultContract<Unit, Unit>() {
     }
 
     fun signOut() {
-        if(googleSignInClient != null) {
+        if(this::googleSignInClient.isInitialized) {
             googleSignInClient.signOut()
         }
     }
