@@ -7,6 +7,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.example.finema.R
 import com.example.finema.util.AppPreference
+import com.google.android.gms.tasks.OnCompleteListener
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -32,11 +33,11 @@ class SettingsFragment : PreferenceFragmentCompat() {
             Preference.OnPreferenceClickListener { //code for what you want it to do
                 AppPreference.setInitUser(false)
                 AppPreference.googleUserSignOut()
+                viewModel.googleSignOut()
                 CoroutineScope(Dispatchers.IO).launch {
                     viewModel.clearAllStatistics()
                 }
 
-                viewModel.deleteCache(requireContext())
                 findNavController().navigate(R.id.action_fragmentSettings_to_sigInFragment)
                 true
             }
