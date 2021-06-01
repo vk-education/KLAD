@@ -21,7 +21,7 @@
             android:importantForAutofill="no"
             android:inputType="text"
             tools:ignore="LabelFor"
-            />
+            android:hint="@string/find"/>
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/movs"
