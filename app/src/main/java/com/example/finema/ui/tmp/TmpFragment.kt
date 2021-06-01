@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.navigation.fragment.findNavController
 import com.example.finema.R
 import com.example.finema.databinding.TmpFragmentBinding
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.AppPreference
+import com.example.finema.util.downloadAndSetImageUri
+import com.example.finema.util.downloadAndSetImageUrl
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {

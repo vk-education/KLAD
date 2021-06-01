@@ -1,10 +1,12 @@
 package com.example.finema
 
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -17,6 +19,7 @@ import androidx.work.WorkManager
 import com.example.finema.databinding.ActivityMainBinding
 import com.example.finema.ui.settings.NotificationService
 import com.example.finema.util.*
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import java.util.concurrent.TimeUnit
 
@@ -126,10 +129,27 @@ class MainActivity : AppCompatActivity() {
             }
         } else {
             initDatabase(this, TYPE_ROOM) {
-                binding.navView
-                    .getHeaderView(0)
-                    .findViewById<TextView>(R.id.nickProfile)
-                    .text = FirebaseAuth.getInstance().currentUser?.displayName.orEmpty()
+                if(FirebaseAuth.getInstance().currentUser?.displayName == null) {
+                    binding.navView
+                        .getHeaderView(0)
+                        .findViewById<TextView>(R.id.nickProfile)
+                        .text = "Гость"
+                    binding.navView
+                        .getHeaderView(0)
+                        .findViewById<ImageView>(R.id.userAvatar)
+                        .downloadAndSetImageUri(Uri.parse(DEFAULT_URI))
+
+                } else {
+                    binding.navView
+                        .getHeaderView(0)
+                        .findViewById<TextView>(R.id.nickProfile)
+                        .text = FirebaseAuth.getInstance().currentUser?.displayName.orEmpty()
+                    binding.navView
+                        .getHeaderView(0)
+                        .findViewById<ImageView>(R.id.userAvatar)
+                        .downloadAndSetImageUri(FirebaseAuth.getInstance().currentUser?.photoUrl)
+                }
+
             }
         }
     }
@@ -162,5 +182,8 @@ class MainActivity : AppCompatActivity() {
         private val SCREENS_WITH_IMAGE = listOf(
             R.id.fragmentFilm
         )
+
+        private const val DEFAULT_URI =
+            "android.resource://com.example.finema/drawable/default_profile_avatar"
     }
 }

@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.activity.result.contract.ActivityResultContract
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
@@ -19,6 +20,7 @@ class Contract : ActivityResultContract<Unit, Unit>() {
     val name: StateFlow<String> = _name.asStateFlow()
 
     private val mAuth  = FirebaseAuth.getInstance()
+    private lateinit var googleSignInClient: GoogleSignInClient
 
     private val gso: GoogleSignInOptions = GoogleSignInOptions
         .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -30,8 +32,14 @@ class Contract : ActivityResultContract<Unit, Unit>() {
         _name.value = name
     }
 
+    fun signOut() {
+        if(googleSignInClient != null) {
+            googleSignInClient.signOut()
+        }
+    }
+
     override fun createIntent(context: Context, input: Unit): Intent {
-        val googleSignInClient = GoogleSignIn.getClient(context, gso)
+        googleSignInClient = GoogleSignIn.getClient(context, gso)
 
         return  googleSignInClient.signInIntent
     }

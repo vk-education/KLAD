@@ -42,7 +42,7 @@ val viewModelModule: Module = module {
 
     viewModel { FavouriteViewModel(get()) }
 
-    viewModel { SettingsViewModel(get()) }
+    viewModel { SettingsViewModel(get(), get()) }
 
     viewModel { ChooseFavouriteViewModel(get()) }
 
