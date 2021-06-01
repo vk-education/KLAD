@@ -51,7 +51,7 @@ class CategoryTournamentFragment(
         mRecyclerView = binding.categoryRecycler
         mRecyclerView.adapter = mAdapter
         mObserverList = Observer {
-            val list = it.reversed()
+            val list = it
             mAdapter.setList(list)
         }
         viewModel.allCategories.observe(APP_ACTIVITY, mObserverList)
@@ -64,7 +64,7 @@ class CategoryTournamentFragment(
 
     private fun dialogBinding(link: String, categoryName: String) {
         //TODO Изменить на фрагмент
-        val dialog = Dialog(APP_ACTIVITY)
+        val dialog = Dialog(requireContext())
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
         dialog.let {
