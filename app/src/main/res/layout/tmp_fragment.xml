@@ -2,29 +2,39 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center">
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/app_margin"
+            android:background="#FFFFFF"
+            android:textColor="@color/main_500"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:text="Выберите Турнир"
+            android:gravity="center"/>
 
     <Button
             android:id="@+id/genre"
             android:layout_width="match_parent"
-            android:layout_weight="0.5"
             android:layout_margin="@dimen/app_margin"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_button"
             android:textColor="#FFFFFF"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:textAllCaps="false"
             android:text="По жанрам" />
 
     <Button
             android:id="@+id/category"
-            android:layout_weight="0.5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_button"
             android:textColor="#FFFFFF"
             android:textAllCaps="false"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:layout_margin="@dimen/app_margin"
             android:text="По категориям" />
 </LinearLayout>
