@@ -115,7 +115,11 @@ class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>
         dialog.let {
             it.setContentView(R.layout.movie_description)
             desc = it.findViewById(R.id.desc)
-            desc.text = viewModel.returnDesc(index)
+            if(viewModel.returnDesc(index) == "") {
+                desc.text = "Пусто"
+            } else {
+                desc.text = viewModel.returnDesc(index)
+            }
         }
         dialog.show()
     }
