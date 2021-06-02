@@ -78,6 +78,22 @@ class CategoryTournamentFragment(
                 goNextFragment(16, link,categoryName)
                 dialog.onBackPressed()
             }
+            it.findViewById<View>(R.id.btn32).setOnClickListener {
+                goNextFragment(32, link,categoryName)
+                dialog.onBackPressed()
+            }
+            it.findViewById<View>(R.id.btn64).setOnClickListener {
+                goNextFragment(64, link,categoryName)
+                dialog.onBackPressed()
+            }
+            it.findViewById<View>(R.id.btn128).setOnClickListener {
+                goNextFragment(128, link,categoryName)
+                dialog.onBackPressed()
+            }
+            it.findViewById<View>(R.id.btn256).setOnClickListener {
+                goNextFragment(256, link,categoryName)
+                dialog.onBackPressed()
+            }
 
         }
         dialog.show()

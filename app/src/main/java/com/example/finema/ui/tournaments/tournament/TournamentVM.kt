@@ -17,6 +17,9 @@ import com.example.finema.util.AppPreference
 import com.example.finema.util.Coroutines
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlin.math.floor
+import kotlin.math.log
+import kotlin.math.pow
 
 class TournamentVM(
     private val apiRepository: MoviesRepository,
@@ -46,13 +49,13 @@ class TournamentVM(
         start()
     }
 
-
     private fun start() {
         numFilms = AppPreference.getNumOfFilms()
         genreOrCategory()
         setLoopNum()
         getMovies {
             gotList.observe(APP_ACTIVITY, {
+                numFilms = checkLessNum(it,numFilms)
                 mainList.addAll(it)
                 flag += 1
 
@@ -78,10 +81,10 @@ class TournamentVM(
             "CATEGORY" -> {
                 val categoryLink = AppPreference.getCategoryLink() ?: 1
                 for (page in 1..loopNum) {
-                    job = Coroutines.ioThenMan(
-                        { apiRepository.getMovieFromList(categoryLink) },
-                        { gotList.value = it?.movies }
-                    )
+                job = Coroutines.ioThenMan(
+                    { apiRepository.getMovieFromList(categoryLink) },
+                    { gotList.value = it?.movies }
+                )
                 }
             }
         }
@@ -262,6 +265,15 @@ class TournamentVM(
             }
             else -> ""
         }
+    }
+
+    private fun checkLessNum(list: List<Movie>, num: Int): Int {
+        /* Если нажали на 32 фильма, а их всего 20, то мы округляем вниз число 20 до 16. */
+        var variable = num
+        if (list.size < num) {
+            variable = 2.0.pow(floor(log(list.size.toDouble(), 2.0))).toInt()
+        }
+        return variable
     }
 
     companion object {
