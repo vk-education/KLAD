@@ -9,15 +9,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finema.databinding.ChooseFavouriteFragmentBinding
 import com.example.finema.ui.base.BaseFragment
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import com.example.finema.util.hideKeyboard
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class ChooseFavouriteFragment
     : BaseFragment<ChooseFavouriteViewModel, ChooseFavouriteFragmentBinding>(),
-      MovieAdapter.CharacterViewHolder.Listener  {
+    MovieAdapter.CharacterViewHolder.Listener {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,7 +29,8 @@ class ChooseFavouriteFragment
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?) {
+        savedInstanceState: Bundle?
+    ) {
         viewModel = getViewModel()
         super.onViewCreated(view, savedInstanceState)
 
@@ -55,6 +54,7 @@ class ChooseFavouriteFragment
 
     override fun onMovieClicked(index: Int) {
         viewModel.goDetailsFragment(index.toLong())
+        binding.query.hideKeyboard()
     }
 
 }

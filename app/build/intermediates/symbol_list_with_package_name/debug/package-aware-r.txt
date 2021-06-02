@@ -1868,6 +1868,7 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable info_24
 drawable material_cursor_drawable
 drawable material_ic_calendar_black_24dp
 drawable material_ic_clear_black_24dp
@@ -1904,7 +1905,7 @@ drawable notifications_24
 drawable notify_panel_notification_icon_bg
 drawable outline_menu_24
 drawable outline_star_24
-drawable parasite
+drawable parasite1
 drawable preference_list_divider_material
 drawable restore_from_trash_24
 drawable search_24
@@ -2744,6 +2745,7 @@ string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string about_film
+string add_to_favourite
 string app_name
 string appbar_scrolling_view_behavior
 string bottom_sheet_behavior
@@ -2777,6 +2779,7 @@ string common_signin_button_text_long
 string companies
 string copy
 string default_web_client_id
+string delete_from_favourite
 string empty_favourite
 string error_icon_content_description
 string expand_button_title
@@ -2887,6 +2890,8 @@ string s6
 string s7
 string search_menu_title
 string settings
+string sign_as_google
+string sign_as_guest
 string start_level
 string status_bar_notification_info_overflow
 string summary_collapsed_preference_list
