@@ -2,23 +2,17 @@ package com.example.finema.ui.tournaments.categories
 
 import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finema.R
 import com.example.finema.databinding.FragmentCategoryTournamentBinding
 import com.example.finema.models.databaseModels.CategoryModel
-import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.ui.base.BaseFragment
-import com.example.finema.ui.tournaments.genres.GenresTournamentAdapter
-import com.example.finema.ui.tournaments.genres.GenresTournamentVM
 import com.example.finema.util.APP_ACTIVITY
 import com.example.finema.util.AppPreference
 import org.koin.androidx.viewmodel.ext.android.getViewModel
@@ -59,7 +53,25 @@ class CategoryTournamentFragment(
     }
 
     override fun onMovieClicked(view: View, categoryModel: CategoryModel) {
-        dialogBinding(categoryModel.link, categoryModel.name)
+        if (categoryModel.link == "133") {
+            warningDialog(categoryModel.link, categoryModel.name)
+        } else dialogBinding(categoryModel.link, categoryModel.name)
+    }
+
+    private fun warningDialog(link: String, categoryName: String) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.apply {
+            setTitle("Эта категория Содержит контент 18+")
+            builder.setMessage("Продолжить?")
+            setPositiveButton("Да") { dialog, id ->
+                dialogBinding(link, categoryName)
+            }
+            setNegativeButton("Нет") { dialog, id ->
+                dialog.cancel()
+            }
+        }
+        builder.create()
+        builder.show()
     }
 
     private fun dialogBinding(link: String, categoryName: String) {
@@ -75,23 +87,23 @@ class CategoryTournamentFragment(
             }
 
             it.findViewById<View>(R.id.btn16).setOnClickListener {
-                goNextFragment(16, link,categoryName)
+                goNextFragment(16, link, categoryName)
                 dialog.onBackPressed()
             }
             it.findViewById<View>(R.id.btn32).setOnClickListener {
-                goNextFragment(32, link,categoryName)
+                goNextFragment(32, link, categoryName)
                 dialog.onBackPressed()
             }
             it.findViewById<View>(R.id.btn64).setOnClickListener {
-                goNextFragment(64, link,categoryName)
+                goNextFragment(64, link, categoryName)
                 dialog.onBackPressed()
             }
             it.findViewById<View>(R.id.btn128).setOnClickListener {
-                goNextFragment(128, link,categoryName)
+                goNextFragment(128, link, categoryName)
                 dialog.onBackPressed()
             }
             it.findViewById<View>(R.id.btn256).setOnClickListener {
-                goNextFragment(256, link,categoryName)
+                goNextFragment(256, link, categoryName)
                 dialog.onBackPressed()
             }
 
@@ -99,7 +111,7 @@ class CategoryTournamentFragment(
         dialog.show()
     }
 
-    private fun goNextFragment(num: Int, link: String,categoryName: String) {
+    private fun goNextFragment(num: Int, link: String, categoryName: String) {
         AppPreference.setNumOfFilms(num)
         AppPreference.setCategoryName(categoryName)
         AppPreference.setCategoryLink(link.toInt())
