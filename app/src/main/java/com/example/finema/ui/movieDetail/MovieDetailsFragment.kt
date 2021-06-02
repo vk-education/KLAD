@@ -42,7 +42,6 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
         initViewModel()
         super.onViewCreated(view, savedInstanceState)
 
-        binding.filmLoader.visibility = View.GONE
         viewModel.film.observe(viewLifecycleOwner, observerList)
 
         viewModel.checkFavourite()
@@ -56,9 +55,6 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
     }
 
     private val observerList: Observer<MovieDetails> = Observer {
-        binding.layout.visibility = VISIBLE
-        binding.filmLoader.visibility = View.INVISIBLE
-
         binding.filmId = it
 
         binding.genres.text = viewModel.film.value!!.stringGenres
@@ -91,6 +87,7 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
             it.voteAverage.toString(),
             null
         )
+
         if (AppPreference.getFragment() == "Tournament fragment") {
             CoroutineScope(Dispatchers.IO).launch {
                 viewModel.addToTopMovies(
@@ -98,6 +95,8 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
                 )
             }
         }
+
+        afterLoading()
     }
 
     private fun initViewModel() {
@@ -108,13 +107,21 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
 
     private fun addRemoveFavourite() {
         if (binding.favourite.tag == "yes") {
-            Toast.makeText(context, "Удалено из избранные", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                context,
+                resources.getString(R.string.delete_from_favourite),
+                Toast.LENGTH_SHORT
+            ).show()
             animateBookmark(binding.favourite)
             binding.favourite.setImageResource(R.drawable.bookmark_border_24)
             viewModel.deleteMovie(movie!!.id, movie!!)
             binding.favourite.tag = "no"
         } else {
-            Toast.makeText(context, "Добавлено в избранные", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                context,
+                resources.getString(R.string.add_to_favourite),
+                Toast.LENGTH_SHORT
+            ).show()
             animateBookmark(binding.favourite)
             binding.favourite.setImageResource(R.drawable.bookmark_24)
             viewModel.insert(movie!!)
@@ -135,6 +142,15 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
                 scaleYBy(-1f)
             }
         }
+    }
+
+    fun afterLoading() {
+        binding.filmLoader.visibility = View.INVISIBLE
+        binding.aboutTitle.visibility = VISIBLE
+        binding.genreTitle.visibility = VISIBLE
+        binding.ratingTitle.visibility = VISIBLE
+        binding.companiesTitle.visibility = VISIBLE
+        binding.favourite.visibility = VISIBLE
     }
 
     companion object {

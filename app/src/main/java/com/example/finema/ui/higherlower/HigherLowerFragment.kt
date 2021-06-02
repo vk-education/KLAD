@@ -100,7 +100,11 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
         if(bookmark.tag == "bruh") {
             animateBookmark(bookmark)
 
-            Toast.makeText(context, "Удалено из избранные", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                context,
+                resources.getString(R.string.delete_from_favourite),
+                Toast.LENGTH_SHORT
+            ).show()
             bookmark.setImageResource(R.drawable.bookmark_border_24)
             viewModel.removeFromFav(position)
 
@@ -108,7 +112,11 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
         } else {
             animateBookmark(bookmark)
 
-            Toast.makeText(context, "Добавлено в избранные", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                context,
+                resources.getString(R.string.add_to_favourite),
+                Toast.LENGTH_SHORT
+            ).show()
             bookmark.setImageResource(R.drawable.bookmark_24)
             viewModel.addToFav(position)
 

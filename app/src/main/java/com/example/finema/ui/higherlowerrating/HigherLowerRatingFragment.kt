@@ -25,7 +25,8 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 
-class HigherLowerRatingFragment : BaseFragment<HigherLowerRatingViewModel, HigherLowerRatingFragmentBinding>() {
+class HigherLowerRatingFragment :
+    BaseFragment<HigherLowerRatingViewModel, HigherLowerRatingFragmentBinding>() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +43,7 @@ class HigherLowerRatingFragment : BaseFragment<HigherLowerRatingViewModel, Highe
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.movies.observe(viewLifecycleOwner, { movieList ->
-            if(viewModel.score == 0) {
+            if (viewModel.score == 0) {
                 viewModel.shuffle()
             }
             binding.txtFilm1.text = movieList.movies[viewModel.img1].title
@@ -54,12 +55,12 @@ class HigherLowerRatingFragment : BaseFragment<HigherLowerRatingViewModel, Highe
             setImage(1, movieList, binding.img2)
             CoroutineScope(Dispatchers.Main).launch {
                 viewModel.favouriteMovies.asFlow().collectLatest {
-                    for(i in it) {
-                        if(binding.txtFilm1.text == i.title) {
+                    for (i in it) {
+                        if (binding.txtFilm1.text == i.title) {
                             binding.bookmark1.setImageResource(R.drawable.bookmark_24)
                             binding.bookmark1.tag = "bruh"
                         }
-                        if(binding.txtFilm2.text == i.title) {
+                        if (binding.txtFilm2.text == i.title) {
                             binding.bookmark2.setImageResource(R.drawable.bookmark_24)
                             binding.bookmark2.tag = "bruh"
                         }
@@ -86,10 +87,14 @@ class HigherLowerRatingFragment : BaseFragment<HigherLowerRatingViewModel, Highe
     }
 
     private fun setBookmarks(bookmark: ImageButton, position: Int) {
-        if(bookmark.tag == "bruh") {
+        if (bookmark.tag == "bruh") {
             animateBookmark(bookmark)
 
-            Toast.makeText(context, "Удалено из избранные", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                context,
+                resources.getString(R.string.delete_from_favourite),
+                Toast.LENGTH_SHORT
+            ).show()
             bookmark.setImageResource(R.drawable.bookmark_border_24)
             viewModel.removeFromFav(position)
 
@@ -97,7 +102,11 @@ class HigherLowerRatingFragment : BaseFragment<HigherLowerRatingViewModel, Highe
         } else {
             animateBookmark(bookmark)
 
-            Toast.makeText(context, "Добавлено в избранные", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                context,
+                resources.getString(R.string.add_to_favourite),
+                Toast.LENGTH_SHORT
+            ).show()
             bookmark.setImageResource(R.drawable.bookmark_24)
             viewModel.addToFav(position)
 
@@ -110,7 +119,8 @@ class HigherLowerRatingFragment : BaseFragment<HigherLowerRatingViewModel, Highe
         img.downloadAndSetImageUrl(
             getString(
                 R.string.poster_base_url,
-                movieList.movies[imgIndex].posterPath)
+                movieList.movies[imgIndex].posterPath
+            )
         )
 
         img.setOnClickListener {
