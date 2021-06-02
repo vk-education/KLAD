@@ -28,7 +28,7 @@ class ProfileViewModel (
 
     fun getName(): String? {
         return if(mAuth.currentUser?.displayName == null) {
-            "Удлиннитель"
+            "Гость"
         } else {
             mAuth.currentUser?.displayName
         }
@@ -36,7 +36,7 @@ class ProfileViewModel (
 
     fun getNumber(): String? {
         return if(mAuth.currentUser?.phoneNumber == null) {
-            "8 800 555 35 35"
+            " "
         } else {
             mAuth.currentUser?.phoneNumber
         }
