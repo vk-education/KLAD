@@ -121,6 +121,11 @@ class HigherLowerRatingViewModel(
                 makeMovieModel(movie)
             ) {
             }
+            if (AppPreference.getGuestOrAuth() == "AUTH") {
+                viewModelScope.launch(Dispatchers.Main) {
+                    fbRepository.insertFirebaseFavouriteFilm(makeMovieModel(movie))
+                }
+            }
         }
 
         viewModelScope.launch(Dispatchers.Main) {
