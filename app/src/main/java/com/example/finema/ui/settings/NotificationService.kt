@@ -33,7 +33,7 @@ class NotificationService(context: Context, workerParams: WorkerParameters) :
 
         val notification = NotificationCompat.Builder(applicationContext, "default")
             .setContentTitle("Стало скучно?")
-            .setContentText("Выбери себе фильм на вечер.")
+            .setContentText("Выбери себе фильм на вечер")
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setSmallIcon(R.mipmap.sym_def_app_icon)
             .setAutoCancel(true)
