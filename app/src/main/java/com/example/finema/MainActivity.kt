@@ -1,6 +1,5 @@
 package com.example.finema
 
-import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -11,15 +10,16 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import com.example.finema.databinding.ActivityMainBinding
 import com.example.finema.ui.settings.NotificationService
-import com.example.finema.util.*
-import com.google.android.material.navigation.NavigationView
+import com.example.finema.util.APP_ACTIVITY
+import com.example.finema.util.AppPreference
+import com.example.finema.util.TYPE_ROOM
+import com.example.finema.util.downloadAndSetImageUri
 import com.google.firebase.auth.FirebaseAuth
 import java.util.concurrent.TimeUnit
 
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
     private var simpleNotification = OneTimeWorkRequestBuilder<NotificationService>()
         .addTag("tag")
-        .setInitialDelay(5, TimeUnit.SECONDS)
+        .setInitialDelay(NOTIFICATION_DURATION, TimeUnit.SECONDS)
         .build()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
             binding.drawerLayout.open()
         }
 
-        binding.navView.getHeaderView(0).setOnClickListener {
+        binding.navView.getHeaderView(HEADER_VIEW_INDEX).setOnClickListener {
             binding.drawerLayout.close()
             findNavController(R.id.fragment)
                 .navigate(R.id.action_global_fragmentProfile)
@@ -58,31 +58,66 @@ class MainActivity : AppCompatActivity() {
                     findNavController(R.id.fragment)
                         .navigate(R.id.action_global_fragmentFavourite)
 
-                R.id.budget -> findNavController(R.id.fragment)
-                    .navigate(R.id.action_global_fragmentHigherLower)
+                R.id.budget ->
+                    findNavController(R.id.fragment)
+                        .navigate(R.id.action_global_fragmentHigherLower)
 
-                R.id.rating -> findNavController(R.id.fragment)
-                    .navigate(R.id.action_global_higherLowerRatingFragment)
+                R.id.rating ->
+                    findNavController(R.id.fragment)
+                        .navigate(R.id.action_global_higherLowerRatingFragment)
 
-                R.id.tournament -> findNavController(R.id.fragment)
-                    .navigate(R.id.action_global_fragmentTmp)
+                R.id.tournament ->
+                    findNavController(R.id.fragment)
+                        .navigate(R.id.action_global_fragmentTmp)
 
-                R.id.settings -> findNavController(R.id.fragment)
-                    .navigate(R.id.action_global_fragmentSettings)
+                R.id.settings ->
+                    findNavController(R.id.fragment)
+                        .navigate(R.id.action_global_fragmentSettings)
 
-                R.id.addFav -> findNavController(R.id.fragment)
-                    .navigate(R.id.action_global_chooseFavouriteFragment)
+                R.id.addFav ->
+                    findNavController(R.id.fragment)
+                        .navigate(R.id.action_global_chooseFavouriteFragment)
             }
 
             true
         }
-
     }
-
 
     override fun onStart() {
         super.onStart()
+        addDestinationChangedListener()
+        checkIfUserInited()
+    }
 
+    override fun onStop() {
+        super.onStop()
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val notifications = sharedPreferences.getBoolean("notifications", true)
+
+        if (notifications) {
+            WorkManager.getInstance(this)
+                .beginUniqueWork("notification", ExistingWorkPolicy.REPLACE, simpleNotification)
+                .enqueue()
+        }
+    }
+
+    private fun checkIfUserInited() {
+        if (!AppPreference.getInitUser()) {
+            initDatabase(TYPE_ROOM) {
+                toSignInFragment()
+            }
+        } else {
+            initDatabase(TYPE_ROOM) {
+                if (FirebaseAuth.getInstance().currentUser?.displayName == null) {
+                    setPhotoAndNameGuest()
+                } else {
+                    setPhotoAndNameUser()
+                }
+            }
+        }
+    }
+
+    private fun addDestinationChangedListener() {
         findNavController(R.id.fragment)
             .addOnDestinationChangedListener { _, destination, _ ->
                 if (SCREENS_WITHOUT_DRAWER.contains(destination.id)) {
@@ -108,7 +143,6 @@ class MainActivity : AppCompatActivity() {
                         AppPreference.setFragment(destination.label as String)
                     }
                     "Film fragment" -> {
-
                     }
 
                     "SigInFragment" -> {
@@ -121,52 +155,36 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-
-        if (!AppPreference.getInitUser()) {
-            initDatabase(this, TYPE_ROOM) {
-                findNavController(R.id.fragment)
-                    .navigate(R.id.action_global_signIn)
-            }
-        } else {
-            initDatabase(this, TYPE_ROOM) {
-                if(FirebaseAuth.getInstance().currentUser?.displayName == null) {
-                    binding.navView
-                        .getHeaderView(0)
-                        .findViewById<TextView>(R.id.nickProfile)
-                        .text = "Гость"
-                    binding.navView
-                        .getHeaderView(0)
-                        .findViewById<ImageView>(R.id.userAvatar)
-                        .downloadAndSetImageUri(Uri.parse(DEFAULT_URI))
-
-                } else {
-                    binding.navView
-                        .getHeaderView(0)
-                        .findViewById<TextView>(R.id.nickProfile)
-                        .text = FirebaseAuth.getInstance().currentUser?.displayName.orEmpty()
-                    binding.navView
-                        .getHeaderView(0)
-                        .findViewById<ImageView>(R.id.userAvatar)
-                        .downloadAndSetImageUri(FirebaseAuth.getInstance().currentUser?.photoUrl)
-                }
-
-            }
-        }
     }
 
-    override fun onStop() {
-        super.onStop()
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        val notifications = sharedPreferences.getBoolean("notifications", true)
-
-        if (notifications) {
-            WorkManager.getInstance(this)
-                .beginUniqueWork("notification", ExistingWorkPolicy.REPLACE, simpleNotification)
-                .enqueue()
-        }
+    private fun setPhotoAndNameUser() {
+        binding.navView
+            .getHeaderView(HEADER_VIEW_INDEX)
+            .findViewById<TextView>(R.id.nickProfile)
+            .text = FirebaseAuth.getInstance().currentUser?.displayName.orEmpty()
+        binding.navView
+            .getHeaderView(HEADER_VIEW_INDEX)
+            .findViewById<ImageView>(R.id.userAvatar)
+            .downloadAndSetImageUri(FirebaseAuth.getInstance().currentUser?.photoUrl)
     }
 
-    private fun initDatabase(context: Context, type: String, onSuccess: () -> Unit) {
+    private fun setPhotoAndNameGuest() {
+        binding.navView
+            .getHeaderView(HEADER_VIEW_INDEX)
+            .findViewById<TextView>(R.id.nickProfile)
+            .text = "Гость"
+        binding.navView
+            .getHeaderView(HEADER_VIEW_INDEX)
+            .findViewById<ImageView>(R.id.userAvatar)
+            .downloadAndSetImageUri(Uri.parse(DEFAULT_URI))
+    }
+
+    private fun toSignInFragment() {
+        findNavController(R.id.fragment)
+            .navigate(R.id.action_global_signIn)
+    }
+
+    private fun initDatabase(type: String, onSuccess: () -> Unit) {
         when (type) {
             TYPE_ROOM -> {
                 onSuccess()
@@ -178,12 +196,12 @@ class MainActivity : AppCompatActivity() {
         private val SCREENS_WITHOUT_DRAWER = listOf(
             R.id.sigInFragment
         )
-
         private val SCREENS_WITH_IMAGE = listOf(
             R.id.fragmentFilm
         )
-
         private const val DEFAULT_URI =
             "android.resource://com.example.finema/drawable/default_profile_avatar"
+        private const val NOTIFICATION_DURATION = 5L
+        private const val HEADER_VIEW_INDEX = 0
     }
 }

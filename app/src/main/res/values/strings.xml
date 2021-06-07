@@ -36,4 +36,7 @@
     <string name="delete_from_favourite">Удалено из избранных</string>
     <string name="sign_as_guest">Войти как Гость</string>
     <string name="sign_as_google">Авторизация через Google</string>
+    <string name="n_points">Очки: %1$d</string>
+    <string name="n_round">Раунд %1$d</string>
+
 </resources>

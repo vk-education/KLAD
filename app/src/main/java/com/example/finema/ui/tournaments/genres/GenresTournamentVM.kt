@@ -14,14 +14,13 @@ import kotlinx.coroutines.launch
 
 class GenresTournamentVM(
     private val apiRepository: MoviesRepository,
-    private val DBRepository: RoomRepository
+    private val dbRepository: RoomRepository
 ) : BaseViewModel() {
-
 
     // TODO Убрать, данные получаются от репозитория
     val allGenres: LiveData<List<GenreModel>>
         get() {
-            return DBRepository.allGenres
+            return dbRepository.allGenres
         }
 
     var genreListVM = MutableLiveData<GenreList>()
@@ -32,7 +31,7 @@ class GenresTournamentVM(
     }
 
     fun signOut() {
-        DBRepository.signOut()
+        dbRepository.signOut()
     }
 
     fun getGenres() {
@@ -44,7 +43,7 @@ class GenresTournamentVM(
 
     fun insert(genreModel: GenreModel) =
         viewModelScope.launch(Dispatchers.Main) {
-            DBRepository.insert(genreModel) {
+            dbRepository.insert(genreModel) {
             }
         }
 }

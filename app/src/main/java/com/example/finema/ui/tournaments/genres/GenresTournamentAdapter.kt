@@ -31,7 +31,6 @@ class GenresTournamentAdapter(
 
     override fun getItemCount(): Int = mListGenres.size
 
-
     class TournamentHolder(
         view: View,
         private val listener: Listener
@@ -48,9 +47,6 @@ class GenresTournamentAdapter(
             itemView.setOnClickListener {
                 listener.onMovieClicked(itemView, mListGenres[adapterPosition])
             }
-
         }
-
     }
-
 }

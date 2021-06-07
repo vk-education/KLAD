@@ -8,21 +8,19 @@ import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.databaseModels.TopModel
 
-
 @Database(entities = [GenreModel::class, MovieModel::class, TopModel::class], version = 7)
-abstract class RoomDataBase(
-) : RoomDatabase() {
+abstract class RoomDataBase : RoomDatabase() {
 
     abstract fun getRoomDao(): RoomDao
 
-    companion object{
+    companion object {
 
         @Volatile
         private var database: RoomDataBase? = null
 
         @Synchronized
         fun getInstance(context: Context): RoomDataBase {
-            return if (database == null){
+            return if (database == null) {
                 database = Room
                     .databaseBuilder(
                         context,
@@ -33,7 +31,6 @@ abstract class RoomDataBase(
 
                 database as RoomDataBase
             } else database as RoomDataBase
-
         }
     }
 }

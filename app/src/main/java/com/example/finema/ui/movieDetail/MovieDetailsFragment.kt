@@ -51,7 +51,6 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
             if (movie != null)
                 addRemoveFavourite()
         }
-
     }
 
     private val observerList: Observer<MovieDetails> = Observer {
@@ -73,7 +72,10 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
 
         binding.rating.text = it.voteAverage.toString()
 
-        if (viewModel.favouriteMovies != null && viewModel.favouriteMovies!!.contains(it.id.toLong())) {
+        if (viewModel.favouriteMovies != null && viewModel.favouriteMovies!!.contains(
+                it.id.toLong()
+            )
+        ) {
             binding.favourite.setImageResource(R.drawable.bookmark_24)
             binding.favourite.tag = "yes"
         }
@@ -127,19 +129,18 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
             viewModel.insert(movie!!)
             binding.favourite.tag = "yes"
         }
-
     }
 
     private fun animateBookmark(bookmark: ImageButton) {
         bookmark.animate().apply {
-            duration = 250
-            scaleXBy(1f)
-            scaleYBy(1f)
+            duration = ANIMATION_DURATION
+            scaleXBy(ANIMATION_ROTATION)
+            scaleYBy(ANIMATION_ROTATION)
         }.withEndAction {
             bookmark.animate().apply {
-                duration = 250
-                scaleXBy(-1f)
-                scaleYBy(-1f)
+                duration = ANIMATION_DURATION
+                scaleXBy(-ANIMATION_ROTATION)
+                scaleYBy(-ANIMATION_ROTATION)
             }
         }
     }
@@ -156,6 +157,7 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
     companion object {
         const val POSTER_BASE_URL = "https://image.tmdb.org/t/p/w342"
         const val KEY = "filmId"
+        private const val ANIMATION_DURATION = 250L
+        private const val ANIMATION_ROTATION = 1f
     }
-
 }

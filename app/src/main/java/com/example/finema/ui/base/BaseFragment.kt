@@ -4,28 +4,23 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.viewbinding.ViewBinding
-import kotlinx.coroutines.Job
-import org.koin.androidx.viewmodel.ext.android.getViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.module.Module
-import org.koin.dsl.module
 import java.lang.reflect.ParameterizedType
-abstract class BaseFragment<VModel : BaseViewModel, Binding: ViewBinding>: Fragment() {
+import org.koin.androidx.viewmodel.ext.android.viewModel
+abstract class BaseFragment<VModel : BaseViewModel, Binding : ViewBinding> : Fragment() {
 
     protected open lateinit var viewModel: VModel
 
     protected lateinit var binding: Binding
-    
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showError()
     }
 
-    protected fun showError(){
-        viewModel.publicErrorMessage.observe(viewLifecycleOwner){
+    protected fun showError() {
+        viewModel.publicErrorMessage.observe(viewLifecycleOwner) {
             Toast.makeText(context, it, Toast.LENGTH_LONG).show()
         }
     }
@@ -36,4 +31,3 @@ abstract class BaseFragment<VModel : BaseViewModel, Binding: ViewBinding>: Fragm
         return type as Class<VModel>
     }
 }
-

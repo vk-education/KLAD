@@ -1,18 +1,14 @@
 package com.example.finema.ui.higherlower
 
-import android.app.DownloadManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
-import com.example.finema.models.movieResponse.MovieResponse
 import com.example.finema.api.MoviesRepository
 import com.example.finema.database.firebase.FirebaseRepository
 import com.example.finema.database.room.RoomRepository
 import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.movieResponse.Movie
+import com.example.finema.models.movieResponse.MovieResponse
 import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.ui.tournaments.tournament.TournamentVM
 import com.example.finema.util.AppPreference
@@ -22,15 +18,15 @@ import kotlinx.coroutines.launch
 
 class HigherLowerViewModel(
     private val repository: MoviesRepository,
-    private val DBRepository: RoomRepository,
+    private val dbRepository: RoomRepository,
     private val fbRepository: FirebaseRepository
 ) : BaseViewModel() {
 
-    val favouriteMovies: LiveData<List<MovieModel>> = DBRepository.allFavourites
+    val favouriteMovies: LiveData<List<MovieModel>> = dbRepository.allFavourites
 
     private var _movies = MutableLiveData<MovieResponse>()
     val movies: LiveData<MovieResponse>
-    get() = _movies
+        get() = _movies
 
     var score = RESET_SCORE_INDEX
     var img1 = IMG1_INDEX
@@ -48,10 +44,10 @@ class HigherLowerViewModel(
     }
 
     private fun getMovies() {
-            job = Coroutines.ioThenMan(
-                { repository.getMovies(page) },
-                { _movies.value = it }
-            )
+        job = Coroutines.ioThenMan(
+            { repository.getMovies(page) },
+            { _movies.value = it }
+        )
     }
 
     private fun clickedRight() {
@@ -66,7 +62,7 @@ class HigherLowerViewModel(
     }
 
     private fun changeMovRes() {
-        if(score % MOVIE_SIZE_RESET == 0) {
+        if (score % MOVIE_SIZE_RESET == 0) {
             page += NEXT_PAGE
             getMovies()
         } else {
@@ -76,7 +72,7 @@ class HigherLowerViewModel(
     }
 
     fun onMovieClicked(position: Int) {
-        when(position){
+        when (position) {
             img1 ->
                 if (movies.value?.movies?.get(img1)?.popularity!!
                     >= movies.value?.movies?.get(img2)?.popularity!!
@@ -95,7 +91,6 @@ class HigherLowerViewModel(
                 }
         }
     }
-
 
     fun addToFav(position: Int) {
         when (position) {
@@ -121,7 +116,7 @@ class HigherLowerViewModel(
 
     private fun insert(movie: Movie) {
         viewModelScope.launch(Dispatchers.Main) {
-            DBRepository.insertFavourite(
+            dbRepository.insertFavourite(
                 makeMovieModel(movie)
             ) {
             }
@@ -134,12 +129,12 @@ class HigherLowerViewModel(
 
     private fun delete(movie: Movie) {
         viewModelScope.launch(Dispatchers.Main) {
-            DBRepository.deleteFavourite(
+            dbRepository.deleteFavourite(
                 makeMovieModel(movie)
             ) {
             }
         }
-        if (AppPreference.getGuestOrAuth() == "AUTH"){
+        if (AppPreference.getGuestOrAuth() == "AUTH") {
             viewModelScope.launch(Dispatchers.Main) {
                 fbRepository.deleteFirebaseFavouriteFilm(makeMovieModel(movie))
             }

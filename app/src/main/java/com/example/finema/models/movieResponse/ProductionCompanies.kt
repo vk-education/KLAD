@@ -2,13 +2,13 @@ package com.example.finema.models.movieResponse
 
 import com.google.gson.annotations.SerializedName
 
-data class ProductionCompanies (
+data class ProductionCompanies(
     @SerializedName("id")
-    val id : Int,
+    val id: Int,
     @SerializedName("logo_path")
-    val logoPath : String,
+    val logoPath: String,
     @SerializedName("name")
-    val name : String,
+    val name: String,
     @SerializedName("origin_country")
-    val originCountry : String
+    val originCountry: String
 )

@@ -1,8 +1,6 @@
 package com.example.finema.models.infinite
 
-
 import com.google.gson.annotations.SerializedName
-
 
 data class MovieDiscover(
     @SerializedName("page")

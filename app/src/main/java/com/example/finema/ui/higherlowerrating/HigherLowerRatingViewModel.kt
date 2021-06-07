@@ -13,17 +13,17 @@ import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.ui.tournaments.tournament.TournamentVM
 import com.example.finema.util.AppPreference
 import com.example.finema.util.Coroutines
+import kotlin.random.Random
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlin.random.Random
 
 class HigherLowerRatingViewModel(
     private val repository: MoviesRepository,
-    private val DBRepository: RoomRepository,
+    private val dbRepository: RoomRepository,
     private val fbRepository: FirebaseRepository
 ) : BaseViewModel() {
 
-    val favouriteMovies: LiveData<List<MovieModel>> = DBRepository.allFavourites
+    val favouriteMovies: LiveData<List<MovieModel>> = dbRepository.allFavourites
 
     private var _movies = MutableLiveData<MovieResponse>()
     val movies: LiveData<MovieResponse>
@@ -58,7 +58,7 @@ class HigherLowerRatingViewModel(
 
     private fun clickedWrong() {
         score = RESET_SCORE_INDEX
-        page = Random.nextInt(1, 500)
+        page = Random.nextInt(DEFAULT_PAGE_INDEX, LAST_PAGE)
         getMovies()
     }
 
@@ -117,7 +117,7 @@ class HigherLowerRatingViewModel(
 
     private fun insert(movie: Movie) {
         viewModelScope.launch(Dispatchers.Main) {
-            DBRepository.insertFavourite(
+            dbRepository.insertFavourite(
                 makeMovieModel(movie)
             ) {
             }
@@ -130,12 +130,12 @@ class HigherLowerRatingViewModel(
 
     private fun delete(movie: Movie) {
         viewModelScope.launch(Dispatchers.Main) {
-            DBRepository.deleteFavourite(
+            dbRepository.deleteFavourite(
                 makeMovieModel(movie)
             ) {
             }
         }
-        if (AppPreference.getGuestOrAuth() == "AUTH"){
+        if (AppPreference.getGuestOrAuth() == "AUTH") {
             viewModelScope.launch(Dispatchers.Main) {
                 fbRepository.deleteFirebaseFavouriteFilm(makeMovieModel(movie))
             }
@@ -161,5 +161,6 @@ class HigherLowerRatingViewModel(
         const val MOVIE_SIZE_RESET = 19
         const val IMG1_INDEX = 0
         const val IMG2_INDEX = 1
+        const val LAST_PAGE = 500
     }
 }

@@ -7,29 +7,23 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.lifecycle.asFlow
 import com.example.finema.R
 import com.example.finema.databinding.HigherLowerRatingFragmentBinding
-import com.example.finema.models.databaseModels.MovieModel
-import com.example.finema.models.movieResponse.MovieDetails
 import com.example.finema.models.movieResponse.MovieResponse
 import com.example.finema.ui.base.BaseFragment
-import com.example.finema.util.AppPreference
-import com.example.finema.util.Coroutines
 import com.example.finema.util.downloadAndSetImageUrl
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.InternalCoroutinesApi
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.getViewModel
-
 
 class HigherLowerRatingFragment :
     BaseFragment<HigherLowerRatingViewModel, HigherLowerRatingFragmentBinding>() {
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = HigherLowerRatingFragmentBinding.inflate(inflater, container, false)
@@ -42,32 +36,42 @@ class HigherLowerRatingFragment :
         viewModel = getViewModel()
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.movies.observe(viewLifecycleOwner, { movieList ->
-            if (viewModel.score == 0) {
-                viewModel.shuffle()
-            }
-            binding.txtFilm1.text = movieList.movies[viewModel.img1].title
-            binding.txtFilm2.text = movieList.movies[viewModel.img2].title
+        viewModel.movies.observe(
+            viewLifecycleOwner,
+            { movieList ->
+                if (viewModel.score == 0) {
+                    viewModel.shuffle()
+                }
+                binding.txtFilm1.text = movieList.movies[viewModel.img1].title
+                binding.txtFilm2.text = movieList.movies[viewModel.img2].title
 
-            binding.txtRating.text = movieList.movies[viewModel.img1].voteAverage.toString()
+                binding.txtRating.text = movieList.movies[viewModel.img1].voteAverage.toString()
 
-            setImage(0, movieList, binding.img1)
-            setImage(1, movieList, binding.img2)
-            CoroutineScope(Dispatchers.Main).launch {
-                viewModel.favouriteMovies.asFlow().collectLatest {
-                    for (i in it) {
-                        if (binding.txtFilm1.text == i.title) {
-                            binding.bookmark1.setImageResource(R.drawable.bookmark_24)
-                            binding.bookmark1.tag = "bruh"
+                setImage(0, movieList, binding.img1)
+                setImage(1, movieList, binding.img2)
+                CoroutineScope(Dispatchers.Main).launch {
+                    viewModel.favouriteMovies.observe(
+                        viewLifecycleOwner,
+                        {
+                            for (i in it) {
+                                if (binding.txtFilm1.text == i.title) {
+                                    binding.bookmark1.setImageResource(
+                                        R.drawable.bookmark_24
+                                    )
+                                    binding.bookmark1.tag = "bruh"
+                                }
+                                if (binding.txtFilm2.text == i.title) {
+                                    binding.bookmark2.setImageResource(
+                                        R.drawable.bookmark_24
+                                    )
+                                    binding.bookmark2.tag = "bruh"
+                                }
+                            }
                         }
-                        if (binding.txtFilm2.text == i.title) {
-                            binding.bookmark2.setImageResource(R.drawable.bookmark_24)
-                            binding.bookmark2.tag = "bruh"
-                        }
-                    }
+                    )
                 }
             }
-        })
+        )
 
         binding.bookmark1.setOnClickListener {
             setBookmarks(binding.bookmark1, 0)
@@ -76,7 +80,6 @@ class HigherLowerRatingFragment :
         binding.bookmark2.setOnClickListener {
             setBookmarks(binding.bookmark2, 1)
         }
-
     }
 
     private fun resetBookmarks() {
@@ -112,7 +115,6 @@ class HigherLowerRatingFragment :
 
             bookmark.tag = "bruh"
         }
-
     }
 
     private fun setImage(imgIndex: Int, movieList: MovieResponse, img: ImageView) {
@@ -132,16 +134,20 @@ class HigherLowerRatingFragment :
 
     private fun animateBookmark(bookmark: ImageButton) {
         bookmark.animate().apply {
-            duration = 250
-            scaleXBy(1f)
-            scaleYBy(1f)
+            duration = ANIMATION_DURATION
+            scaleXBy(ANIMATION_ROTATION)
+            scaleYBy(ANIMATION_ROTATION)
         }.withEndAction {
             bookmark.animate().apply {
-                duration = 250
-                scaleXBy(-1f)
-                scaleYBy(-1f)
+                duration = ANIMATION_DURATION
+                scaleXBy(-ANIMATION_ROTATION)
+                scaleYBy(-ANIMATION_ROTATION)
             }
         }
     }
 
+    companion object {
+        private const val ANIMATION_DURATION = 250L
+        private const val ANIMATION_ROTATION = 1f
+    }
 }

@@ -5,19 +5,18 @@ import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.navigation.Navigation
 import com.example.finema.R
-import com.example.finema.api.MoviesRepository
 import com.example.finema.database.room.RoomRepository
 import com.example.finema.models.databaseModels.TopModel
 import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.util.APP_ACTIVITY
 import com.google.firebase.auth.FirebaseAuth
 
-class ProfileViewModel (
-    private val DBRepository: RoomRepository
-    ) : BaseViewModel() {
+class ProfileViewModel(
+    private val dbRepository: RoomRepository
+) : BaseViewModel() {
 
-    private val mAuth  = FirebaseAuth.getInstance()
-    val topMovies: LiveData<List<TopModel>> = DBRepository.allTop
+    private val mAuth = FirebaseAuth.getInstance()
+    val topMovies: LiveData<List<TopModel>> = dbRepository.allTop
 
     fun goDetailsFragment(filmIdInfo: Long) {
         val bundle = Bundle()
@@ -27,7 +26,7 @@ class ProfileViewModel (
     }
 
     fun getName(): String? {
-        return if(mAuth.currentUser?.displayName == null) {
+        return if (mAuth.currentUser?.displayName == null) {
             "Гость"
         } else {
             mAuth.currentUser?.displayName
@@ -35,7 +34,7 @@ class ProfileViewModel (
     }
 
     fun getNumber(): String? {
-        return if(mAuth.currentUser?.phoneNumber == null) {
+        return if (mAuth.currentUser?.phoneNumber == null) {
             " "
         } else {
             mAuth.currentUser?.phoneNumber
@@ -44,9 +43,10 @@ class ProfileViewModel (
 
     fun getImage(): Uri? {
 
-        return if(mAuth.currentUser?.photoUrl == null) {
+        return if (mAuth.currentUser?.photoUrl == null) {
             Uri.parse("android.resource://com.example.finema/drawable/default_profile_avatar")
         } else {
             mAuth.currentUser?.photoUrl
-        }    }
+        }
+    }
 }

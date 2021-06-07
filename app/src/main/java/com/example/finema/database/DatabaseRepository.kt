@@ -1,8 +1,6 @@
 package com.example.finema.database
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.example.finema.models.databaseModels.CategoryModel
 import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.databaseModels.TopModel
@@ -30,6 +28,5 @@ interface DatabaseRepository {
 
     suspend fun deleteAllTop(onSuccess: () -> Unit)
 
-    fun signOut(){}
-
+    fun signOut() {}
 }

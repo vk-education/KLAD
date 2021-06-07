@@ -1,17 +1,13 @@
 package com.example.finema.api
 
-import android.content.Context
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import com.example.finema.database.room.RoomDao
 import com.example.finema.repositories.SafeApiRequest
 import com.example.finema.ui.chooseFavourite.MoviePagingSource
-import java.util.*
+import java.util.Locale
 
 class MoviesRepository(
-    val api: MoviesApi,
-    private val dao: RoomDao,
-    private val context: Context
+    val api: MoviesApi
 ) : IMoviesRepository, SafeApiRequest() {
 
     override suspend fun getMovies(page: Int) = apiRequest {
@@ -22,9 +18,6 @@ class MoviesRepository(
         api.getGenreList()
     }
 
-    //TODO запрос (20) -> liveData.value = response , local list add(response)
-    //TODO запрос (20) -> local list add(response), liveData.value = list
-    //TODO reducer почитать
     override suspend fun getMoviesWithGenre(page: Int, with_genres: String) = apiRequest {
         api.getMoviesWithGenre(page, with_genres)
     }

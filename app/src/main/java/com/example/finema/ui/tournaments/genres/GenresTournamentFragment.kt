@@ -18,8 +18,7 @@ import com.example.finema.util.APP_ACTIVITY
 import com.example.finema.util.AppPreference
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class GenresTournamentFragment(
-) :
+class GenresTournamentFragment :
     BaseFragment<GenresTournamentVM, FragmentTournamentGenresBinding>(),
     GenresTournamentAdapter.TournamentHolder.Listener {
 
@@ -28,7 +27,8 @@ class GenresTournamentFragment(
     private lateinit var mObserverList: Observer<List<GenreModel>>
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentTournamentGenresBinding.inflate(inflater, container, false)
@@ -51,59 +51,57 @@ class GenresTournamentFragment(
         mObserverList = Observer {
             mAdapter.setList(it)
         }
-        //TODO Убрать получение и обращаться к VM базового класса
+        // TODO Убрать получение и обращаться к VM базового класса
         viewModel.allGenres.observe(APP_ACTIVITY, mObserverList)
-
     }
 
-    //TODO genreModel -> {} : GenreModel -> Unit
+    // TODO genreModel -> {} : GenreModel -> Unit
     // Заменить на лямбду, хз так ли написал выше
     override fun onMovieClicked(view: View, genreModel: GenreModel) {
-        if (genreModel.id == 99) {
+        if (genreModel.id == GENRE_NOT_FOUND_TEMPORARILY) {
             Toast.makeText(context, "Этот жанр временно отсутсвует", Toast.LENGTH_SHORT).show()
         } else {
             dialogBinding(genreModel.id.toString(), genreModel.name)
         }
     }
 
-    private fun dialogBinding(genreId: String,genreName:String) {
-        //TODO Изменить на фрагмент
-        //TODO Заменить на нормальный контекст
+    private fun dialogBinding(genreId: String, genreName: String) {
+        // TODO Изменить на фрагмент
+        // TODO Заменить на нормальный контекст
         val dialog = Dialog(requireContext())
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
         dialog.let {
             it.setContentView(R.layout.number_fragment)
             it.findViewById<View>(R.id.btn8).setOnClickListener {
-                goNextFragment(8, genreId, genreName)
+                goNextFragment(PRESSED_EIGHT_MOVIES, genreId, genreName)
                 dialog.onBackPressed()
             }
             it.findViewById<View>(R.id.btn16).setOnClickListener {
-                goNextFragment(16,  genreId, genreName)
+                goNextFragment(PRESSED_SIXTEEN_MOVIES, genreId, genreName)
                 dialog.onBackPressed()
             }
             it.findViewById<View>(R.id.btn32).setOnClickListener {
-                goNextFragment(32,  genreId, genreName)
+                goNextFragment(PRESSED_THIRTY_TWO_MOVIES, genreId, genreName)
                 dialog.onBackPressed()
             }
             it.findViewById<View>(R.id.btn64).setOnClickListener {
-                goNextFragment(64,  genreId, genreName)
+                goNextFragment(PRESSED_SIXTY_FOUR_MOVIES, genreId, genreName)
                 dialog.onBackPressed()
             }
             it.findViewById<View>(R.id.btn128).setOnClickListener {
-                goNextFragment(128,  genreId, genreName)
+                goNextFragment(PRESSED_ONE_HUNDRED_AND_TWENTY_EIGHT_MOVIES, genreId, genreName)
                 dialog.onBackPressed()
             }
             it.findViewById<View>(R.id.btn256).setOnClickListener {
-                goNextFragment(256,  genreId, genreName)
+                goNextFragment(PRESSED_TWO_HUNDRED_AND_FIFTY_SIX_MOVIES, genreId, genreName)
                 dialog.onBackPressed()
             }
-
         }
         dialog.show()
     }
 
-    private fun goNextFragment(num: Int, genreId: String, genreName:String) {
+    private fun goNextFragment(num: Int, genreId: String, genreName: String) {
         AppPreference.setNumOfFilms(num)
         AppPreference.setGenreName(genreName)
         AppPreference.setGenre(genreId)
@@ -123,5 +121,15 @@ class GenresTournamentFragment(
         viewModel.getGenres()
 
         viewModel.genreListVM.observe(viewLifecycleOwner, mObserverList)
+    }
+
+    companion object {
+        const val GENRE_NOT_FOUND_TEMPORARILY = 99
+        const val PRESSED_EIGHT_MOVIES = 8
+        const val PRESSED_SIXTEEN_MOVIES = 16
+        const val PRESSED_THIRTY_TWO_MOVIES = 32
+        const val PRESSED_SIXTY_FOUR_MOVIES = 64
+        const val PRESSED_ONE_HUNDRED_AND_TWENTY_EIGHT_MOVIES = 128
+        const val PRESSED_TWO_HUNDRED_AND_FIFTY_SIX_MOVIES = 256
     }
 }

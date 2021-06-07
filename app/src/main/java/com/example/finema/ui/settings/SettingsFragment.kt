@@ -7,12 +7,10 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.example.finema.R
 import com.example.finema.util.AppPreference
-import com.google.android.gms.tasks.OnCompleteListener
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.getViewModel
-
 
 class SettingsFragment : PreferenceFragmentCompat() {
     private lateinit var viewModel: SettingsViewModel
@@ -30,7 +28,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         notification = findPreference("notifications")!!
 
         quit.onPreferenceClickListener =
-            Preference.OnPreferenceClickListener { //code for what you want it to do
+            Preference.OnPreferenceClickListener { // code for what you want it to do
                 AppPreference.setInitUser(false)
                 AppPreference.googleUserSignOut()
                 viewModel.googleSignOut()
@@ -46,7 +44,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
             Preference.OnPreferenceClickListener {
                 CoroutineScope(Dispatchers.IO).launch {
                     viewModel.clearAllStatistics()
-                    if(AppPreference.getGuestOrAuth() == "AUTH") {
+                    if (AppPreference.getGuestOrAuth() == "AUTH") {
                         viewModel.clearFireBase()
                     }
                 }

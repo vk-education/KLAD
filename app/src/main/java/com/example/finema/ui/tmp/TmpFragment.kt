@@ -4,14 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.navigation.fragment.findNavController
 import com.example.finema.R
 import com.example.finema.databinding.TmpFragmentBinding
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.AppPreference
-import com.example.finema.util.downloadAndSetImageUri
-import com.example.finema.util.downloadAndSetImageUrl
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
@@ -27,7 +24,7 @@ class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = getViewModel()
-        if (AppPreference.getFirstSignIn() && AppPreference.getGuestOrAuth() == "AUTH"){
+        if (AppPreference.getFirstSignIn() && AppPreference.getGuestOrAuth() == "AUTH") {
             viewModel.initRoomFromFirebaseToRoom()
             AppPreference.setFirstSignIn(false)
         }
@@ -38,12 +35,9 @@ class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
             AppPreference.setTournamentType("GENRE")
         }
 
-        binding.category.setOnClickListener{
+        binding.category.setOnClickListener {
             findNavController().navigate(R.id.action_fragment_tmp_to_fragment_others)
             AppPreference.setTournamentType("CATEGORY")
         }
     }
-
-
-
 }

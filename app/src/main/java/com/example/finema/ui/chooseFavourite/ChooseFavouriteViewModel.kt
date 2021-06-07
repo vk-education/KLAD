@@ -9,17 +9,17 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.finema.R
 import com.example.finema.api.MoviesRepository
-import com.example.finema.database.room.RoomRepository
-import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.infinite.MovieDiscoverResult
-import com.example.finema.models.movieResponse.Movie
 import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.util.APP_ACTIVITY
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
-import kotlin.coroutines.CoroutineContext
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 
 class ChooseFavouriteViewModel(
     private val repository: MoviesRepository
@@ -30,7 +30,7 @@ class ChooseFavouriteViewModel(
 
     val movies: Flow<PagingData<MovieDiscoverResult>> = query
         .map(::newPager)
-        .flatMapLatest { pager -> pager.flow.cachedIn(viewModelScope)}
+        .flatMapLatest { pager -> pager.flow.cachedIn(viewModelScope) }
         .stateIn(viewModelScope, SharingStarted.Lazily, PagingData.empty())
 
     private fun newPager(query: String): Pager<Int, MovieDiscoverResult> {

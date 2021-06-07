@@ -1,7 +1,6 @@
 package com.example.finema.models.databaseModels
 
 import androidx.room.ColumnInfo
-import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 data class CategoryModel(

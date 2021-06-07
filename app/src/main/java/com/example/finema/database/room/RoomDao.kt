@@ -1,12 +1,16 @@
 package com.example.finema.database.room
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.databaseModels.TopModel
 
-//Data Access Object
+// Data Access Object
 @Dao
 interface RoomDao {
     @Query("SELECT * FROM genre_list")
@@ -41,5 +45,4 @@ interface RoomDao {
 
     @Query("DELETE FROM top_list;")
     suspend fun deleteAllTop()
-
 }

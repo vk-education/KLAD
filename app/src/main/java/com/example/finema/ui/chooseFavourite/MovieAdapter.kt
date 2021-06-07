@@ -4,24 +4,19 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finema.R
-import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.models.infinite.MovieDiscoverResult
-import com.example.finema.ui.favourite.FavouriteAdapter
-import com.example.finema.ui.tournaments.genres.GenresTournamentAdapter
 import com.google.android.material.card.MaterialCardView
 
 class MovieAdapter(
     context: Context,
     private val listener: CharacterViewHolder.Listener,
-    )
-    : PagingDataAdapter<MovieDiscoverResult, MovieAdapter.CharacterViewHolder>(CharacterComparator)  {
+) :
+    PagingDataAdapter<MovieDiscoverResult, MovieAdapter.CharacterViewHolder>(CharacterComparator) {
 
     private val layoutInflater: LayoutInflater = LayoutInflater.from(context)
 
@@ -32,7 +27,7 @@ class MovieAdapter(
         return CharacterViewHolder(
             layoutInflater.inflate(R.layout.nice, parent, false),
             listener
-            )
+        )
     }
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
@@ -42,8 +37,8 @@ class MovieAdapter(
     class CharacterViewHolder(
         view: View,
         private val listener: Listener
-    )
-        : RecyclerView.ViewHolder(view) {
+    ) :
+        RecyclerView.ViewHolder(view) {
         var filmTitle: TextView? = null
         var movieTitle: MaterialCardView? = null
 
@@ -68,7 +63,10 @@ class MovieAdapter(
         override fun areItemsTheSame(oldItem: MovieDiscoverResult, newItem: MovieDiscoverResult) =
             oldItem.id == newItem.id
 
-        override fun areContentsTheSame(oldItem: MovieDiscoverResult, newItem: MovieDiscoverResult) =
+        override fun areContentsTheSame(
+            oldItem: MovieDiscoverResult,
+            newItem: MovieDiscoverResult
+        ) =
             oldItem == newItem
     }
 }

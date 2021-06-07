@@ -7,15 +7,17 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.example.finema.R
 
+private const val PICTURE_MEASURES = 500
+private const val FLAG_ZERO = 0
 
 fun ImageView.downloadAndSetImageUrl(url: String?) {
     Glide
         .with(this)
         .load(url)
         .centerCrop()
-        .override(500, 500)
+        .override(PICTURE_MEASURES, PICTURE_MEASURES)
         .placeholder(R.drawable.movies_24)
-        .into(this);
+        .into(this)
 }
 
 fun ImageView.downloadAndSetImageUri(uri: Uri?) {
@@ -23,12 +25,12 @@ fun ImageView.downloadAndSetImageUri(uri: Uri?) {
         .with(this)
         .load(uri)
         .centerCrop()
-        .override(500, 500)
+        .override(PICTURE_MEASURES, PICTURE_MEASURES)
         .placeholder(R.drawable.movies_24)
-        .into(this);
+        .into(this)
 }
 
 fun View.hideKeyboard() {
     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-    imm.hideSoftInputFromWindow(windowToken, 0)
+    imm.hideSoftInputFromWindow(windowToken, FLAG_ZERO)
 }

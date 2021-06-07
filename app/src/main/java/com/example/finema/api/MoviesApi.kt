@@ -33,21 +33,19 @@ interface MoviesApi {
     @GET(TOP_RATED_LIST)
     suspend fun getMoviesWithGenre(
         @Query("page") page: Int,
-        @Query("with_genres") with_genres: String
+        @Query("withGenres") withGenres: String
     ): Response<MovieResponse>
 
-
-    @GET("list/{list_id}?${API_AND_LANGUAGE}")
+    @GET("list/{list_id}?$API_AND_LANGUAGE")
     suspend fun getMovieFromList(
-        @Path("list_id") list_id: Int
+        @Path("listId") listId: Int
     ): Response<MovieResponseFromList>
-
 
     @GET(DISCOVER)
     suspend fun everything(
         @Query("page") page: Int,
         @Query("query") query: String
-        ): Response<MovieDiscover>
+    ): Response<MovieDiscover>
 
     companion object {
         operator fun invoke(): MoviesApi {
@@ -57,7 +55,8 @@ interface MoviesApi {
                 .build()
                 .create(MoviesApi::class.java)
         }
-        private const val API_AND_LANGUAGE = "api_key=bbf5a3000e95f1dddf266b5e187d4b21&language=ru-ru"
+        private const val API_AND_LANGUAGE =
+            "api_key=bbf5a3000e95f1dddf266b5e187d4b21&language=ru-ru"
 
         private const val BASE_URL = "https://api.themoviedb.org/3/"
         private const val GENRE_LIST =

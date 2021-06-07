@@ -8,17 +8,17 @@ import com.example.finema.models.movieResponse.MovieResponse
 import com.example.finema.models.movieResponse.MovieResponseFromList
 import kotlinx.coroutines.flow.Flow
 
-interface IMoviesRepository{
+interface IMoviesRepository {
     suspend fun getMovies(page: Int): MovieResponse
 
     suspend fun getGenres(): GenreList
 
-    suspend fun getMoviesWithGenre(page: Int, with_genres: String): MovieResponse
+    suspend fun getMoviesWithGenre(page: Int, withGenres: String): MovieResponse
 
     suspend fun getMovieDetails(id: Long): MovieDetails
 
-    suspend fun getDiscoverMovies(query: String)
-    : Flow<PagingData<MovieDiscoverResult>>
+    suspend fun getDiscoverMovies(query: String):
+        Flow<PagingData<MovieDiscoverResult>>
 
-    suspend fun getMovieFromList(list_id: Int): MovieResponseFromList
+    suspend fun getMovieFromList(listId: Int): MovieResponseFromList
 }

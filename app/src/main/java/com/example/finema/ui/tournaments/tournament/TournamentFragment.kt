@@ -6,15 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.lifecycle.asFlow
 import com.example.finema.R
 import com.example.finema.databinding.FragmentTournamentBinding
+import com.example.finema.models.movieResponse.Movie
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.APP_ACTIVITY
 import com.example.finema.util.downloadAndSetImageUrl
-import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
@@ -26,7 +28,8 @@ class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>
     private lateinit var desc: TextView
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentTournamentBinding
@@ -39,72 +42,79 @@ class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>
         viewModel = getViewModel()
 
         super.onViewCreated(view, savedInstanceState)
-        viewModel.twoFilms.observe(APP_ACTIVITY, { movieList ->
+        viewModel.twoFilms.observe(
+            APP_ACTIVITY,
+            { movieList ->
 
-            binding.txtFilm1.text = movieList[0].title
-            binding.txtFilm2.text = movieList[1].title
+                binding.txtFilm1.text = movieList[0].title
+                binding.txtFilm2.text = movieList[1].title
 
-            binding.img1.downloadAndSetImageUrl(
-                getString(
-                    R.string.poster_base_url,
-                    movieList[0].posterPath
-                )
-            )
-            binding.img2.downloadAndSetImageUrl(
-                getString(
-                    R.string.poster_base_url,
-                    movieList[1].posterPath
-                )
-            )
+                binding.progressBar.visibility = View.GONE
+                binding.cardview1.visibility = View.VISIBLE
+                binding.cardview2.visibility = View.VISIBLE
 
-            binding.progressBar.visibility = View.GONE
-            binding.cardview1.visibility = View.VISIBLE
-            binding.cardview2.visibility = View.VISIBLE
+                setImage(binding.img1, movieList, 0)
+                setImage(binding.img2, movieList, 1)
 
-            binding.txtNumCategory.text = viewModel.title
-            binding.roundCount.text = "Раунд ${viewModel.roundCount}"
+                binding.txtNumCategory.text = viewModel.title
+                binding.roundCount.text = getString(R.string.n_round, viewModel.roundCount)
 
-            binding.cardview1.setOnClickListener {
-                viewModel.itemClick(0)
-                resetBookmarks()
+                cardClickListener(binding.cardview1, 0)
+                cardClickListener(binding.cardview2, 1)
+
+                infoClicked(binding.more1, 0)
+                infoClicked(binding.more2, 1)
+
+                fillInBookmarks()
             }
+        )
 
-            binding.cardview2.setOnClickListener {
-                viewModel.itemClick(1)
-                resetBookmarks()
-            }
+        setBookmarkClickListeners(binding.bookmark1, 0)
+        setBookmarkClickListeners(binding.bookmark2, 1)
+    }
 
-            binding.more1.setOnClickListener {
-                dialogBinding(0)
-            }
-
-            binding.more2.setOnClickListener {
-                dialogBinding(1)
-            }
-
-            CoroutineScope(Dispatchers.Main).launch {
-                viewModel.favouriteMovies.asFlow().collectLatest {
-                    for (i in it) {
-                        if (binding.txtFilm1.text == i.title) {
-                            binding.bookmark1.setImageResource(R.drawable.bookmark_24)
-                            binding.bookmark1.tag = "bruh"
-                        }
-                        if (binding.txtFilm2.text == i.title) {
-                            binding.bookmark2.setImageResource(R.drawable.bookmark_24)
-                            binding.bookmark2.tag = "bruh"
-                        }
+    private fun fillInBookmarks() {
+        CoroutineScope(Dispatchers.Main).launch {
+            viewModel.favouriteMovies.asFlow().collectLatest {
+                for (i in it) {
+                    if (binding.txtFilm1.text == i.title) {
+                        binding.bookmark1.setImageResource(R.drawable.bookmark_24)
+                        binding.bookmark1.tag = "bruh"
+                    }
+                    if (binding.txtFilm2.text == i.title) {
+                        binding.bookmark2.setImageResource(R.drawable.bookmark_24)
+                        binding.bookmark2.tag = "bruh"
                     }
                 }
             }
-
-        })
-
-        binding.bookmark1.setOnClickListener {
-            setBookmarks(binding.bookmark1, 0)
         }
+    }
 
-        binding.bookmark2.setOnClickListener {
-            setBookmarks(binding.bookmark2, 1)
+    private fun infoClicked(button: ImageButton, position: Int) {
+        button.setOnClickListener {
+            dialogBinding(position)
+        }
+    }
+
+    private fun cardClickListener(cardView: CardView, position: Int) {
+        cardView.setOnClickListener {
+            viewModel.itemClick(position)
+            resetBookmarks()
+        }
+    }
+
+    private fun setImage(image: ImageView, movieList: List<Movie>, imgInd: Int) {
+        image.downloadAndSetImageUrl(
+            getString(
+                R.string.poster_base_url,
+                movieList[imgInd].posterPath
+            )
+        )
+    }
+
+    private fun setBookmarkClickListeners(bookmark: ImageButton, position: Int) {
+        bookmark.setOnClickListener {
+            setBookmarks(bookmark, position)
         }
     }
 
@@ -115,7 +125,7 @@ class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>
         dialog.let {
             it.setContentView(R.layout.movie_description)
             desc = it.findViewById(R.id.desc)
-            if(viewModel.returnDesc(index) == "") {
+            if (viewModel.returnDesc(index) == "") {
                 desc.text = "Пусто"
             } else {
                 desc.text = viewModel.returnDesc(index)
@@ -157,21 +167,24 @@ class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>
 
             bookmark.tag = "bruh"
         }
-
     }
 
     private fun animateBookmark(bookmark: ImageButton) {
         bookmark.animate().apply {
-            duration = 250
-            scaleXBy(1f)
-            scaleYBy(1f)
+            duration = ANIMATION_DURATION
+            scaleXBy(ANIMATION_ROTATION)
+            scaleYBy(ANIMATION_ROTATION)
         }.withEndAction {
             bookmark.animate().apply {
-                duration = 250
-                scaleXBy(-1f)
-                scaleYBy(-1f)
+                duration = ANIMATION_DURATION
+                scaleXBy(-ANIMATION_ROTATION)
+                scaleYBy(-ANIMATION_ROTATION)
             }
         }
     }
 
+    companion object {
+        private const val ANIMATION_DURATION = 250L
+        private const val ANIMATION_ROTATION = 1f
+    }
 }

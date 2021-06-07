@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
-import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.finema.R
@@ -19,16 +18,13 @@ import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.AppPreference
 import com.example.finema.util.downloadAndSetImageUri
 import com.google.android.material.navigation.NavigationView
-import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.*
+import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.getViewModel
-
 
 class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
 
-    //TODO убрать, есть биндинг
+    // TODO убрать, есть биндинг
     private lateinit var header: TextView
     private lateinit var avatar: ImageView
 
@@ -52,7 +48,7 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         initCustomContract()
 
         super.onViewCreated(view, savedInstanceState)
-        //TODO вынести во Repository, но только после того как будет DI (dagger/koin)
+        // TODO вынести во Repository, но только после того как будет DI (dagger/koin)
 
         header = requireActivity().findViewById<NavigationView>(R.id.nav_view)
             .getHeaderView(0).findViewById(R.id.nickProfile)
@@ -76,7 +72,7 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         }
     }
 
-    //TODO репозиторий по нажатию на кнопку возвращает интент, через VM, который и надо здесь
+    // TODO репозиторий по нажатию на кнопку возвращает интент, через VM, который и надо здесь
     // запускать
     @InternalCoroutinesApi
     private fun signIn() {
@@ -106,16 +102,18 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
     }
 
     private fun blockBack() {
-        binding.root.isFocusableInTouchMode = true;
-        binding.root.requestFocus();
-        binding.root.setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
-            if (event.action === KeyEvent.ACTION_DOWN) {
-                if (keyCode == KeyEvent.KEYCODE_BACK) {
-                    return@OnKeyListener true
+        binding.root.isFocusableInTouchMode = true
+        binding.root.requestFocus()
+        binding.root.setOnKeyListener(
+            View.OnKeyListener { _, keyCode, event ->
+                if (event.action === KeyEvent.ACTION_DOWN) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        return@OnKeyListener true
+                    }
                 }
+                false
             }
-            false
-        })
+        )
     }
 
     companion object {

@@ -13,8 +13,8 @@ import com.example.finema.util.hideKeyboard
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class ChooseFavouriteFragment
-    : BaseFragment<ChooseFavouriteViewModel, ChooseFavouriteFragmentBinding>(),
+class ChooseFavouriteFragment :
+    BaseFragment<ChooseFavouriteViewModel, ChooseFavouriteFragmentBinding>(),
     MovieAdapter.CharacterViewHolder.Listener {
 
     override fun onCreateView(
@@ -56,5 +56,4 @@ class ChooseFavouriteFragment
         viewModel.goDetailsFragment(index.toLong())
         binding.query.hideKeyboard()
     }
-
 }

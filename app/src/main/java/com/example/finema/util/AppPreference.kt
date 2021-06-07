@@ -3,10 +3,9 @@ package com.example.finema.util
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
-import com.example.finema.database.room.RoomRepository
 import com.google.firebase.auth.FirebaseAuth
 
-//TODO Сделать репозиторием с интерфейсом
+// TODO Сделать репозиторием с интерфейсом
 object AppPreference {
 
     private const val INIT_USER = "initUser"
@@ -22,11 +21,15 @@ object AppPreference {
     private const val FRAGMENT = "fragment"
     private const val FIRST_SIGN_IN = "firstSignIn"
     private const val GUEST_OR_AUTH = "guestOrAuth"
+    private const val DEFAULT_NULL_VAL = ""
+
+    private const val DEFAULT_NUM_VAL = 8
+    private const val DEFAULT_NUM__CAT_VAL = -1
 
     private val googleUser: FirebaseAuth = FirebaseAuth.getInstance()
     private lateinit var mPreferences: SharedPreferences
 
-    //TODO такого не должно быть, преференсы должны исполььзоваться только здесь
+    // TODO такого не должно быть, преференсы должны исполььзоваться только здесь
     fun getPreference(context: Context) {
         mPreferences = context.getSharedPreferences(NAME_PREF, Context.MODE_PRIVATE)
     }
@@ -41,14 +44,13 @@ object AppPreference {
         return mPreferences.getBoolean(INIT_USER, false)
     }
 
-
     fun googleUserSignOut() {
         googleUser.signOut()
         Log.d("OJOF", googleUser.currentUser?.displayName.orEmpty())
     }
 
     fun getNumOfFilms(): Int {
-        return mPreferences.getInt(NUM_FILMS, 8)
+        return mPreferences.getInt(NUM_FILMS, DEFAULT_NUM_VAL)
     }
 
     fun setNumOfFilms(num: Int) {
@@ -58,7 +60,7 @@ object AppPreference {
     }
 
     fun getTournamentType(): String? {
-        return mPreferences.getString(TOURNAMENT_TYPE, "")
+        return mPreferences.getString(TOURNAMENT_TYPE, DEFAULT_NULL_VAL)
     }
 
     fun setTournamentType(type: String) {
@@ -68,7 +70,7 @@ object AppPreference {
     }
 
     fun getGenreId(): String? {
-        return mPreferences.getString(GENRE_ID, "")
+        return mPreferences.getString(GENRE_ID, DEFAULT_NULL_VAL)
     }
 
     fun setGenre(genre: String) {
@@ -78,7 +80,7 @@ object AppPreference {
     }
 
     fun getGenreName(): String? {
-        return mPreferences.getString(GENRE_NAME, "")
+        return mPreferences.getString(GENRE_NAME, DEFAULT_NULL_VAL)
     }
 
     fun setGenreName(genre: String) {
@@ -87,8 +89,8 @@ object AppPreference {
             .apply()
     }
 
-    fun getCategoryLink(): Int? {
-        return mPreferences.getInt(CATEGORY_LINK, -1)
+    fun getCategoryLink(): Int {
+        return mPreferences.getInt(CATEGORY_LINK, DEFAULT_NUM__CAT_VAL)
     }
 
     fun setCategoryLink(categoryLink: Int) {
@@ -98,7 +100,7 @@ object AppPreference {
     }
 
     fun getCategoryName(): String? {
-        return mPreferences.getString(CATEGORY_NAME, "")
+        return mPreferences.getString(CATEGORY_NAME, DEFAULT_NULL_VAL)
     }
 
     fun setCategoryName(categoryName: String) {
@@ -107,15 +109,14 @@ object AppPreference {
             .apply()
     }
 
-
-    fun setMovieAddedToFav(movie :String) {
-            mPreferences.edit()
-                .putString(MOVIE_ONE, movie)
-                .apply()
+    fun setMovieAddedToFav(movie: String) {
+        mPreferences.edit()
+            .putString(MOVIE_ONE, movie)
+            .apply()
     }
 
     fun getMovieAddedToFav(): String? {
-        return mPreferences.getString(MOVIE_ONE, "")
+        return mPreferences.getString(MOVIE_ONE, DEFAULT_NULL_VAL)
     }
 
     fun setFragment(name: String) {
@@ -125,7 +126,7 @@ object AppPreference {
     }
 
     fun getFragment(): String? {
-        return mPreferences.getString(FRAGMENT, "")
+        return mPreferences.getString(FRAGMENT, DEFAULT_NULL_VAL)
     }
 
     fun setFirstSignIn(init: Boolean) {
@@ -138,9 +139,10 @@ object AppPreference {
         return mPreferences.getBoolean(FIRST_SIGN_IN, false)
     }
 
-    fun getGuestOrAuth():String?{
-        return mPreferences.getString(GUEST_OR_AUTH, "")
+    fun getGuestOrAuth(): String? {
+        return mPreferences.getString(GUEST_OR_AUTH, DEFAULT_NULL_VAL)
     }
+
     fun setGuestOrAuth(name: String) {
         mPreferences.edit()
             .putString(GUEST_OR_AUTH, name)

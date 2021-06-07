@@ -1,15 +1,14 @@
 package com.example.finema.database.room
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.finema.database.DatabaseRepository
 import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.databaseModels.TopModel
 
-class RoomRepository (
+class RoomRepository(
     private val roomDao: RoomDao
-    ): DatabaseRepository {
+) : DatabaseRepository {
 
     override val allGenres: LiveData<List<GenreModel>> = roomDao.getAllGenres()
 
@@ -50,8 +49,5 @@ class RoomRepository (
 
     override suspend fun deleteAllTop(onSuccess: () -> Unit) {
         roomDao.deleteAllTop()
-    }
-
-    override fun signOut(){
     }
 }

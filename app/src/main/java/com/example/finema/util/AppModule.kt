@@ -1,11 +1,12 @@
 package com.example.finema.util
 
-import com.example.finema.api.*
+import com.example.finema.api.MoviesApi
+import com.example.finema.api.MoviesRepository
 import com.example.finema.database.firebase.FirebaseRepository
-import com.example.finema.database.room.*
+import com.example.finema.database.room.RoomDataBase
+import com.example.finema.database.room.RoomRepository
 import com.example.finema.repositories.Contract
 import com.example.finema.ui.chooseFavourite.ChooseFavouriteViewModel
-import com.example.finema.ui.chooseFavourite.MoviePagingSource
 import com.example.finema.ui.favourite.FavouriteViewModel
 import com.example.finema.ui.higherlower.HigherLowerViewModel
 import com.example.finema.ui.higherlowerrating.HigherLowerRatingViewModel
@@ -14,8 +15,8 @@ import com.example.finema.ui.settings.SettingsViewModel
 import com.example.finema.ui.signIn.SignInViewModel
 import com.example.finema.ui.tmp.TmpViewModel
 import com.example.finema.ui.tournaments.categories.CategoryTournamentVM
-import com.example.finema.ui.tournaments.tournament.TournamentVM
 import com.example.finema.ui.tournaments.genres.GenresTournamentVM
+import com.example.finema.ui.tournaments.tournament.TournamentVM
 import com.example.finema.ui.userProfile.ProfileViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -67,7 +68,7 @@ val repositoryModule: Module = module {
 
     single { RoomRepository(get()) }
 
-    single { MoviesRepository(get(), get(), androidContext()) }
+    single { MoviesRepository(get()) }
 
     single { FirebaseRepository() }
 }

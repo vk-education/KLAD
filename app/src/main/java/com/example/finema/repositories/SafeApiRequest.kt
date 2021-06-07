@@ -1,20 +1,19 @@
 package com.example.finema.repositories
 
-import retrofit2.Response
 import java.io.IOException
+import retrofit2.Response
 
 abstract class SafeApiRequest {
 
-    suspend fun<T: Any> apiRequest(call: suspend () -> Response<T>) : T{
+    suspend fun <T : Any> apiRequest(call: suspend () -> Response<T>): T {
         val response = call.invoke()
-        if(response.isSuccessful){
+        if (response.isSuccessful) {
             return response.body()!!
-        }else{
-            //@todo handle api exception
+        } else {
+            // @todo handle api exception
             throw ApiException(response.code().toString())
         }
     }
-
 }
 
-class ApiException(message: String): IOException(message)
+class ApiException(message: String) : IOException(message)

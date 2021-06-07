@@ -10,8 +10,7 @@ import com.example.finema.models.databaseModels.TopModel
 
 class ProfileAdapter(
     private val listener: ProfileHolder.Listener
-) : RecyclerView.Adapter<ProfileAdapter.ProfileHolder>()
-{
+) : RecyclerView.Adapter<ProfileAdapter.ProfileHolder>() {
     var movies: List<TopModel> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileHolder {
@@ -45,9 +44,6 @@ class ProfileAdapter(
             itemView.setOnClickListener {
                 listener.onMovieClicked(listMovie[adapterPosition])
             }
-
         }
-
     }
-    
 }

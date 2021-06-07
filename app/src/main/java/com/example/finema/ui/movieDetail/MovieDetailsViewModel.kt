@@ -3,20 +3,22 @@ package com.example.finema.ui.movieDetail
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.finema.models.movieResponse.MovieDetails
 import com.example.finema.api.MoviesRepository
 import com.example.finema.database.firebase.FirebaseRepository
 import com.example.finema.database.room.RoomRepository
 import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.databaseModels.TopModel
+import com.example.finema.models.movieResponse.MovieDetails
 import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.util.AppPreference
 import com.example.finema.util.Coroutines
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MovieDetailsViewModel(
     private val repository: MoviesRepository,
-    private val DBRepository: RoomRepository
+    private val dbRepository: RoomRepository
 ) : BaseViewModel() {
 
     private val fbRepository: FirebaseRepository = FirebaseRepository()
@@ -24,7 +26,7 @@ class MovieDetailsViewModel(
     var arg: Long = 0
     var favouriteMovies: List<Long>? = null
 
-     fun getMovieDetails() {
+    fun getMovieDetails() {
         job = Coroutines.ioThenMan(
             { repository.getMovieDetails(arg) },
             {
@@ -47,7 +49,7 @@ class MovieDetailsViewModel(
 
     fun insert(movieModel: MovieModel) {
         viewModelScope.launch(Dispatchers.Main) {
-            DBRepository.insertFavourite(movieModel) {
+            dbRepository.insertFavourite(movieModel) {
             }
         }
         if (AppPreference.getGuestOrAuth() == "AUTH") {
@@ -59,7 +61,7 @@ class MovieDetailsViewModel(
 
     fun checkFavourite() {
         GlobalScope.launch {
-            favouriteMovies = DBRepository.checkFavourite(arg)
+            favouriteMovies = dbRepository.checkFavourite(arg)
             Log.d("gypsy", "Check")
             Log.d("gypsy", arg.toString())
         }
@@ -79,7 +81,7 @@ class MovieDetailsViewModel(
 
     fun deleteMovie(id: Long, movie: MovieModel) {
         viewModelScope.launch(Dispatchers.Main) {
-            DBRepository.deleteFavouriteMovie(id) {}
+            dbRepository.deleteFavouriteMovie(id) {}
         }
         if (AppPreference.getGuestOrAuth() == "AUTH") {
             viewModelScope.launch(Dispatchers.Main) {
@@ -89,12 +91,11 @@ class MovieDetailsViewModel(
     }
 
     suspend fun addToTopMovies(movieModel: TopModel) {
-        DBRepository.insertTop(movieModel){}
+        dbRepository.insertTop(movieModel) {}
     }
 
     companion object {
         const val NEW_LINE = "\n"
         const val TAB = "\t"
     }
-
 }

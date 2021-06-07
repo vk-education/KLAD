@@ -7,9 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finema.R
 import com.example.finema.models.databaseModels.CategoryModel
-import com.example.finema.models.databaseModels.GenreModel
 
-class CategoryTournamentAdapter (
+class CategoryTournamentAdapter(
     private val listener: TournamentHolder.Listener,
 ) : RecyclerView.Adapter<CategoryTournamentAdapter.TournamentHolder>() {
 
@@ -21,7 +20,9 @@ class CategoryTournamentAdapter (
     ) : RecyclerView.ViewHolder(view) {
 
         private val categoryName: TextView = view.findViewById(R.id.item_category_name)
-        private val categoryDescription: TextView = view.findViewById(R.id.item_category_description)
+        private val categoryDescription: TextView = view.findViewById(
+            R.id.item_category_description
+        )
 
         interface Listener {
             fun onMovieClicked(view: View, categoryModel: CategoryModel)
@@ -33,7 +34,6 @@ class CategoryTournamentAdapter (
             itemView.setOnClickListener {
                 listener.onMovieClicked(itemView, mListCategories[adapterPosition])
             }
-
         }
     }
 
@@ -45,9 +45,7 @@ class CategoryTournamentAdapter (
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.category_item, parent, false)
         return TournamentHolder(view, listener)
-
     }
-
 
     override fun getItemCount(): Int = mListCategories.size
 
@@ -57,6 +55,10 @@ class CategoryTournamentAdapter (
     }
 
     override fun onBindViewHolder(holder: TournamentHolder, position: Int) {
-        holder.bind(mListCategories[position].name, mListCategories[position].description, mListCategories)
+        holder.bind(
+            mListCategories[position].name,
+            mListCategories[position].description,
+            mListCategories
+        )
     }
 }

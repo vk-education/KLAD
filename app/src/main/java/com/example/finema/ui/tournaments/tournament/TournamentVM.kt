@@ -15,23 +15,23 @@ import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.util.APP_ACTIVITY
 import com.example.finema.util.AppPreference
 import com.example.finema.util.Coroutines
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlin.math.floor
 import kotlin.math.log
 import kotlin.math.pow
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class TournamentVM(
     private val apiRepository: MoviesRepository,
-    private val DBRepository: RoomRepository,
+    private val dbRepository: RoomRepository,
     private val fbRepository: FirebaseRepository = FirebaseRepository()
 ) : BaseViewModel() {
 
-    val favouriteMovies: LiveData<List<MovieModel>> = DBRepository.allFavourites
+    val favouriteMovies: LiveData<List<MovieModel>> = dbRepository.allFavourites
 
     var twoFilms = MutableLiveData<List<Movie>>()
-    var loopNum: Int = 1
-    var flag: Int = 0
+    var loopNum: Int = ONE_LOOP
+    var flag: Int = FLAG_DEFAULT
     var gotList = MutableLiveData<List<Movie>>()
     var mainList: ArrayList<Movie> = ArrayList()
     var secondList: ArrayList<Movie> = ArrayList()
@@ -39,11 +39,11 @@ class TournamentVM(
     private lateinit var el1: Movie
     private lateinit var el2: Movie
 
-    var roundCount = 1
+    var roundCount = ROUND_COUNT_START
 
-    var numFilms = 8
+    var numFilms = PRESSED_EIGHT_MOVIES
 
-    var title = ""
+    var title = TITLE_DEFAULT
 
     init {
         start()
@@ -54,23 +54,26 @@ class TournamentVM(
         genreOrCategory()
         setLoopNum()
         getMovies {
-            gotList.observe(APP_ACTIVITY, {
-                numFilms = checkLessNum(it,numFilms)
-                mainList.addAll(it)
-                flag += 1
+            gotList.observe(
+                APP_ACTIVITY,
+                {
+                    numFilms = checkLessNum(it, numFilms)
+                    mainList.addAll(it)
+                    flag += 1
 
-                if (flag == loopNum) {
-                    mainList = mainList.take(numFilms) as ArrayList<Movie>
-                    updateCards()
+                    if (flag == loopNum) {
+                        mainList = mainList.take(numFilms) as ArrayList<Movie>
+                        updateCards()
+                    }
                 }
-            })
+            )
         }
     }
 
     private fun getMovies(onSuccess: () -> Unit) {
         when (AppPreference.getTournamentType()) {
             "GENRE" -> {
-                val genre = AppPreference.getGenreId() ?: "12"
+                val genre = AppPreference.getGenreId() ?: GENRE_ID_DEFAULT
                 for (page in 1..loopNum) {
                     job = Coroutines.ioThenMan(
                         { apiRepository.getMoviesWithGenre(page, genre) },
@@ -79,18 +82,17 @@ class TournamentVM(
                 }
             }
             "CATEGORY" -> {
-                val categoryLink = AppPreference.getCategoryLink() ?: 1
+                val categoryLink = AppPreference.getCategoryLink()
                 for (page in 1..loopNum) {
-                job = Coroutines.ioThenMan(
-                    { apiRepository.getMovieFromList(categoryLink) },
-                    { gotList.value = it?.movies }
-                )
+                    job = Coroutines.ioThenMan(
+                        { apiRepository.getMovieFromList(categoryLink) },
+                        { gotList.value = it?.movies }
+                    )
                 }
             }
         }
         onSuccess()
     }
-
 
     fun itemClick(position: Int) {
         when (position) {
@@ -148,7 +150,6 @@ class TournamentVM(
         twoFilms.value = listOf(el1, el2)
     }
 
-
     fun addToFav(position: Int) {
         when (position) {
             0 -> {
@@ -161,14 +162,14 @@ class TournamentVM(
     }
 
     private fun endOfWordGrammar(): String {
-        var string = "фильмов"
+        var string = FILM_DECLENSION
         when (numFilms) {
-            8 -> string = "фильмов"
-            16 -> string = "фильмов"
-            32 -> string = "фильма"
-            64 -> string = "фильма"
-            128 -> string = "фильмов"
-            256 -> string = "фильма"
+            PRESSED_EIGHT_MOVIES -> string = "фильмов"
+            PRESSED_SIXTEEN_MOVIES -> string = "фильмов"
+            PRESSED_THIRTY_TWO_MOVIES -> string = "фильма"
+            PRESSED_SIXTY_FOUR_MOVIES -> string = "фильма"
+            PRESSED_ONE_HUNDRED_AND_TWENTY_EIGHT_MOVIES -> string = "фильмов"
+            PRESSED_TWO_HUNDRED_AND_FIFTY_SIX_MOVIES -> string = "фильма"
         }
         return string
     }
@@ -186,7 +187,6 @@ class TournamentVM(
         }
     }
 
-
     fun removeFromFav(position: Int) {
         when (position) {
             0 -> {
@@ -200,7 +200,7 @@ class TournamentVM(
 
     private fun insert(movie: Movie) {
         viewModelScope.launch(Dispatchers.Main) {
-            DBRepository.insertFavourite(
+            dbRepository.insertFavourite(
                 makeMovieModel(movie)
             ) {
             }
@@ -214,7 +214,7 @@ class TournamentVM(
 
     private fun delete(movie: Movie) {
         viewModelScope.launch(Dispatchers.Main) {
-            DBRepository.deleteFavourite(
+            dbRepository.deleteFavourite(
                 makeMovieModel(movie)
             ) {
             }
@@ -237,20 +237,20 @@ class TournamentVM(
 
     private fun setLoopNum() {
         when (numFilms) {
-            8 or 16 -> {
-                loopNum = 1
+            PRESSED_EIGHT_MOVIES or PRESSED_SIXTEEN_MOVIES -> {
+                loopNum = ONE_LOOP
             }
-            32 -> {
-                loopNum = 2
+            PRESSED_THIRTY_TWO_MOVIES -> {
+                loopNum = TWO_LOOP
             }
-            64 -> {
-                loopNum = 4
+            PRESSED_SIXTY_FOUR_MOVIES -> {
+                loopNum = FOUR_LOOP
             }
-            128 -> {
-                loopNum = 7
+            PRESSED_ONE_HUNDRED_AND_TWENTY_EIGHT_MOVIES -> {
+                loopNum = SEVEN_LOOP
             }
-            256 -> {
-                loopNum = 13
+            PRESSED_TWO_HUNDRED_AND_FIFTY_SIX_MOVIES -> {
+                loopNum = THIRTEEN_LOOP
             }
         }
     }
@@ -278,5 +278,21 @@ class TournamentVM(
 
     companion object {
         const val POSTER_BASE_URL = "https://image.tmdb.org/t/p/w342"
+        const val PRESSED_EIGHT_MOVIES = 8
+        const val PRESSED_SIXTEEN_MOVIES = 16
+        const val PRESSED_THIRTY_TWO_MOVIES = 32
+        const val PRESSED_SIXTY_FOUR_MOVIES = 64
+        const val PRESSED_ONE_HUNDRED_AND_TWENTY_EIGHT_MOVIES = 128
+        const val PRESSED_TWO_HUNDRED_AND_FIFTY_SIX_MOVIES = 256
+        const val ROUND_COUNT_START = 1
+        const val ONE_LOOP = 1
+        const val TWO_LOOP = 2
+        const val FOUR_LOOP = 4
+        const val SEVEN_LOOP = 7
+        const val THIRTEEN_LOOP = 13
+        const val FLAG_DEFAULT = 0
+        const val TITLE_DEFAULT = ""
+        const val GENRE_ID_DEFAULT = "12"
+        const val FILM_DECLENSION = "фильмов"
     }
 }

@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finema.R
 import com.example.finema.models.databaseModels.MovieModel
-import com.example.finema.ui.movieDetail.MovieDetailsFragment
 import com.example.finema.util.downloadAndSetImageUrl
 
 class FavouriteAdapter(

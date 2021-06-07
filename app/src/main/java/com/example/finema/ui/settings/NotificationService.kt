@@ -14,13 +14,12 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.example.finema.MainActivity
 
-
 class NotificationService(context: Context, workerParams: WorkerParameters) :
     Worker(context, workerParams) {
 
     override fun doWork(): Result {
-        sendNotification();
-        return Result.success();
+        sendNotification()
+        return Result.success()
     }
 
     private fun sendNotification() {

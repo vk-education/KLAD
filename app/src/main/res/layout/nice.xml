@@ -14,7 +14,8 @@
                 android:id="@+id/cons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="8dp">
+                android:paddingBottom="8dp"
+                android:background="@drawable/background_selector">
 
             <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv_name"

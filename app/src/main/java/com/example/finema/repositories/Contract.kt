@@ -12,14 +12,16 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class Contract : ActivityResultContract<Unit, Unit>() {
 
     private val _name = MutableStateFlow("")
     val name: StateFlow<String> = _name.asStateFlow()
 
-    private val mAuth  = FirebaseAuth.getInstance()
+    private val mAuth = FirebaseAuth.getInstance()
     private lateinit var googleSignInClient: GoogleSignInClient
 
     private val gso: GoogleSignInOptions = GoogleSignInOptions
@@ -33,7 +35,7 @@ class Contract : ActivityResultContract<Unit, Unit>() {
     }
 
     fun signOut() {
-        if(this::googleSignInClient.isInitialized) {
+        if (this::googleSignInClient.isInitialized) {
             googleSignInClient.signOut()
         }
     }
@@ -41,17 +43,17 @@ class Contract : ActivityResultContract<Unit, Unit>() {
     override fun createIntent(context: Context, input: Unit): Intent {
         googleSignInClient = GoogleSignIn.getClient(context, gso)
 
-        return  googleSignInClient.signInIntent
+        return googleSignInClient.signInIntent
     }
 
-    override fun parseResult(resultCode: Int, intent: Intent?){
+    override fun parseResult(resultCode: Int, intent: Intent?) {
         activityResult(intent)
     }
 
     private fun activityResult(data: Intent?) {
         val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
         val exception = task.exception
-        if(task.isSuccessful) {
+        if (task.isSuccessful) {
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 val account: GoogleSignInAccount? = task.getResult(ApiException::class.java)
@@ -79,7 +81,11 @@ class Contract : ActivityResultContract<Unit, Unit>() {
                     Log.d("WOW", user.displayName!!)
                 } else {
                     // If sign in fails, display a message to the user.
-                    Log.w("firebaseAuthWithGoogle", "signInWithCredential:failure", task.exception)
+                    Log.w(
+                        "firebaseAuthWithGoogle",
+                        "signInWithCredential:failure",
+                        task.exception
+                    )
                 }
             }
     }

@@ -23,4 +23,4 @@ data class TopModel(
     @ColumnInfo
     val companies: String? = "",
 
-    ) : Serializable
+) : Serializable
