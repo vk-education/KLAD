@@ -14,7 +14,7 @@ fun ImageView.downloadAndSetImageUrl(url: String?) {
     Glide
         .with(this)
         .load(url)
-        .centerCrop()
+        .centerInside()
         .override(PICTURE_MEASURES, PICTURE_MEASURES)
         .placeholder(R.drawable.movies_24)
         .into(this)
@@ -24,8 +24,7 @@ fun ImageView.downloadAndSetImageUri(uri: Uri?) {
     Glide
         .with(this)
         .load(uri)
-        .centerCrop()
-        .override(PICTURE_MEASURES, PICTURE_MEASURES)
+        .centerInside()
         .placeholder(R.drawable.movies_24)
         .into(this)
 }

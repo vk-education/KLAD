@@ -3,39 +3,103 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center">
+        >
     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/app_margin"
             android:background="#FFFFFF"
-            android:textColor="@color/main_500"
-            android:textSize="30sp"
+            android:textColor="@color/black"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:text="Поиск Фильма"
+            android:gravity="left"/>
+    <Button
+            android:id="@+id/search_movie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corner_button"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:layout_margin="@dimen/app_margin"
+            android:text="Найти Фильм!" />
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/app_margin"
+            android:background="#FFFFFF"
+            android:textColor="@color/black"
+            android:textSize="23sp"
             android:textStyle="bold"
             android:textAllCaps="false"
             android:text="Выберите Турнир"
-            android:gravity="center"/>
-
-
-    <Button
-            android:id="@+id/genre"
-            android:layout_width="match_parent"
-            android:layout_margin="@dimen/app_margin"
-            android:layout_height="wrap_content"
-            android:background="@drawable/custom_button"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textAllCaps="false"
-            android:text="По жанрам" />
-
-    <Button
-            android:id="@+id/category"
+            android:gravity="left"/>
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_button"
-            android:textColor="#FFFFFF"
-            android:textAllCaps="false"
-            android:textSize="20sp"
+            android:orientation="horizontal"
+            android:gravity="center">
+        <Button
+                android:id="@+id/genre"
+                android:layout_width="150dp"
+                android:layout_margin="@dimen/app_margin"
+                android:layout_height="150dp"
+                android:background="@drawable/corner_button"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textAllCaps="false"
+                android:text="Жанры" />
+
+        <Button
+                android:id="@+id/category"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/corner_button"
+                android:textColor="#FFFFFF"
+                android:textAllCaps="false"
+                android:textSize="15sp"
+                android:layout_margin="@dimen/app_margin"
+                android:text="Категории" />
+    </LinearLayout>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="@dimen/app_margin"
-            android:text="По категориям" />
+            android:background="#FFFFFF"
+            android:textColor="@color/black"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:text="Больше / Меньше"
+            android:gravity="left"/>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+        <Button
+                android:id="@+id/popularity"
+                android:layout_width="150dp"
+                android:layout_margin="@dimen/app_margin"
+                android:layout_height="150dp"
+                android:background="@drawable/corner_button"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textAllCaps="false"
+                android:text="По Популярности" />
+
+        <Button
+                android:id="@+id/rating"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/corner_button"
+                android:textColor="#FFFFFF"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:layout_margin="@dimen/app_margin"
+                android:text="По Рейтингу" />
+    </LinearLayout>
+
 </LinearLayout>

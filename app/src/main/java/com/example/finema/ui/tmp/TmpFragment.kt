@@ -39,5 +39,18 @@ class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
             findNavController().navigate(R.id.action_fragment_tmp_to_fragment_others)
             AppPreference.setTournamentType("CATEGORY")
         }
+
+        binding.searchMovie.setOnClickListener {
+            findNavController().navigate(R.id.action_fragmentTmp_to_chooseFavouriteFragment)
+        }
+
+        binding.popularity.setOnClickListener {
+            findNavController().navigate(R.id.action_fragmentTmp_to_fragmentHigherLower)
+        }
+
+        binding.rating.setOnClickListener {
+            findNavController().navigate(R.id.action_fragmentTmp_to_higherLowerRatingFragment)
+        }
+
     }
 }
