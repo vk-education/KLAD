@@ -11,9 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
-import androidx.work.ExistingWorkPolicy
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
+import androidx.work.*
 import com.example.finema.databinding.ActivityMainBinding
 import com.example.finema.ui.settings.NotificationService
 import com.example.finema.util.APP_ACTIVITY
@@ -26,10 +24,15 @@ import java.util.concurrent.TimeUnit
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-    private var simpleNotification = OneTimeWorkRequestBuilder<NotificationService>()
-        .addTag("tag")
-        .setInitialDelay(NOTIFICATION_DURATION, TimeUnit.SECONDS)
-        .build()
+    private var simpleNotification =
+        PeriodicWorkRequestBuilder<NotificationService>(
+            NOTIFICATION_REPEAT,
+            TimeUnit.HOURS,
+            NOTIFICATION_FLEX,
+            TimeUnit.HOURS
+        )
+            .addTag("tag")
+            .build()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
@@ -96,8 +99,11 @@ class MainActivity : AppCompatActivity() {
 
         if (notifications) {
             WorkManager.getInstance(this)
-                .beginUniqueWork("notification", ExistingWorkPolicy.REPLACE, simpleNotification)
-                .enqueue()
+                .enqueueUniquePeriodicWork(
+                    "notification",
+                    ExistingPeriodicWorkPolicy.REPLACE,
+                    simpleNotification
+                )
         }
     }
 
@@ -201,7 +207,8 @@ class MainActivity : AppCompatActivity() {
         )
         private const val DEFAULT_URI =
             "android.resource://com.example.finema/drawable/default_profile_avatar"
-        private const val NOTIFICATION_DURATION = 5L
+        private const val NOTIFICATION_REPEAT = 5L
+        private const val NOTIFICATION_FLEX = 2L
         private const val HEADER_VIEW_INDEX = 0
     }
 }
