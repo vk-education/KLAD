@@ -71,11 +71,11 @@ class MovieDetailsViewModel(
         return TopModel(
             movieModel.id,
             movieModel.title,
-            null,
+            movieModel.imageUrl,
             movieModel.about,
-            null,
+            movieModel.genres,
             movieModel.rating,
-            null
+            movieModel.companies
         )
     }
 

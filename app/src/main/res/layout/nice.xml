@@ -30,7 +30,7 @@
                     app:autoSizeMinTextSize="12sp"
                     app:autoSizeMaxTextSize="16sp"
                     app:autoSizeTextType="uniform"
-                    app:layout_constraintBottom_toTopOf="@+id/tv_status"
+                    app:layout_constraintBottom_toTopOf="@+id/imageViewNice"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -38,20 +38,15 @@
                     app:lineHeight="18dp"
                     tools:text="Movie" />
 
-            <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tv_status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginTop="4dp"
-                    android:gravity="center"
-                    android:drawablePadding="4dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+            <ImageView
+                    android:id="@+id/imageViewNice"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_margin="@dimen/app_margin"
+                    android:src="@drawable/movies_24"
                     app:layout_constraintTop_toBottomOf="@+id/tv_name"
-                    app:lineHeight="14dp"
-                    tools:text="" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

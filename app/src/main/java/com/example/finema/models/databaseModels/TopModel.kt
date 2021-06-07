@@ -12,8 +12,8 @@ data class TopModel(
     val id: Long = 0,
     @ColumnInfo
     val title: String = "",
-    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
-    var image: ByteArray? = null,
+    @ColumnInfo
+    val imageUrl: String? = "",
     @ColumnInfo
     val about: String = "",
     @ColumnInfo
@@ -23,4 +23,4 @@ data class TopModel(
     @ColumnInfo
     val companies: String? = "",
 
-) : Serializable
+    ) : Serializable

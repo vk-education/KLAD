@@ -18,8 +18,8 @@ class MoviesRepository(
         api.getGenreList()
     }
 
-    override suspend fun getMoviesWithGenre(page: Int, with_genres: String) = apiRequest {
-        api.getMoviesWithGenre(page, with_genres)
+    override suspend fun getMoviesWithGenre(page: Int, withGenres: String) = apiRequest {
+        api.getMoviesWithGenre(page, withGenres)
     }
 
     override suspend fun getMovieDetails(id: Long) = apiRequest {

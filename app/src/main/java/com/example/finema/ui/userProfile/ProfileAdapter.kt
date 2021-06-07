@@ -3,10 +3,12 @@ package com.example.finema.ui.userProfile
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finema.R
 import com.example.finema.models.databaseModels.TopModel
+import com.example.finema.util.downloadAndSetImageUrl
 
 class ProfileAdapter(
     private val listener: ProfileHolder.Listener
@@ -34,6 +36,7 @@ class ProfileAdapter(
     ) : RecyclerView.ViewHolder(view) {
 
         private val movieName: TextView = view.findViewById(R.id.top_title)
+        private val moviePoster: ImageView = view.findViewById(R.id.posterTop)
 
         interface Listener {
             fun onMovieClicked(movie: TopModel)
@@ -41,9 +44,17 @@ class ProfileAdapter(
 
         fun bind(position: Int, listMovie: List<TopModel>) {
             movieName.text = listMovie[position].title
+            moviePoster.downloadAndSetImageUrl(
+                POSTER_BASE_URL +
+                        listMovie[adapterPosition].imageUrl
+            )
             itemView.setOnClickListener {
                 listener.onMovieClicked(listMovie[adapterPosition])
             }
         }
+    }
+
+    companion object {
+        const val POSTER_BASE_URL = "https://image.tmdb.org/t/p/w342"
     }
 }

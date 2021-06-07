@@ -4,12 +4,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finema.R
 import com.example.finema.models.infinite.MovieDiscoverResult
+import com.example.finema.util.downloadAndSetImageUrl
 import com.google.android.material.card.MaterialCardView
 
 class MovieAdapter(
@@ -40,7 +42,8 @@ class MovieAdapter(
     ) :
         RecyclerView.ViewHolder(view) {
         var filmTitle: TextView? = null
-        var movieTitle: MaterialCardView? = null
+        var movieCard: MaterialCardView? = null
+        var moviePoster: ImageView? = null
 
         interface Listener {
             fun onMovieClicked(index: Int)
@@ -48,14 +51,19 @@ class MovieAdapter(
 
         fun bind(item: MovieDiscoverResult) {
             filmTitle?.text = item.title
-            movieTitle?.setOnClickListener {
+            moviePoster?.downloadAndSetImageUrl(
+                POSTER_BASE_URL +
+                    item.posterPath
+            )
+            movieCard?.setOnClickListener {
                 listener.onMovieClicked(item.id)
             }
         }
 
         init {
             filmTitle = view.findViewById(R.id.tv_name)
-            movieTitle = view.findViewById(R.id.movie_title)
+            movieCard = view.findViewById(R.id.movie_title)
+            moviePoster = view.findViewById(R.id.imageViewNice)
         }
     }
 
@@ -69,4 +77,9 @@ class MovieAdapter(
         ) =
             oldItem == newItem
     }
+
+    companion object {
+        const val POSTER_BASE_URL = "https://image.tmdb.org/t/p/w342"
+    }
+
 }

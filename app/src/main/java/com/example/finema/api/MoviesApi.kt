@@ -36,7 +36,7 @@ interface MoviesApi {
         @Query("withGenres") withGenres: String
     ): Response<MovieResponse>
 
-    @GET("list/{list_id}?$API_AND_LANGUAGE")
+    @GET("list/{listId}?$API_AND_LANGUAGE")
     suspend fun getMovieFromList(
         @Path("listId") listId: Int
     ): Response<MovieResponseFromList>
