@@ -38,5 +38,8 @@
     <string name="sign_as_google">Авторизация через Google</string>
     <string name="n_points">Очки: %1$d</string>
     <string name="n_round">Раунд %1$d</string>
+    <string name="which_film">Какой фильм сейчас популярнее?</string>
+    <string name="points_zero">Очки: 0</string>
+    <string name="which_rating">У какого фильма выше рейтинг?</string>
 
 </resources>

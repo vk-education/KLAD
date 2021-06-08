@@ -17,8 +17,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:layout_marginTop="16dp"
-                    android:text="Какой фильм сейчас популярнее?"
-                    android:textColor="@android:color/holo_purple"
+                    android:text="@string/which_film"
+                    android:textColor="@color/main_500"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -27,9 +27,9 @@
                     android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Очки: 0"
+                    android:text="@string/points_zero"
                     android:textSize="20sp"
-                    android:textColor="@android:color/holo_purple"
+                    android:textColor="@color/main_500"
                     />
 
             <androidx.cardview.widget.CardView
@@ -55,7 +55,7 @@
                             android:layout_margin="@dimen/app_margin"
                             android:gravity="center"
                             android:lines="1"
-                            android:textColor="@android:color/holo_purple"
+                            android:textColor="@color/main_500"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -113,7 +113,7 @@
                             android:layout_margin="@dimen/app_margin"
                             android:gravity="center"
                             android:lines="1"
-                            android:textColor="@android:color/holo_purple"
+                            android:textColor="@color/main_500"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
