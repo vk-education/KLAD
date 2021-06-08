@@ -12,14 +12,7 @@ import com.example.finema.api.MoviesRepository
 import com.example.finema.models.infinite.MovieDiscoverResult
 import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.util.APP_ACTIVITY
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.*
 
 class ChooseFavouriteViewModel(
     private val repository: MoviesRepository
@@ -48,13 +41,5 @@ class ChooseFavouriteViewModel(
 
     fun setQuery(query: String) {
         _query.tryEmit(query)
-    }
-
-    //TODO Перенести во фрагмент
-    fun goDetailsFragment(filmIdInfo: Long) {
-        val bundle = Bundle()
-        bundle.putSerializable("filmId", filmIdInfo)
-        Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
-            .navigate(R.id.action_chooseFavouriteFragment_to_fragmentFilm, bundle)
     }
 }

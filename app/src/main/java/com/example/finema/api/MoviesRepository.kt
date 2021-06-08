@@ -29,14 +29,4 @@ class MoviesRepository(
     override suspend fun getMovieFromList(listId: Int) = apiRequest {
         api.getMovieFromList(listId)
     }
-
-    override suspend fun getDiscoverMovies(query: String) =
-        Pager(
-            PagingConfig(
-                pageSize = 20,
-                maxSize = 100,
-                enablePlaceholders = false
-            ),
-            pagingSourceFactory = { MoviePagingSource(api, query) }
-        ).flow
 }

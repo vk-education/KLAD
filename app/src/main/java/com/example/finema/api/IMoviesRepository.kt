@@ -17,8 +17,5 @@ interface IMoviesRepository {
 
     suspend fun getMovieDetails(id: Long): MovieDetails
 
-    suspend fun getDiscoverMovies(query: String):
-        Flow<PagingData<MovieDiscoverResult>>
-
     suspend fun getMovieFromList(listId: Int): MovieResponseFromList
 }

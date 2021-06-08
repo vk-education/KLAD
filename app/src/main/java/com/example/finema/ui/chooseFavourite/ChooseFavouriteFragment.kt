@@ -6,9 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.finema.R
 import com.example.finema.databinding.ChooseFavouriteFragmentBinding
 import com.example.finema.ui.base.BaseFragment
+import com.example.finema.util.APP_ACTIVITY
 import com.example.finema.util.hideKeyboard
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.getViewModel
@@ -34,7 +37,7 @@ class ChooseFavouriteFragment :
         viewModel = getViewModel()
         super.onViewCreated(view, savedInstanceState)
 
-        val adapterMovs = MovieAdapter(requireContext(), this)
+        val adapterMovs = MovieAdapter(this)
 
         binding.movs.apply {
             layoutManager = LinearLayoutManager(context)
@@ -53,7 +56,14 @@ class ChooseFavouriteFragment :
     }
 
     override fun onMovieClicked(index: Int) {
-        viewModel.goDetailsFragment(index.toLong())
+        goDetailsFragment(index.toLong())
         binding.query.hideKeyboard()
+    }
+
+    fun goDetailsFragment(filmIdInfo: Long) {
+        val bundle = Bundle()
+        bundle.putSerializable("filmId", filmIdInfo)
+        Navigation.findNavController(requireActivity(), R.id.fragment)
+            .navigate(R.id.action_chooseFavouriteFragment_to_fragmentFilm, bundle)
     }
 }

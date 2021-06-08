@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.finema.R
 import com.example.finema.databinding.ProfileFragmentBinding
 import com.example.finema.models.databaseModels.TopModel
 import com.example.finema.ui.base.BaseFragment
+import com.example.finema.util.APP_ACTIVITY
 import com.example.finema.util.downloadAndSetImageUri
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
@@ -42,9 +45,8 @@ class ProfileFragment :
             {
                 if (it != null) {
                     binding.topRecycler.visibility = View.VISIBLE
+                    profileAdapter.movies = it
                 }
-
-                profileAdapter.movies = it
 
                 binding.topRecycler.layoutManager = LinearLayoutManager(context)
                 binding.topRecycler.adapter = profileAdapter
@@ -53,6 +55,15 @@ class ProfileFragment :
     }
 
     override fun onMovieClicked(movie: TopModel) {
-        viewModel.goDetailsFragment(movie.id)
+        goDetailsFragment(movie.id)
     }
+
+
+    private fun goDetailsFragment(filmIdInfo: Long) {
+        val bundle = Bundle()
+        bundle.putSerializable("filmId", filmIdInfo)
+        Navigation.findNavController(requireActivity(), R.id.fragment)
+            .navigate(R.id.action_fragment_profile_to_fragment_film, bundle)
+    }
+
 }

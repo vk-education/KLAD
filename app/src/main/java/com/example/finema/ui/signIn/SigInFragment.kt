@@ -27,7 +27,6 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
     private lateinit var header: TextView
     private lateinit var avatar: ImageView
 
-    @InternalCoroutinesApi
     private lateinit var customContract: ActivityResultLauncher<Unit>
 
     override fun onCreateView(
@@ -43,7 +42,7 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
     @InternalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = getViewModel()
-        blockBack()
+        finishActivityOnClickBack()
         initCustomContract()
 
         super.onViewCreated(view, savedInstanceState)
@@ -97,20 +96,13 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
     }
 
-    //TODO Исправить
-    private fun blockBack() {
+    private fun finishActivityOnClickBack() {
         binding.root.isFocusableInTouchMode = true
         binding.root.requestFocus()
-        binding.root.setOnKeyListener(
-            View.OnKeyListener { _, keyCode, event ->
-                if (event.action === KeyEvent.ACTION_DOWN) {
-                    if (keyCode == KeyEvent.KEYCODE_BACK) {
-                        return@OnKeyListener true
-                    }
-                }
-                false
-            }
-        )
+        binding.root.setOnKeyListener { _, _, _ ->
+            activity?.finish()
+            false
+        }
     }
 
     companion object {

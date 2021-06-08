@@ -15,20 +15,16 @@ import com.example.finema.util.downloadAndSetImageUrl
 import com.google.android.material.card.MaterialCardView
 
 class MovieAdapter(
-    context: Context,
     private val listener: CharacterViewHolder.Listener,
 ) :
     PagingDataAdapter<MovieDiscoverResult, MovieAdapter.CharacterViewHolder>(CharacterComparator) {
-
-    //TODO Убрать использование контекста
-    private val layoutInflater: LayoutInflater = LayoutInflater.from(context)
-
+    
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): CharacterViewHolder {
         return CharacterViewHolder(
-            layoutInflater.inflate(R.layout.nice, parent, false),
+            LayoutInflater.from(parent.context).inflate(R.layout.nice, parent, false),
             listener
         )
     }

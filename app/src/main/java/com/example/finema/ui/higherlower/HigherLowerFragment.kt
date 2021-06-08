@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import com.example.finema.R
 import com.example.finema.databinding.HigherLowerFragmentBinding
@@ -46,10 +47,12 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
                 setImage(binding.img1, movieList, viewModel.img1)
                 setImage(binding.img2, movieList, viewModel.img2)
 
-                setBookmarkClickListeners(binding.bookmark1, 0)
-                setBookmarkClickListeners(binding.bookmark2, 1)
+                setBookmarkClickListeners(binding.bookmark1, binding.txtFilm1, 0)
+                setBookmarkClickListeners(binding.bookmark2, binding.txtFilm2,1)
 
-                fillInBookmarks()
+                fillInBookmarks(binding.txtFilm1, binding.bookmark1)
+                fillInBookmarks(binding.txtFilm2, binding.bookmark2)
+
             }
         )
     }
@@ -71,69 +74,57 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
         }
     }
 
-    private fun setBookmarkClickListeners(bookmark: ImageButton, position: Int) {
+    private fun setBookmarkClickListeners(bookmark: ImageButton, title: TextView, position: Int) {
         bookmark.setOnClickListener {
-            setBookmarks(bookmark, position)
+            animateBookmark(bookmark)
+            setBookmarks(title, position)
         }
     }
 
-    private fun fillInBookmarks() {
+    private fun fillInBookmarks(txtview: TextView, bookmark: ImageButton) {
         //TODO Удалить
-        CoroutineScope(Dispatchers.Main).launch {
-            viewModel.favouriteMovies.observe(
-                viewLifecycleOwner,
-                {
-                    for (i in it) {
-                        if (binding.txtFilm1.text == i.title) {
-                            binding.bookmark1.setImageResource(
-                                R.drawable.bookmark_24
-                            )
-                            binding.bookmark1.tag = "bruh"
-                        }
-                        if (binding.txtFilm2.text == i.title) {
-                            binding.bookmark2.setImageResource(
-                                R.drawable.bookmark_24
-                            )
-                            binding.bookmark2.tag = "bruh"
-                        }
+        viewModel.favouriteMovies.observe(
+            viewLifecycleOwner,
+            {
+                var counter = 0
+                for (i in it) {
+                    counter += 1
+                    if (txtview.text == i.title) {
+                        bookmark.setImageResource(
+                            R.drawable.bookmark_24
+                        )
+                        break
+                    }
+                    if(counter == it.size) {
+                        bookmark.setImageResource(
+                            R.drawable.bookmark_border_24
+                        )
                     }
                 }
-            )
-        }
+            }
+        )
     }
 
     private fun resetBookmarks() {
         binding.bookmark1.setImageResource(R.drawable.bookmark_border_24)
         binding.bookmark2.setImageResource(R.drawable.bookmark_border_24)
-        binding.bookmark1.tag = ""
-        binding.bookmark2.tag = ""
     }
 
-    private fun setBookmarks(bookmark: ImageButton, position: Int) {
-        if (bookmark.tag == "bruh") {
-            animateBookmark(bookmark)
-
-            Toast.makeText(
-                context,
-                resources.getString(R.string.delete_from_favourite),
-                Toast.LENGTH_SHORT
-            ).show()
-            bookmark.setImageResource(R.drawable.bookmark_border_24)
-            viewModel.removeFromFav(position)
-
-            bookmark.tag = "b"
-        } else {
-            animateBookmark(bookmark)
-
-            Toast.makeText(
-                context,
-                resources.getString(R.string.add_to_favourite),
-                Toast.LENGTH_SHORT
-            ).show()
-            bookmark.setImageResource(R.drawable.bookmark_24)
-            viewModel.addToFav(position)
-
-            bookmark.tag = "bruh"
+    private fun setBookmarks(title: TextView, position: Int) {
+        viewModel.favouriteMovies.value.let {
+            var counter = 0
+            if (it != null) {
+                for (i in it) {
+                    counter += 1
+                    if(title.text == i.title) {
+                        viewModel.removeFromFav(position)
+                        break
+                    }
+                    if(it.size == counter) {
+                        viewModel.addToFav(position)
+                    }
+                }
+            }
         }
     }
 

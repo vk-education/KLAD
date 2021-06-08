@@ -18,13 +18,6 @@ class ProfileViewModel(
     private val mAuth = FirebaseAuth.getInstance()
     val topMovies: LiveData<List<TopModel>> = dbRepository.allTop
 
-    fun goDetailsFragment(filmIdInfo: Long) {
-        val bundle = Bundle()
-        bundle.putSerializable("filmId", filmIdInfo)
-        Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
-            .navigate(R.id.action_fragment_profile_to_fragment_film, bundle)
-    }
-
     fun getName(): String? {
         return if (mAuth.currentUser?.displayName == null) {
             "Гость"

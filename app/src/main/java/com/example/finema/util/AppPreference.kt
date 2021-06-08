@@ -9,7 +9,6 @@ import com.google.firebase.auth.FirebaseAuth
 object AppPreference {
 
     private const val INIT_USER = "initUser"
-    private const val INIT_GENRES = "initGenres"
     private const val NAME_PREF = "preference"
     private const val NUM_FILMS = "numFilms"
     private const val TOURNAMENT_TYPE = "tournamentType"
@@ -17,7 +16,6 @@ object AppPreference {
     private const val GENRE_NAME = "genre_name"
     private const val CATEGORY_LINK = "category_link"
     private const val CATEGORY_NAME = "category_name"
-    private const val MOVIE_ONE = "movieOne"
     private const val FRAGMENT = "fragment"
     private const val FIRST_SIGN_IN = "firstSignIn"
     private const val GUEST_OR_AUTH = "guestOrAuth"
@@ -107,16 +105,6 @@ object AppPreference {
         mPreferences.edit()
             .putString(CATEGORY_NAME, categoryName)
             .apply()
-    }
-
-    fun setMovieAddedToFav(movie: String) {
-        mPreferences.edit()
-            .putString(MOVIE_ONE, movie)
-            .apply()
-    }
-
-    fun getMovieAddedToFav(): String? {
-        return mPreferences.getString(MOVIE_ONE, DEFAULT_NULL_VAL)
     }
 
     fun setFragment(name: String) {

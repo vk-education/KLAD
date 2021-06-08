@@ -118,11 +118,8 @@ class HigherLowerViewModel(
         viewModelScope.launch(Dispatchers.Main) {
             dbRepository.insertFavourite(
                 makeMovieModel(movie)
-            ) {
-            }
-        }
+            ) {}
         if (AppPreference.getGuestOrAuth() == "AUTH") {
-            viewModelScope.launch(Dispatchers.Main) {
                 fbRepository.insertFirebaseFavouriteFilm(makeMovieModel(movie))
             }
         }
@@ -132,11 +129,8 @@ class HigherLowerViewModel(
         viewModelScope.launch(Dispatchers.Main) {
             dbRepository.deleteFavourite(
                 makeMovieModel(movie)
-            ) {
-            }
-        }
-        if (AppPreference.getGuestOrAuth() == "AUTH") {
-            viewModelScope.launch(Dispatchers.Main) {
+            ) {}
+            if (AppPreference.getGuestOrAuth() == "AUTH") {
                 fbRepository.deleteFirebaseFavouriteFilm(makeMovieModel(movie))
             }
         }
