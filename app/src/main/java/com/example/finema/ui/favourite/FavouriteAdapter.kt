@@ -34,29 +34,22 @@ class FavouriteAdapter(
 
     fun update(movies: List<MovieModel>) {
         this.movies = movies
+        notifyDataSetChanged()
     }
 
     class MovieViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        //TODO Поправить
-        var imageMovie: ImageView? = null
-        var filmTitle: TextView? = null
-        var rating: TextView? = null
-        var genre: TextView? = null
-
-        init {
-            imageMovie = view.findViewById(R.id.imageMovie) as ImageView
-            filmTitle = view.findViewById(R.id.filmTitle)
-            rating = view.findViewById(R.id.rating)
-            genre = view.findViewById(R.id.genre)
-        }
+        val imageMovie: ImageView = view.findViewById(R.id.imageMovie) as ImageView
+        val filmTitle: TextView = view.findViewById(R.id.filmTitle)
+        val rating: TextView = view.findViewById(R.id.rating)
+        val genre: TextView = view.findViewById(R.id.genre)
 
         fun bind(movie: MovieModel, navigateToMovie: (Long) -> Unit) = itemView.apply {
-            imageMovie?.downloadAndSetImageUrl(
+            imageMovie.downloadAndSetImageUrl(
                 movie.imageUrl
             )
-            filmTitle?.text = movie.title
-            rating?.text = movie.rating
-            genre?.text = movie.genres
+            filmTitle.text = movie.title
+            rating.text = movie.rating
+            genre.text = movie.genres
 
             setOnClickListener { navigateToMovie(movie.id) }
         }
