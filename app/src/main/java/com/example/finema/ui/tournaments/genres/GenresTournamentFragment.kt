@@ -11,7 +11,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finema.R
 import com.example.finema.databinding.FragmentTournamentGenresBinding
-import com.example.finema.models.GenreRequest.GenreList
+import com.example.finema.models.genreRequest.GenreList
 import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.APP_ACTIVITY

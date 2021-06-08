@@ -1,12 +1,10 @@
 package com.example.finema.api
 
-import com.example.finema.models.GenreRequest.GenreList
+import com.example.finema.models.genreRequest.GenreList
 import com.example.finema.models.infinite.MovieDiscover
 import com.example.finema.models.movieResponse.MovieDetails
 import com.example.finema.models.movieResponse.MovieResponse
 import com.example.finema.models.movieResponse.MovieResponseFromList
-import com.example.finema.util.GENRE_LIST
-import com.example.finema.util.TOP_RATED_LIST
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

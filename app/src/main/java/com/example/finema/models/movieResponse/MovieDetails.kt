@@ -1,6 +1,6 @@
 package com.example.finema.models.movieResponse
 
-import com.example.finema.models.GenreRequest.Genre
+import com.example.finema.models.genreRequest.Genre
 import com.google.gson.annotations.SerializedName
 
 data class MovieDetails(

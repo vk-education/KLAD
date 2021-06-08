@@ -3,7 +3,7 @@ package com.example.finema.repositories
 import java.io.IOException
 import retrofit2.Response
 
-abstract class SafeApiRequest {
+interface SafeApiRequest {
 
     suspend fun <T : Any> apiRequest(call: suspend () -> Response<T>): T {
         val response = call.invoke()

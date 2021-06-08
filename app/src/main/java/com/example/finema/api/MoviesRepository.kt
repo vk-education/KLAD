@@ -26,8 +26,8 @@ class MoviesRepository(
         api.getMovieDetails(id, Locale.getDefault().toString().replace('_', '-'))
     }
 
-    override suspend fun getMovieFromList(list_id: Int) = apiRequest {
-        api.getMovieFromList(list_id)
+    override suspend fun getMovieFromList(listId: Int) = apiRequest {
+        api.getMovieFromList(listId)
     }
 
     override suspend fun getDiscoverMovies(query: String) =

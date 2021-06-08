@@ -13,7 +13,7 @@ class MoviePagingSource(
 
     override suspend fun load(params: LoadParams<Int>):
         LoadResult<Int, MovieDiscoverResult> {
-            try {
+            return try {
                 val pageNumber = params.key ?: INITIAL_PAGE_NUMBER
                 val response = api.everything(pageNumber, query)
 
@@ -21,14 +21,14 @@ class MoviePagingSource(
                     val movies = response.body()!!.results
                     val nextPageNumber = if (movies.isEmpty()) null else pageNumber + 1
                     val prevPageNumber = if (pageNumber > 1) pageNumber - 1 else null
-                    return LoadResult.Page(movies, prevPageNumber, nextPageNumber)
+                    LoadResult.Page(movies, prevPageNumber, nextPageNumber)
                 } else {
-                    return LoadResult.Error(HttpException(response))
+                    LoadResult.Error(HttpException(response))
                 }
             } catch (e: HttpException) {
-                return LoadResult.Error(e)
+                LoadResult.Error(e)
             } catch (e: Exception) {
-                return LoadResult.Error(e)
+                LoadResult.Error(e)
             }
         }
 
