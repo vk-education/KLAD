@@ -22,5 +22,4 @@ data class TopModel(
     val rating: String = "",
     @ColumnInfo
     val companies: String? = "",
-
-    ) : Serializable
+) : Serializable

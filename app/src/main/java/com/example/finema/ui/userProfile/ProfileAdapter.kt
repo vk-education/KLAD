@@ -45,8 +45,7 @@ class ProfileAdapter(
         fun bind(position: Int, listMovie: List<TopModel>) {
             movieName.text = listMovie[position].title
             moviePoster.downloadAndSetImageUrl(
-                POSTER_BASE_URL +
-                        listMovie[adapterPosition].imageUrl
+                POSTER_BASE_URL + listMovie[adapterPosition].imageUrl
             )
             itemView.setOnClickListener {
                 listener.onMovieClicked(listMovie[adapterPosition])

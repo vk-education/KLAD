@@ -52,8 +52,7 @@ class MovieAdapter(
         fun bind(item: MovieDiscoverResult) {
             filmTitle?.text = item.title
             moviePoster?.downloadAndSetImageUrl(
-                POSTER_BASE_URL +
-                    item.posterPath
+                POSTER_BASE_URL + item.posterPath
             )
             movieCard?.setOnClickListener {
                 listener.onMovieClicked(item.id)
@@ -81,5 +80,4 @@ class MovieAdapter(
     companion object {
         const val POSTER_BASE_URL = "https://image.tmdb.org/t/p/w342"
     }
-
 }

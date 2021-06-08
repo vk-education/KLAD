@@ -51,6 +51,5 @@ class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
         binding.rating.setOnClickListener {
             findNavController().navigate(R.id.action_fragmentTmp_to_higherLowerRatingFragment)
         }
-
     }
 }
