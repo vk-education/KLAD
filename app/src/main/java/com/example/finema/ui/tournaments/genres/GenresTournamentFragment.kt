@@ -66,8 +66,6 @@ class GenresTournamentFragment :
     }
 
     private fun dialogBinding(genreId: String, genreName: String) {
-        // TODO Изменить на фрагмент
-        // TODO Заменить на нормальный контекст
         val dialog = Dialog(requireContext())
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation

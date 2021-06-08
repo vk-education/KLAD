@@ -78,6 +78,7 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
     }
 
     private fun fillInBookmarks() {
+        //TODO Удалить
         CoroutineScope(Dispatchers.Main).launch {
             viewModel.favouriteMovies.observe(
                 viewLifecycleOwner,

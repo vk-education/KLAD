@@ -37,6 +37,7 @@ class FavouriteAdapter(
     }
 
     class MovieViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        //TODO Поправить
         var imageMovie: ImageView? = null
         var filmTitle: TextView? = null
         var rating: TextView? = null

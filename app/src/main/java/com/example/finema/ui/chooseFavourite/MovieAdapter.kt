@@ -20,6 +20,7 @@ class MovieAdapter(
 ) :
     PagingDataAdapter<MovieDiscoverResult, MovieAdapter.CharacterViewHolder>(CharacterComparator) {
 
+    //TODO Убрать использование контекста
     private val layoutInflater: LayoutInflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(

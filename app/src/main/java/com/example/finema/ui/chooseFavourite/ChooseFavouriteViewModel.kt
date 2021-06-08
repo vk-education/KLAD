@@ -30,8 +30,9 @@ class ChooseFavouriteViewModel(
 
     val movies: Flow<PagingData<MovieDiscoverResult>> = query
         .map(::newPager)
+            //TODO Попробовать с map
         .flatMapLatest { pager -> pager.flow.cachedIn(viewModelScope) }
-        .stateIn(viewModelScope, SharingStarted.Lazily, PagingData.empty())
+        .stateIn(viewModelScope, SharingStarted.Lazily, PagingData.empty()) //TODO ??????
 
     private fun newPager(query: String): Pager<Int, MovieDiscoverResult> {
         return Pager(
@@ -49,6 +50,7 @@ class ChooseFavouriteViewModel(
         _query.tryEmit(query)
     }
 
+    //TODO Перенести во фрагмент
     fun goDetailsFragment(filmIdInfo: Long) {
         val bundle = Bundle()
         bundle.putSerializable("filmId", filmIdInfo)

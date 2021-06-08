@@ -24,7 +24,6 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
 
-    // TODO убрать, есть биндинг
     private lateinit var header: TextView
     private lateinit var avatar: ImageView
 
@@ -48,7 +47,6 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         initCustomContract()
 
         super.onViewCreated(view, savedInstanceState)
-        // TODO вынести во Repository, но только после того как будет DI (dagger/koin)
 
         header = requireActivity().findViewById<NavigationView>(R.id.nav_view)
             .getHeaderView(0).findViewById(R.id.nickProfile)
@@ -72,8 +70,6 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         }
     }
 
-    // TODO репозиторий по нажатию на кнопку возвращает интент, через VM, который и надо здесь
-    // запускать
     @InternalCoroutinesApi
     private fun signIn() {
         customContract.launch(Unit)
@@ -101,6 +97,7 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)
     }
 
+    //TODO Исправить
     private fun blockBack() {
         binding.root.isFocusableInTouchMode = true
         binding.root.requestFocus()

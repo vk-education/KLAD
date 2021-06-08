@@ -46,6 +46,7 @@ class FavouriteFragment : BaseFragment<FavouriteViewModel, FavouriteFragmentBind
         viewModel.favouriteMovies.observe(
             viewLifecycleOwner,
             {
+                //TODO Поправить
                 if (it != null) {
                     binding.searchLoader.visibility = View.INVISIBLE
                     binding.moviesList.visibility = View.VISIBLE
