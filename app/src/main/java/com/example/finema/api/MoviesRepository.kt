@@ -8,7 +8,7 @@ import java.util.Locale
 
 class MoviesRepository(
     val api: MoviesApi
-) : IMoviesRepository, SafeApiRequest() {
+) : IMoviesRepository, SafeApiRequest {
 
     override suspend fun getMovies(page: Int) = apiRequest {
         api.getMovies(page)
