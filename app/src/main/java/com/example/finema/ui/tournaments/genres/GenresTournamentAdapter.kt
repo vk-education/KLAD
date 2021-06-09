@@ -12,10 +12,10 @@ class GenresTournamentAdapter(
     private val listener: TournamentHolder.Listener,
 ) : RecyclerView.Adapter<GenresTournamentAdapter.TournamentHolder>() {
 
-    private var mListGenres = emptyList<GenreModel>()
+    private var listGenres = emptyList<GenreModel>()
 
     fun setList(list: List<GenreModel>) {
-        mListGenres = list
+        listGenres = list
         notifyDataSetChanged()
     }
 
@@ -26,10 +26,10 @@ class GenresTournamentAdapter(
     }
 
     override fun onBindViewHolder(holder: TournamentHolder, position: Int) {
-        holder.bind(mListGenres[position].name, mListGenres)
+        holder.bind(listGenres[position].name, listGenres)
     }
 
-    override fun getItemCount(): Int = mListGenres.size
+    override fun getItemCount(): Int = listGenres.size
 
     class TournamentHolder(
         view: View,

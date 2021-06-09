@@ -3,12 +3,14 @@ package com.example.finema.ui.tournaments.tournament
 import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation.findNavController
 import com.example.finema.R
 import com.example.finema.api.IMoviesRepository
 import com.example.finema.database.DatabaseRepository
 import com.example.finema.database.firebase.IFirebaseRepository
+import com.example.finema.models.databaseModels.CategoryModel
 import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.movieResponse.Movie
 import com.example.finema.repositories.IAppPreference
@@ -37,6 +39,9 @@ class TournamentVM(
     var mainList: ArrayList<Movie> = ArrayList()
     var secondList: ArrayList<Movie> = ArrayList()
 
+    private lateinit var observerList: Observer<List<Movie>>
+
+
     private lateinit var el1: Movie
     private lateinit var el2: Movie
 
@@ -54,20 +59,18 @@ class TournamentVM(
         numFilms = appPreference.getNumOfFilms()
         genreOrCategory()
         setLoopNum()
-        getMovies {
-            gotList.observe(
-                APP_ACTIVITY,
-                {
-                    numFilms = checkLessNum(it, numFilms)
-                    mainList.addAll(it)
-                    flag += 1
+        observerList = Observer {
+            numFilms = checkLessNum(it, numFilms)
+            mainList.addAll(it)
+            flag += 1
 
-                    if (flag == loopNum) {
-                        mainList = mainList.take(numFilms) as ArrayList<Movie>
-                        updateCards()
-                    }
-                }
-            )
+            if (flag == loopNum) {
+                mainList = mainList.take(numFilms) as ArrayList<Movie>
+                updateCards()
+            }
+        }
+        getMovies {
+            gotList.observeForever(observerList)
         }
     }
 
@@ -278,5 +281,10 @@ class TournamentVM(
         const val TITLE_DEFAULT = ""
         const val GENRE_ID_DEFAULT = "12"
         const val FILM_DECLENSION = "фильмов"
+    }
+
+    override fun onCleared() {
+        gotList.removeObserver(observerList)
+        super.onCleared()
     }
 }

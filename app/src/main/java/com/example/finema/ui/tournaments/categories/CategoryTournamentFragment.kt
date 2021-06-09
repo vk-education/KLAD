@@ -19,9 +19,9 @@ class CategoryTournamentFragment :
     BaseFragment<CategoryTournamentVM, FragmentCategoryTournamentBinding>(),
     CategoryTournamentAdapter.TournamentHolder.Listener {
 
-    private lateinit var mRecyclerView: RecyclerView
-    private lateinit var mAdapter: CategoryTournamentAdapter
-    private lateinit var mObserverList: Observer<List<CategoryModel>>
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: CategoryTournamentAdapter
+    private lateinit var observerList: Observer<List<CategoryModel>>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,14 +39,14 @@ class CategoryTournamentFragment :
     }
 
     private fun initialization() {
-        mAdapter = CategoryTournamentAdapter(this)
-        mRecyclerView = binding.categoryRecycler
-        mRecyclerView.adapter = mAdapter
-        mObserverList = Observer {
+        adapter = CategoryTournamentAdapter(this)
+        recyclerView = binding.categoryRecycler
+        recyclerView.adapter = adapter
+        observerList = Observer {
             val list = it
-            mAdapter.setList(list)
+            adapter.setList(list)
         }
-        viewModel.allCategories.observe(requireActivity(), mObserverList)
+        viewModel.allCategories.observe(requireActivity(), observerList)
     }
 
     override fun onMovieClicked(view: View, categoryModel: CategoryModel) {
