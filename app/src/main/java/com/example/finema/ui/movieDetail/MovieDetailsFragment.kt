@@ -67,10 +67,9 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
 
         binding.rating.text = it.voteAverage.toString()
 
-        viewModel.favouriteMovies.value?.takeIf { favourite -> favourite.contains(it.id.toLong()) }
-            .let {
-                binding.favourite.setImageResource(R.drawable.bookmark_24)
-            }
+        if (viewModel.favouriteMovies.value!!.contains(it.id.toLong())) {
+            binding.favourite.setImageResource(R.drawable.bookmark_24)
+        }
 
         movie = MovieModel(
             it.id.toLong(),
