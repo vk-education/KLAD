@@ -46,21 +46,20 @@ class FavouriteFragment : BaseFragment<FavouriteViewModel, FavouriteFragmentBind
         viewModel.favouriteMovies.observe(
             viewLifecycleOwner,
             {
-                //TODO Поправить
-                if (it != null) {
+                it?.let {
                     binding.searchLoader.visibility = View.INVISIBLE
                     binding.moviesList.visibility = View.VISIBLE
                     favouriteAdapter.update(it)
-                }
 
-                if (it.isEmpty()) {
-                    binding.choose.visibility = View.VISIBLE
-                } else {
-                    binding.choose.visibility = View.INVISIBLE
-                }
+                    if (it.isEmpty()) {
+                        binding.choose.visibility = View.VISIBLE
+                    } else {
+                        binding.choose.visibility = View.INVISIBLE
+                    }
 
-                binding.moviesList.layoutManager = flexBox()
-                binding.moviesList.adapter = favouriteAdapter
+                    binding.moviesList.layoutManager = flexBox()
+                    binding.moviesList.adapter = favouriteAdapter
+                }
             }
         )
     }

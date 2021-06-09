@@ -32,7 +32,7 @@
         <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:orientation="vertical"
                 android:padding="8dp"
                 android:layout_marginEnd="8dp"
@@ -50,7 +50,6 @@
                     android:textColor="@color/main_500"
                     android:ellipsize="end"
                     android:maxLines="2"
-
 
                     tools:text="Something" />
 

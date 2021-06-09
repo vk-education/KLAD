@@ -35,7 +35,7 @@
                     android:layout_height="300dp"
                     android:src="@drawable/default_profile_avatar"
                     android:visibility="gone"
-                    android:scaleType="fitXY"
+                    android:scaleType="fitCenter"
 
                     app:layout_collapseMode="parallax" />
 

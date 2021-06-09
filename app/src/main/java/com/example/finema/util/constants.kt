@@ -1,7 +1,6 @@
 package com.example.finema.util
 
 import com.example.finema.MainActivity
-import com.example.finema.database.DatabaseRepository
 import com.google.firebase.database.DatabaseReference
 
 // TODO убрать в классы где нужны

@@ -119,7 +119,7 @@ class HigherLowerViewModel(
             dbRepository.insertFavourite(
                 makeMovieModel(movie)
             ) {}
-        if (AppPreference.getGuestOrAuth() == "AUTH") {
+            if (AppPreference.getGuestOrAuth() == "AUTH") {
                 fbRepository.insertFirebaseFavouriteFilm(makeMovieModel(movie))
             }
         }

@@ -57,12 +57,10 @@ class ProfileFragment :
         goDetailsFragment(movie.id)
     }
 
-
     private fun goDetailsFragment(filmIdInfo: Long) {
         val bundle = Bundle()
         bundle.putSerializable("filmId", filmIdInfo)
         Navigation.findNavController(requireActivity(), R.id.fragment)
             .navigate(R.id.action_fragment_profile_to_fragment_film, bundle)
     }
-
 }
