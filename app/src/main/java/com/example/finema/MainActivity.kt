@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
             NOTIFICATION_FLEX,
             TimeUnit.HOURS
         )
-            .addTag("tag")
+            .addTag("finema")
             .build()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -106,6 +106,8 @@ class MainActivity : AppCompatActivity() {
                     ExistingPeriodicWorkPolicy.REPLACE,
                     simpleNotification
                 )
+        } else {
+            WorkManager.getInstance(this).cancelAllWorkByTag("finema")
         }
     }
 
@@ -209,8 +211,8 @@ class MainActivity : AppCompatActivity() {
         )
         private const val DEFAULT_URI =
             "android.resource://com.example.finema/drawable/default_profile_avatar"
-        private const val NOTIFICATION_REPEAT = 5L
-        private const val NOTIFICATION_FLEX = 2L
+        private const val NOTIFICATION_REPEAT = 12L
+        private const val NOTIFICATION_FLEX = 3L
         private const val HEADER_VIEW_INDEX = 0
     }
 }
