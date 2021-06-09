@@ -1,16 +1,16 @@
 package com.example.finema.ui.tmp
 
 import androidx.lifecycle.viewModelScope
-import com.example.finema.database.firebase.FirebaseRepository
-import com.example.finema.database.room.RoomRepository
+import com.example.finema.database.DatabaseRepository
+import com.example.finema.database.firebase.IFirebaseRepository
 import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.util.APP_ACTIVITY
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class TmpViewModel(
-    private val dbRepository: RoomRepository,
-    private val fbRepository: FirebaseRepository = FirebaseRepository()
+    private val dbRepository: DatabaseRepository,
+    private val fbRepository: IFirebaseRepository
 ) : BaseViewModel() {
 
     private val allMovies = fbRepository.allMovies

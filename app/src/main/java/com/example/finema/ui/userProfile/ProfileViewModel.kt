@@ -1,18 +1,14 @@
 package com.example.finema.ui.userProfile
 
 import android.net.Uri
-import android.os.Bundle
 import androidx.lifecycle.LiveData
-import androidx.navigation.Navigation
-import com.example.finema.R
-import com.example.finema.database.room.RoomRepository
+import com.example.finema.database.DatabaseRepository
 import com.example.finema.models.databaseModels.TopModel
 import com.example.finema.ui.base.BaseViewModel
-import com.example.finema.util.APP_ACTIVITY
 import com.google.firebase.auth.FirebaseAuth
 
 class ProfileViewModel(
-    private val dbRepository: RoomRepository
+    private val dbRepository: DatabaseRepository
 ) : BaseViewModel() {
 
     private val mAuth = FirebaseAuth.getInstance()

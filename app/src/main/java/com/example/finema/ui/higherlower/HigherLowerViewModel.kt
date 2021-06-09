@@ -3,9 +3,9 @@ package com.example.finema.ui.higherlower
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.finema.api.MoviesRepository
-import com.example.finema.database.firebase.FirebaseRepository
-import com.example.finema.database.room.RoomRepository
+import com.example.finema.api.IMoviesRepository
+import com.example.finema.database.DatabaseRepository
+import com.example.finema.database.firebase.IFirebaseRepository
 import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.movieResponse.Movie
 import com.example.finema.models.movieResponse.MovieResponse
@@ -17,9 +17,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class HigherLowerViewModel(
-    private val repository: MoviesRepository,
-    private val dbRepository: RoomRepository,
-    private val fbRepository: FirebaseRepository
+    private val repository: IMoviesRepository,
+    private val dbRepository: DatabaseRepository,
+    private val fbRepository: IFirebaseRepository
 ) : BaseViewModel() {
 
     val favouriteMovies: LiveData<List<MovieModel>> = dbRepository.allFavourites

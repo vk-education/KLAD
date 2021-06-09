@@ -9,6 +9,8 @@ import com.example.finema.models.movieResponse.MovieResponseFromList
 import kotlinx.coroutines.flow.Flow
 
 interface IMoviesRepository {
+    val api: MoviesApi
+
     suspend fun getMovies(page: Int): MovieResponse
 
     suspend fun getGenres(): GenreList

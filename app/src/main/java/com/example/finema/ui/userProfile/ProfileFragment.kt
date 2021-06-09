@@ -10,7 +10,6 @@ import com.example.finema.R
 import com.example.finema.databinding.ProfileFragmentBinding
 import com.example.finema.models.databaseModels.TopModel
 import com.example.finema.ui.base.BaseFragment
-import com.example.finema.util.APP_ACTIVITY
 import com.example.finema.util.downloadAndSetImageUri
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 

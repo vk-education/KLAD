@@ -1,10 +1,13 @@
 package com.example.finema.util
 
+import com.example.finema.api.IMoviesRepository
 import com.example.finema.api.MoviesApi
 import com.example.finema.api.MoviesRepository
+import com.example.finema.database.DatabaseRepository
 import com.example.finema.database.firebase.FirebaseRepository
+import com.example.finema.database.firebase.IFirebaseRepository
 import com.example.finema.database.room.RoomDataBase
-import com.example.finema.database.room.RoomRepository
+import com.example.finema.database.room.RoomRepositry
 import com.example.finema.repositories.Contract
 import com.example.finema.ui.chooseFavourite.ChooseFavouriteViewModel
 import com.example.finema.ui.favourite.FavouriteViewModel
@@ -29,21 +32,21 @@ val viewModelModule: Module = module {
 
     viewModel { SignInViewModel(get()) }
 
-    viewModel { TmpViewModel(get()) }
+    viewModel { TmpViewModel(get(), get()) }
 
     viewModel { GenresTournamentVM(get(), get()) }
 
-    viewModel { MovieDetailsViewModel(get(), get()) }
+    viewModel { MovieDetailsViewModel(get(), get(), get()) }
 
-    viewModel { TournamentVM(get(), get()) }
+    viewModel { TournamentVM(get(), get(), get()) }
 
-    viewModel { CategoryTournamentVM() }
+    viewModel { CategoryTournamentVM(get()) }
 
     viewModel { HigherLowerRatingViewModel(get(), get(), get()) }
 
     viewModel { FavouriteViewModel(get()) }
 
-    viewModel { SettingsViewModel(get(), get()) }
+    viewModel { SettingsViewModel(get(), get(), get()) }
 
     viewModel { ChooseFavouriteViewModel(get()) }
 
@@ -66,9 +69,9 @@ val repositoryModule: Module = module {
 
     single { Contract() }
 
-    single { RoomRepository(get()) }
+    single<DatabaseRepository> { RoomRepositry(get()) }
 
-    single { MoviesRepository(get()) }
+    single<IMoviesRepository> { MoviesRepository(get()) }
 
-    single { FirebaseRepository() }
+    single<IFirebaseRepository> { FirebaseRepository() }
 }

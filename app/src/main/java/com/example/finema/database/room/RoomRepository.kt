@@ -6,8 +6,8 @@ import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.databaseModels.TopModel
 
-class RoomRepository(
-    private val roomDao: RoomDao
+class RoomRepositry(
+    override val roomDao: RoomDao
 ) : DatabaseRepository {
 
     override val allGenres: LiveData<List<GenreModel>> = roomDao.getAllGenres()

@@ -1,11 +1,14 @@
 package com.example.finema.database
 
 import androidx.lifecycle.LiveData
+import com.example.finema.database.room.RoomDao
 import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.databaseModels.TopModel
 
 interface DatabaseRepository {
+    val roomDao: RoomDao
+
     val allGenres: LiveData<List<GenreModel>>
 
     val allFavourites: LiveData<List<MovieModel>>

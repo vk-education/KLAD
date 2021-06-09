@@ -1,21 +1,17 @@
 package com.example.finema.ui.chooseFavourite
 
-import android.os.Bundle
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.Navigation
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.finema.R
-import com.example.finema.api.MoviesRepository
+import com.example.finema.api.IMoviesRepository
 import com.example.finema.models.infinite.MovieDiscoverResult
 import com.example.finema.ui.base.BaseViewModel
-import com.example.finema.util.APP_ACTIVITY
 import kotlinx.coroutines.flow.*
 
 class ChooseFavouriteViewModel(
-    private val repository: MoviesRepository
+    private val repository: IMoviesRepository
 ) : BaseViewModel() {
 
     private val _query = MutableStateFlow("")

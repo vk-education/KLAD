@@ -3,8 +3,8 @@ package com.example.finema.ui.tournaments.genres
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.finema.api.MoviesRepository
-import com.example.finema.database.room.RoomRepository
+import com.example.finema.api.IMoviesRepository
+import com.example.finema.database.DatabaseRepository
 import com.example.finema.models.genreRequest.GenreList
 import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.ui.base.BaseViewModel
@@ -13,8 +13,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class GenresTournamentVM(
-    private val apiRepository: MoviesRepository,
-    private val dbRepository: RoomRepository
+    private val apiRepository: IMoviesRepository,
+    private val dbRepository: DatabaseRepository
 ) : BaseViewModel() {
 
     // TODO Убрать, данные получаются от репозитория

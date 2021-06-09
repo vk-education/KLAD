@@ -13,7 +13,6 @@ import com.example.finema.R
 import com.example.finema.databinding.FragmentCategoryTournamentBinding
 import com.example.finema.models.databaseModels.CategoryModel
 import com.example.finema.ui.base.BaseFragment
-import com.example.finema.util.APP_ACTIVITY
 import com.example.finema.util.AppPreference
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
@@ -48,7 +47,7 @@ class CategoryTournamentFragment :
             val list = it
             mAdapter.setList(list)
         }
-        viewModel.allCategories.observe(APP_ACTIVITY, mObserverList)
+        viewModel.allCategories.observe(requireActivity(), mObserverList)
     }
 
     override fun onMovieClicked(view: View, categoryModel: CategoryModel) {
@@ -113,7 +112,7 @@ class CategoryTournamentFragment :
         AppPreference.setNumOfFilms(num)
         AppPreference.setCategoryName(categoryName)
         AppPreference.setCategoryLink(link.toInt())
-        Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
+        Navigation.findNavController(requireActivity(), R.id.fragment)
             .navigate(R.id.action_fragmentOthers_to_fragmentTournament)
     }
 

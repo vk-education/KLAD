@@ -15,7 +15,6 @@ import com.example.finema.R
 import com.example.finema.databinding.FragmentTournamentBinding
 import com.example.finema.models.movieResponse.Movie
 import com.example.finema.ui.base.BaseFragment
-import com.example.finema.util.APP_ACTIVITY
 import com.example.finema.util.downloadAndSetImageUrl
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -43,7 +42,7 @@ class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>
 
         super.onViewCreated(view, savedInstanceState)
         viewModel.twoFilms.observe(
-            APP_ACTIVITY,
+            requireActivity(),
             { movieList ->
 
                 binding.txtFilm1.text = movieList[0].title

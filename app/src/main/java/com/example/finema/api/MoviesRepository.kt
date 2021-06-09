@@ -1,13 +1,10 @@
 package com.example.finema.api
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
 import com.example.finema.repositories.SafeApiRequest
-import com.example.finema.ui.chooseFavourite.MoviePagingSource
 import java.util.Locale
 
 class MoviesRepository(
-    val api: MoviesApi
+    override val api: MoviesApi
 ) : IMoviesRepository, SafeApiRequest {
 
     override suspend fun getMovies(page: Int) = apiRequest {

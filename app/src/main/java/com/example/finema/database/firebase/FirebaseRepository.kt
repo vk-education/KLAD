@@ -9,19 +9,19 @@ import com.example.finema.util.REF_DATABASE_USER_SAVED
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-class FirebaseRepository {
-    val allCategories: LiveData<List<CategoryModel>> = CategoriesLiveData()
-    val allMovies: LiveData<List<MovieModel>> = MoviesFromFirebaseLiveData()
+class FirebaseRepository: IFirebaseRepository {
+    override val allCategories: LiveData<List<CategoryModel>> = CategoriesLiveData()
+    override val allMovies: LiveData<List<MovieModel>> = MoviesFromFirebaseLiveData()
 
     private val mAuth = FirebaseAuth.getInstance()
     private val mDatabaseReference = FirebaseDatabase.getInstance().reference
 
-    fun initRefCategory() {
+    override fun initRefCategory() {
         REF_DATABASE = FirebaseDatabase.getInstance().reference
             .child("category")
     }
 
-    fun initRefs() {
+    override fun initRefs() {
 
         val currentId = mAuth.currentUser?.uid.toString()
         REF_DATABASE_USER = mDatabaseReference
@@ -31,7 +31,7 @@ class FirebaseRepository {
         REF_DATABASE_USER_SAVED = REF_DATABASE_USER.child("saved")
     }
 
-    fun insertFirebaseFavouriteFilm(movieModel: MovieModel) {
+    override fun insertFirebaseFavouriteFilm(movieModel: MovieModel) {
 
         val fId = "idFirebase"
         val fTitle = "title"
@@ -50,11 +50,11 @@ class FirebaseRepository {
             .updateChildren(mapMovie)
     }
 
-    fun deleteFirebaseFavouriteFilm(movieModel: MovieModel) {
+    override fun deleteFirebaseFavouriteFilm(movieModel: MovieModel) {
         REF_DATABASE_USER_SAVED.child(movieModel.id.toString()).removeValue()
     }
 
-    fun clearFirebaseFavourite() {
+    override fun clearFirebaseFavourite() {
         REF_DATABASE_USER_SAVED.removeValue()
     }
 }

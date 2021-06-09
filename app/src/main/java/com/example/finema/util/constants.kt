@@ -5,7 +5,6 @@ import com.example.finema.database.DatabaseRepository
 import com.google.firebase.database.DatabaseReference
 
 // TODO убрать в классы где нужны
-const val TYPE_ROOM = "type_room"
 lateinit var APP_ACTIVITY: MainActivity
 
 lateinit var REF_DATABASE: DatabaseReference

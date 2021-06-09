@@ -144,7 +144,7 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
         }
     }
 
-    fun afterLoading() {
+    private fun afterLoading() {
         binding.filmLoader.visibility = View.INVISIBLE
         binding.aboutTitle.visibility = VISIBLE
         binding.genreTitle.visibility = VISIBLE

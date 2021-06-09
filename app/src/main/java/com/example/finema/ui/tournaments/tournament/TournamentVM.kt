@@ -6,9 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation.findNavController
 import com.example.finema.R
-import com.example.finema.api.MoviesRepository
-import com.example.finema.database.firebase.FirebaseRepository
-import com.example.finema.database.room.RoomRepository
+import com.example.finema.api.IMoviesRepository
+import com.example.finema.database.DatabaseRepository
+import com.example.finema.database.firebase.IFirebaseRepository
 import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.movieResponse.Movie
 import com.example.finema.ui.base.BaseViewModel
@@ -22,9 +22,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class TournamentVM(
-    private val apiRepository: MoviesRepository,
-    private val dbRepository: RoomRepository,
-    private val fbRepository: FirebaseRepository = FirebaseRepository()
+    private val apiRepository: IMoviesRepository,
+    private val dbRepository: DatabaseRepository,
+    private val fbRepository: IFirebaseRepository
 ) : BaseViewModel() {
 
     val favouriteMovies: LiveData<List<MovieModel>> = dbRepository.allFavourites
@@ -96,36 +96,20 @@ class TournamentVM(
 
     fun itemClick(position: Int) {
         //TODO переписать на if else .let{}
-        when (position) {
-            0 -> {
-                if (mainList.isEmpty()) {
-                    if (secondList.isEmpty()) {
-                        val filmIdInfo = el1.id.toLong()
-                        goNextFragment(filmIdInfo)
-                    } else {
-                        secondList.add(el1)
-                        secondListToMainList()
-                        updateCards()
-                    }
+        (if(position==0) el1 else el2)
+            .let {
+            if (mainList.isEmpty()) {
+                if (secondList.isEmpty()) {
+                    val filmIdInfo = it.id.toLong()
+                    goNextFragment(filmIdInfo)
                 } else {
-                    secondList.add(el1)
+                    secondList.add(it)
+                    secondListToMainList()
                     updateCards()
                 }
-            }
-            1 -> {
-                if (mainList.isEmpty()) {
-                    if (secondList.isEmpty()) {
-                        val filmIdInfo = el2.id.toLong()
-                        goNextFragment(filmIdInfo)
-                    } else {
-                        secondList.add(el2)
-                        secondListToMainList()
-                        updateCards()
-                    }
-                } else {
-                    secondList.add(el2)
-                    updateCards()
-                }
+            } else {
+                secondList.add(it)
+                updateCards()
             }
         }
     }

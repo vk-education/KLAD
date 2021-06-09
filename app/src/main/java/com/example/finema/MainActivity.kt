@@ -18,7 +18,6 @@ import com.example.finema.databinding.ActivityMainBinding
 import com.example.finema.ui.settings.NotificationService
 import com.example.finema.util.APP_ACTIVITY
 import com.example.finema.util.AppPreference
-import com.example.finema.util.TYPE_ROOM
 import com.example.finema.util.downloadAndSetImageUri
 import com.google.firebase.auth.FirebaseAuth
 import java.util.concurrent.TimeUnit
@@ -111,17 +110,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkIfUserInited() {
         if (!AppPreference.getInitUser()) {
-            initDatabase(TYPE_ROOM) {
                 toSignInFragment()
-            }
+
         } else {
-            initDatabase(TYPE_ROOM) {
                 if (FirebaseAuth.getInstance().currentUser?.displayName == null) {
                     setPhotoAndNameGuest()
                 } else {
                     setPhotoAndNameUser()
                 }
-            }
+
         }
     }
 
@@ -190,14 +187,6 @@ class MainActivity : AppCompatActivity() {
     private fun toSignInFragment() {
         findNavController(R.id.fragment)
             .navigate(R.id.action_global_signIn)
-    }
-
-    private fun initDatabase(type: String, onSuccess: () -> Unit) {
-        when (type) {
-            TYPE_ROOM -> {
-                onSuccess()
-            }
-        }
     }
 
     companion object {

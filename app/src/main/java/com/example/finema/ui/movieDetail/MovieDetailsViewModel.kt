@@ -3,9 +3,9 @@ package com.example.finema.ui.movieDetail
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.finema.api.MoviesRepository
-import com.example.finema.database.firebase.FirebaseRepository
-import com.example.finema.database.room.RoomRepository
+import com.example.finema.api.IMoviesRepository
+import com.example.finema.database.DatabaseRepository
+import com.example.finema.database.firebase.IFirebaseRepository
 import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.databaseModels.TopModel
 import com.example.finema.models.movieResponse.MovieDetails
@@ -17,11 +17,11 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class MovieDetailsViewModel(
-    private val repository: MoviesRepository,
-    private val dbRepository: RoomRepository
+    private val repository: IMoviesRepository,
+    private val dbRepository: DatabaseRepository,
+    private val fbRepository: IFirebaseRepository
 ) : BaseViewModel() {
 
-    private val fbRepository: FirebaseRepository = FirebaseRepository()
     var film = MutableLiveData<MovieDetails>()
     var arg: Long = 0
     var favouriteMovies: List<Long>? = null

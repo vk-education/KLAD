@@ -14,7 +14,6 @@ import com.example.finema.databinding.FragmentTournamentGenresBinding
 import com.example.finema.models.genreRequest.GenreList
 import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.ui.base.BaseFragment
-import com.example.finema.util.APP_ACTIVITY
 import com.example.finema.util.AppPreference
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
@@ -52,16 +51,16 @@ class GenresTournamentFragment :
             mAdapter.setList(it)
         }
         // TODO Убрать получение и обращаться к VM базового класса
-        viewModel.allGenres.observe(APP_ACTIVITY, mObserverList)
+        viewModel.allGenres.observe(requireActivity(), mObserverList)
     }
 
     // TODO genreModel -> {} : GenreModel -> Unit
     // Заменить на лямбду, хз так ли написал выше
-    override fun onMovieClicked(view: View, genreModel: GenreModel) {
-        if (genreModel.id == GENRE_NOT_FOUND_TEMPORARILY) {
+    override fun onMovieClicked(view: View, genreModelId: GenreModel) {
+        if (genreModelId.id == GENRE_NOT_FOUND_TEMPORARILY) {
             Toast.makeText(context, "Этот жанр временно отсутсвует", Toast.LENGTH_SHORT).show()
         } else {
-            dialogBinding(genreModel.id.toString(), genreModel.name)
+            dialogBinding(genreModelId.id.toString(), genreModelId.name)
         }
     }
 
@@ -104,7 +103,7 @@ class GenresTournamentFragment :
         AppPreference.setGenreName(genreName)
         AppPreference.setGenre(genreId)
 
-        Navigation.findNavController(APP_ACTIVITY, R.id.fragment)
+        Navigation.findNavController(requireActivity(), R.id.fragment)
             .navigate(R.id.action_fragmentGenre_to_fragmentTournament)
     }
 
