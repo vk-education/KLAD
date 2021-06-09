@@ -1,12 +1,12 @@
 package com.example.finema.ui.tmp
 
+import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
 import com.example.finema.database.DatabaseRepository
 import com.example.finema.database.firebase.IFirebaseRepository
 import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.repositories.IAppPreference
 import com.example.finema.ui.base.BaseViewModel
-import com.example.finema.util.APP_ACTIVITY
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -18,22 +18,27 @@ class TmpViewModel(
 
     private val allMovies = fbRepository.allMovies
 
+    private lateinit var observerList: Observer<List<MovieModel>>
+
+
     init {
         fbRepository.initRefs()
     }
 
     fun initRoomFromFirebaseToRoom() {
-        allMovies.observe(
-            APP_ACTIVITY,
-            { listMovie ->
-                listMovie.map { it.id = it.idFirebase.toLong() }
-                for (item in listMovie) {
-                    viewModelScope.launch(Dispatchers.Main) {
-                        dbRepository.insertFavourite(item) {}
-                    }
+        observerList = Observer { listMovie ->
+            listMovie.map { it.id = it.idFirebase.toLong() }
+            for (item in listMovie) {
+                viewModelScope.launch(Dispatchers.Main) {
+                    dbRepository.insertFavourite(item) {}
                 }
             }
-        )
+        }
+        allMovies.observeForever {
+            observerList
+        }
+
+
     }
 
     fun getFirstSignIn(): Boolean {
@@ -56,5 +61,10 @@ class TmpViewModel(
         viewModelScope.launch(Dispatchers.Main) {
             dbRepository.insertFavourite(item) {}
         }
+    }
+
+    override fun onCleared() {
+        allMovies.removeObserver(observerList)
+        super.onCleared()
     }
 }

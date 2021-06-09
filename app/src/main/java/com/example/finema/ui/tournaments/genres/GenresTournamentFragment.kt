@@ -104,7 +104,7 @@ class GenresTournamentFragment :
     }
 
     private fun loadGenresList() {
-        val mObserverList: Observer<GenreList> = Observer {
+        val observerList: Observer<GenreList> = Observer {
             val list = it.genres
             for (item in list) {
                 viewModel.insert(GenreModel(name = item.name, id = item.id))
@@ -113,7 +113,7 @@ class GenresTournamentFragment :
 
         viewModel.getGenres()
 
-        viewModel.genreListVM.observe(viewLifecycleOwner, mObserverList)
+        viewModel.genreListVM.observe(viewLifecycleOwner, observerList)
     }
 
     companion object {
