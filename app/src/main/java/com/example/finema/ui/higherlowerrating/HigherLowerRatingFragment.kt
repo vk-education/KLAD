@@ -45,13 +45,13 @@ class HigherLowerRatingFragment :
                 setImage(binding.img1, movieList, viewModel.img1)
                 setImage(binding.img2, movieList, viewModel.img2)
 
-                setBookmarkClickListeners(binding.bookmark1, binding.txtFilm1, 0)
-                setBookmarkClickListeners(binding.bookmark2, binding.txtFilm2, 1)
-
                 fillInBookmarks(binding.txtFilm1, binding.bookmark1)
                 fillInBookmarks(binding.txtFilm2, binding.bookmark2)
             }
         )
+
+        setBookmarkClickListeners(binding.bookmark1, binding.txtFilm1, 0)
+        setBookmarkClickListeners(binding.bookmark2, binding.txtFilm2, 1)
     }
 
     private fun setImage(image: ImageView, movieList: MovieResponse, imgInd: Int) {
@@ -78,7 +78,6 @@ class HigherLowerRatingFragment :
     }
 
     private fun fillInBookmarks(txtview: TextView, bookmark: ImageButton) {
-        // TODO Удалить
         viewModel.favouriteMovies.observe(
             viewLifecycleOwner,
             {

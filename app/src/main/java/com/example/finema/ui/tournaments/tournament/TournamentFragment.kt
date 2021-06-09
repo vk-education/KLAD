@@ -64,30 +64,38 @@ class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>
                 infoClicked(binding.more1, 0)
                 infoClicked(binding.more2, 1)
 
-                fillInBookmarks()
+                fillInBookmarks(binding.txtFilm1, binding.bookmark1)
+                fillInBookmarks(binding.txtFilm2, binding.bookmark2)
             }
         )
-
-        setBookmarkClickListeners(binding.bookmark1, 0)
-        setBookmarkClickListeners(binding.bookmark2, 1)
+        setBookmarkClickListeners(binding.bookmark1, binding.txtFilm1, 0)
+        setBookmarkClickListeners(binding.bookmark2, binding.txtFilm2, 1)
     }
 
-    private fun fillInBookmarks() {
-        CoroutineScope(Dispatchers.Main).launch {
-            viewModel.favouriteMovies.asFlow().collectLatest {
+    private fun fillInBookmarks(txtview: TextView, bookmark: ImageButton) {
+        // TODO Удалить
+        viewModel.favouriteMovies.observe(
+            viewLifecycleOwner,
+            {
+                var counter = 0
                 for (i in it) {
-                    if (binding.txtFilm1.text == i.title) {
-                        binding.bookmark1.setImageResource(R.drawable.bookmark_24)
-                        binding.bookmark1.tag = "bruh"
+                    counter += 1
+                    if (txtview.text == i.title) {
+                        bookmark.setImageResource(
+                            R.drawable.bookmark_24
+                        )
+                        break
                     }
-                    if (binding.txtFilm2.text == i.title) {
-                        binding.bookmark2.setImageResource(R.drawable.bookmark_24)
-                        binding.bookmark2.tag = "bruh"
+                    if (counter == it.size) {
+                        bookmark.setImageResource(
+                            R.drawable.bookmark_border_24
+                        )
                     }
                 }
             }
-        }
+        )
     }
+
 
     private fun infoClicked(button: ImageButton, position: Int) {
         button.setOnClickListener {
@@ -98,7 +106,6 @@ class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>
     private fun cardClickListener(cardView: CardView, position: Int) {
         cardView.setOnClickListener {
             viewModel.itemClick(position)
-            resetBookmarks()
         }
     }
 
@@ -111,9 +118,10 @@ class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>
         )
     }
 
-    private fun setBookmarkClickListeners(bookmark: ImageButton, position: Int) {
+    private fun setBookmarkClickListeners(bookmark: ImageButton, title: TextView, position: Int) {
         bookmark.setOnClickListener {
-            setBookmarks(bookmark, position)
+            animateBookmark(bookmark)
+            addODelFav(title, position)
         }
     }
 
@@ -133,38 +141,19 @@ class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>
         dialog.show()
     }
 
-    private fun resetBookmarks() {
-        binding.bookmark1.setImageResource(R.drawable.bookmark_border_24)
-        binding.bookmark2.setImageResource(R.drawable.bookmark_border_24)
-        binding.bookmark1.tag = ""
-        binding.bookmark2.tag = ""
-    }
-
-    private fun setBookmarks(bookmark: ImageButton, position: Int) {
-        if (bookmark.tag == "bruh") {
-            animateBookmark(bookmark)
-
-            Toast.makeText(
-                context,
-                resources.getString(R.string.delete_from_favourite),
-                Toast.LENGTH_SHORT
-            ).show()
-            bookmark.setImageResource(R.drawable.bookmark_border_24)
-            viewModel.removeFromFav(position)
-
-            bookmark.tag = "b"
-        } else {
-            animateBookmark(bookmark)
-
-            Toast.makeText(
-                context,
-                resources.getString(R.string.add_to_favourite),
-                Toast.LENGTH_SHORT
-            ).show()
-            bookmark.setImageResource(R.drawable.bookmark_24)
-            viewModel.addToFav(position)
-
-            bookmark.tag = "bruh"
+    private fun addODelFav(title: TextView, position: Int) {
+        viewModel.favouriteMovies.value?.let {
+            var counter = 0
+            for (i in it) {
+                counter += 1
+                if (title.text == i.title) {
+                    viewModel.removeFromFav(position)
+                    break
+                }
+                if (it.size == counter) {
+                    viewModel.addToFav(position)
+                }
+            }
         }
     }
 
