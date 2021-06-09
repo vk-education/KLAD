@@ -105,7 +105,7 @@ class HigherLowerRatingFragment :
             var counter = 0
             for (i in it) {
                 counter += 1
-                if (title.text == i.title) {
+                if (title.text == i.title || title.text == i.originalTitle) {
                     viewModel.removeFromFav(position)
                     break
                 }

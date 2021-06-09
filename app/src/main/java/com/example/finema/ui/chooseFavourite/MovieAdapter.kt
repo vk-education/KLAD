@@ -36,28 +36,22 @@ class MovieAdapter(
         private val listener: Listener
     ) :
         RecyclerView.ViewHolder(view) {
-        var filmTitle: TextView? = null
-        var movieCard: MaterialCardView? = null
-        var moviePoster: ImageView? = null
+        private val filmTitle: TextView = view.findViewById(R.id.tv_name)
+        private val movieCard: MaterialCardView = view.findViewById(R.id.movie_title)
+        private val moviePoster: ImageView = view.findViewById(R.id.imageViewNice)
 
         interface Listener {
             fun onMovieClicked(index: Int)
         }
 
         fun bind(item: MovieDiscoverResult) {
-            filmTitle?.text = item.title
-            moviePoster?.downloadAndSetImageUrl(
+            filmTitle.text = item.title
+            moviePoster.downloadAndSetImageUrl(
                 POSTER_BASE_URL + item.posterPath
             )
-            movieCard?.setOnClickListener {
+            movieCard.setOnClickListener {
                 listener.onMovieClicked(item.id)
             }
-        }
-
-        init {
-            filmTitle = view.findViewById(R.id.tv_name)
-            movieCard = view.findViewById(R.id.movie_title)
-            moviePoster = view.findViewById(R.id.imageViewNice)
         }
     }
 

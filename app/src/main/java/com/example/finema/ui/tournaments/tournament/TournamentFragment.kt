@@ -8,18 +8,14 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
-import androidx.lifecycle.asFlow
+import androidx.navigation.Navigation
 import com.example.finema.R
 import com.example.finema.databinding.FragmentTournamentBinding
 import com.example.finema.models.movieResponse.Movie
 import com.example.finema.ui.base.BaseFragment
+import com.example.finema.util.APP_ACTIVITY
 import com.example.finema.util.downloadAndSetImageUrl
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>() {
@@ -73,7 +69,6 @@ class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>
     }
 
     private fun fillInBookmarks(txtview: TextView, bookmark: ImageButton) {
-        // TODO Удалить
         viewModel.favouriteMovies.observe(
             viewLifecycleOwner,
             {
@@ -95,7 +90,6 @@ class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>
             }
         )
     }
-
 
     private fun infoClicked(button: ImageButton, position: Int) {
         button.setOnClickListener {
@@ -146,7 +140,7 @@ class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>
             var counter = 0
             for (i in it) {
                 counter += 1
-                if (title.text == i.title) {
+                if (title.text == i.title || title.text == i.originalTitle) {
                     viewModel.removeFromFav(position)
                     break
                 }

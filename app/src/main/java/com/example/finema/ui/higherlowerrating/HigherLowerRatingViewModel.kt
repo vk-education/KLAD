@@ -152,6 +152,7 @@ class HigherLowerRatingViewModel(
         MovieModel(
             movie.id.toLong(),
             movie.title,
+            movie.originalTitle,
             TournamentVM.POSTER_BASE_URL + movie.posterPath,
             movie.overview,
             null,

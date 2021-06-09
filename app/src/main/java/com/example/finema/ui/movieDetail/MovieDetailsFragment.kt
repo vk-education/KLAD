@@ -72,6 +72,7 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
         movie = MovieModel(
             it.id.toLong(),
             it.title,
+            it.originalTitle,
             POSTER_BASE_URL + it.posterPath,
             it.overview,
             null,

@@ -96,7 +96,6 @@ class TournamentVM(
     }
 
     fun itemClick(position: Int) {
-        // TODO переписать на if else .let{}
         (if (position == 0) el1 else el2)
             .let {
                 if (mainList.isEmpty()) {
@@ -192,9 +191,7 @@ class TournamentVM(
             }
         }
         if (appPreference.getGuestOrAuth() == "AUTH") {
-            viewModelScope.launch(Dispatchers.Main) {
-                fbRepository.insertFirebaseFavouriteFilm(makeMovieModel(movie))
-            }
+            fbRepository.insertFirebaseFavouriteFilm(makeMovieModel(movie))
         }
     }
 
@@ -214,6 +211,7 @@ class TournamentVM(
         MovieModel(
             movie.id.toLong(),
             movie.title,
+            movie.originalTitle,
             POSTER_BASE_URL + movie.posterPath,
             movie.overview,
             null,

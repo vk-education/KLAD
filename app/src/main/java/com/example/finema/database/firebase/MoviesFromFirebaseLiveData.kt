@@ -3,12 +3,23 @@ package com.example.finema.database.firebase
 import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.finema.models.databaseModels.MovieModel
-import com.example.finema.util.REF_DATABASE_USER_SAVED
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 class MoviesFromFirebaseLiveData : LiveData<List<MovieModel>>() {
+
+    private val auth = FirebaseAuth.getInstance()
+    private val currentId = auth.currentUser?.uid.toString()
+    private val reDatabaseUserSaved = FirebaseDatabase
+        .getInstance()
+        .reference
+        .child("user_list")
+        .child(currentId)
+        .child("saved")
+
     private val listener = object : ValueEventListener {
         override fun onCancelled(p0: DatabaseError) {
             Log.d("CategoriesLiveData", p0.message)
@@ -22,12 +33,12 @@ class MoviesFromFirebaseLiveData : LiveData<List<MovieModel>>() {
     }
 
     override fun onInactive() {
-        REF_DATABASE_USER_SAVED.removeEventListener(listener)
+        reDatabaseUserSaved.removeEventListener(listener)
         super.onInactive()
     }
 
     override fun onActive() {
-        REF_DATABASE_USER_SAVED.addValueEventListener(listener)
+        reDatabaseUserSaved.addValueEventListener(listener)
         super.onActive()
     }
 }

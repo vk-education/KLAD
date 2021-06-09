@@ -42,13 +42,12 @@ class ProfileFragment :
         viewModel.topMovies.observe(
             viewLifecycleOwner,
             {
-                if (it != null) {
+                it?.let {
                     binding.topRecycler.visibility = View.VISIBLE
                     profileAdapter.movies = it
+                    binding.topRecycler.layoutManager = LinearLayoutManager(context)
+                    binding.topRecycler.adapter = profileAdapter
                 }
-
-                binding.topRecycler.layoutManager = LinearLayoutManager(context)
-                binding.topRecycler.adapter = profileAdapter
             }
         )
     }

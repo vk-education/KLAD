@@ -23,6 +23,7 @@ import com.example.finema.ui.tournaments.categories.CategoryTournamentVM
 import com.example.finema.ui.tournaments.genres.GenresTournamentVM
 import com.example.finema.ui.tournaments.tournament.TournamentVM
 import com.example.finema.ui.userProfile.ProfileViewModel
+import com.google.firebase.database.FirebaseDatabase
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
@@ -65,6 +66,8 @@ val databaseModule: Module = module {
     single { RoomDataBase.getInstance(androidContext()) }
 
     single { RoomDataBase.getInstance(androidContext()).getRoomDao() }
+
+    single { FirebaseDatabase.getInstance() }
 }
 
 val repositoryModule: Module = module {
@@ -77,5 +80,5 @@ val repositoryModule: Module = module {
 
     single<IMoviesRepository> { MoviesRepository(get()) }
 
-    single<IFirebaseRepository> { FirebaseRepository() }
+    single<IFirebaseRepository> { FirebaseRepository(get()) }
 }

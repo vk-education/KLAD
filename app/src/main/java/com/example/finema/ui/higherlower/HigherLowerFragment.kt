@@ -74,14 +74,14 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
         }
     }
 
-    private fun fillInBookmarks(txtview: TextView, bookmark: ImageButton) {
+    private fun fillInBookmarks(title: TextView, bookmark: ImageButton) {
         viewModel.favouriteMovies.observe(
             viewLifecycleOwner,
             {
                 var counter = 0
                 for (i in it) {
                     counter += 1
-                    if (txtview.text == i.title) {
+                    if (title.text == i.title || title.text == i.originalTitle) {
                         bookmark.setImageResource(
                             R.drawable.bookmark_24
                         )

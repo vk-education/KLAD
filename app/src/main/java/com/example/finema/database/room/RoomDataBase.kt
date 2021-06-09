@@ -8,7 +8,7 @@ import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.databaseModels.TopModel
 
-@Database(entities = [GenreModel::class, MovieModel::class, TopModel::class], version = 8)
+@Database(entities = [GenreModel::class, MovieModel::class, TopModel::class], version = 9)
 abstract class RoomDataBase : RoomDatabase() {
 
     abstract fun getRoomDao(): RoomDao
