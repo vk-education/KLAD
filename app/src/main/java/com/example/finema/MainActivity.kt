@@ -17,11 +17,10 @@ import androidx.work.WorkManager
 import com.example.finema.databinding.ActivityMainBinding
 import com.example.finema.repositories.IAppPreference
 import com.example.finema.ui.settings.NotificationService
-import com.example.finema.util.APP_ACTIVITY
 import com.example.finema.util.downloadAndSetImageUri
 import com.google.firebase.auth.FirebaseAuth
-import org.koin.android.ext.android.inject
 import java.util.concurrent.TimeUnit
+import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -39,7 +38,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
-        APP_ACTIVITY = this
         appPreference.getPreference()
 
         binding = ActivityMainBinding.inflate(layoutInflater)

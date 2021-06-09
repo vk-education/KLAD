@@ -20,7 +20,6 @@ class TmpViewModel(
 
     private lateinit var observerList: Observer<List<MovieModel>>
 
-
     init {
         fbRepository.initRefs()
     }
@@ -37,8 +36,6 @@ class TmpViewModel(
         allMovies.observeForever {
             observerList
         }
-
-
     }
 
     fun getFirstSignIn(): Boolean {

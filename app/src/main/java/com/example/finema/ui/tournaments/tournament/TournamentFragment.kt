@@ -9,12 +9,11 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.finema.R
 import com.example.finema.databinding.FragmentTournamentBinding
 import com.example.finema.models.movieResponse.Movie
 import com.example.finema.ui.base.BaseFragment
-import com.example.finema.util.APP_ACTIVITY
 import com.example.finema.util.downloadAndSetImageUrl
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
@@ -99,7 +98,7 @@ class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>
 
     private fun cardClickListener(cardView: CardView, position: Int) {
         cardView.setOnClickListener {
-            viewModel.itemClick(position)
+            itemClick(position)
         }
     }
 
@@ -163,6 +162,32 @@ class TournamentFragment : BaseFragment<TournamentVM, FragmentTournamentBinding>
                 scaleYBy(-ANIMATION_ROTATION)
             }
         }
+    }
+
+    private fun itemClick(position: Int) {
+        (if (position == 0) viewModel.el1 else viewModel.el2)
+            .let {
+                if (viewModel.mainList.isEmpty()) {
+                    if (viewModel.secondList.isEmpty()) {
+                        val filmIdInfo = it.id.toLong()
+                        goNextFragment(filmIdInfo)
+                    } else {
+                        viewModel.secondList.add(it)
+                        viewModel.secondListToMainList()
+                        viewModel.updateCards()
+                    }
+                } else {
+                    viewModel.secondList.add(it)
+                    viewModel.updateCards()
+                }
+            }
+    }
+
+    private fun goNextFragment(filmIdInfo: Long) {
+        val bundle = Bundle()
+        bundle.putSerializable("filmId", filmIdInfo)
+        findNavController()
+            .navigate(R.id.action_fragment_tournament_to_fragment_film, bundle)
     }
 
     companion object {

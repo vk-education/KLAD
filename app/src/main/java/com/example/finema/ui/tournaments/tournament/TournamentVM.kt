@@ -1,21 +1,16 @@
 package com.example.finema.ui.tournaments.tournament
 
-import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.Navigation.findNavController
-import com.example.finema.R
 import com.example.finema.api.IMoviesRepository
 import com.example.finema.database.DatabaseRepository
 import com.example.finema.database.firebase.IFirebaseRepository
-import com.example.finema.models.databaseModels.CategoryModel
 import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.movieResponse.Movie
 import com.example.finema.repositories.IAppPreference
 import com.example.finema.ui.base.BaseViewModel
-import com.example.finema.util.APP_ACTIVITY
 import com.example.finema.util.Coroutines
 import kotlin.math.floor
 import kotlin.math.log
@@ -41,9 +36,8 @@ class TournamentVM(
 
     private lateinit var observerList: Observer<List<Movie>>
 
-
-    private lateinit var el1: Movie
-    private lateinit var el2: Movie
+    lateinit var el1: Movie
+    lateinit var el2: Movie
 
     var roundCount = ROUND_COUNT_START
 
@@ -98,39 +92,13 @@ class TournamentVM(
         onSuccess()
     }
 
-    fun itemClick(position: Int) {
-        (if (position == 0) el1 else el2)
-            .let {
-                if (mainList.isEmpty()) {
-                    if (secondList.isEmpty()) {
-                        val filmIdInfo = it.id.toLong()
-                        goNextFragment(filmIdInfo)
-                    } else {
-                        secondList.add(it)
-                        secondListToMainList()
-                        updateCards()
-                    }
-                } else {
-                    secondList.add(it)
-                    updateCards()
-                }
-            }
-    }
-
-    private fun secondListToMainList() {
+    fun secondListToMainList() {
         mainList.addAll(secondList)
         secondList.clear()
         roundCount += 1
     }
 
-    private fun goNextFragment(filmIdInfo: Long) {
-        val bundle = Bundle()
-        bundle.putSerializable("filmId", filmIdInfo)
-        findNavController(APP_ACTIVITY, R.id.fragment)
-            .navigate(R.id.action_fragment_tournament_to_fragment_film, bundle)
-    }
-
-    private fun updateCards() {
+    fun updateCards() {
         el1 = mainList.random()
         mainList.remove(el1)
         el2 = mainList.random()
