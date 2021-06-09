@@ -14,7 +14,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.finema.R
 import com.example.finema.databinding.SignInFragmentBinding
 import com.example.finema.ui.base.BaseFragment
-import com.example.finema.util.AppPreference
 import com.example.finema.util.downloadAndSetImageUri
 import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -54,14 +53,11 @@ class SigInFragment : BaseFragment<SignInViewModel, SignInFragmentBinding>() {
         binding.signInWithGoogle.setOnClickListener {
             binding.loader.visibility = View.VISIBLE
             signIn()
-            AppPreference.setFirstSignIn(true)
-            AppPreference.setInitUser(true)
-            AppPreference.setGuestOrAuth("AUTH")
+            viewModel.signInAuth()
         }
 
         binding.signInAsGuest.setOnClickListener {
-            AppPreference.setInitUser(true)
-            AppPreference.setGuestOrAuth("GUEST")
+            viewModel.signInGuest()
             header.text = resources.getText(R.string.guest)
             avatar.downloadAndSetImageUri(Uri.parse(DEFAULT_URI))
             findNavController().navigate(R.id.action_sigInFragment_to_tmpFragment)

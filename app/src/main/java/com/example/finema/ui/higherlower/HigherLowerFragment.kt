@@ -60,7 +60,6 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
             )
         )
         image.setOnClickListener {
-            resetBookmarks()
             viewModel.onMovieClicked(imgInd)
             binding.points.text = getString(
                 R.string.higher_lower_score,
@@ -72,7 +71,7 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
     private fun setBookmarkClickListeners(bookmark: ImageButton, title: TextView, position: Int) {
         bookmark.setOnClickListener {
             animateBookmark(bookmark)
-            setBookmarks(title, position)
+            addODelFav(title, position)
         }
     }
 
@@ -100,24 +99,17 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
         )
     }
 
-    private fun resetBookmarks() {
-        binding.bookmark1.setImageResource(R.drawable.bookmark_border_24)
-        binding.bookmark2.setImageResource(R.drawable.bookmark_border_24)
-    }
-
-    private fun setBookmarks(title: TextView, position: Int) {
-        viewModel.favouriteMovies.value.let {
+    private fun addODelFav(title: TextView, position: Int) {
+        viewModel.favouriteMovies.value?.let {
             var counter = 0
-            if (it != null) {
-                for (i in it) {
-                    counter += 1
-                    if (title.text == i.title) {
-                        viewModel.removeFromFav(position)
-                        break
-                    }
-                    if (it.size == counter) {
-                        viewModel.addToFav(position)
-                    }
+            for (i in it) {
+                counter += 1
+                if (title.text == i.title) {
+                    viewModel.removeFromFav(position)
+                    break
+                }
+                if (it.size == counter) {
+                    viewModel.addToFav(position)
                 }
             }
         }

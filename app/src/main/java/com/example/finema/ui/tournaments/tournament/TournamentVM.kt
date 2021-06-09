@@ -11,9 +11,9 @@ import com.example.finema.database.DatabaseRepository
 import com.example.finema.database.firebase.IFirebaseRepository
 import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.movieResponse.Movie
+import com.example.finema.repositories.IAppPreference
 import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.util.APP_ACTIVITY
-import com.example.finema.util.AppPreference
 import com.example.finema.util.Coroutines
 import kotlin.math.floor
 import kotlin.math.log
@@ -24,7 +24,8 @@ import kotlinx.coroutines.launch
 class TournamentVM(
     private val apiRepository: IMoviesRepository,
     private val dbRepository: DatabaseRepository,
-    private val fbRepository: IFirebaseRepository
+    private val fbRepository: IFirebaseRepository,
+    private val appPreference: IAppPreference
 ) : BaseViewModel() {
 
     val favouriteMovies: LiveData<List<MovieModel>> = dbRepository.allFavourites
@@ -50,7 +51,7 @@ class TournamentVM(
     }
 
     private fun start() {
-        numFilms = AppPreference.getNumOfFilms()
+        numFilms = appPreference.getNumOfFilms()
         genreOrCategory()
         setLoopNum()
         getMovies {
@@ -71,9 +72,9 @@ class TournamentVM(
     }
 
     private fun getMovies(onSuccess: () -> Unit) {
-        when (AppPreference.getTournamentType()) {
+        when (appPreference.getTournamentType()) {
             "GENRE" -> {
-                val genre = AppPreference.getGenreId() ?: GENRE_ID_DEFAULT
+                val genre = appPreference.getGenreId() ?: GENRE_ID_DEFAULT
                 for (page in 1..loopNum) {
                     job = Coroutines.ioThenMan(
                         { apiRepository.getMoviesWithGenre(page, genre) },
@@ -82,7 +83,7 @@ class TournamentVM(
                 }
             }
             "CATEGORY" -> {
-                val categoryLink = AppPreference.getCategoryLink()
+                val categoryLink = appPreference.getCategoryLink()
                 for (page in 1..loopNum) {
                     job = Coroutines.ioThenMan(
                         { apiRepository.getMovieFromList(categoryLink) },
@@ -95,23 +96,23 @@ class TournamentVM(
     }
 
     fun itemClick(position: Int) {
-        //TODO переписать на if else .let{}
-        (if(position==0) el1 else el2)
+        // TODO переписать на if else .let{}
+        (if (position == 0) el1 else el2)
             .let {
-            if (mainList.isEmpty()) {
-                if (secondList.isEmpty()) {
-                    val filmIdInfo = it.id.toLong()
-                    goNextFragment(filmIdInfo)
+                if (mainList.isEmpty()) {
+                    if (secondList.isEmpty()) {
+                        val filmIdInfo = it.id.toLong()
+                        goNextFragment(filmIdInfo)
+                    } else {
+                        secondList.add(it)
+                        secondListToMainList()
+                        updateCards()
+                    }
                 } else {
                     secondList.add(it)
-                    secondListToMainList()
                     updateCards()
                 }
-            } else {
-                secondList.add(it)
-                updateCards()
             }
-        }
     }
 
     private fun secondListToMainList() {
@@ -160,14 +161,14 @@ class TournamentVM(
     }
 
     private fun genreOrCategory() {
-        when (AppPreference.getTournamentType()) {
+        when (appPreference.getTournamentType()) {
             "GENRE" -> {
                 val film = endOfWordGrammar()
-                val name = AppPreference.getGenreName()
+                val name = appPreference.getGenreName()
                 title = "$numFilms Лучших $film в жанре $name"
             }
             "CATEGORY" -> {
-                title = AppPreference.getCategoryName() ?: " "
+                title = appPreference.getCategoryName() ?: " "
             }
         }
     }
@@ -190,7 +191,7 @@ class TournamentVM(
             ) {
             }
         }
-        if (AppPreference.getGuestOrAuth() == "AUTH") {
+        if (appPreference.getGuestOrAuth() == "AUTH") {
             viewModelScope.launch(Dispatchers.Main) {
                 fbRepository.insertFirebaseFavouriteFilm(makeMovieModel(movie))
             }
@@ -203,7 +204,7 @@ class TournamentVM(
                 makeMovieModel(movie)
             ) {
             }
-            if (AppPreference.getGuestOrAuth() == "AUTH") {
+            if (appPreference.getGuestOrAuth() == "AUTH") {
                 fbRepository.deleteFirebaseFavouriteFilm(makeMovieModel(movie))
             }
         }

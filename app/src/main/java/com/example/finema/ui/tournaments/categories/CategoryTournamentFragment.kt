@@ -13,7 +13,6 @@ import com.example.finema.R
 import com.example.finema.databinding.FragmentCategoryTournamentBinding
 import com.example.finema.models.databaseModels.CategoryModel
 import com.example.finema.ui.base.BaseFragment
-import com.example.finema.util.AppPreference
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class CategoryTournamentFragment :
@@ -109,9 +108,7 @@ class CategoryTournamentFragment :
     }
 
     private fun goNextFragment(num: Int, link: String, categoryName: String) {
-        AppPreference.setNumOfFilms(num)
-        AppPreference.setCategoryName(categoryName)
-        AppPreference.setCategoryLink(link.toInt())
+        viewModel.setParameters(num, categoryName, link)
         Navigation.findNavController(requireActivity(), R.id.fragment)
             .navigate(R.id.action_fragmentOthers_to_fragmentTournament)
     }

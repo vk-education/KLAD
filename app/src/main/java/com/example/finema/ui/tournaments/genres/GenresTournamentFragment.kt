@@ -14,7 +14,6 @@ import com.example.finema.databinding.FragmentTournamentGenresBinding
 import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.models.genreRequest.GenreList
 import com.example.finema.ui.base.BaseFragment
-import com.example.finema.util.AppPreference
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class GenresTournamentFragment :
@@ -99,10 +98,7 @@ class GenresTournamentFragment :
     }
 
     private fun goNextFragment(num: Int, genreId: String, genreName: String) {
-        AppPreference.setNumOfFilms(num)
-        AppPreference.setGenreName(genreName)
-        AppPreference.setGenre(genreId)
-
+        viewModel.setParameters(num, genreName, genreId)
         Navigation.findNavController(requireActivity(), R.id.fragment)
             .navigate(R.id.action_fragmentGenre_to_fragmentTournament)
     }

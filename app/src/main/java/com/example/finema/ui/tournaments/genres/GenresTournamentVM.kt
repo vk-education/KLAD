@@ -5,8 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.finema.api.IMoviesRepository
 import com.example.finema.database.DatabaseRepository
-import com.example.finema.models.genreRequest.GenreList
 import com.example.finema.models.databaseModels.GenreModel
+import com.example.finema.models.genreRequest.GenreList
+import com.example.finema.repositories.IAppPreference
 import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.util.Coroutines
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +15,8 @@ import kotlinx.coroutines.launch
 
 class GenresTournamentVM(
     private val apiRepository: IMoviesRepository,
-    private val dbRepository: DatabaseRepository
+    private val dbRepository: DatabaseRepository,
+    private val appPreference: IAppPreference
 ) : BaseViewModel() {
 
     // TODO Убрать, данные получаются от репозитория
@@ -46,4 +48,10 @@ class GenresTournamentVM(
             dbRepository.insert(genreModel) {
             }
         }
+
+    fun setParameters(num: Int, genreName: String, genreId: String) {
+        appPreference.setNumOfFilms(num)
+        appPreference.setGenreName(genreName)
+        appPreference.setGenre(genreId)
+    }
 }

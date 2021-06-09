@@ -7,8 +7,10 @@ import com.example.finema.database.DatabaseRepository
 import com.example.finema.database.firebase.FirebaseRepository
 import com.example.finema.database.firebase.IFirebaseRepository
 import com.example.finema.database.room.RoomDataBase
-import com.example.finema.database.room.RoomRepositry
+import com.example.finema.database.room.RoomRepository
+import com.example.finema.repositories.AppPreference
 import com.example.finema.repositories.Contract
+import com.example.finema.repositories.IAppPreference
 import com.example.finema.ui.chooseFavourite.ChooseFavouriteViewModel
 import com.example.finema.ui.favourite.FavouriteViewModel
 import com.example.finema.ui.higherlower.HigherLowerViewModel
@@ -28,25 +30,25 @@ import org.koin.dsl.module
 
 val viewModelModule: Module = module {
 
-    viewModel { HigherLowerViewModel(get(), get(), get()) }
+    viewModel { HigherLowerViewModel(get(), get(), get(), get()) }
 
-    viewModel { SignInViewModel(get()) }
+    viewModel { SignInViewModel(get(), get()) }
 
-    viewModel { TmpViewModel(get(), get()) }
+    viewModel { TmpViewModel(get(), get(), get()) }
 
-    viewModel { GenresTournamentVM(get(), get()) }
+    viewModel { GenresTournamentVM(get(), get(), get()) }
 
-    viewModel { MovieDetailsViewModel(get(), get(), get()) }
+    viewModel { MovieDetailsViewModel(get(), get(), get(), get()) }
 
-    viewModel { TournamentVM(get(), get(), get()) }
+    viewModel { TournamentVM(get(), get(), get(), get()) }
 
-    viewModel { CategoryTournamentVM(get()) }
+    viewModel { CategoryTournamentVM(get(), get()) }
 
-    viewModel { HigherLowerRatingViewModel(get(), get(), get()) }
+    viewModel { HigherLowerRatingViewModel(get(), get(), get(), get()) }
 
     viewModel { FavouriteViewModel(get()) }
 
-    viewModel { SettingsViewModel(get(), get(), get()) }
+    viewModel { SettingsViewModel(get(), get(), get(), get()) }
 
     viewModel { ChooseFavouriteViewModel(get()) }
 
@@ -69,7 +71,9 @@ val repositoryModule: Module = module {
 
     single { Contract() }
 
-    single<DatabaseRepository> { RoomRepositry(get()) }
+    single<IAppPreference> { AppPreference(androidContext()) }
+
+    single<DatabaseRepository> { RoomRepository(get()) }
 
     single<IMoviesRepository> { MoviesRepository(get()) }
 

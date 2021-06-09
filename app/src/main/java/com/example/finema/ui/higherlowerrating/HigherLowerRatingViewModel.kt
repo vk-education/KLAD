@@ -9,9 +9,9 @@ import com.example.finema.database.firebase.IFirebaseRepository
 import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.movieResponse.Movie
 import com.example.finema.models.movieResponse.MovieResponse
+import com.example.finema.repositories.IAppPreference
 import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.ui.tournaments.tournament.TournamentVM
-import com.example.finema.util.AppPreference
 import com.example.finema.util.Coroutines
 import kotlin.random.Random
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +20,8 @@ import kotlinx.coroutines.launch
 class HigherLowerRatingViewModel(
     private val repository: IMoviesRepository,
     private val dbRepository: DatabaseRepository,
-    private val fbRepository: IFirebaseRepository
+    private val fbRepository: IFirebaseRepository,
+    private val appPreference: IAppPreference
 ) : BaseViewModel() {
 
     val favouriteMovies: LiveData<List<MovieModel>> = dbRepository.allFavourites
@@ -121,7 +122,7 @@ class HigherLowerRatingViewModel(
                 makeMovieModel(movie)
             ) {
             }
-            if (AppPreference.getGuestOrAuth() == "AUTH") {
+            if (appPreference.getGuestOrAuth() == "AUTH") {
                 viewModelScope.launch(Dispatchers.Main) {
                     fbRepository.insertFirebaseFavouriteFilm(makeMovieModel(movie))
                 }
@@ -140,7 +141,7 @@ class HigherLowerRatingViewModel(
             ) {
             }
         }
-        if (AppPreference.getGuestOrAuth() == "AUTH") {
+        if (appPreference.getGuestOrAuth() == "AUTH") {
             viewModelScope.launch(Dispatchers.Main) {
                 fbRepository.deleteFirebaseFavouriteFilm(makeMovieModel(movie))
             }

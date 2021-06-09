@@ -9,7 +9,7 @@ import com.example.finema.util.REF_DATABASE_USER_SAVED
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-class FirebaseRepository: IFirebaseRepository {
+class FirebaseRepository : IFirebaseRepository {
     override val allCategories: LiveData<List<CategoryModel>> = CategoriesLiveData()
     override val allMovies: LiveData<List<MovieModel>> = MoviesFromFirebaseLiveData()
 

@@ -14,11 +14,11 @@ import com.example.finema.databinding.MovieDetailsFragmentBinding
 import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.movieResponse.MovieDetails
 import com.example.finema.ui.base.BaseFragment
-import com.example.finema.util.AppPreference
 import com.example.finema.util.downloadAndSetImageUrl
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.get
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFragmentBinding>() {
@@ -79,7 +79,7 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
             null
         )
 
-        if (AppPreference.getFragment() == "Tournament fragment") {
+        if (viewModel.getFragment() == "Tournament fragment") {
             CoroutineScope(Dispatchers.IO).launch {
                 viewModel.addToTopMovies(
                     viewModel.toTopModel(movie)

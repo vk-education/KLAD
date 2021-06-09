@@ -15,16 +15,17 @@ import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.example.finema.databinding.ActivityMainBinding
+import com.example.finema.repositories.IAppPreference
 import com.example.finema.ui.settings.NotificationService
 import com.example.finema.util.APP_ACTIVITY
-import com.example.finema.util.AppPreference
 import com.example.finema.util.downloadAndSetImageUri
 import com.google.firebase.auth.FirebaseAuth
 import java.util.concurrent.TimeUnit
+import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
+    private val appPreference: IAppPreference by inject()
     private var simpleNotification =
         PeriodicWorkRequestBuilder<NotificationService>(
             NOTIFICATION_REPEAT,
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
         APP_ACTIVITY = this
-        AppPreference.getPreference(this)
+        appPreference.getPreference()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -82,7 +83,6 @@ class MainActivity : AppCompatActivity() {
                     findNavController(R.id.fragment)
                         .navigate(R.id.action_global_chooseFavouriteFragment)
             }
-
             true
         }
     }
@@ -109,16 +109,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkIfUserInited() {
-        if (!AppPreference.getInitUser()) {
-                toSignInFragment()
-
+        if (!appPreference.getInitUser()) {
+            toSignInFragment()
         } else {
-                if (FirebaseAuth.getInstance().currentUser?.displayName == null) {
-                    setPhotoAndNameGuest()
-                } else {
-                    setPhotoAndNameUser()
-                }
-
+            if (FirebaseAuth.getInstance().currentUser?.displayName == null) {
+                setPhotoAndNameGuest()
+            } else {
+                setPhotoAndNameUser()
+            }
         }
     }
 
@@ -145,17 +143,17 @@ class MainActivity : AppCompatActivity() {
 
                 when (destination.label) {
                     "Tournament fragment" -> {
-                        AppPreference.setFragment(destination.label as String)
+                        appPreference.setFragment(destination.label as String)
                     }
                     "Film fragment" -> {
                     }
 
                     "SigInFragment" -> {
-                        AppPreference.setFragment(destination.label as String)
+                        appPreference.setFragment(destination.label as String)
                     }
 
                     else -> {
-                        AppPreference.setFragment("")
+                        appPreference.setFragment("")
                         Log.d("Destination", destination.label as String)
                     }
                 }

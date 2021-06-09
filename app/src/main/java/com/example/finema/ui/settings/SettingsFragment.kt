@@ -6,7 +6,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.example.finema.R
-import com.example.finema.util.AppPreference
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -29,8 +28,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         quit.onPreferenceClickListener =
             Preference.OnPreferenceClickListener { // code for what you want it to do
-                AppPreference.setInitUser(false)
-                AppPreference.googleUserSignOut()
                 viewModel.googleSignOut()
                 CoroutineScope(Dispatchers.IO).launch {
                     viewModel.clearAllStatistics()
@@ -44,7 +41,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
             Preference.OnPreferenceClickListener {
                 CoroutineScope(Dispatchers.IO).launch {
                     viewModel.clearAllStatistics()
-                    if (AppPreference.getGuestOrAuth() == "AUTH") {
+                    if (viewModel.getGuestOrAuth() == "AUTH") {
                         viewModel.clearFireBase()
                     }
                 }

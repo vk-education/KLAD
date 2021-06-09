@@ -6,7 +6,7 @@ import com.example.finema.models.databaseModels.GenreModel
 import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.databaseModels.TopModel
 
-class RoomRepositry(
+class RoomRepository(
     override val roomDao: RoomDao
 ) : DatabaseRepository {
 

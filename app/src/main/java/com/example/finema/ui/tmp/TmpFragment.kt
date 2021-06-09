@@ -8,7 +8,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.finema.R
 import com.example.finema.databinding.TmpFragmentBinding
 import com.example.finema.ui.base.BaseFragment
-import com.example.finema.util.AppPreference
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
@@ -24,20 +23,20 @@ class TmpFragment : BaseFragment<TmpViewModel, TmpFragmentBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = getViewModel()
-        if (AppPreference.getFirstSignIn() && AppPreference.getGuestOrAuth() == "AUTH") {
+        if (viewModel.getFirstSignIn() && viewModel.getGuestOrAuth() == "AUTH") {
             viewModel.initRoomFromFirebaseToRoom()
-            AppPreference.setFirstSignIn(false)
+            viewModel.setFirstSignIn(false)
         }
 
         super.onViewCreated(view, savedInstanceState)
         binding.genre.setOnClickListener {
             findNavController().navigate(R.id.action_fragment_tmp_to_fragment_genre)
-            AppPreference.setTournamentType("GENRE")
+            viewModel.setTournamentType("GENRE")
         }
 
         binding.category.setOnClickListener {
             findNavController().navigate(R.id.action_fragment_tmp_to_fragment_others)
-            AppPreference.setTournamentType("CATEGORY")
+            viewModel.setTournamentType("CATEGORY")
         }
 
         binding.searchMovie.setOnClickListener {

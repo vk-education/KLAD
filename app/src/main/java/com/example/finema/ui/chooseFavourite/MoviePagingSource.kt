@@ -4,6 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.finema.api.MoviesApi
 import com.example.finema.models.infinite.MovieDiscoverResult
+import java.lang.NullPointerException
 import retrofit2.HttpException
 
 class MoviePagingSource(
@@ -27,7 +28,7 @@ class MoviePagingSource(
                 }
             } catch (e: HttpException) {
                 LoadResult.Error(e)
-            } catch (e: Exception) {
+            } catch (e: NullPointerException) {
                 LoadResult.Error(e)
             }
         }
