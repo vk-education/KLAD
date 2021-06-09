@@ -14,7 +14,6 @@ import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.util.AppPreference
 import com.example.finema.util.Coroutines
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class MovieDetailsViewModel(
@@ -61,7 +60,7 @@ class MovieDetailsViewModel(
     }
 
     fun checkFavourite() {
-            favouriteMovies = dbRepository.checkFavourite(listOf(arg))
+        favouriteMovies = dbRepository.checkFavourite(listOf(arg))
     }
 
     fun toTopModel(movieModel: MovieModel): TopModel {

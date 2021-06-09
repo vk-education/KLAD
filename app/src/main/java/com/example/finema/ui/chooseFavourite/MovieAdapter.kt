@@ -1,6 +1,5 @@
 package com.example.finema.ui.chooseFavourite
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,6 @@ class MovieAdapter(
     private val listener: CharacterViewHolder.Listener,
 ) :
     PagingDataAdapter<MovieDiscoverResult, MovieAdapter.CharacterViewHolder>(CharacterComparator) {
-    
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int

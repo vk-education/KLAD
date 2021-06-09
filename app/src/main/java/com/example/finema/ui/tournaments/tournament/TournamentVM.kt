@@ -95,7 +95,7 @@ class TournamentVM(
     }
 
     fun itemClick(position: Int) {
-        //TODO переписать на if else .let{}
+        // TODO переписать на if else .let{}
         when (position) {
             0 -> {
                 if (mainList.isEmpty()) {

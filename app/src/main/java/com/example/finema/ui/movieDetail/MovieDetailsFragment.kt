@@ -1,7 +1,6 @@
 package com.example.finema.ui.movieDetail
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.VISIBLE
@@ -17,7 +16,6 @@ import com.example.finema.models.movieResponse.MovieDetails
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.AppPreference
 import com.example.finema.util.downloadAndSetImageUrl
-import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

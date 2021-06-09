@@ -10,7 +10,6 @@ import com.example.finema.R
 import com.example.finema.databinding.ProfileFragmentBinding
 import com.example.finema.models.databaseModels.TopModel
 import com.example.finema.ui.base.BaseFragment
-import com.example.finema.util.APP_ACTIVITY
 import com.example.finema.util.downloadAndSetImageUri
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
@@ -58,12 +57,10 @@ class ProfileFragment :
         goDetailsFragment(movie.id)
     }
 
-
     private fun goDetailsFragment(filmIdInfo: Long) {
         val bundle = Bundle()
         bundle.putSerializable("filmId", filmIdInfo)
         Navigation.findNavController(requireActivity(), R.id.fragment)
             .navigate(R.id.action_fragment_profile_to_fragment_film, bundle)
     }
-
 }

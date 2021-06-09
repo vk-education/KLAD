@@ -1,9 +1,6 @@
 package com.example.finema.api
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
 import com.example.finema.repositories.SafeApiRequest
-import com.example.finema.ui.chooseFavourite.MoviePagingSource
 import java.util.Locale
 
 class MoviesRepository(

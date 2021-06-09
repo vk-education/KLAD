@@ -7,15 +7,11 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import com.example.finema.R
 import com.example.finema.databinding.HigherLowerFragmentBinding
 import com.example.finema.models.movieResponse.MovieResponse
 import com.example.finema.ui.base.BaseFragment
 import com.example.finema.util.downloadAndSetImageUrl
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragmentBinding>() {
@@ -48,11 +44,10 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
                 setImage(binding.img2, movieList, viewModel.img2)
 
                 setBookmarkClickListeners(binding.bookmark1, binding.txtFilm1, 0)
-                setBookmarkClickListeners(binding.bookmark2, binding.txtFilm2,1)
+                setBookmarkClickListeners(binding.bookmark2, binding.txtFilm2, 1)
 
                 fillInBookmarks(binding.txtFilm1, binding.bookmark1)
                 fillInBookmarks(binding.txtFilm2, binding.bookmark2)
-
             }
         )
     }
@@ -82,7 +77,7 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
     }
 
     private fun fillInBookmarks(txtview: TextView, bookmark: ImageButton) {
-        //TODO Удалить
+        // TODO Удалить
         viewModel.favouriteMovies.observe(
             viewLifecycleOwner,
             {
@@ -95,7 +90,7 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
                         )
                         break
                     }
-                    if(counter == it.size) {
+                    if (counter == it.size) {
                         bookmark.setImageResource(
                             R.drawable.bookmark_border_24
                         )
@@ -116,11 +111,11 @@ class HigherLowerFragment : BaseFragment<HigherLowerViewModel, HigherLowerFragme
             if (it != null) {
                 for (i in it) {
                     counter += 1
-                    if(title.text == i.title) {
+                    if (title.text == i.title) {
                         viewModel.removeFromFav(position)
                         break
                     }
-                    if(it.size == counter) {
+                    if (it.size == counter) {
                         viewModel.addToFav(position)
                     }
                 }

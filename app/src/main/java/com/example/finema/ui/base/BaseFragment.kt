@@ -4,12 +4,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.viewbinding.ViewBinding
-import org.koin.androidx.viewmodel.ext.android.getViewModel
 import java.lang.reflect.ParameterizedType
-import org.koin.androidx.viewmodel.ext.android.viewModel
+
 abstract class BaseFragment<VModel : BaseViewModel, Binding : ViewBinding> : Fragment() {
 
     protected open lateinit var viewModel: VModel
