@@ -58,7 +58,7 @@ interface MoviesApi {
 
         private const val BASE_URL = "https://api.themoviedb.org/3/"
         private const val GENRE_LIST =
-            "genre/movie/list?api_key=bbf5a3000e95f1dddf266b5e187d4b21&language=ru-Ru"
+            "genre/movie/list?api_key=bbf5a3000e95f1dddf266b5e187d4b21&language=ru-ru"
         private const val TOP_RATED_LIST =
             "movie/top_rated?api_key=bbf5a3000e95f1dddf266b5e187d4b21&language=ru-Ru"
         private const val DISCOVER =

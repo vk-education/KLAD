@@ -20,9 +20,9 @@ class GenresTournamentFragment :
     BaseFragment<GenresTournamentVM, FragmentTournamentGenresBinding>(),
     GenresTournamentAdapter.TournamentHolder.Listener {
 
-    private lateinit var mRecyclerView: RecyclerView
-    private lateinit var mAdapter: GenresTournamentAdapter
-    private lateinit var mObserverList: Observer<List<GenreModel>>
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: GenresTournamentAdapter
+    private lateinit var observerList: Observer<List<GenreModel>>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,15 +42,15 @@ class GenresTournamentFragment :
     private fun initialization() {
         if (!viewModel.checkDatabaseNotEmpty()) loadGenresList()
 
-        mAdapter = GenresTournamentAdapter(this)
-        mRecyclerView = binding.tournamentsRecycler
-        mRecyclerView.adapter = mAdapter
+        adapter = GenresTournamentAdapter(this)
+        recyclerView = binding.tournamentsRecycler
+        recyclerView.adapter = adapter
 
-        mObserverList = Observer {
-            mAdapter.setList(it)
+        observerList = Observer {
+            adapter.setList(it)
         }
         // TODO Убрать получение и обращаться к VM базового класса
-        viewModel.allGenres.observe(requireActivity(), mObserverList)
+        viewModel.allGenres.observe(requireActivity(), observerList)
     }
 
     // TODO genreModel -> {} : GenreModel -> Unit

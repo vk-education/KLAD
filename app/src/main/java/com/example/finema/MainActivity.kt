@@ -20,8 +20,8 @@ import com.example.finema.ui.settings.NotificationService
 import com.example.finema.util.APP_ACTIVITY
 import com.example.finema.util.downloadAndSetImageUri
 import com.google.firebase.auth.FirebaseAuth
-import java.util.concurrent.TimeUnit
 import org.koin.android.ext.android.inject
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

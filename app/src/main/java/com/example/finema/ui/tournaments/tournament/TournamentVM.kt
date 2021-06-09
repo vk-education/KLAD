@@ -96,7 +96,6 @@ class TournamentVM(
     }
 
     fun itemClick(position: Int) {
-        // TODO переписать на if else .let{}
         (if (position == 0) el1 else el2)
             .let {
                 if (mainList.isEmpty()) {

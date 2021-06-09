@@ -5,7 +5,7 @@ import com.example.finema.repositories.IAppPreference
 import com.example.finema.ui.base.BaseViewModel
 
 class CategoryTournamentVM(
-    private val fbRepository: IFirebaseRepository,
+    fbRepository: IFirebaseRepository,
     private val appPreference: IAppPreference
 ) : BaseViewModel() {
     val allCategories = fbRepository.allCategories

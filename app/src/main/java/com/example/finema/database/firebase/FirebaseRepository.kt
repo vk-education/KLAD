@@ -17,7 +17,7 @@ class FirebaseRepository : IFirebaseRepository {
     private val mDatabaseReference = FirebaseDatabase.getInstance().reference
 
     override fun initRefCategory() {
-        REF_DATABASE = FirebaseDatabase.getInstance().reference
+        REF_DATABASE = mDatabaseReference
             .child("category")
     }
 

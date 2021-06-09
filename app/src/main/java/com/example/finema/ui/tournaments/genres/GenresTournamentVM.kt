@@ -19,7 +19,6 @@ class GenresTournamentVM(
     private val appPreference: IAppPreference
 ) : BaseViewModel() {
 
-    // TODO Убрать, данные получаются от репозитория
     val allGenres: LiveData<List<GenreModel>>
         get() {
             return dbRepository.allGenres
