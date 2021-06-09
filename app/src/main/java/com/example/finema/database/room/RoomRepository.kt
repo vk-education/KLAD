@@ -16,7 +16,7 @@ class RoomRepository(
 
     override val allTop: LiveData<List<TopModel>> = roomDao.getAllTop()
 
-    override fun checkFavourite(movieId: Long) = roomDao.checkFavourite(movieId)
+    override fun checkFavourite(movieId: List<Long>) = roomDao.checkFavourite(movieId)
 
     override suspend fun insert(genre: GenreModel, onSuccess: () -> Unit) {
         roomDao.insert(genre)

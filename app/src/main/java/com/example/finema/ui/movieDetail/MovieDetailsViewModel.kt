@@ -1,6 +1,7 @@
 package com.example.finema.ui.movieDetail
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.finema.api.MoviesRepository
@@ -24,7 +25,7 @@ class MovieDetailsViewModel(
     private val fbRepository: FirebaseRepository = FirebaseRepository()
     var film = MutableLiveData<MovieDetails>()
     var arg: Long = 0
-    var favouriteMovies: List<Long>? = null
+    var favouriteMovies: LiveData<List<Long>> = dbRepository.checkFavourite(listOf(arg))
 
     fun getMovieDetails() {
         job = Coroutines.ioThenMan(
@@ -60,11 +61,7 @@ class MovieDetailsViewModel(
     }
 
     fun checkFavourite() {
-        GlobalScope.launch {
-            favouriteMovies = dbRepository.checkFavourite(arg)
-            Log.d("gypsy", "Check")
-            Log.d("gypsy", arg.toString())
-        }
+            favouriteMovies = dbRepository.checkFavourite(listOf(arg))
     }
 
     fun toTopModel(movieModel: MovieModel): TopModel {

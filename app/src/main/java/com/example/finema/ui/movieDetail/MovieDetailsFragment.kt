@@ -25,7 +25,7 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFragmentBinding>() {
 
-    var movie: MovieModel? = null
+    var movie: MovieModel = MovieModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,28 +43,23 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.film.observe(viewLifecycleOwner, observerList)
-
-        viewModel.checkFavourite()
+        viewModel.favouriteMovies.observe(viewLifecycleOwner, {})
 
         binding.favourite.setOnClickListener {
-            Log.d("gypsy", "Button is work")
-            if (movie != null)
-                addRemoveFavourite()
+            addRemoveFavourite(movie.id)
         }
     }
 
     private val observerList: Observer<MovieDetails> = Observer {
         binding.filmId = it
 
-        binding.genres.text = viewModel.film.value!!.stringGenres
+        viewModel.film.value?.let { film ->
+            binding.genres.text = film.stringGenres
 
-        binding.companies.text = viewModel.film.value!!.stringCompanies
+            binding.companies.text = film.stringCompanies
+        }
 
         val image = requireActivity().findViewById<ImageView>(R.id.imageAppBar)
-
-        val title = requireActivity().findViewById<MaterialToolbar>(R.id.topAppBar)
-
-        title.title = it.title
 
         image.downloadAndSetImageUrl(
             POSTER_BASE_URL + it.posterPath
@@ -72,12 +67,10 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
 
         binding.rating.text = it.voteAverage.toString()
 
-        if (viewModel.favouriteMovies != null &&
-            viewModel.favouriteMovies!!.contains(it.id.toLong())
-        ) {
-            binding.favourite.setImageResource(R.drawable.bookmark_24)
-            binding.favourite.tag = "yes"
-        }
+        viewModel.favouriteMovies.value?.takeIf { favourite -> favourite.contains(it.id.toLong()) }
+            .let {
+                binding.favourite.setImageResource(R.drawable.bookmark_24)
+            }
 
         movie = MovieModel(
             it.id.toLong(),
@@ -92,7 +85,7 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
         if (AppPreference.getFragment() == "Tournament fragment") {
             CoroutineScope(Dispatchers.IO).launch {
                 viewModel.addToTopMovies(
-                    viewModel.toTopModel(movie!!)
+                    viewModel.toTopModel(movie)
                 )
             }
         }
@@ -104,30 +97,39 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
         viewModel = getViewModel()
         viewModel.arg = requireArguments().getLong(KEY)
         viewModel.getMovieDetails()
+        viewModel.checkFavourite()
     }
 
-    private fun addRemoveFavourite() {
-        if (binding.favourite.tag == "yes") {
-            Toast.makeText(
-                context,
-                resources.getString(R.string.delete_from_favourite),
-                Toast.LENGTH_SHORT
-            ).show()
-            animateBookmark(binding.favourite)
-            binding.favourite.setImageResource(R.drawable.bookmark_border_24)
-            viewModel.deleteMovie(movie!!.id, movie!!)
-            binding.favourite.tag = "no"
-        } else {
-            Toast.makeText(
-                context,
-                resources.getString(R.string.add_to_favourite),
-                Toast.LENGTH_SHORT
-            ).show()
-            animateBookmark(binding.favourite)
-            binding.favourite.setImageResource(R.drawable.bookmark_24)
-            viewModel.insert(movie!!)
-            binding.favourite.tag = "yes"
+    private fun addRemoveFavourite(id: Long) {
+        viewModel.favouriteMovies.value?.let {
+            if (it.contains(id)) {
+                deleteFilm()
+            } else {
+                addFilm()
+            }
         }
+    }
+
+    private fun deleteFilm() {
+        Toast.makeText(
+            context,
+            resources.getString(R.string.delete_from_favourite),
+            Toast.LENGTH_SHORT
+        ).show()
+        animateBookmark(binding.favourite)
+        binding.favourite.setImageResource(R.drawable.bookmark_border_24)
+        viewModel.deleteMovie(movie.id, movie)
+    }
+
+    private fun addFilm() {
+        Toast.makeText(
+            context,
+            resources.getString(R.string.add_to_favourite),
+            Toast.LENGTH_SHORT
+        ).show()
+        animateBookmark(binding.favourite)
+        binding.favourite.setImageResource(R.drawable.bookmark_24)
+        viewModel.insert(movie)
     }
 
     private fun animateBookmark(bookmark: ImageButton) {
@@ -144,7 +146,7 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
         }
     }
 
-    fun afterLoading() {
+    private fun afterLoading() {
         binding.filmLoader.visibility = View.INVISIBLE
         binding.aboutTitle.visibility = VISIBLE
         binding.genreTitle.visibility = VISIBLE

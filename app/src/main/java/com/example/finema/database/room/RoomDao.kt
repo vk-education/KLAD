@@ -22,8 +22,8 @@ interface RoomDao {
     @Query("SELECT * FROM top_list")
     fun getAllTop(): LiveData<List<TopModel>>
 
-    @Query("SELECT id FROM favourite_list WHERE id = :movieId")
-    fun checkFavourite(movieId: Long): List<Long>
+    @Query("SELECT id FROM favourite_list WHERE id IN (:movieId)")
+    fun checkFavourite(movieId: List<Long>): LiveData<List<Long>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertFavourite(note: MovieModel)
