@@ -41,5 +41,6 @@
     <string name="which_film">Какой фильм сейчас популярнее?</string>
     <string name="points_zero">Очки: 0</string>
     <string name="which_rating">У какого фильма выше рейтинг?</string>
+    <string name="trailer">Трейлер</string>
 
 </resources>

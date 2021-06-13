@@ -5,6 +5,7 @@ import com.example.finema.models.infinite.MovieDiscover
 import com.example.finema.models.movieResponse.MovieDetails
 import com.example.finema.models.movieResponse.MovieResponse
 import com.example.finema.models.movieResponse.MovieResponseFromList
+import com.example.finema.models.movieResponse.TrailersList
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -18,6 +19,13 @@ interface MoviesApi {
     suspend fun getMovies(
         @Query("page") page: Int
     ): Response<MovieResponse>
+
+    @GET("movie/{movie_id}/videos?api_key=bbf5a3000e95f1dddf266b5e187d4b21")
+    suspend fun getTrailers(
+        @Path("movie_id") id: Long,
+        @Query("language") language: String
+    ): Response<TrailersList>
+
 
     @GET(GENRE_LIST)
     suspend fun getGenreList(): Response<GenreList>

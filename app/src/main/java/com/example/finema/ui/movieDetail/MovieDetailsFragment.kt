@@ -1,9 +1,12 @@
 package com.example.finema.ui.movieDetail
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.VISIBLE
+import android.view.View.INVISIBLE
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -18,12 +21,12 @@ import com.example.finema.util.downloadAndSetImageUrl
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.koin.androidx.compose.get
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFragmentBinding>() {
 
     var movie: MovieModel = MovieModel()
+    var trailer: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,11 +43,29 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
         initViewModel()
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.trailer.observe(viewLifecycleOwner, { item ->
+            trailer = item.key
+            if (item.key.isNotEmpty()) {
+                binding.trailer.visibility = VISIBLE
+            } else {
+                binding.trailer.visibility = INVISIBLE
+            }
+        })
         viewModel.film.observe(viewLifecycleOwner, observerList)
         viewModel.favouriteMovies.observe(viewLifecycleOwner, {})
 
         binding.favourite.setOnClickListener {
             addRemoveFavourite(movie.id)
+        }
+
+        binding.trailer.setOnClickListener {
+            if (trailer != null)
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("http://www.youtube.com/watch?v=$trailer")
+                    )
+                )
         }
     }
 
@@ -94,6 +115,7 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
     private fun initViewModel() {
         viewModel = getViewModel()
         viewModel.arg = requireArguments().getLong(KEY)
+        viewModel.getTrailer()
         viewModel.getMovieDetails()
         viewModel.checkFavourite()
     }
@@ -145,7 +167,7 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsViewModel, MovieDetailsFra
     }
 
     private fun afterLoading() {
-        binding.filmLoader.visibility = View.INVISIBLE
+        binding.filmLoader.visibility = INVISIBLE
         binding.aboutTitle.visibility = VISIBLE
         binding.genreTitle.visibility = VISIBLE
         binding.ratingTitle.visibility = VISIBLE

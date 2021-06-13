@@ -19,6 +19,10 @@ class MoviesRepository(
         api.getMoviesWithGenre(page, withGenres)
     }
 
+    override suspend fun getTrailers(id: Long) = apiRequest {
+        api.getTrailers(id, Locale.getDefault().toString().replace('_', '-'))
+    }
+
     override suspend fun getMovieDetails(id: Long) = apiRequest {
         api.getMovieDetails(id, Locale.getDefault().toString().replace('_', '-'))
     }

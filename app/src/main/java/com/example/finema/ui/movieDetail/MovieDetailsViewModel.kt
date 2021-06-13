@@ -10,6 +10,7 @@ import com.example.finema.database.firebase.IFirebaseRepository
 import com.example.finema.models.databaseModels.MovieModel
 import com.example.finema.models.databaseModels.TopModel
 import com.example.finema.models.movieResponse.MovieDetails
+import com.example.finema.models.movieResponse.MovieTrailer
 import com.example.finema.repositories.IAppPreference
 import com.example.finema.ui.base.BaseViewModel
 import com.example.finema.util.Coroutines
@@ -24,6 +25,7 @@ class MovieDetailsViewModel(
 ) : BaseViewModel() {
 
     var film = MutableLiveData<MovieDetails>()
+    var trailer = MutableLiveData<MovieTrailer>()
     var arg: Long = 0
     var favouriteMovies: LiveData<List<Long>> = dbRepository.checkFavourite(listOf(arg))
 
@@ -46,6 +48,23 @@ class MovieDetailsViewModel(
                 Log.d("gypsy", "Details")
             }
         )
+    }
+
+    fun getTrailer() {
+        job = Coroutines.ioThenMan(
+            { repository.getTrailers(arg) },
+            {
+                val smt = it?.trailers
+                Log.d("gypsy", "SMT " + smt?.size.toString())
+                smt?.forEach { item ->
+                    if (item.site == "YouTube" && item.type == "Trailer") {
+                        trailer.value = item
+                        Log.d("gypsy", "TrailerYES")
+                    }
+                }
+            }
+        )
+        job.start()
     }
 
     fun insert(movieModel: MovieModel) {
