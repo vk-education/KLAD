@@ -1,0 +1,93 @@
+{
+  "project_info": {
+    "project_number": "677958878281",
+    "firebase_url": "https://finema-b7bde-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "finema-b7bde",
+    "storage_bucket": "finema-b7bde.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:677958878281:android:abcc3c987d1a658a9deb98",
+        "android_client_info": {
+          "package_name": "Finema.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "677958878281-h8s3da3dpf41u4cbc0csu5t9iq6b250g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "Finema.app",
+            "certificate_hash": "549d918079a35c978f5226f4a7ecd7d5bf250ae9"
+          }
+        },
+        {
+          "client_id": "677958878281-pmcs285i4cdvd5tob7c6ovd2j0msknvs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDO1vX5IwzD0tWU002zPXJuda5gseEPA38"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "677958878281-pmcs285i4cdvd5tob7c6ovd2j0msknvs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:677958878281:android:59346e44ac0064a59deb98",
+        "android_client_info": {
+          "package_name": "com.example.finema"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "677958878281-bc2fulmg7en9sgv9ingij4sav2u4g35r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.finema",
+            "certificate_hash": "08fa697c85845235d17c47709bceeae4bfe3692c"
+          }
+        },
+        {
+          "client_id": "677958878281-o32p6sa8b711am4ikvr2inhjql9en9us.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.finema",
+            "certificate_hash": "549d918079a35c978f5226f4a7ecd7d5bf250ae9"
+          }
+        },
+        {
+          "client_id": "677958878281-pmcs285i4cdvd5tob7c6ovd2j0msknvs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDO1vX5IwzD0tWU002zPXJuda5gseEPA38"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "677958878281-pmcs285i4cdvd5tob7c6ovd2j0msknvs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

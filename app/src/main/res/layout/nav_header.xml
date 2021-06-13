@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+                name="nickname"
+                type="String" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_short"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@color/main_500"
+            android:fitsSystemWindows="true">
+
+        <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/userAvatar"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_margin="@dimen/app_margin"
+
+                android:scaleType="fitStart"
+                app:shapeAppearanceOverlay="@style/Circular"
+
+                app:srcCompat="@drawable/default_profile_avatar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+                android:id="@+id/textView5"
+                android:text="@string/profile"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+
+                app:layout_constraintStart_toEndOf="@+id/userAvatar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/userAvatar" />
+
+        <TextView
+                android:id="@+id/nickProfile"
+                android:text="@{nickname}"
+                android:textSize="17sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_margin="@dimen/app_margin"
+
+                app:layout_constraintEnd_toEndOf="@+id/textView5"
+                app:layout_constraintStart_toStartOf="@+id/textView5"
+                app:layout_constraintBottom_toBottomOf="@+id/userAvatar"
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

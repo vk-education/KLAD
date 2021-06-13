@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Finema</string>
+    <string name="profile">Профиль</string>
+    <string name="about_film">О фильме</string>
+    <string name="genres">Жанры:</string>
+    <string name="rating">Рейтинг</string>
+    <string name="companies">Компании</string>
+    <string name="notifications">Уведомления</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tournament_count_films_title">16 Лучших фильмов</string>
+    <string name="tournament_round_count">Раунд №1</string>
+    <string name="tournament_film2_name">Фильм 2</string>
+    <string name="tournament_film1_name">Фильм 1</string>
+    <string name="genre_item_genre_name">Жанр</string>
+    <string name="higher_lower_score">Очки: %1$d</string>
+    <string name="poster_base_url">https://image.tmdb.org/t/p/w342%1$s</string>
+    <string name="quit">Выйти из приложения</string>
+    <string name="clear_statistics">Очистить статистику</string>
+    <string name="choose_best_film">Выбери лучший фильм</string>
+    <string name="lovely_films">Избранные фильмы</string>
+    <string name="settings">Настройки</string>
+    <string name="find_movies">Поиск фильмов</string>
+    <string name="game_higher_lower">Игра больше/меньше</string>
+    <string name="popularity">Популярность</string>
+    <string name="n_best_movies">%1$d Лучших фильмов</string>
+    <string name="round">Раунд %1$d</string>
+    <string name="clear">Ваша статистика очищена</string>
+    <string name="start_level">Level 1</string>
+    <string name="next_level">Next Level</string>
+    <string name="empty_favourite">Здесь пусто\nДавайте найдем\nВаши любимые фильмы</string>
+    <string name="your_top">Твой топ</string>
+    <string name="find">Поиск</string>
+    <string name="guest">Гость</string>
+    <string name="phone_number">8 800 555 35 35</string>
+    <string name="add_to_favourite">Добавлено в избранные</string>
+    <string name="delete_from_favourite">Удалено из избранных</string>
+    <string name="sign_as_guest">Войти как Гость</string>
+    <string name="sign_as_google">Авторизация через Google</string>
+    <string name="n_points">Очки: %1$d</string>
+    <string name="n_round">Раунд %1$d</string>
+    <string name="which_film">Какой фильм сейчас популярнее?</string>
+    <string name="points_zero">Очки: 0</string>
+    <string name="which_rating">У какого фильма выше рейтинг?</string>
+    <string name="trailer">Трейлер</string>
+
+</resources>

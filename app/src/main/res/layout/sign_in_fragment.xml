@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/sign_in_frag"
+        android:background="@drawable/parasite1"
+        android:tint="@android:color/holo_purple">
+
+    <ProgressBar
+            android:id="@+id/loader"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/sign_in_as_guest"
+            app:layout_constraintStart_toStartOf="@id/sign_in_as_guest"
+            app:layout_constraintEnd_toEndOf="@id/sign_in_as_guest"
+            android:visibility="invisible"
+            />
+
+
+    <View
+            android:id="@+id/opacityFilter"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/black"
+            android:layout_alignParentBottom="true"
+            android:alpha="0.7">
+    </View>
+
+    <Button
+            android:id="@+id/sign_in_with_google"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_as_google"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints"
+            android:visibility="visible"/>
+
+    <Button
+            android:id="@+id/sign_in_as_guest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_as_guest"
+            app:layout_constraintBottom_toTopOf="@id/sign_in_with_google"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.901" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
